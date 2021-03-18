@@ -1,0 +1,13 @@
+ {
+    "verbose": false,
+    "ignore_defaults": false,
+    "exclude": ["LICENSE", "\\.md$", "tsconfig.json"],
+    "spaces_after_tabs": false,
+    "disable": {
+        "end_of_line": false,
+        "trim_trailing_whitespace": false,
+        "insert_final_newline": false,
+        "indentation": false
+    }
+}
+

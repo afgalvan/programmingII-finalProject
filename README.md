@@ -18,6 +18,10 @@
         <img src="https://img.shields.io/github/issues/afgalvan/programmingII-finalProject" 
     alt="Issues">
     </a>
+    <a href="https://github.com/marketplace/actions/super-linter)" title="Lint Status">
+        <img src="https://github.com/afgalvan/programmingII-finalProject/workflows/Lint%20Code%20Base/badge.svg"
+    alt="Lint status"/>
+    </a>
     <!-- <a href="https://github.com/afgalvan/JavaMySQL/actions">
         <img src="https://github.com/afgalvan/programminII-finalProject/actions/workflows/gradle.yml/badge.svg" alt="Java CI Actions" title="Java CI with Gradle"/>
     </a> -->
