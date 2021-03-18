@@ -38,4 +38,7 @@ Clona el repositorio.
 
 ```bash
 git clone https://github.com/afgalvan/programmingII-finalProject.git
+
+# With ssh
+git clone git@github.com:afgalvan/programmingII-finalProject.git
 ```
