@@ -24,7 +24,14 @@
 </p>
 
 <p align="center">
-    El Consejo Superior de la Judicatura ha decido implementar el Plan de Digitalización de los despachos Judiciales en todo el País, con el que busca digitalizar todos los procesos que se tramitan por los Juzgados en cada especialidad.La contratista GestData ha sido la compañía seleccionada por la entidad para ejecutar éste proyecto de gran impacto.Dentro  de  los compromisos  requeridos  por  la contratista, se  encuentra  la  elaboracióne  implementación  del  software  de gestión documental para el registro de los procesos digitalizados, y la consulta de los mismos por parte de los diferentes Juzgados y usuarios interesados.
+    El Consejo Superior de la Judicatura ha decido implementar el Plan de Digitalización de los
+    despachos Judiciales en todo el País, con el que busca digitalizar todos los procesos que se
+    tramitan por los Juzgados en cada especialidad.
+    La contratista GestData ha sido la compañía seleccionada por la entidad para ejecutar éste
+    proyecto de gran impacto. Dentro  de  los compromisos requeridos  por  la contratista, se
+    encuentra  la  elaboración e  implementación  del  software  de gestión documental para el
+    registro de los procesos digitalizados, y la consulta de los mismos por parte de los
+    diferentes Juzgados y usuarios interesados.
 </p>
 
 ## Obtener el proyecto
