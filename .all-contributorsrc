@@ -11,5 +11,5 @@
   "commitConvention": "angular",
   "contributors": [],
   "contributorsPerLine": 7,
-  "skipCi": true,
+  "skipCi": true
 }
