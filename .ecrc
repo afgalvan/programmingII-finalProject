@@ -1,7 +1,7 @@
  {
     "verbose": false,
     "ignore_defaults": false,
-    "exclude": ["LICENSE", "\\.md$", "tsconfig.json"],
+    "exclude": ["LICENSE", "\\.md$", "package.json", ".idea/**"],
     "spaces_after_tabs": false,
     "disable": {
         "end_of_line": false,

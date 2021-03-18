@@ -1,4 +1,5 @@
 discord.xml
+node_modules
 
 # Package Files #
 *.jar
