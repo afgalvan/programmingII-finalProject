@@ -1,5 +1,5 @@
-FROM alpine:latest
-COPY ./out/production/actividad3 /usr/src/
-WORKDIR /usr/src/
+FROM alpine:3.13.2
+COPY ./out/production/final_project/ /usr/out/
+WORKDIR /usr/out/
 RUN apk --update add openjdk8-jre
-CMD ["java", "edu.unicesar.path.to.Main"]
+CMD ["java", "edu.unicesar.programming2.group01.main.Main"]
