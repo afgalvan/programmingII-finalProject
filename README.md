@@ -18,6 +18,10 @@
         <img src="https://img.shields.io/github/issues/afgalvan/programmingII-finalProject" 
     alt="Issues">
     </a>
+    <a href="https://github.com/marketplace/actions/super-linter)" title="Lint Status">
+        <img src="https://github.com/afgalvan/programmingII-finalProject/workflows/Lint%20Code%20Base/badge.svg"
+    alt="Lint status"/>
+    </a>
     <!-- <a href="https://github.com/afgalvan/JavaMySQL/actions">
         <img src="https://github.com/afgalvan/programminII-finalProject/actions/workflows/gradle.yml/badge.svg" alt="Java CI Actions" title="Java CI with Gradle"/>
     </a> -->
@@ -57,3 +61,16 @@ git clone https://github.com/afgalvan/programmingII-finalProject.git
 # With ssh
 git clone git@github.com:afgalvan/programmingII-finalProject.git
 ```
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!

@@ -5,8 +5,14 @@ charset = utf-8
 end_of_line = lf
 indent_size = 4
 indent_style = space
-insert_final_newline = false
+insert_final_newline = true
 max_line_length = 120
+
+[*{.xml,.iml,Dockerfile}]
+insert_final_newline = false
+
+[*{.iml,.xml}]
+indent_size = 2
 
 [{*.bash,*.sh,*.zsh}]
 indent_size = 2

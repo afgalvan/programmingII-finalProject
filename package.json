@@ -1,0 +1,13 @@
+{
+  "name": "final_project",
+  "version": "1.0.0",
+  "description": " Digitalization Plan for judicial offices software.",
+  "main": "index.js",
+  "repository": "git@github.com:afgalvan/programmingII-finalProject.git",
+  "author": "Andres Galvan <afgalvan@unicesar.edu.co>",
+  "license": "MIT",
+  "devDependencies": {
+    "all-contributors-cli": "^6.20.0",
+    "editorconfig-checker": "^4.0.1"
+  }
+}
