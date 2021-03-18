@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+cd out/production/actividad3 || exit 1
+java edu.unicesar.taller.main.Main
+cd - > /dev/null || exit 1
