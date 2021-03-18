@@ -10,6 +10,14 @@
     <a href="https://www.codacy.com/gh/afgalvan/programmingII-finalProject/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=afgalvan/programmingII-finalProject&amp;utm_campaign=Badge_Grade">
         <img src="https://app.codacy.com/project/badge/Grade/d5541145861d4778925af9a2214182a7"/>
     </a>
+    <a href="https://github.com/afgalvan/programmingII-finalProject/pulls/" title="Pull request">
+        <img src="https://img.shields.io/github/issues-pr/afgalvan/programmingII-finalProject" 
+    alt="Pull requests">
+    </a>
+    <a href="https://github.com/afgalvan/programmingII-finalProject/issues/" title="Issues">
+        <img src="https://img.shields.io/github/issues/afgalvan/programmingII-finalProject" 
+    alt="Issues">
+    </a>
     <!-- <a href="https://github.com/afgalvan/JavaMySQL/actions">
         <img src="https://github.com/afgalvan/programminII-finalProject/actions/workflows/gradle.yml/badge.svg" alt="Java CI Actions" title="Java CI with Gradle"/>
     </a> -->
@@ -38,4 +46,7 @@ Clona el repositorio.
 
 ```bash
 git clone https://github.com/afgalvan/programmingII-finalProject.git
+
+# With ssh
+git clone git@github.com:afgalvan/programmingII-finalProject.git
 ```
