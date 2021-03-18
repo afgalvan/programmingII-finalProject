@@ -2,4 +2,4 @@
 cls
 
 cd build/classes
-java edu.unicesar.path.to.Main
+java edu.unicesar.programming2.group01.classroom.project.main.Main

@@ -1,7 +1,7 @@
 function exec() {
     Clear-Host
-    Set-Location ./out/production/actividad3
-    java edu.unicesar.taller.main.Main
+    Set-Location ./out/production/final_project
+    java edu.unicesar.programming2.group01.classroom.project.main.Main
     Set-Location ../../../
 }
 

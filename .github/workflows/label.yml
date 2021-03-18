@@ -17,3 +17,9 @@ jobs:
     - uses: actions/labeler@v2
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        models: src/**/models/**
+        views: src/**/views/**
+        controllers: src/**/controllers/**
+        test: src/test/**
+        CI: .github/workflows/**
+        documentation: ./*.md
