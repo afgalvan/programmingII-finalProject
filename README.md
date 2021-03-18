@@ -8,7 +8,7 @@
         <img src="https://img.shields.io/badge/OpenJDK-v1.8-orange" alt="JDK Version" title="JDK Version" />
     </a>
     <a href="https://www.codacy.com/gh/afgalvan/programmingII-finalProject/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=afgalvan/programmingII-finalProject&amp;utm_campaign=Badge_Grade">
-        <img src="https://app.codacy.com/project/badge/Grade/d5541145861d4778925af9a2214182a7"/>
+        <img src="https://app.codacy.com/project/badge/Grade/a51fbdb27bde460b989f4c85d4ee8008"/>
     </a>
     <a href="https://github.com/afgalvan/programmingII-finalProject/pulls/" title="Pull request">
         <img src="https://img.shields.io/github/issues-pr/afgalvan/programmingII-finalProject" 
