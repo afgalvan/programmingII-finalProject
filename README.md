@@ -7,9 +7,12 @@
     <a href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">
         <img src="https://img.shields.io/badge/OpenJDK-v1.8-orange" alt="JDK Version" title="JDK Version" />
     </a>
-    <a href="https://www.codacy.com/gh/afgalvan/actividad3/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=afgalvan/actividad3&amp;utm_campaign=Badge_Grade">
-        <img src="https://app.codacy.com/project/badge/Grade/88b00cbbff794b96a863dc4733943525" />
+    <a href="https://www.codacy.com/gh/afgalvan/programmingII-finalProject/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=afgalvan/programmingII-finalProject&amp;utm_campaign=Badge_Grade">
+        <img src="https://app.codacy.com/project/badge/Grade/d5541145861d4778925af9a2214182a7"/>
     </a>
+    <!-- <a href="https://github.com/afgalvan/JavaMySQL/actions">
+        <img src="https://github.com/afgalvan/programminII-finalProject/actions/workflows/gradle.yml/badge.svg" alt="Java CI Actions" title="Java CI with Gradle"/>
+    </a> -->
 </p>
 
 <p align="center">
