@@ -17,6 +17,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "afgalvan",
+      "name": "Andrés Galván",
+      "avatar_url": "https://avatars.githubusercontent.com/u/62343874?v=4",
+      "profile": "https://github.com/afgalvan",
+      "contributions": [
+        "infra",
+        "code"
+      ]
     }
   ],
   "projectName": "programmingII-finalProject",
