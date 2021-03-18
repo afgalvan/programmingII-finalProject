@@ -1,0 +1,6 @@
+models: src/**/models/**
+views: src/**/views/**
+controllers: src/**/controllers/**
+test: src/test/**
+CI: .github/workflows/**
+documentation: ./*.md
