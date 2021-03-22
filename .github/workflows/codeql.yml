@@ -36,8 +36,11 @@ jobs:
       uses: github/codeql-action/init@v1
       with:
         languages: java
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v1
+    - name: Build code
+        run: |
+          mkdir -p out/production/final_project
+          javac $(find ./src/* | grep .java) -d out/production/final_project
+
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
