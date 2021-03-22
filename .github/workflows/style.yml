@@ -49,6 +49,6 @@ jobs:
           DEFAULT_BRANCH: main
           VALIDATE_MARKDOWN: false
           VALIDATE_EDITORCONFIG: false
+          VALIDATE_DOCKERFILE_HADOLINT: false
           VALIDATE_JAVA: false
-          VALIDATE_DOCKERFILE: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
