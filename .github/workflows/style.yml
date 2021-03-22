@@ -17,6 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: setup node 12.x
+        uses: actions/setup-node@v2
         with:
           node-version: 12.x
       - run: yarn
