@@ -19,7 +19,7 @@ jobs:
       - name: Compile source code
         run: |
           mkdir -p out/production/final_project
-          javac $(find ./src/* | grep .java) -d out/production/final_project
+          javac $(find ./src/app/* | grep .java) -d out/production/final_project
       - name: Build with docker-compose
         run: docker-compose build --force-rm
 
