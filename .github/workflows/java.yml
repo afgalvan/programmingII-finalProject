@@ -8,6 +8,7 @@ on:
 
 jobs:
   build:
+    name: Build with docker
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -21,3 +22,16 @@ jobs:
           javac $(find ./src/* | grep .java) -d out/production/final_project
       - name: Build with docker-compose
         run: docker-compose build --force-rm
+
+  test:
+    name: JUnit Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: setup node 12.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 12.x
+      - run: yarn
+      - name: run tests with JUnit 4
+        run: yarn tests
