@@ -1,13 +1,28 @@
 {
   "name": "final_project",
   "version": "1.0.0",
-  "description": " Digitalization Plan for judicial offices software.",
+  "description": "Digitalization Plan for judicial offices software.",
   "main": "index.js",
   "repository": "git@github.com:afgalvan/programmingII-finalProject.git",
   "author": "Andres Galvan <afgalvan@unicesar.edu.co>",
   "license": "MIT",
+  "scripts": {
+    "build": "javac $(find ./src/* | grep .java) -d out/production/final_project -cp lib/junit-4.12.jar",
+    "tests": "yarn build && java -cp out/production/final_project/:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore test.main.MainTest",
+    "start": "yarn build && cd out/production/final_project && java app.main.Main",
+    "format": "prettier --write ./"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "yarn run editorconfig-checker && yarn run format",
+      "pre-push": "yarn tests"
+    }
+  },
   "devDependencies": {
     "all-contributors-cli": "^6.20.0",
-    "editorconfig-checker": "^4.0.1"
+    "editorconfig-checker": "^4.0.1",
+    "ghooks": "^2.0.4",
+    "prettier": "^2.2.1",
+    "prettier-plugin-java": "^1.0.2"
   }
 }

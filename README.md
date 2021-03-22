@@ -10,6 +10,10 @@
     <a href="https://www.codacy.com/gh/afgalvan/programmingII-finalProject/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=afgalvan/programmingII-finalProject&amp;utm_campaign=Badge_Grade">
         <img src="https://app.codacy.com/project/badge/Grade/a51fbdb27bde460b989f4c85d4ee8008"/>
     </a>
+    <a href="https://github.com/afgalvan/programmingII-finalProject/actions/workflows/java.yml" title="Lint Status">
+        <img src="https://github.com/afgalvan/programmingII-finalProject/actions/workflows/java.yml/badge.svg"
+    alt="Lint status"/>
+    </a>
     <a href="https://github.com/afgalvan/programmingII-finalProject/pulls/" title="Pull request">
         <img src="https://img.shields.io/github/issues-pr/afgalvan/programmingII-finalProject" 
     alt="Pull requests">
@@ -17,10 +21,6 @@
     <a href="https://github.com/afgalvan/programmingII-finalProject/issues/" title="Issues">
         <img src="https://img.shields.io/github/issues/afgalvan/programmingII-finalProject" 
     alt="Issues">
-    </a>
-    <a href="https://github.com/marketplace/actions/super-linter)" title="Lint Status">
-        <img src="https://github.com/afgalvan/programmingII-finalProject/workflows/Lint%20Code%20Base/badge.svg"
-    alt="Lint status"/>
     </a>
     <!-- <a href="https://github.com/afgalvan/JavaMySQL/actions">
         <img src="https://github.com/afgalvan/programminII-finalProject/actions/workflows/gradle.yml/badge.svg" alt="Java CI Actions" title="Java CI with Gradle"/>

@@ -8,16 +8,30 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    name: Build with docker
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Setup Java
         uses: actions/setup-java@v1
         with:
-          java-version: '1.8'
+          java-version: "1.8"
       - name: Compile source code
         run: |
           mkdir -p out/production/final_project
-          javac $(find ./src/* | grep .java) -d out/production/final_project
+          javac $(find ./src/app/* | grep .java) -d out/production/final_project
       - name: Build with docker-compose
         run: docker-compose build --force-rm
+
+  test:
+    name: JUnit Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: setup node 12.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 12.x
+      - run: yarn
+      - name: run tests with JUnit 4
+        run: yarn tests
