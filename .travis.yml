@@ -1,0 +1,27 @@
+dist: focal
+
+language: bash
+
+sudo: required
+services:
+  - docker
+
+env:
+  global:
+    - COMPOSE_VERSION=1.25.0
+    - COMPOSE_URL=https://github.com/docker/compose/releases/download/
+
+before_install:
+  - sudo sh -c 'echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main"\
+    > /etc/apt/sources.list.d/docker.list'
+  - sudo apt-get update
+  - curl -L ${COMPOSE_URL}${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+  - docker --version
+  - docker-compose --version
+  - mkdir -p out/production/final_project
+
+script:
+  - javac $(find ./src/* | grep .java) -d out/production/final_project
+  - docker-compose build --force-rm
