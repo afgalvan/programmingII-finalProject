@@ -48,6 +48,7 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
           VALIDATE_MARKDOWN: false
-          # Temporary:
           VALIDATE_EDITORCONFIG: false
+          VALIDATE_JAVA: false
+          VALIDATE_DOCKERFILE: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
