@@ -37,10 +37,8 @@ jobs:
       with:
         languages: java
     - name: Build code
-        run: |
-          mkdir -p out/production/final_project
-          javac $(find ./src/* | grep .java) -d out/production/final_project
-
-
+      run: |
+        mkdir -p out/production/final_project
+        javac $(find ./src/* | grep .java) -d out/production/final_project
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
