@@ -7,15 +7,15 @@
   "author": "Andres Galvan <afgalvan@unicesar.edu.co>",
   "license": "MIT",
   "scripts": {
-    "compile": "javac $(find ./src/* | grep .java) -d out/production/final_project -cp lib/junit-4.12.jar",
-    "build": "clear; yarn run compile",
-    "tests": "yarn run build && java -cp out/production/final_project/:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore test.main.MainTest",
-    "start": "yarn run build && cd out/production/final_project && java app.main.Main",
+    "build": "javac $(find ./src/* | grep .java) -d out/production/final_project -cp lib/junit-4.12.jar",
+    "tests": "yarn build && java -cp out/production/final_project/:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore test.main.MainTest",
+    "start": "yarn build && cd out/production/final_project && java app.main.Main",
     "format": "prettier --write ./"
   },
   "config": {
     "ghooks": {
-      "pre-push": "yarn run editorconfig-checker && yarn run format && yarn tests"
+      "pre-commit": "yarn run editorconfig-checker && yarn run format",
+      "pre-push": "yarn tests"
     }
   },
   "devDependencies": {
