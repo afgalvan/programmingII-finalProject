@@ -1,4 +1,4 @@
- name: Merge Bot
+name: Merge Bot
 
 on:
   pull_request:
