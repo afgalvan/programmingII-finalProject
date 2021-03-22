@@ -1,13 +1,36 @@
-name: Lint Code Base
+name: Format and Lint
 
 on:
   push:
-    branches: [ main, development ]
+    branches: [main, development]
   pull_request:
-    branches: [ main, development ]
+    branches: [main, development]
 
 jobs:
-  build:
+  format:
+    name: Format with prettier
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: setup node 12.x
+        with:
+          node-version: 12.x
+      - run: yarn
+      - name: format code
+        run: yarn run format
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v3
+        with:
+          commit_message: "[auto] ci: apply format"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  lint:
+    needs: format
     name: Stack linter
     runs-on: ubuntu-latest
     steps:
