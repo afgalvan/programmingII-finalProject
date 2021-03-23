@@ -25,3 +25,4 @@ before_install:
 script:
   - javac $(find ./src/app/* | grep .java) -d out/production/final_project
   - docker-compose build --force-rm
+  - docker-compose run --rm kotlin
