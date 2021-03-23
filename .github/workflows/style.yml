@@ -9,22 +9,21 @@ on:
 jobs:
   format:
     name: Format with prettier
-    runs-on: ${{matrix.os}}
-    strategy:
-      matrix:
-        os:
-          - ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v1
-      - name: setup node 12.x
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Setup node 12.x
         uses: actions/setup-node@v2
         with:
           node-version: 12.x
       - run: yarn
-      - name: format code
-        run: yarn run format
+      - name: Format code with prettier
+        run: yarn format
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v3
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "[auto] ci: apply format"
         env:
