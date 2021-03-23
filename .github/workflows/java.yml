@@ -35,8 +35,3 @@ jobs:
       - run: yarn
       - name: Run tests with JUnit 4
         run: yarn tests
-      - name: Publish Test Report
-        uses: mikepenz/action-junit-report@v2
-        with:
-          report_paths: "**/build/test-results/test/TEST-*.xml"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
