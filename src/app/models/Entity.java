@@ -1,6 +1,7 @@
 package app.models;
 
 public class Entity {
+
     private String name;
 
     public String getName() {
