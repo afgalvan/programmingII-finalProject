@@ -28,6 +28,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - name: Setup kotlin with brew
+        run: |
+          brew update
+          brew install kotlin
       - name: Setup node 12.x
         uses: actions/setup-node@v2
         with:

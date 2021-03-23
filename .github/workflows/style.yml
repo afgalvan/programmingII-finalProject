@@ -49,5 +49,6 @@ jobs:
           VALIDATE_MARKDOWN: false
           VALIDATE_EDITORCONFIG: false
           VALIDATE_DOCKERFILE_HADOLINT: false
+          VALIDATE_XML: false
           VALIDATE_JAVA: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
