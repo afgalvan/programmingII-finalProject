@@ -29,7 +29,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Pull kotlin image
-        run: docker-compose build --force-rm
       - name: Run tests with docker
         run: docker-compose run --rm kotlin
