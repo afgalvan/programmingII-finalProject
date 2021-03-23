@@ -9,10 +9,11 @@ on:
 
 jobs:
   build:
-    name: Build with docker
+    name: Build and test
+    needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - name: Setup Java
         uses: actions/setup-java@v1
         with:
@@ -23,12 +24,5 @@ jobs:
           javac $(find ./src/app/* | grep .java) -d out/production/final_project
       - name: Build with docker-compose
         run: docker-compose build --force-rm
-
-  test:
-    name: JUnit Test
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: Run tests with docker
+      - name: Run JUnit tests with docker
         run: docker-compose run --rm kotlin
