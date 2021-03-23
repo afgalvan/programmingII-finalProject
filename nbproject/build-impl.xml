@@ -151,11 +151,6 @@ is divided into following sections:
         <condition property="have.sources">
             <or>
                 <available file="${src.src.dir}"/>
-                <available file="${src.src2.dir}"/>
-<<<<<<< HEAD
-                <available file="${src.src51.dir}"/>
-=======
->>>>>>> d734d4c63662a6d33b72defb16e820f012f250ee
             </or>
         </condition>
         <condition property="netbeans.home+have.tests">
@@ -259,11 +254,6 @@ is divided into following sections:
     </target>
     <target depends="-pre-init,-init-private,-init-libraries,-init-user,-init-project,-do-init" name="-init-check">
         <fail unless="src.src.dir">Must set src.src.dir</fail>
-        <fail unless="src.src2.dir">Must set src.src2.dir</fail>
-<<<<<<< HEAD
-        <fail unless="src.src51.dir">Must set src.src51.dir</fail>
-=======
->>>>>>> d734d4c63662a6d33b72defb16e820f012f250ee
         <fail unless="build.dir">Must set build.dir</fail>
         <fail unless="dist.dir">Must set dist.dir</fail>
         <fail unless="build.classes.dir">Must set build.classes.dir</fail>
@@ -284,11 +274,7 @@ is divided into following sections:
     </target>
     <target depends="-init-ap-cmdline-properties" if="ap.supported.internal" name="-init-macrodef-javac-with-processors">
         <macrodef name="javac" uri="http://www.netbeans.org/ns/j2se-project/3">
-<<<<<<< HEAD
-            <attribute default="${src.src.dir}:${src.src2.dir}:${src.src51.dir}" name="srcdir"/>
-=======
-            <attribute default="${src.src.dir}:${src.src2.dir}" name="srcdir"/>
->>>>>>> d734d4c63662a6d33b72defb16e820f012f250ee
+            <attribute default="${src.src.dir}" name="srcdir"/>
             <attribute default="${build.classes.dir}" name="destdir"/>
             <attribute default="${javac.classpath}" name="classpath"/>
             <attribute default="${javac.processorpath}" name="processorpath"/>
@@ -329,11 +315,7 @@ is divided into following sections:
     </target>
     <target depends="-init-ap-cmdline-properties" name="-init-macrodef-javac-without-processors" unless="ap.supported.internal">
         <macrodef name="javac" uri="http://www.netbeans.org/ns/j2se-project/3">
-<<<<<<< HEAD
-            <attribute default="${src.src.dir}:${src.src2.dir}:${src.src51.dir}" name="srcdir"/>
-=======
-            <attribute default="${src.src.dir}:${src.src2.dir}" name="srcdir"/>
->>>>>>> d734d4c63662a6d33b72defb16e820f012f250ee
+            <attribute default="${src.src.dir}" name="srcdir"/>
             <attribute default="${build.classes.dir}" name="destdir"/>
             <attribute default="${javac.classpath}" name="classpath"/>
             <attribute default="${javac.processorpath}" name="processorpath"/>
@@ -366,11 +348,7 @@ is divided into following sections:
     </target>
     <target depends="-init-macrodef-javac-with-processors,-init-macrodef-javac-without-processors" name="-init-macrodef-javac">
         <macrodef name="depend" uri="http://www.netbeans.org/ns/j2se-project/3">
-<<<<<<< HEAD
-            <attribute default="${src.src.dir}:${src.src2.dir}:${src.src51.dir}" name="srcdir"/>
-=======
-            <attribute default="${src.src.dir}:${src.src2.dir}" name="srcdir"/>
->>>>>>> d734d4c63662a6d33b72defb16e820f012f250ee
+            <attribute default="${src.src.dir}" name="srcdir"/>
             <attribute default="${build.classes.dir}" name="destdir"/>
             <attribute default="${javac.classpath}" name="classpath"/>
             <sequential>
@@ -958,21 +936,12 @@ is divided into following sections:
                 <include name="*"/>
             </dirset>
         </pathconvert>
-<<<<<<< HEAD
-        <j2seproject3:depend srcdir="${src.src.dir}:${src.src2.dir}:${src.src51.dir}:${build.generated.subdirs}"/>
-=======
-        <j2seproject3:depend srcdir="${src.src.dir}:${src.src2.dir}:${build.generated.subdirs}"/>
->>>>>>> d734d4c63662a6d33b72defb16e820f012f250ee
+        <j2seproject3:depend srcdir="${src.src.dir}:${build.generated.subdirs}"/>
     </target>
     <target depends="init,deps-jar,-pre-pre-compile,-pre-compile, -copy-persistence-xml,-compile-depend" if="have.sources" name="-do-compile">
         <j2seproject3:javac gensrcdir="${build.generated.sources.dir}"/>
         <copy todir="${build.classes.dir}">
             <fileset dir="${src.src.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
-            <fileset dir="${src.src2.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
-<<<<<<< HEAD
-            <fileset dir="${src.src51.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
-=======
->>>>>>> d734d4c63662a6d33b72defb16e820f012f250ee
         </copy>
     </target>
     <target if="has.persistence.xml" name="-copy-persistence-xml">
@@ -993,11 +962,7 @@ is divided into following sections:
     <target depends="init,deps-jar,-pre-pre-compile" name="-do-compile-single">
         <fail unless="javac.includes">Must select some files in the IDE or set javac.includes</fail>
         <j2seproject3:force-recompile/>
-<<<<<<< HEAD
-        <j2seproject3:javac excludes="" gensrcdir="${build.generated.sources.dir}" includes="${javac.includes}" sourcepath="${src.src.dir}:${src.src2.dir}:${src.src51.dir}"/>
-=======
-        <j2seproject3:javac excludes="" gensrcdir="${build.generated.sources.dir}" includes="${javac.includes}" sourcepath="${src.src.dir}:${src.src2.dir}"/>
->>>>>>> d734d4c63662a6d33b72defb16e820f012f250ee
+        <j2seproject3:javac excludes="" gensrcdir="${build.generated.sources.dir}" includes="${javac.includes}" sourcepath="${src.src.dir}"/>
     </target>
     <target name="-post-compile-single">
         <!-- Empty placeholder for easier customization. -->
@@ -1266,15 +1231,6 @@ is divided into following sections:
             <fileset dir="${src.src.dir}" excludes="${bug5101868workaround},${excludes}" includes="${includes}">
                 <filename name="**/*.java"/>
             </fileset>
-            <fileset dir="${src.src2.dir}" excludes="${bug5101868workaround},${excludes}" includes="${includes}">
-                <filename name="**/*.java"/>
-            </fileset>
-<<<<<<< HEAD
-            <fileset dir="${src.src51.dir}" excludes="${bug5101868workaround},${excludes}" includes="${includes}">
-                <filename name="**/*.java"/>
-            </fileset>
-=======
->>>>>>> d734d4c63662a6d33b72defb16e820f012f250ee
             <fileset dir="${build.generated.sources.dir}" erroronmissingdir="false">
                 <include name="**/*.java"/>
                 <exclude name="*.java"/>
@@ -1285,15 +1241,6 @@ is divided into following sections:
             <fileset dir="${src.src.dir}" excludes="${excludes}" includes="${includes}">
                 <filename name="**/doc-files/**"/>
             </fileset>
-            <fileset dir="${src.src2.dir}" excludes="${excludes}" includes="${includes}">
-                <filename name="**/doc-files/**"/>
-            </fileset>
-<<<<<<< HEAD
-            <fileset dir="${src.src51.dir}" excludes="${excludes}" includes="${includes}">
-                <filename name="**/doc-files/**"/>
-            </fileset>
-=======
->>>>>>> d734d4c63662a6d33b72defb16e820f012f250ee
             <fileset dir="${build.generated.sources.dir}" erroronmissingdir="false">
                 <include name="**/doc-files/**"/>
             </fileset>
