@@ -7,7 +7,8 @@
   "author": "Andres Galvan <afgalvan@unicesar.edu.co>",
   "license": "MIT",
   "scripts": {
-    "build": "javac $(find ./src/* | grep .java) -d out/production/final_project -cp lib/junit-4.12.jar",
+    "build": "javac $(find ./src/app/* | grep .java) -d out/production/final_project -cp lib/junit-4.12.jar",
+    "buildKotlin": "kotlinc $(find ./src/test/* | grep .kt) -d out/production/final_project -cp lib/junit-4.12.jar",
     "tests": "yarn build && java -cp out/production/final_project/:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore test.main.MainTest",
     "start": "yarn build && cd out/production/final_project && java app.main.Main",
     "format": "prettier --write ./"
