@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: Build with docker
+    name: Build with Docker
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -23,20 +23,5 @@ jobs:
           javac $(find ./src/app/* | grep .java) -d out/production/final_project
       - name: Build with docker-compose
         run: docker-compose build --force-rm
-
-  test:
-    name: JUnit Test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: Setup kotlin with brew
-        run: |
-          brew update
-          brew install kotlin
-      - name: Setup node 12.x
-        uses: actions/setup-node@v2
-        with:
-          node-version: 12.x
-      - run: yarn
-      - name: Run tests with JUnit 4
-        run: yarn tests
+      - name: Run JUnit with docker-compose
+        run: docker-compose run --rm kotlin
