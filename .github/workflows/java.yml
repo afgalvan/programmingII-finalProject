@@ -12,6 +12,8 @@ jobs:
     name: Build with Docker
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
       - name: Build with docker-compose
         run: docker-compose build --force-rm
       - name: Run JUnit with docker-compose
