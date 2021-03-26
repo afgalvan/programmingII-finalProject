@@ -1,3 +1,4 @@
+---
 models: src/**/models/**
 views: src/**/views/**
 controllers: src/**/controllers/**
