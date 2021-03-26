@@ -6,4 +6,12 @@ services:
     container_name: java_app
     stdin_open: true
     tty: true
-    build: .
+    build:
+      context: ./
+      dockerfile: main.dockerfile
+
+  kotlin:
+    container_name: tests
+    build:
+      context: ./
+      dockerfile: tests.dockerfile
