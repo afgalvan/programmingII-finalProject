@@ -12,16 +12,9 @@ jobs:
     name: Build with Docker
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup Java
-        uses: actions/setup-java@v1
-        with:
-          java-version: "1.8"
-      - name: Compile source code
-        run: |
-          mkdir -p out/production/final_project
-          javac $(find ./src/app/* | grep .java) -d out/production/final_project
+      - name: Checkout repository
+        uses: actions/checkout@v2
       - name: Build with docker-compose
         run: docker-compose build --force-rm
       - name: Run JUnit with docker-compose
-        run: docker-compose run --rm kotlin
+        run: docker-compose run --rm tests
