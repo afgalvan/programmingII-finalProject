@@ -1,9 +1,9 @@
 ---
+os: linux
 dist: focal
 
-language: bash
+language: shell
 
-sudo: required
 services:
   - docker
 
