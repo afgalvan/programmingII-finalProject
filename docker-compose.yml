@@ -2,16 +2,21 @@
 version: "3"
 
 services:
-  java:
+  app:
+    image: openjdk:8-jdk-alpine
     container_name: java_app
-    stdin_open: true
-    tty: true
-    build:
-      context: ./
-      dockerfile: main.dockerfile
+    depends_on:
+      - tests
+    links:
+      - tests
+    restart: always
+    working_dir: /usr/
+    volumes:
+      - ./out:/usr/out
+    entrypoint: [ "java", "-cp", "out/production/final_project", "app.main.Main" ]
 
-  kotlin:
+  tests:
     container_name: tests
     build:
       context: ./
-      dockerfile: tests.dockerfile
+      dockerfile: build.dockerfile
