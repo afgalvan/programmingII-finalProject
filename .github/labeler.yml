@@ -5,3 +5,4 @@ controllers: src/**/controllers/**
 tests: src/test/**
 CI: .github/workflows/**
 documentation: ./*.md
+core: src/app/main/**
