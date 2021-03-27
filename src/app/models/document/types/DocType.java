@@ -7,9 +7,9 @@ import lombok.Getter;
 @Getter
 public abstract class DocType {
 
-    private final List<String> docTypes;
+    private final List<String> types;
 
     public DocType() {
-        this.docTypes = new ArrayList<>();
+        this.types = new ArrayList<>();
     }
 }
