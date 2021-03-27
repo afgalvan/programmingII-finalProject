@@ -6,5 +6,4 @@ import test.controllers.api.JsonTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ LocationTest.class, JsonTest.class })
-public class ControllerSuite {
-}
+public class ControllerSuite {}

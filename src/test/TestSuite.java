@@ -7,5 +7,5 @@ import test.main.MainTest;
 import test.models.ModelSuite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ MainTest.class, ModelSuite.class, ControllerSuite.class})
+@Suite.SuiteClasses({ MainTest.class, ModelSuite.class, ControllerSuite.class })
 public class TestSuite {}
