@@ -2,10 +2,7 @@
   {
     "id": 0,
     "departamento": "Amazonas",
-    "ciudades": [
-      "Leticia",
-      "Puerto Nari\u00f1o"
-    ]
+    "ciudades": ["Leticia", "Puerto Nari\u00f1o"]
   },
   {
     "id": 1,
@@ -141,15 +138,7 @@
   {
     "id": 2,
     "departamento": "Arauca",
-    "ciudades": [
-      "Arauca",
-      "Arauquita",
-      "Cravo Norte",
-      "Fortul",
-      "Puerto Rond\u00f3n",
-      "Saravena",
-      "Tame"
-    ]
+    "ciudades": ["Arauca", "Arauquita", "Cravo Norte", "Fortul", "Puerto Rond\u00f3n", "Saravena", "Tame"]
   },
   {
     "id": 3,
@@ -719,19 +708,12 @@
   {
     "id": 14,
     "departamento": "Guain\u00eda",
-    "ciudades": [
-      "In\u00edrida"
-    ]
+    "ciudades": ["In\u00edrida"]
   },
   {
     "id": 15,
     "departamento": "Guaviare",
-    "ciudades": [
-      "Calamar",
-      "El Retorno",
-      "Miraflores",
-      "San Jos\u00e9 del Guaviare"
-    ]
+    "ciudades": ["Calamar", "El Retorno", "Miraflores", "San Jos\u00e9 del Guaviare"]
   },
   {
     "id": 16,
@@ -1045,10 +1027,7 @@
   {
     "id": 25,
     "departamento": "San Andr\u00e9s y Providencia",
-    "ciudades": [
-      "Providencia y Santa Catalina Islas",
-      "San Andr\u00e9s"
-    ]
+    "ciudades": ["Providencia y Santa Catalina Islas", "San Andr\u00e9s"]
   },
   {
     "id": 26,
@@ -1279,20 +1258,11 @@
   {
     "id": 30,
     "departamento": "Vaup\u00e9s",
-    "ciudades": [
-      "Carur\u00fa",
-      "Mit\u00fa",
-      "Taraira"
-    ]
+    "ciudades": ["Carur\u00fa", "Mit\u00fa", "Taraira"]
   },
   {
     "id": 31,
     "departamento": "Vichada",
-    "ciudades": [
-      "Cumaribo",
-      "La Primavera",
-      "Puerto Carre\u00f1o",
-      "Santa Rosal\u00eda"
-    ]
+    "ciudades": ["Cumaribo", "La Primavera", "Puerto Carre\u00f1o", "Santa Rosal\u00eda"]
   }
 ]

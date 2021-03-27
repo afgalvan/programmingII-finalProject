@@ -2,11 +2,11 @@ package app.controllers;
 
 import app.controllers.api.Json;
 import com.fasterxml.jackson.databind.JsonNode;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Location {
+
     private static final Map<String, List<String>> locations;
 
     static {
@@ -22,9 +22,10 @@ public class Location {
         JsonNode jsonNode = Json.parse("./src/app/models/api/locations.json");
 
         assert jsonNode != null;
-        List<List<String>> cities = jsonNode.findValues("ciudades").stream()
-            .map(c -> Arrays.asList(c.toString().replaceAll("[\\[\\]\"]", "")
-                .split(",")))
+        List<List<String>> cities = jsonNode
+            .findValues("ciudades")
+            .stream()
+            .map(c -> Arrays.asList(c.toString().replaceAll("[\\[\\]\"]", "").split(",")))
             .collect(Collectors.toList());
 
         List<String> departments = new ArrayList<>(jsonNode.findValuesAsText("departamento"));
