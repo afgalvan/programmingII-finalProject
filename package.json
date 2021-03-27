@@ -7,10 +7,9 @@
   "author": "Andres Galvan <afgalvan@unicesar.edu.co>",
   "license": "MIT",
   "scripts": {
-    "compile:java": "mkdir -p out/production/final_project && javac $(find ./src/* | grep .java) -d out/production/final_project -cp lib/junit-4.12.jar",
-    "tests": "yarn run compile:java && java -cp out/production/final_project/:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore test.main.SuiteTest",
-    "start": "yarn run compile:java && cd out/production/final_project && java app.main.Main",
-    "build": "yarn tests && yarn start",
+    "build": "mkdir -p out/production/final_project && javac $(find ./src/* | grep .java) -d out/production/final_project -cp lib/junit-4.12.jar:lib/lombok.jar:lib/jackson-core-2.12.2.jar:lib/jackson-databind-2.12.2.jar",
+    "tests": "yarn build && java -cp out/production/final_project/:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore test.TestSuite",
+    "start": "yarn build && cd out/production/final_project && java app.main.Main",
     "format": "prettier --write ./"
   },
   "config": {
