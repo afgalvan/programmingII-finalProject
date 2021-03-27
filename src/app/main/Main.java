@@ -11,7 +11,6 @@ public class Main {
     public static void main(String[] args) {
         PenalDocType penalDocType = new PenalDocType();
         HabeasCorpusDocType habeasCorpusDocType = new HabeasCorpusDocType();
-        System.out.println(habeasCorpusDocType.getDocTypes());
         System.out.println("De locos");
     }
 }
