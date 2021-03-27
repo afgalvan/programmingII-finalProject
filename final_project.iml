@@ -23,7 +23,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="jackson-annotations-2.12.2" level="project" />
-    <orderEntry type="library" name="lombok" level="project" />
     <orderEntry type="library" name="junit-4.12" level="project" />
+    <orderEntry type="library" name="lombok" level="project" />
   </component>
 </module>
