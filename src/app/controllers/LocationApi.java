@@ -19,7 +19,8 @@ public class LocationApi {
      */
     private static Map<String, List<String>> getLocations() {
         Map<String, List<String>> locations = new LinkedHashMap<>();
-        JsonNode jsonNode = Json.parse("./src/app/controllers/api/locations.json");
+        String jsonString = Json.readFile("./src/app/controllers/api/locations.json");
+        JsonNode jsonNode = Json.parse(jsonString);
 
         assert jsonNode != null;
         List<List<String>> cities = jsonNode
@@ -49,8 +50,8 @@ public class LocationApi {
      *
      * @return All the departments of Colombia.
      */
-    public static Set<String> getDepartments() {
-        return locations.keySet();
+    public static List<String> getDepartments() {
+        return new ArrayList<>(locations.keySet());
     }
 
     /**

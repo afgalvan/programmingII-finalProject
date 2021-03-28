@@ -13,7 +13,8 @@ services:
     working_dir: /usr/
     volumes:
       - ./out:/usr/out
-    entrypoint: [ "java", "-cp", "out/production/final_project", "app.main.Main" ]
+      - ./lib:/usr/lib
+    entrypoint: [ "java", "-cp", "out/production/final_project/:lib/jackson-annotations-2.12.2.jar:lib/jackson-core-2.12.2.jar:lib/jackson-databind-2.12.2.jar", "app.main.Main" ]
 
   tests:
     container_name: tests

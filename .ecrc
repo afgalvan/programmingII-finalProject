@@ -1,4 +1,4 @@
- {
+{
     "verbose": false,
     "ignore_defaults": false,
     "exclude": ["LICENSE", "\\.md$", "package.json", ".idea/**"],

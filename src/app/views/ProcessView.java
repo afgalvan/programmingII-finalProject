@@ -58,7 +58,7 @@ public class ProcessView {
             285,
             "PDF",
             5.8,
-            "Electronico",
+            "Electrónico",
             ""
         );
 
@@ -110,7 +110,8 @@ public class ProcessView {
     }
 
     /**
-     * Muestra la parte fisica del expediente, si existe muestra el numero de cuadernos que tiene.
+     * Muestra la parte fisica del expediente, si existe muestra el numero de
+     * cuadernos que tiene.
      * @param recordMetadata
      */
     public void showPhysicalFile(RecordMetadata recordMetadata) {
@@ -132,7 +133,7 @@ public class ProcessView {
         System.out.print(series.getCode() + " ");
         System.out.println(series.getName());
 
-        series.getSubSeriesList().forEach(subSeries -> showSubSeries(subSeries));
+        series.getSubSeriesList().forEach(this::showSubSeries);
     }
 
     /**

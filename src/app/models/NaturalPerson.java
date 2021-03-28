@@ -1,6 +1,15 @@
 package app.models;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class NaturalPerson extends Person {
+
+    private String secondName;
+    private String lastName;
+    private String secondLastName;
 
     public NaturalPerson(
         String name,
@@ -10,6 +19,14 @@ public class NaturalPerson extends Person {
         String id,
         IdTypes idType
     ) {
-        super(name, secondName, lastName, secondLastName, id, idType);
+        super(name, id, idType);
+        this.secondName = secondName;
+        this.lastName = lastName;
+        this.secondLastName = secondLastName;
+    }
+
+    @Override
+    public String getFullName() {
+        return String.format("%s %s %s %s", this.getName(), secondName, lastName, secondLastName);
     }
 }
