@@ -50,8 +50,8 @@ public class LocationApi {
      *
      * @return All the departments of Colombia.
      */
-    public static Set<String> getDepartments() {
-        return locations.keySet();
+    public static List<String> getDepartments() {
+        return new ArrayList<>(locations.keySet());
     }
 
     /**

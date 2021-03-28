@@ -4,12 +4,12 @@ import static org.junit.Assert.assertEquals;
 
 import app.controllers.api.Json;
 import com.fasterxml.jackson.databind.JsonNode;
+import java.util.Objects;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Objects;
-
 public class JsonTest {
+
     private String rawText;
 
     public void getText(String path) {
@@ -23,20 +23,22 @@ public class JsonTest {
 
     @Test
     public void readFileTest() {
-        assertEquals("{\n" +
-                "    \"verbose\": false,\n" +
-                "    \"ignore_defaults\": false,\n" +
-                "    \"exclude\": [\"LICENSE\", \"\\\\.md$\", \"package.json\", \".idea/**\"],\n" +
-                "    \"spaces_after_tabs\": false,\n" +
-                "    \"disable\": {\n" +
-                "        \"end_of_line\": false,\n" +
-                "        \"trim_trailing_whitespace\": false,\n" +
-                "        \"insert_final_newline\": false,\n" +
-                "        \"indentation\": false\n" +
-                "    }\n" +
-                "}\n" +
-                "\n",
-            this.rawText);
+        assertEquals(
+            "{\n" +
+            "    \"verbose\": false,\n" +
+            "    \"ignore_defaults\": false,\n" +
+            "    \"exclude\": [\"LICENSE\", \"\\\\.md$\", \"package.json\", \".idea/**\"],\n" +
+            "    \"spaces_after_tabs\": false,\n" +
+            "    \"disable\": {\n" +
+            "        \"end_of_line\": false,\n" +
+            "        \"trim_trailing_whitespace\": false,\n" +
+            "        \"insert_final_newline\": false,\n" +
+            "        \"indentation\": false\n" +
+            "    }\n" +
+            "}\n" +
+            "\n",
+            this.rawText
+        );
     }
 
     @Test
