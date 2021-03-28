@@ -7,9 +7,9 @@
   "author": "Andres Galvan <afgalvan@unicesar.edu.co>",
   "license": "MIT",
   "scripts": {
-    "build": "mkdir -p out/production/final_project && javac $(find ./src/* | grep .java) -d out/production/final_project -cp lib/junit-4.12.jar:lib/lombok.jar:lib/jackson-core-2.12.2.jar:lib/jackson-databind-2.12.2.jar",
+    "build": "mkdir -p out/production/final_project && javac $(find ./src/* | grep .java) -d out/production/final_project -cp lib/junit-4.12.jar:lib/lombok.jar:lib/jackson-anotations-2.12.2.jar:lib/jackson-core-2.12.2.jar:lib/jackson-databind-2.12.2.jar",
     "tests": "yarn build && java -cp out/production/final_project/:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:lib/jackson-core-2.12.2.jar:lib/jackson-databind-2.12.2.jar org.junit.runner.JUnitCore test.TestSuite",
-    "start": "yarn build && cd out/production/final_project && java app.main.Main",
+    "start": "yarn build && java -cp out/production/final_project/:lib/jackson-annotations-2.12.2.jar:lib/jackson-core-2.12.2.jar:lib/jackson-databind-2.12.2.jar app.main.Main",
     "format": "prettier --write ./"
   },
   "config": {
