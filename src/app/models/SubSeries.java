@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SubSerie {
+public class SubSeries {
 
     private String name;
     private int code;

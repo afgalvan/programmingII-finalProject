@@ -1,5 +1,6 @@
 package app.models;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,5 +11,5 @@ import lombok.NoArgsConstructor;
 public class Process {
 
     private RecordMetadata recordMetadata;
-    private ProceedingsMetadata proceedingsMetadata;
+    private List<ProceedingsMetadata> proceedingsMetadataList;
 }

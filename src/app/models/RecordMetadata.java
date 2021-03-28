@@ -16,7 +16,7 @@ public class RecordMetadata {
     private int notebookAmount;
     private Boolean hasPhysicalFile;
     private JudicialOffice judicialOffice;
-    private Serie serie;
+    private Series serie;
     private List<Person> prosecutor;
     private List<Person> judgeParty;
 }
