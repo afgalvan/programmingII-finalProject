@@ -82,15 +82,11 @@ public class ProcessView {
         System.out.printf("No. radicación del proceso: %d\n", recordMetadata.getProcessFilingNumber());
         System.out.printf(
             "Demandado (Parte A): %s\n",
-            recordMetadata.getJudgePartyList().stream()
-                .map(Person::getFullName)
-                .collect(Collectors.toList())
+            recordMetadata.getJudgePartyList().stream().map(Person::getFullName).collect(Collectors.toList())
         );
         System.out.printf(
             "Demandante (Parte B): %s\n",
-            recordMetadata.getProsecutorList().stream()
-                .map(Person::getFullName)
-                .collect(Collectors.toList())
+            recordMetadata.getProsecutorList().stream().map(Person::getFullName).collect(Collectors.toList())
         );
         System.out.printf("\n\t\t\tEXPEDIENTE FÍSICO\n");
         showPhysicalFile(recordMetadata);

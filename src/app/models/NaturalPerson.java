@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class NaturalPerson extends Person {
+
     private String secondName;
     private String lastName;
     private String secondLastName;
