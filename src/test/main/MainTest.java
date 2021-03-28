@@ -30,6 +30,5 @@ public class MainTest {
     }
 
     @Test
-    public void shouldPrintOnTerminal() {
-    }
+    public void shouldPrintOnTerminal() {}
 }
