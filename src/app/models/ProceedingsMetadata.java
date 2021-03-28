@@ -18,7 +18,7 @@ public class ProceedingsMetadata {
     private int initPage;
     private int lastPage;
     private String fileType;
-    private int size;
+    private double size;
     private String origin;
     private String observations;
 }

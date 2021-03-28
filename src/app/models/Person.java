@@ -15,4 +15,8 @@ public abstract class Person {
     private String secondLastName;
     private String id;
     private IdTypes idType;
+
+    public String getFullName() {
+        return String.format("%s %s %s %s", name, secondName, lastName, secondLastName);
+    }
 }
