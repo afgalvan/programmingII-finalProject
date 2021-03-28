@@ -28,7 +28,7 @@ public class Json {
      * @param src
      * @return
      */
-    private static String readFile(String src) {
+    public static String readFile(String src) {
         try {
             return new String(Files.readAllBytes(Paths.get(src)));
         } catch (IOException ignore) {
@@ -38,12 +38,12 @@ public class Json {
 
     /**
      *
-     * @param src
+     * @param jsonString
      * @return
      */
-    public static JsonNode parse(String src) {
+    public static JsonNode parse(String jsonString) {
         try {
-            return objectMapper.readTree(readFile(src));
+            return objectMapper.readTree(jsonString);
         } catch (JsonProcessingException e) {
             return null;
         }
