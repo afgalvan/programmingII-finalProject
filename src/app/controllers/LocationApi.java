@@ -19,7 +19,7 @@ public class LocationApi {
      */
     private static Map<String, List<String>> getLocations() {
         Map<String, List<String>> locations = new LinkedHashMap<>();
-        JsonNode jsonNode = Json.parse("./src/app/models/api/locations.json");
+        JsonNode jsonNode = Json.parse("./src/app/controllers/api/locations.json");
 
         assert jsonNode != null;
         List<List<String>> cities = jsonNode
