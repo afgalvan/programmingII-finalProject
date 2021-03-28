@@ -48,6 +48,7 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
           VALIDATE_MARKDOWN: false
+          VALIDATE_EDITORCONFIG: false
           VALIDATE_DOCKERFILE_HADOLINT: false
           VALIDATE_XML: false
           VALIDATE_JAVA: false
