@@ -14,5 +14,4 @@ public enum IdTypes {
     IdTypes(String _type) {
         this.type = _type;
     }
-
 }

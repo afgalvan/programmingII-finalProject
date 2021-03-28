@@ -1,5 +1,3 @@
 package app.models;
 
-public class SuperUser extends User {
-
-}
+public class SuperUser extends User {}

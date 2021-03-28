@@ -1,4 +1,3 @@
 package app.models;
 
-public class JuridicPerson extends Person {
-}
+public class JuridicPerson extends Person {}

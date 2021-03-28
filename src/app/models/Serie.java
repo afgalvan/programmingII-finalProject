@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Serie {
+
     private String name;
     private int code;
     private SubSerie subSerie;

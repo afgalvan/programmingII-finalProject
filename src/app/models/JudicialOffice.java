@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class JudicialOffice {
+
     private String name;
     private int code;
     private String department;

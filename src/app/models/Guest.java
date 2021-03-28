@@ -1,4 +1,3 @@
 package app.models;
 
-public class Guest extends User {
-}
+public class Guest extends User {}

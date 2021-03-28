@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SubSerie {
+
     private String name;
     private int code;
     private DocType docType;

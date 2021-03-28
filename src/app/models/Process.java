@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Process {
+
     private RecordMetadata recordMetadata;
     private ProceedingsMetadata proceedingsMetadata;
 }
