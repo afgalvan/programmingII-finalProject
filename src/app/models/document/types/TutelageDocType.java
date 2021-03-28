@@ -5,7 +5,6 @@ public class TutelageDocType extends DocType {
     public TutelageDocType() {
         this.getTypes().add("Acción de tutela");
         this.getTypes().add("Acta de reparto");
-        this.getTypes().add("Acta de reparto");
         this.getTypes().add("Auto que admite tutela");
         this.getTypes().add("Auto para declarar incompetencia y remitir");
         this.getTypes().add("Oficio de notificación correo certificado");

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Location {
+public class LocationApi {
 
     private static final Map<String, List<String>> locations;
 
@@ -19,7 +19,7 @@ public class Location {
      */
     private static Map<String, List<String>> getLocations() {
         Map<String, List<String>> locations = new LinkedHashMap<>();
-        JsonNode jsonNode = Json.parse("./src/app/models/api/locations.json");
+        JsonNode jsonNode = Json.parse("./src/app/controllers/api/locations.json");
 
         assert jsonNode != null;
         List<List<String>> cities = jsonNode
