@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RecordMetadata {
+
     private String department;
     private String city;
     private long processFilingNumber;
@@ -28,4 +29,3 @@ public class RecordMetadata {
         judgePartyList.add(person);
     }
 }
-
