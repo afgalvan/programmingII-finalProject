@@ -1,5 +1,6 @@
 package app.models;
 
+import app.models.document.types.DocType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,7 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public abstract class User{
+public class SubSerie {
     private String name;
-    private String password;
+    private int code;
+    private DocType docType;
 }

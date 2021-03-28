@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public abstract class User{
+public class Serie {
     private String name;
-    private String password;
+    private int code;
+    private SubSerie subSerie;
 }

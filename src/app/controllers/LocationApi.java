@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Location {
+public class LocationApi {
 
     private static final Map<String, List<String>> locations;
 
