@@ -1,13 +1,14 @@
 package app.models;
 
 import java.io.Serializable;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.RequiredArgsConstructor;
 
-@Data
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
+@Getter
 @EqualsAndHashCode
-@RequiredArgsConstructor
+@AllArgsConstructor
 public abstract class Entity implements Comparable<Entity>, Serializable {
 
     private static final long serialVersionUID = 274736873469220325L;

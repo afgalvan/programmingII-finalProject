@@ -1,4 +1,4 @@
-package app.models.document.types;
+package app.controllers.document.types;
 
 import java.util.ArrayList;
 import java.util.List;

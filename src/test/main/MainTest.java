@@ -1,6 +1,6 @@
 package test.main;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import app.main.Main;
 import java.io.ByteArrayOutputStream;
@@ -30,5 +30,8 @@ public class MainTest {
     }
 
     @Test
-    public void shouldPrintOnTerminal() {}
+    public void shouldPrintOnTerminal() {
+        Main.main(null);
+        assertNotEquals("", getOutput());
+    }
 }
