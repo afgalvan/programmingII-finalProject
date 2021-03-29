@@ -1,4 +1,4 @@
-package app.controllers;
+package app.controllers.api;
 
 import app.controllers.api.Json;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -40,7 +40,7 @@ public class LocationApi {
 
     /**
      *
-     * @return A map of key for the department and a value of its cities.
+     * @return A map with a key for the department and a value of its cities.
      */
     public static Map<String, List<String>> getAll() {
         return locations;
@@ -61,5 +61,14 @@ public class LocationApi {
      */
     public static List<String> getCities(String department) {
         return locations.get(department);
+    }
+
+    /**
+     *
+     * @param department
+     * @return
+     */
+    public static int citiesLen(String department) {
+        return locations.get(department).size();
     }
 }

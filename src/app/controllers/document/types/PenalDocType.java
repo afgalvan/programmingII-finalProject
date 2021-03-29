@@ -1,4 +1,4 @@
-package app.models.document.types;
+package app.controllers.document.types;
 
 public class PenalDocType extends DocType {
 

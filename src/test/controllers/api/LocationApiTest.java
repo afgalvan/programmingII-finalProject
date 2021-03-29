@@ -1,9 +1,9 @@
-package test.controllers;
+package test.controllers.api;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
-import app.controllers.LocationApi;
+import app.controllers.api.LocationApi;
 import org.junit.Test;
 
 public class LocationApiTest {

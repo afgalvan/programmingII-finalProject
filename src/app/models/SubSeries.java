@@ -1,6 +1,6 @@
 package app.models;
 
-import app.models.document.types.DocType;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,5 +12,5 @@ public class SubSeries {
 
     private String name;
     private int code;
-    private DocType docType;
+    private List<String> docType;
 }
