@@ -1,13 +1,11 @@
 package app.views;
 
 import app.controllers.api.LocationApi;
+import app.controllers.document.types.HabeasCorpusDocType;
 import app.models.*;
 import app.models.Process;
-import app.controllers.document.types.HabeasCorpusDocType;
-
 import java.time.LocalDate;
 import java.util.stream.Collectors;
-
 
 public class ProcessView {
 
@@ -22,11 +20,7 @@ public class ProcessView {
         );
 
         Series series = new Series("Acciones Constitucionales", 5);
-        series.addSubSeries(
-            "Acciones de Hábeas Corpus",
-            15,
-            new HabeasCorpusDocType().getTypes()
-        );
+        series.addSubSeries("Acciones de Hábeas Corpus", 15, new HabeasCorpusDocType().getTypes());
 
         NaturalPerson naturalPerson = new NaturalPerson(
             "Cristiano",
@@ -40,32 +34,38 @@ public class ProcessView {
 
         process.addNoteBook("Cuaderno Principal");
 
-        process.getNoteBooksList().get(0).addProceedingsMetadata(
-            "Accion de tutela",
-            LocalDate.now(),
-            LocalDate.now(),
-            1,
-            5,
-            1,
-            5,
-            "PDF",
-            1000,
-            "Digitalizado",
-            ""
-        );
-        process.getNoteBooksList().get(0).addProceedingsMetadata(
-            "Acta de reparto",
-            LocalDate.now().minusDays(4),
-            LocalDate.now().minusDays(2),
-            2,
-            1,
-            6,
-            6,
-            "PDF",
-            302,
-            "Electrónico",
-            ""
-        );
+        process
+            .getNoteBooksList()
+            .get(0)
+            .addProceedingsMetadata(
+                "Accion de tutela",
+                LocalDate.now(),
+                LocalDate.now(),
+                1,
+                5,
+                1,
+                5,
+                "PDF",
+                1000,
+                "Digitalizado",
+                ""
+            );
+        process
+            .getNoteBooksList()
+            .get(0)
+            .addProceedingsMetadata(
+                "Acta de reparto",
+                LocalDate.now().minusDays(4),
+                LocalDate.now().minusDays(2),
+                2,
+                1,
+                6,
+                6,
+                "PDF",
+                302,
+                "Electrónico",
+                ""
+            );
 
         process.settleRecordMetadata(
             judicialOffice.getDepartment(),
@@ -86,9 +86,15 @@ public class ProcessView {
         System.out.println("\tÍNDICE DEL EXPEDIENTE JUDICIAL ELECTRÓNICO.");
         showRecordMetadata(process.getRecordMetadata());
         System.out.println("\t");
-        process.getNoteBooksList().forEach((n -> {
-            n.getProceedingsMetadataList().forEach(this::showProceedingsMetadata);
-        }));
+        process
+            .getNoteBooksList()
+            .forEach(
+                (
+                    n -> {
+                        n.getProceedingsMetadataList().forEach(this::showProceedingsMetadata);
+                    }
+                )
+            );
     }
 
     /**
@@ -148,8 +154,10 @@ public class ProcessView {
         } else {
             System.out.println("Si__   No X");
         }
-        System.out.printf("No. carpetas, legajos o tomos: %s\n",
-            (recordMetadata.getHasPhysicalFile()) ? recordMetadata.getFoldersAmount() : "");
+        System.out.printf(
+            "No. carpetas, legajos o tomos: %s\n",
+            (recordMetadata.getHasPhysicalFile()) ? recordMetadata.getFoldersAmount() : ""
+        );
     }
 
     /**
