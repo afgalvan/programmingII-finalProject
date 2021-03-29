@@ -2,7 +2,7 @@ package test.controllers.api;
 
 import static org.junit.Assert.assertEquals;
 
-import app.controllers.api.Json;
+import app.controllers.api.JsonUtils;
 import com.fasterxml.jackson.databind.JsonNode;
 import java.util.Objects;
 import org.junit.Before;
@@ -13,7 +13,7 @@ public class JsonTest {
     private String rawText;
 
     public void getText(String path) {
-        this.rawText = Json.readFile(path);
+        this.rawText = JsonUtils.readFile(path);
     }
 
     @Before
@@ -43,7 +43,7 @@ public class JsonTest {
 
     @Test
     public void parseJsonTest() {
-        JsonNode jsonNode = Objects.requireNonNull(Json.parse(this.rawText));
+        JsonNode jsonNode = Objects.requireNonNull(JsonUtils.parse(this.rawText));
 
         assertEquals("false", jsonNode.get("verbose").toString());
         assertEquals("false", jsonNode.get("ignore_defaults").toString());
@@ -53,7 +53,7 @@ public class JsonTest {
 
     @Test(expected = NullPointerException.class)
     public void invalidParses() {
-        JsonNode jsonNode = Objects.requireNonNull(Json.parse(this.rawText));
+        JsonNode jsonNode = Objects.requireNonNull(JsonUtils.parse(this.rawText));
         String invalidField = jsonNode.get("bro").toString();
     }
 }

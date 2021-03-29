@@ -1,6 +1,5 @@
 package app.controllers.api;
 
-import app.controllers.api.Json;
 import com.fasterxml.jackson.databind.JsonNode;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -19,8 +18,8 @@ public class LocationApi {
      */
     private static Map<String, List<String>> getLocations() {
         Map<String, List<String>> locations = new LinkedHashMap<>();
-        String jsonString = Json.readFile("./src/app/controllers/api/locations.json");
-        JsonNode jsonNode = Json.parse(jsonString);
+        String jsonString = JsonUtils.readFile("./src/app/controllers/api/locations.json");
+        JsonNode jsonNode = JsonUtils.parse(jsonString);
 
         assert jsonNode != null;
         List<List<String>> cities = jsonNode
