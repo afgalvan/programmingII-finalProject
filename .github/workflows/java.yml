@@ -10,11 +10,29 @@ on:
 jobs:
   build:
     name: Build with Docker
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: ["ubuntu-latest", "windows-latest"]
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Build with docker-compose
+
+      - name: Build with docker-compose (Linux)
         run: docker-compose build --force-rm
-      - name: Run JUnit with docker-compose
+        if: matrix.os == 'ubuntu-latest'
+      - name: Run JUnit with docker-compose (Linux)
         run: docker-compose run --rm tests
+        if: matrix.os == 'ubuntu-latest'
+
+      - name: Setup Java (Windows)
+        uses: actions/setup-java@v1
+        with:
+          java-version: "8.0.x"
+          java-package: jdk
+          architecture: x64
+        if: matrix.os == 'windows-latest'
+      - name: Compile java (Windows)
+        run: for /r %%a in (.) do (javac %%a\*.java)
+        if: matrix.os == 'windows-latest'

@@ -1,5 +1,6 @@
 package app.main;
 
+import app.database.DBAccess;
 import app.views.ProcessView;
 
 public class Main {
