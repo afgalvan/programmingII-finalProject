@@ -34,5 +34,7 @@ jobs:
           architecture: x64
         if: matrix.os == 'windows-latest'
       - name: Compile java (Windows)
-        run: javac ( Get-ChildItem -Recurse -Path ./src/app/ -Include '*.java' -Name ) -d out/production/final_project -cp lib/junit-4.12.jar:lib/lombok.jar:lib/jackson-anotations-2.12.2.jar:lib/jackson-core-2.12.2.jar:lib/jackson-databind-2.12.2.jar
+        run: |
+          cd src/
+          javac ( Get-ChildItem -Recurse -Path ./app -Include '*.java' -Name ) -d out/production/final_project -cp lib/junit-4.12.jar:lib/lombok.jar:lib/jackson-anotations-2.12.2.jar:lib/jackson-core-2.12.2.jar:lib/jackson-databind-2.12.2.jar
         if: matrix.os == 'windows-latest'
