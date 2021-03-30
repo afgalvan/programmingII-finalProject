@@ -1,4 +1,3 @@
 package test.database;
 
-public class DBAccessTest {
-}
+public class DBAccessTest {}

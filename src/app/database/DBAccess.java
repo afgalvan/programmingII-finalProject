@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class DBAccess {
+
     private final String URL = "jdbc:sqlite:./src/app/database/database.sqlite";
     protected Connection connection;
 
