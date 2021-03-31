@@ -27,6 +27,12 @@ public class NaturalPerson extends Person {
 
     @Override
     public String getFullName() {
-        return String.format("%s %s %s %s", this.getName(), secondName, lastName, secondLastName);
+        return String.format(
+            "%s %s %s %s",
+            this.getName(),
+            secondName,
+            lastName,
+            secondLastName
+        );
     }
 }

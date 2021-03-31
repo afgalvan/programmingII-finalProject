@@ -23,7 +23,10 @@ public class LocationApiTest {
 
     @Test
     public void getCitiesFromDepartment() {
-        assertEquals("[Leticia, Puerto Nariño]", LocationApi.getCities("Amazonas").toString());
+        assertEquals(
+            "[Leticia, Puerto Nariño]",
+            LocationApi.getCities("Amazonas").toString()
+        );
 
         assertEquals(
             "[Cumaribo, La Primavera, Puerto Carreño, Santa Rosalía]",

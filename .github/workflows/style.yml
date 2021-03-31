@@ -2,54 +2,54 @@
 name: Format and Lint
 
 on:
-  push:
-    branches: [main, development]
-  pull_request:
-    branches: [main, development]
+    push:
+        branches: [main, development]
+    pull_request:
+        branches: [main, development]
 
 jobs:
-  format:
-    name: Format with prettier
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
-      - name: Setup node 12.x
-        uses: actions/setup-node@v2
-        with:
-          node-version: 12.x
-      - run: yarn
-      - name: Format code with prettier
-        run: yarn format
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: "[auto] ci: apply format"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    format:
+        name: Format with prettier
+        runs-on: ubuntu-20.04
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+              with:
+                  ref: ${{ github.head_ref }}
+            - name: Setup node 12.x
+              uses: actions/setup-node@v2
+              with:
+                  node-version: 12.x
+            - run: yarn
+            - name: Format code with prettier
+              run: yarn format
+            - name: Commit changes
+              uses: stefanzweifel/git-auto-commit-action@v4
+              with:
+                  commit_message: "[auto] ci: apply format"
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  lint:
-    needs: format
-    name: Stack linter
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2.3.4
-        with:
-          fetch-depth: 0
+    lint:
+        needs: format
+        name: Stack linter
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v2.3.4
+              with:
+                  fetch-depth: 0
 
-      - name: Lint Code Base
-        uses: docker://ghcr.io/github/super-linter:latest
-        env:
-          ACTIONS_RUNNER_DEBUG: true
-          ERROR_ON_MISSING_EXEC_BIT: true
-          VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: main
-          VALIDATE_MARKDOWN: false
-          VALIDATE_EDITORCONFIG: false
-          VALIDATE_DOCKERFILE_HADOLINT: false
-          VALIDATE_XML: false
-          VALIDATE_JAVA: false
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - name: Lint Code Base
+              uses: docker://ghcr.io/github/super-linter:latest
+              env:
+                  ACTIONS_RUNNER_DEBUG: true
+                  ERROR_ON_MISSING_EXEC_BIT: true
+                  VALIDATE_ALL_CODEBASE: false
+                  DEFAULT_BRANCH: main
+                  VALIDATE_MARKDOWN: false
+                  VALIDATE_EDITORCONFIG: false
+                  VALIDATE_DOCKERFILE_HADOLINT: false
+                  VALIDATE_XML: false
+                  VALIDATE_JAVA: false
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

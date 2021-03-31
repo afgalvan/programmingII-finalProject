@@ -1,6 +1,5 @@
 package app.controllers.api;
 
-import app.controllers.api.Json;
 import com.fasterxml.jackson.databind.JsonNode;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -14,22 +13,30 @@ public class LocationApi {
     }
 
     /**
-     *
      * @return
      */
     private static Map<String, List<String>> getLocations() {
         Map<String, List<String>> locations = new LinkedHashMap<>();
-        String jsonString = Json.readFile("./src/app/controllers/api/locations.json");
-        JsonNode jsonNode = Json.parse(jsonString);
+        String jsonString = JsonUtils.readFile(
+            "./src/app/controllers/api/locations.json"
+        );
+        JsonNode jsonNode = JsonUtils.parse(jsonString);
 
         assert jsonNode != null;
         List<List<String>> cities = jsonNode
             .findValues("ciudades")
             .stream()
-            .map(c -> Arrays.asList(c.toString().replaceAll("[\\[\\]\"]", "").split(",")))
+            .map(
+                c ->
+                    Arrays.asList(
+                        c.toString().replaceAll("[\\[\\]\"]", "").split(",")
+                    )
+            )
             .collect(Collectors.toList());
 
-        List<String> departments = new ArrayList<>(jsonNode.findValuesAsText("departamento"));
+        List<String> departments = new ArrayList<>(
+            jsonNode.findValuesAsText("departamento")
+        );
 
         for (int i = 0; i < departments.size(); i++) {
             locations.put(departments.get(i), cities.get(i));
@@ -39,7 +46,6 @@ public class LocationApi {
     }
 
     /**
-     *
      * @return A map with a key for the department and a value of its cities.
      */
     public static Map<String, List<String>> getAll() {
@@ -47,7 +53,6 @@ public class LocationApi {
     }
 
     /**
-     *
      * @return All the departments of Colombia.
      */
     public static List<String> getDepartments() {
@@ -55,7 +60,6 @@ public class LocationApi {
     }
 
     /**
-     *
      * @param department the name of the department to find the cities.
      * @return A List of the cities in a department.
      */
@@ -64,7 +68,6 @@ public class LocationApi {
     }
 
     /**
-     *
      * @param department
      * @return
      */

@@ -8,18 +8,18 @@ indent_style = space
 insert_final_newline = true
 max_line_length = 120
 
-[*{.xml,.iml,Dockerfile}]
+[*{.xml, .iml, Dockerfile}]
 insert_final_newline = false
 
-[*{.iml,.xml}]
+[*{.iml, .xml}]
 indent_size = 2
 
-[{*.bash,*.sh,*.zsh}]
+[{*.bash, *.sh, *.zsh}]
 indent_size = 2
 tab_width = 2
 
-[{*.har,*.json}]
+[{*.har, *.json}]
 indent_size = 2
 
-[{*.yaml,*.yml}]
+[{*.yaml, *.yml}]
 indent_size = 2

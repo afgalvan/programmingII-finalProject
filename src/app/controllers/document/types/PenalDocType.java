@@ -21,14 +21,20 @@ public class PenalDocType extends DocType {
         this.getTypes().add("Solicitud de levantamiento de medidas");
         this.getTypes().add("Audiencia levantamiento medidas cautelares");
         this.getTypes().add("Acta de audiencia de levantamiento");
-        this.getTypes().add("Solicitud de suspensión y cancelación de la personería jurídica");
+        this.getTypes()
+            .add("Solicitud de suspensión y cancelación de la personería jurídica");
         this.getTypes().add("Solicitud de medidas cautelares sobre bienes");
         this.getTypes().add("Audiencia decreto de embargo y secuestro");
         this.getTypes().add("Audiencia de desembargo de bienes en medio magnético");
-        this.getTypes().add("Solicitud de control de legalidad por parte de la Fiscalía");
-        this.getTypes().add("Solicitar de declaratoria de persona ausente por parte de la Fiscalía");
+        this.getTypes()
+            .add("Solicitud de control de legalidad por parte de la Fiscalía");
+        this.getTypes()
+            .add(
+                "Solicitar de declaratoria de persona ausente por parte de la Fiscalía"
+            );
         this.getTypes().add("Audiencia de declaratoria de persona ausente");
         this.getTypes().add("Acta de audiencia de declaratoria de persona ausente");
-        this.getTypes().add("Solicitud de medidas de protección y atención a victimas");
+        this.getTypes()
+            .add("Solicitud de medidas de protección y atención a victimas");
     }
 }
