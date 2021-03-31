@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DBUser extends DBConnection implements DataOperations<User> {
+public class UserRepository extends DBConnection implements DBRepository<User> {
 
     @Override
     public boolean create(User user) {

@@ -8,7 +8,7 @@ import java.util.Objects;
 import org.junit.Before;
 import org.junit.Test;
 
-public class JsonTest {
+public class JsonUtilsTest {
 
     private String rawText;
 

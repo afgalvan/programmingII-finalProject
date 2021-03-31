@@ -2,16 +2,8 @@ package app.views;
 
 import app.controllers.api.LocationApi;
 import app.controllers.document.types.HabeasCorpusDocType;
-import app.models.IdTypes;
-import app.models.JudicialOffice;
-import app.models.NaturalPerson;
-import app.models.Person;
-import app.models.ProceedingsMetadata;
+import app.models.*;
 import app.models.Process;
-import app.models.RecordMetadata;
-import app.models.Series;
-import app.models.StateEntity;
-import app.models.SubSeries;
 import java.time.LocalDate;
 import java.util.stream.Collectors;
 

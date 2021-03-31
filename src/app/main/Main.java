@@ -1,6 +1,5 @@
 package app.main;
 
-import app.controllers.api.LocationApi;
 import app.views.ProcessView;
 
 public class Main {

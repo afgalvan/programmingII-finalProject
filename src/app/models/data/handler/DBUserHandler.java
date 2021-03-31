@@ -1,18 +1,18 @@
 package app.models.data.handler;
 
-import app.database.DBUser;
+import app.database.UserRepository;
 import app.models.User;
 
 public class DBUserHandler implements Insert<User> {
 
-    private final DBUser dbUser;
+    private final UserRepository userRepository;
 
     public DBUserHandler() {
-        this.dbUser = new DBUser();
+        this.userRepository = new UserRepository();
     }
 
     @Override
     public boolean insert(User user) {
-        return dbUser.create(user);
+        return userRepository.create(user);
     }
 }
