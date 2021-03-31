@@ -15,9 +15,7 @@ public class ProcessView {
             "Juzgado Booker T",
             32132113,
             "Cesar",
-            LocationApi
-                .getCities("Cesar")
-                .get(LocationApi.citiesLen("Cesar") - 1),
+            LocationApi.getCities("Cesar").get(LocationApi.citiesLen("Cesar") - 1),
             "Municipal"
         );
 
@@ -145,9 +143,7 @@ public class ProcessView {
         showPhysicalFile(recordMetadata);
     }
 
-    public void showProceedingsMetadata(
-        ProceedingsMetadata proceedingsMetadata
-    ) {
+    public void showProceedingsMetadata(ProceedingsMetadata proceedingsMetadata) {
         System.out.println(
             "\n==================================================================="
         );
@@ -235,8 +231,6 @@ public class ProcessView {
 
         System.out.println("\t\tTipos de documentos");
         subSeries.getDocType().forEach(System.out::println);
-        System.out.println(
-            "---------------------------------------------------"
-        );
+        System.out.println("---------------------------------------------------");
     }
 }

@@ -22,8 +22,7 @@ public class TutelageDocType extends DocType {
         this.getTypes().add("Solicitud de pronunciamiento de las partes");
         this.getTypes().add("Auto que resuelve recurso");
         this.getTypes().add("Auto que ordena devolución del expediente");
-        this.getTypes()
-            .add("Auto de obedézcase y cúmplase o estese a lo resuelto");
+        this.getTypes().add("Auto de obedézcase y cúmplase o estese a lo resuelto");
         this.getTypes().add("Notificación");
         this.getTypes().add("Sentencia de revisión Corte Constitucional");
         this.getTypes().add("Solicitud de desacato");

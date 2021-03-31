@@ -31,9 +31,7 @@ public class UserRepository extends DBConnection implements DBRepository<User> {
     @Override
     public User read(User user) {
         open();
-        try (
-            PreparedStatement statement = prepareStatement("SELECT * FROM user")
-        ) {
+        try (PreparedStatement statement = prepareStatement("SELECT * FROM user")) {
             ResultSet query = statement.getResultSet();
             if (query.getString("type").equals("SuperUser")) {
                 return new SuperUser(

@@ -29,15 +29,12 @@ public class DBConnection {
             this.connection.close();
             System.out.println("Successfully closed connection with SQLite");
         } catch (SQLException throwables) {
-            System.out.println(
-                "Opps! error while closing connection with SQLite"
-            );
+            System.out.println("Opps! error while closing connection with SQLite");
             throwables.printStackTrace();
         }
     }
 
-    public PreparedStatement prepareStatement(String statement)
-        throws SQLException {
+    public PreparedStatement prepareStatement(String statement) throws SQLException {
         return this.connection.prepareStatement(statement);
     }
 }
