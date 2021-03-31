@@ -14,7 +14,7 @@ services:
     volumes:
       - ./out:/usr/out
       - ./lib:/usr/lib
-    entrypoint: [ "java", "-cp", "out/production/final_project/:lib/jackson-annotations-2.12.2.jar:lib/jackson-core-2.12.2.jar:lib/jackson-databind-2.12.2.jar", "app.main.Main" ]
+    entrypoint: ["java", "-cp", "out/production/final_project/:lib/jackson-annotations-2.12.2.jar:lib/jackson-core-2.12.2.jar:lib/jackson-databind-2.12.2.jar:lib/sqlite-jdbc-3.32.3.2.jar", "app.main.Main"]
 
   tests:
     container_name: tests
