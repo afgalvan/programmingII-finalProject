@@ -18,17 +18,26 @@ public class LocationApi {
      */
     private static Map<String, List<String>> getLocations() {
         Map<String, List<String>> locations = new LinkedHashMap<>();
-        String jsonString = JsonUtils.readFile("./src/app/controllers/api/locations.json");
+        String jsonString = JsonUtils.readFile(
+            "./src/app/controllers/api/locations.json"
+        );
         JsonNode jsonNode = JsonUtils.parse(jsonString);
 
         assert jsonNode != null;
         List<List<String>> cities = jsonNode
             .findValues("ciudades")
             .stream()
-            .map(c -> Arrays.asList(c.toString().replaceAll("[\\[\\]\"]", "").split(",")))
+            .map(
+                c ->
+                    Arrays.asList(
+                        c.toString().replaceAll("[\\[\\]\"]", "").split(",")
+                    )
+            )
             .collect(Collectors.toList());
 
-        List<String> departments = new ArrayList<>(jsonNode.findValuesAsText("departamento"));
+        List<String> departments = new ArrayList<>(
+            jsonNode.findValuesAsText("departamento")
+        );
 
         for (int i = 0; i < departments.size(); i++) {
             locations.put(departments.get(i), cities.get(i));

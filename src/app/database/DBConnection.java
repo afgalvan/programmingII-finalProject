@@ -5,12 +5,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class DBAccess {
+public class DBConnection {
 
     private final String URL = "jdbc:sqlite:./src/app/database/database.sqlite";
     protected Connection connection;
 
-    public DBAccess() {
+    public DBConnection() {
         connection = null;
     }
 
@@ -29,12 +29,15 @@ public class DBAccess {
             this.connection.close();
             System.out.println("Successfully closed connection with SQLite");
         } catch (SQLException throwables) {
-            System.out.println("Opps! error while closing connection with SQLite");
+            System.out.println(
+                "Opps! error while closing connection with SQLite"
+            );
             throwables.printStackTrace();
         }
     }
 
-    public PreparedStatement prepareStatement(String statement) throws SQLException {
+    public PreparedStatement prepareStatement(String statement)
+        throws SQLException {
         return this.connection.prepareStatement(statement);
     }
 }

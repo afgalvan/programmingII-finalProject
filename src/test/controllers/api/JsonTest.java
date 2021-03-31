@@ -43,17 +43,24 @@ public class JsonTest {
 
     @Test
     public void parseJsonTest() {
-        JsonNode jsonNode = Objects.requireNonNull(JsonUtils.parse(this.rawText));
+        JsonNode jsonNode = Objects.requireNonNull(
+            JsonUtils.parse(this.rawText)
+        );
 
         assertEquals("false", jsonNode.get("verbose").toString());
         assertEquals("false", jsonNode.get("ignore_defaults").toString());
         assertEquals("\"LICENSE\"", jsonNode.get("exclude").get(0).toString());
-        assertEquals("false", jsonNode.get("disable").get("indentation").toString());
+        assertEquals(
+            "false",
+            jsonNode.get("disable").get("indentation").toString()
+        );
     }
 
     @Test(expected = NullPointerException.class)
     public void invalidParses() {
-        JsonNode jsonNode = Objects.requireNonNull(JsonUtils.parse(this.rawText));
+        JsonNode jsonNode = Objects.requireNonNull(
+            JsonUtils.parse(this.rawText)
+        );
         String invalidField = jsonNode.get("bro").toString();
     }
 }

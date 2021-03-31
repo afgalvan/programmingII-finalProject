@@ -23,12 +23,18 @@ public class ProcessView {
             "Juzgado Booker T",
             32132113,
             "Cesar",
-            LocationApi.getCities("Cesar").get(LocationApi.citiesLen("Cesar") - 1),
+            LocationApi
+                .getCities("Cesar")
+                .get(LocationApi.citiesLen("Cesar") - 1),
             "Municipal"
         );
 
         Series series = new Series("Acciones Constitucionales", 5);
-        series.addSubSeries("Acciones de Hábeas Corpus", 15, new HabeasCorpusDocType().getTypes());
+        series.addSubSeries(
+            "Acciones de Hábeas Corpus",
+            15,
+            new HabeasCorpusDocType().getTypes()
+        );
 
         NaturalPerson naturalPerson = new NaturalPerson(
             "Cristiano",
@@ -99,7 +105,9 @@ public class ProcessView {
             .forEach(
                 (
                     n -> {
-                        n.getProceedingsMetadataList().forEach(this::showProceedingsMetadata);
+                        n
+                            .getProceedingsMetadataList()
+                            .forEach(this::showProceedingsMetadata);
                     }
                 )
             );
@@ -117,36 +125,78 @@ public class ProcessView {
             recordMetadata.getJudicialOffice().getName(),
             recordMetadata.getJudicialOffice().getCategory()
         );
-        System.out.printf("Serie o Subserie documental: %s\n", recordMetadata.getSeries().getName());
-        System.out.printf("No. radicación del proceso: %d\n", recordMetadata.getProcessFilingNumber());
+        System.out.printf(
+            "Serie o Subserie documental: %s\n",
+            recordMetadata.getSeries().getName()
+        );
+        System.out.printf(
+            "No. radicación del proceso: %d\n",
+            recordMetadata.getProcessFilingNumber()
+        );
         System.out.printf(
             "Demandado (Parte A): %s\n",
-            recordMetadata.getJudgePartyList().stream().map(Person::getFullName).collect(Collectors.toList())
+            recordMetadata
+                .getJudgePartyList()
+                .stream()
+                .map(Person::getFullName)
+                .collect(Collectors.toList())
         );
         System.out.printf(
             "Demandante (Parte B): %s\n",
-            recordMetadata.getProsecutorList().stream().map(Person::getFullName).collect(Collectors.toList())
+            recordMetadata
+                .getProsecutorList()
+                .stream()
+                .map(Person::getFullName)
+                .collect(Collectors.toList())
         );
         System.out.println("\n\t\t\tEXPEDIENTE FÍSICO");
         showPhysicalFile(recordMetadata);
     }
 
-    public void showProceedingsMetadata(ProceedingsMetadata proceedingsMetadata) {
-        System.out.println("\n===================================================================");
+    public void showProceedingsMetadata(
+        ProceedingsMetadata proceedingsMetadata
+    ) {
+        System.out.println(
+            "\n==================================================================="
+        );
         System.out.println("\n\t\tMETADATOS DEL DOCUMENTO");
-        System.out.printf("Nombre del documento  : %s\n", proceedingsMetadata.getName());
-        System.out.printf("Fecha de creacion     : %s\n", proceedingsMetadata.getCreationDate());
-        System.out.printf("Fecha de incorporacion: %s\n", proceedingsMetadata.getIncorporationDate());
-        System.out.printf("Orden del documento   : %d\n", proceedingsMetadata.getDocOrder());
-        System.out.printf("Numero de paginas     : %d\n", proceedingsMetadata.getPagesAmount());
+        System.out.printf(
+            "Nombre del documento  : %s\n",
+            proceedingsMetadata.getName()
+        );
+        System.out.printf(
+            "Fecha de creacion     : %s\n",
+            proceedingsMetadata.getCreationDate()
+        );
+        System.out.printf(
+            "Fecha de incorporacion: %s\n",
+            proceedingsMetadata.getIncorporationDate()
+        );
+        System.out.printf(
+            "Orden del documento   : %d\n",
+            proceedingsMetadata.getDocOrder()
+        );
+        System.out.printf(
+            "Numero de paginas     : %d\n",
+            proceedingsMetadata.getPagesAmount()
+        );
         System.out.printf(
             "Página inicio: %d      Página fin: %d\n",
             proceedingsMetadata.getInitPage(),
             proceedingsMetadata.getLastPage()
         );
-        System.out.printf("Formato               : %s\n", proceedingsMetadata.getFileType());
-        System.out.printf("Tamaño del documento  : %.2f KB\n", proceedingsMetadata.getSize());
-        System.out.printf("Origen del documento  : %s\n", proceedingsMetadata.getOrigin());
+        System.out.printf(
+            "Formato               : %s\n",
+            proceedingsMetadata.getFileType()
+        );
+        System.out.printf(
+            "Tamaño del documento  : %.2f KB\n",
+            proceedingsMetadata.getSize()
+        );
+        System.out.printf(
+            "Origen del documento  : %s\n",
+            proceedingsMetadata.getOrigin()
+        );
     }
 
     /**
@@ -164,7 +214,9 @@ public class ProcessView {
         }
         System.out.printf(
             "No. carpetas, legajos o tomos: %s\n",
-            (recordMetadata.getHasPhysicalFile()) ? recordMetadata.getFoldersAmount() : ""
+            (recordMetadata.getHasPhysicalFile())
+                ? recordMetadata.getFoldersAmount()
+                : ""
         );
     }
 
@@ -191,6 +243,8 @@ public class ProcessView {
 
         System.out.println("\t\tTipos de documentos");
         subSeries.getDocType().forEach(System.out::println);
-        System.out.println("---------------------------------------------------");
+        System.out.println(
+            "---------------------------------------------------"
+        );
     }
 }

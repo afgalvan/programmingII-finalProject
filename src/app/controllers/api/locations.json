@@ -138,7 +138,15 @@
   {
     "id": 2,
     "departamento": "Arauca",
-    "ciudades": ["Arauca", "Arauquita", "Cravo Norte", "Fortul", "Puerto Rond\u00f3n", "Saravena", "Tame"]
+    "ciudades": [
+      "Arauca",
+      "Arauquita",
+      "Cravo Norte",
+      "Fortul",
+      "Puerto Rond\u00f3n",
+      "Saravena",
+      "Tame"
+    ]
   },
   {
     "id": 3,
@@ -713,7 +721,12 @@
   {
     "id": 15,
     "departamento": "Guaviare",
-    "ciudades": ["Calamar", "El Retorno", "Miraflores", "San Jos\u00e9 del Guaviare"]
+    "ciudades": [
+      "Calamar",
+      "El Retorno",
+      "Miraflores",
+      "San Jos\u00e9 del Guaviare"
+    ]
   },
   {
     "id": 16,
@@ -1263,6 +1276,11 @@
   {
     "id": 31,
     "departamento": "Vichada",
-    "ciudades": ["Cumaribo", "La Primavera", "Puerto Carre\u00f1o", "Santa Rosal\u00eda"]
+    "ciudades": [
+      "Cumaribo",
+      "La Primavera",
+      "Puerto Carre\u00f1o",
+      "Santa Rosal\u00eda"
+    ]
   }
 ]
