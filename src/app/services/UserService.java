@@ -1,4 +1,4 @@
-package app.models.services.data;
+package app.services;
 
 import app.database.UserRepository;
 import app.models.User;

@@ -1,4 +1,4 @@
-package app.models.services.data;
+package app.services;
 
 public interface Insert<T> {
     boolean insert(T data);
