@@ -13,7 +13,6 @@ public class LocationApi {
     }
 
     /**
-     *
      * @return
      */
     private static Map<String, List<String>> getLocations() {
@@ -47,7 +46,6 @@ public class LocationApi {
     }
 
     /**
-     *
      * @return A map with a key for the department and a value of its cities.
      */
     public static Map<String, List<String>> getAll() {
@@ -55,7 +53,6 @@ public class LocationApi {
     }
 
     /**
-     *
      * @return All the departments of Colombia.
      */
     public static List<String> getDepartments() {
@@ -63,7 +60,6 @@ public class LocationApi {
     }
 
     /**
-     *
      * @param department the name of the department to find the cities.
      * @return A List of the cities in a department.
      */
@@ -72,7 +68,6 @@ public class LocationApi {
     }
 
     /**
-     *
      * @param department
      * @return
      */

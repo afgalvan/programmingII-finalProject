@@ -16,7 +16,6 @@ public class JsonUtils {
     }
 
     /**
-     *
      * @return
      */
     private static ObjectMapper getDefaultObjectMapper() {
@@ -24,7 +23,6 @@ public class JsonUtils {
     }
 
     /**
-     *
      * @param src
      * @return
      */
@@ -37,7 +35,6 @@ public class JsonUtils {
     }
 
     /**
-     *
      * @param jsonString
      * @return
      */

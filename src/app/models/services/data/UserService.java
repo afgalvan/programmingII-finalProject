@@ -1,13 +1,13 @@
-package app.models.data.handler;
+package app.models.services.data;
 
 import app.database.UserRepository;
 import app.models.User;
 
-public class DBUserHandler implements Insert<User> {
+public class UserService implements Insert<User> {
 
     private final UserRepository userRepository;
 
-    public DBUserHandler() {
+    public UserService() {
         this.userRepository = new UserRepository();
     }
 

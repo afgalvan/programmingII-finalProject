@@ -4,11 +4,11 @@ views: src/**/views/**
 controllers: src/**/controllers/**
 tests: src/test/**
 CI:
-  - .github/workflows/**
-  - ./*.yml
-  - ./*.dockerfile
+    - .github/workflows/**
+    - ./*.yml
+    - ./*.dockerfile
 documentation:
-  - ./*.md
-  - docs/*
-  - docs/**/*
+    - ./*.md
+    - docs/*
+    - docs/**/*
 core: src/app/main/**
