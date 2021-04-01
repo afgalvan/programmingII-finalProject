@@ -1,6 +1,7 @@
 package app.controllers.api;
 
 import com.fasterxml.jackson.databind.JsonNode;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -26,13 +27,9 @@ public class LocationApi {
         List<List<String>> cities = jsonNode
             .findValues("ciudades")
             .stream()
-            .map(
-                c ->
-                    Arrays.asList(
-                        c.toString().replaceAll("[\\[\\]\"]", "").split(",")
-                    )
-            )
-            .collect(Collectors.toList());
+            .map(c -> Arrays.asList(
+                c.toString().replaceAll("[\\[\\]\"]", "").split(",")
+            )).collect(Collectors.toList());
 
         List<String> departments = new ArrayList<>(
             jsonNode.findValuesAsText("departamento")
