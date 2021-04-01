@@ -18,7 +18,9 @@ public class ConnectionManager {
     public void close() {
         try {
             this.connection.close();
-        } catch (SQLException ignore) {}
+        } catch (SQLException | NullPointerException ignore) {
+            System.out.println(connection);
+        }
     }
 
     public PreparedStatement prepareStatement(String statement) throws SQLException {
