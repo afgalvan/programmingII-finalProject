@@ -38,10 +38,8 @@ public class ProcessView {
 
         process.addNoteBook("Cuaderno Principal");
 
-        process
-            .getNoteBooksList()
-            .get(0)
-            .addProceedingsMetadata(
+        // prettier-ignore-start
+        process.getNoteBooksList().get(0).addProceedingsMetadata(
                 "Accion de tutela",
                 LocalDate.now(),
                 LocalDate.now(),
@@ -53,7 +51,7 @@ public class ProcessView {
                 1000,
                 "Digitalizado",
                 ""
-            );
+        );
         process
             .getNoteBooksList()
             .get(0)
@@ -70,6 +68,7 @@ public class ProcessView {
                 "Electrónico",
                 ""
             );
+        // prettier-ignore-end
 
         process.settleRecordMetadata(
             judicialOffice.getDepartment(),
@@ -90,17 +89,12 @@ public class ProcessView {
         System.out.println("\tÍNDICE DEL EXPEDIENTE JUDICIAL ELECTRÓNICO.");
         showRecordMetadata(process.getRecordMetadata());
         System.out.println("\t");
-        process
-            .getNoteBooksList()
-            .forEach(
-                (
-                    n -> {
-                        n
-                            .getProceedingsMetadataList()
-                            .forEach(this::showProceedingsMetadata);
-                    }
-                )
-            );
+        // prettier-ignore-start
+        process.getNoteBooksList().forEach(n -> {
+                    n.getProceedingsMetadataList()
+                        .forEach(this::showProceedingsMetadata);
+        });
+        // prettier-ignore-end
     }
 
     /**
