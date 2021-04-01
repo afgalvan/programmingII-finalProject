@@ -1,7 +1,11 @@
 package app.database;
 
 import app.models.User;
-import java.sql.*;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class UserRepository implements Repository<User> {
 
@@ -30,12 +34,12 @@ public class UserRepository implements Repository<User> {
     }
 
     @Override
-    public void update(User user) throws SQLException {
+    public void update(User original, User newData) throws SQLException {
         String query = "UPDATE users SET name = ?, password = ? WHERE name = ?";
         PreparedStatement statement = connection.prepareStatement(query);
-        statement.setString(1, user.getName());
-        statement.setString(2, user.getPassword());
-        statement.setString(3, user.getName());
+        statement.setString(1, newData.getName());
+        statement.setString(2, newData.getPassword());
+        statement.setString(3, original.getName());
         statement.executeUpdate();
     }
 
@@ -45,5 +49,12 @@ public class UserRepository implements Repository<User> {
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, user.getName());
         statement.execute();
+    }
+
+    @Override
+    public ResultSet readAll() throws SQLException {
+        String query = "SELECT * FROM users";
+        Statement statement = connection.createStatement();
+        return statement.executeQuery(query);
     }
 }

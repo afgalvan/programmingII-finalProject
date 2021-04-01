@@ -1,7 +1,8 @@
 package app.main;
 
 import app.controllers.UserController;
-import app.models.Coordinator;
+import app.models.SuperUser;
+import app.models.User;
 import app.views.ProcessView;
 
 public class Main {
@@ -13,8 +14,10 @@ public class Main {
         ProcessView processView = new ProcessView();
         processView.view();
         System.out.print("\033\143");
-        Coordinator coordinator = new Coordinator("Andrés", "123");
+        User user = new SuperUser("Jorge", "123");
+        User user1 = new SuperUser("Jorge", "321");
         UserController userController = new UserController();
-        System.out.println(userController.get(coordinator));
+        System.out.println(userController.put(user, user1));
+        System.out.println(userController.get(user));
     }
 }

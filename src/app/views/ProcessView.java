@@ -2,8 +2,9 @@ package app.views;
 
 import app.controllers.api.LocationApi;
 import app.controllers.document.types.HabeasCorpusDocType;
-import app.models.*;
 import app.models.Process;
+import app.models.*;
+
 import java.time.LocalDate;
 import java.util.stream.Collectors;
 
@@ -15,7 +16,7 @@ public class ProcessView {
             "Juzgado Booker T",
             32132113,
             "Cesar",
-            LocationApi.getCities("Cesar").get(LocationApi.citiesLen("Cesar") - 1),
+            LocationApi.getLastCity("Cesar"),
             "Municipal"
         );
 

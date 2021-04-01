@@ -1,11 +1,13 @@
 package app.services;
 
+import app.models.User;
+
 public interface Service<T> {
     public Response<T> create(T data);
 
-    public Response read(T data);
+    public Response<T> read(T data);
 
-    public boolean update(T data);
+    public Response<User> update(T original, T newData);
 
-    public boolean delete(T data);
+    public Response<User> delete(T data);
 }

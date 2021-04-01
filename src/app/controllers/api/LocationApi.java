@@ -24,8 +24,7 @@ public class LocationApi {
         JsonNode jsonNode = JsonUtils.parse(jsonString);
 
         assert jsonNode != null;
-        List<List<String>> cities = jsonNode
-            .findValues("ciudades")
+        List<List<String>> cities = jsonNode.findValues("ciudades")
             .stream()
             .map(c -> Arrays.asList(
                 c.toString().replaceAll("[\\[\\]\"]", "").split(",")
@@ -70,5 +69,9 @@ public class LocationApi {
      */
     public static int citiesLen(String department) {
         return locations.get(department).size();
+    }
+
+    public static String getLastCity(String department) {
+        return locations.get(department).get(citiesLen(department) - 1);
     }
 }

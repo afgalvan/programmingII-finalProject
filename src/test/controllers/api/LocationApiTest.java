@@ -1,10 +1,10 @@
 package test.controllers.api;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-
 import app.controllers.api.LocationApi;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class LocationApiTest {
 
