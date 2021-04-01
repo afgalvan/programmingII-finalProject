@@ -1,13 +1,12 @@
 package test.controllers.api;
 
+import static org.junit.Assert.assertEquals;
+
 import app.controllers.api.JsonUtils;
 import com.fasterxml.jackson.databind.JsonNode;
+import java.util.Objects;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.Objects;
-
-import static org.junit.Assert.assertEquals;
 
 public class JsonUtilsTest {
 

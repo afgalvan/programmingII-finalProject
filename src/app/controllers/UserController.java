@@ -3,9 +3,8 @@ package app.controllers;
 import app.models.User;
 import app.services.Response;
 import app.services.UserService;
-import lombok.Getter;
-
 import java.util.List;
+import lombok.Getter;
 
 @Getter
 public class UserController {
@@ -25,7 +24,7 @@ public class UserController {
     }
 
     public List<User> gets() {
-        Response<List<User>> res  = userService.readAll();
+        Response<List<User>> res = userService.readAll();
         if (res.isError()) {
             return null;
         }

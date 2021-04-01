@@ -2,9 +2,8 @@ package app.views;
 
 import app.controllers.api.LocationApi;
 import app.controllers.document.types.HabeasCorpusDocType;
-import app.models.Process;
 import app.models.*;
-
+import app.models.Process;
 import java.time.LocalDate;
 import java.util.stream.Collectors;
 
