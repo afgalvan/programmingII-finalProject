@@ -4,31 +4,21 @@ import app.controllers.UserController;
 import org.junit.Test;
 
 public class UserControllerTest {
+
     public UserController userController = new UserController();
 
     @Test
-    public void postTest() {
-
-    }
+    public void postTest() {}
 
     @Test
-    public void getsTest() {
-
-    }
+    public void getsTest() {}
 
     @Test
-    public void getTest() {
-
-    }
+    public void getTest() {}
 
     @Test
-    public void deleteTest() {
-
-    }
+    public void deleteTest() {}
 
     @Test
-    public void putTest() {
-
-    }
-
+    public void putTest() {}
 }
