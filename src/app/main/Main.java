@@ -14,8 +14,8 @@ public class Main {
         ProcessView processView = new ProcessView();
         processView.view();
         System.out.print("\033\143");
-        User user = new SuperUser("Jorge", "123");
-        User user1 = new SuperUser("Jorge", "321");
+        User user = new SuperUser("Jorge2", "123");
+        User user1 = new SuperUser("Jorge3", "321");
         UserController userController = new UserController();
         System.out.println(userController.post(user));
         System.out.println(userController.put(user, user1));

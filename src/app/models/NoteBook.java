@@ -1,6 +1,5 @@
 package app.models;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -17,31 +16,13 @@ public class NoteBook {
 
     public void addProceedingsMetadata(
         String name,
-        LocalDate creationDate,
-        LocalDate incorporationDate,
         int docOrder,
-        int pagesAmount,
-        int initPage,
-        int lastPage,
-        String fileType,
-        double size,
-        String origin,
-        String observations
+        Date dates,
+        PageData pageData,
+        ExtraData extraData
     ) {
         this.proceedingsMetadataList.add(
-                new ProceedingsMetadata(
-                    name,
-                    creationDate,
-                    incorporationDate,
-                    docOrder,
-                    pagesAmount,
-                    initPage,
-                    lastPage,
-                    fileType,
-                    size,
-                    origin,
-                    observations
-                )
+                new ProceedingsMetadata(name, docOrder, dates, pageData, extraData)
             );
     }
 }

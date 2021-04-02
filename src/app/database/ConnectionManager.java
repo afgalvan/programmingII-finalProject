@@ -1,18 +1,25 @@
 package app.database;
 
 import java.sql.*;
+import lombok.Data;
 
+@Data
 public class ConnectionManager {
 
-    private final String URL = "jdbc:sqlite:./src/app/database/database.sqlite";
+    private String url;
     protected Connection connection;
 
     public ConnectionManager() {
-        connection = null;
+        this("jdbc:sqlite:./src/app/database/database.sqlite");
+    }
+
+    public ConnectionManager(String url) {
+        this.connection = null;
+        this.url = url;
     }
 
     public void open() throws SQLException {
-        this.connection = DriverManager.getConnection(URL);
+        this.connection = DriverManager.getConnection(url);
     }
 
     public void close() {
