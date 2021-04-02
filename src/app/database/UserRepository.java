@@ -1,75 +1,59 @@
 package app.database;
 
-import app.models.Coordinator;
-import app.models.SuperUser;
 import app.models.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
-public class UserRepository extends DBConnection implements DBRepository<User> {
+public class UserRepository implements Repository<User> {
 
-    @Override
-    public boolean create(User user) {
-        open();
-        try (
-            PreparedStatement statement = prepareStatement(
-                "SELECT FROM user (name, password) VALUES (?, ?)"
-            )
-        ) {
-            statement.setString(1, user.getName());
-            statement.setString(2, user.getPassword());
+    private final ConnectionManager connection;
 
-            return !statement.execute();
-        } catch (SQLException throwables) {
-            return false;
-        } finally {
-            close();
-        }
+    public UserRepository(ConnectionManager connection) {
+        this.connection = connection;
     }
 
     @Override
-    public User read(User user) {
-        open();
-        try (PreparedStatement statement = prepareStatement("SELECT * FROM user")) {
-            ResultSet query = statement.getResultSet();
-            if (query.getString("type").equals("SuperUser")) {
-                return new SuperUser(
-                    query.getString("name"),
-                    query.getString("password")
-                );
-            }
-            return new Coordinator(
-                query.getString("name"),
-                query.getString("password")
-            );
-        } catch (SQLException throwables) {
-            return null;
-        } finally {
-            close();
-        }
+    public void create(User user, String userType) throws SQLException {
+        String query = "INSERT INTO users (name, type, password) VALUES (?, ?, ?)";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, user.getName());
+        statement.setString(2, userType);
+        statement.setString(3, user.getPassword());
+        statement.execute();
     }
 
     @Override
-    public boolean update(User user) {
-        return false;
+    public ResultSet read(User user) throws SQLException {
+        String query = "SELECT * FROM users WHERE name = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, user.getName());
+        return statement.executeQuery();
     }
 
     @Override
-    public boolean delete(User user) {
-        open();
-        try (
-            PreparedStatement statement = prepareStatement(
-                "DELETE FROM user WHERE name = ?"
-            )
-        ) {
-            statement.setString(1, user.getName());
+    public void update(User original, User newData) throws SQLException {
+        String query = "UPDATE users SET name = ?, password = ? WHERE name = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, newData.getName());
+        statement.setString(2, newData.getPassword());
+        statement.setString(3, original.getName());
+        statement.executeUpdate();
+    }
 
-            return !statement.execute();
-        } catch (SQLException throwables) {
-            return false;
-        } finally {
-            close();
-        }
+    @Override
+    public void delete(User user) throws SQLException {
+        String query = "DELETE FROM users WHERE name = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, user.getName());
+        statement.execute();
+    }
+
+    @Override
+    public ResultSet readAll() throws SQLException {
+        String query = "SELECT * FROM users";
+        Statement statement = connection.createStatement();
+        return statement.executeQuery(query);
     }
 }
