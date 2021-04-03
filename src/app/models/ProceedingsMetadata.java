@@ -12,7 +12,7 @@ public class ProceedingsMetadata {
 
     private String name;
     private int docOrder;
-    private Date dates;
+    private ProceedingsDate dates;
     private PageData pageData;
     private ExtraData extraData;
 }
@@ -20,7 +20,7 @@ public class ProceedingsMetadata {
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-class Date {
+class ProceedingsDate {
 
     private LocalDate creationDate;
     private LocalDate incorporationDate;

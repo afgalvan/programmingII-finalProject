@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class Response<T> {
 
-    protected boolean error;
+    private boolean error;
     private T data;
 
     public Response(T data) {
