@@ -17,7 +17,7 @@ public class NoteBook {
     public void addProceedingsMetadata(
         String name,
         int docOrder,
-        Date dates,
+        ProceedingsDate dates,
         PageData pageData,
         ExtraData extraData
     ) {

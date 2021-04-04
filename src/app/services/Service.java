@@ -1,11 +1,15 @@
 package app.services;
 
-public interface Service<T> {
+import java.util.List;
+
+public interface Service<P, T> {
     public Response<T> create(T data);
 
-    public Response<T> read(T data);
+    public Response<List<T>> readAll();
 
-    public Response<T> update(T original, T newData);
+    public Response<T> read(P id);
 
-    public Response<T> delete(T data);
+    public Response<T> update(P id, T newData);
+
+    public Response<T> delete(P id);
 }

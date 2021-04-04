@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserService implements Service<User> {
+public class UserService implements Service<String, User> {
 
     private final UserRepository userRepository;
     private final ConnectionManager connectionManager;
@@ -39,44 +39,6 @@ public class UserService implements Service<User> {
     }
 
     @Override
-    public Response<User> read(User user) {
-        try {
-            connectionManager.open();
-            ResultSet resultSet = userRepository.read(user);
-            return new Response<>(resultSetMapToUser(resultSet));
-        } catch (SQLException ignore) {
-            return new Response<>();
-        } finally {
-            connectionManager.close();
-        }
-    }
-
-    @Override
-    public Response<User> update(User original, User user) {
-        try {
-            connectionManager.open();
-            userRepository.update(original, user);
-            return new Response<>(user);
-        } catch (SQLException ignore) {
-            return new Response<>();
-        } finally {
-            connectionManager.close();
-        }
-    }
-
-    @Override
-    public Response<User> delete(User user) {
-        try {
-            connectionManager.open();
-            userRepository.delete(user);
-            return new Response<>(user);
-        } catch (SQLException ignore) {
-            return new Response<>();
-        } finally {
-            connectionManager.close();
-        }
-    }
-
     public Response<List<User>> readAll() {
         List<User> userList = new ArrayList<>();
 
@@ -88,6 +50,46 @@ public class UserService implements Service<User> {
             }
 
             return new Response<>(userList);
+        } catch (SQLException ignore) {
+            return new Response<>();
+        } finally {
+            connectionManager.close();
+        }
+    }
+
+    @Override
+    public Response<User> read(String username) {
+        try {
+            connectionManager.open();
+            ResultSet resultSet = userRepository.read(username);
+            return new Response<>(resultSetMapToUser(resultSet));
+        } catch (SQLException ignore) {
+            return new Response<>();
+        } finally {
+            connectionManager.close();
+        }
+    }
+
+    @Override
+    public Response<User> update(String username, User newData) {
+        try {
+            connectionManager.open();
+            userRepository.update(username, newData);
+            ResultSet user = userRepository.read(username);
+            return new Response<>(resultSetMapToUser(user));
+        } catch (SQLException ignore) {
+            return new Response<>();
+        } finally {
+            connectionManager.close();
+        }
+    }
+
+    @Override
+    public Response<User> delete(String username) {
+        try {
+            connectionManager.open();
+            userRepository.delete(username);
+            return new Response<>();
         } catch (SQLException ignore) {
             return new Response<>();
         } finally {
