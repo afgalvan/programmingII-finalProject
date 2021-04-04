@@ -6,7 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 
-public class InterfaceInteraction {
+public class GraphicalInteraction {
 
     public static void addMouseListener(JComponent component, Runnable action) {
         component.addMouseListener(

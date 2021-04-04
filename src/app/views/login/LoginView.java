@@ -2,8 +2,9 @@ package app.views.login;
 
 import app.controllers.LoginController;
 import app.controllers.UserController;
+import app.models.DialogResponse;
 import app.views.ColorPalette;
-import app.views.InterfaceInteraction;
+import app.views.GraphicalInteraction;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
@@ -103,14 +104,14 @@ public class LoginView extends LoginLayout {
     }
 
     private void setButtonActions() {
-        InterfaceInteraction.addFocusListener(
+        GraphicalInteraction.addFocusListener(
             usernameField,
             () -> {
                 if (
                     usernameField.getText().equals("Nombre de usuario")
                 ) usernameField.setText("");
                 if (
-                    passwordField.getText().equals("Contraseña")
+                    String.valueOf(passwordField.getPassword()).equals("Contraseña")
                 ) passwordField.setEchoChar((char) 0);
             },
             () -> {
@@ -118,21 +119,23 @@ public class LoginView extends LoginLayout {
                     "Nombre de usuario"
                 );
                 if (
-                    passwordField.getText().equals("Contraseña")
+                    String.valueOf(passwordField.getPassword()).equals("Contraseña")
                 ) passwordField.setEchoChar((char) 0);
             }
         );
 
-        InterfaceInteraction.addFocusListener(
+        GraphicalInteraction.addFocusListener(
             passwordField,
             () -> {
-                if (passwordField.getText().equals("Contraseña")) {
+                if (
+                    String.valueOf(passwordField.getPassword()).equals("Contraseña")
+                ) {
                     passwordField.setText("");
                     passwordField.setEchoChar('•');
                 }
             },
             () -> {
-                if (passwordField.getText().equals("")) {
+                if (String.valueOf(passwordField.getPassword()).equals("")) {
                     passwordField.setText("Contraseña");
                     passwordField.setEchoChar('•');
                 }
@@ -141,20 +144,20 @@ public class LoginView extends LoginLayout {
 
         signInButton.addActionListener(
             evt -> {
-                String response = loginController.logUser(
+                DialogResponse response = loginController.logUser(
                     usernameField.getText(),
-                    passwordField.getText()
+                    String.valueOf(passwordField.getPassword())
                 );
-                JDialog responseDialog = new LoginDialog(this, response, true);
-                responseDialog.setVisible(true);
+                new LoginDialog(this, response);
             }
         );
         signUpButton.addActionListener(
             evt -> {
-                String response = loginController.logUser(
+                DialogResponse response = loginController.registerUser(
                     usernameField.getText(),
-                    passwordField.getText()
+                    String.valueOf(passwordField.getPassword())
                 );
+                new LoginDialog(this, response);
             }
         );
     }

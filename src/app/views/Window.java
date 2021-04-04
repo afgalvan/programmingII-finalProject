@@ -3,11 +3,9 @@ package app.views;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.*;
 import javax.swing.*;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
-@Data
 public abstract class Window extends JFrame {
 
     private final JLabel minimize = new JLabel();
@@ -18,6 +16,14 @@ public abstract class Window extends JFrame {
         Image icon = new ImageIcon("src/app/views/assets/UPC.png").getImage();
         setIconImage(icon);
         windowConfiguration();
+    }
+
+    public JLabel getClose() {
+        return close;
+    }
+
+    public JLabel getMinimize() {
+        return minimize;
     }
 
     private void windowConfiguration() {
@@ -37,10 +43,11 @@ public abstract class Window extends JFrame {
     }
 
     private void windowButtonActions() {
-        InterfaceInteraction.addMouseListener(
-            minimize,
-            () -> setState(JFrame.ICONIFIED)
+        // prettier-ignore-start
+        GraphicalInteraction.addMouseListener(
+            minimize, () -> setState(JFrame.ICONIFIED)
         );
-        InterfaceInteraction.addMouseListener(close, () -> System.exit(0));
+        // prettier-ignore-end
+        GraphicalInteraction.addMouseListener(close, () -> System.exit(0));
     }
 }

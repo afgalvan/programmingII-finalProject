@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class UserRepository implements Repository<User> {
+public class UserRepository implements Repository<String, User> {
 
     private final ConnectionManager connection;
 
@@ -25,35 +25,35 @@ public class UserRepository implements Repository<User> {
     }
 
     @Override
-    public ResultSet read(User user) throws SQLException {
-        String query = "SELECT * FROM users WHERE name = ?";
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.setString(1, user.getName());
-        return statement.executeQuery();
-    }
-
-    @Override
-    public void update(User original, User newData) throws SQLException {
-        String query = "UPDATE users SET name = ?, password = ? WHERE name = ?";
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.setString(1, newData.getName());
-        statement.setString(2, newData.getPassword());
-        statement.setString(3, original.getName());
-        statement.executeUpdate();
-    }
-
-    @Override
-    public void delete(User user) throws SQLException {
-        String query = "DELETE FROM users WHERE name = ?";
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.setString(1, user.getName());
-        statement.execute();
-    }
-
-    @Override
     public ResultSet readAll() throws SQLException {
         String query = "SELECT * FROM users";
         Statement statement = connection.createStatement();
         return statement.executeQuery(query);
+    }
+
+    @Override
+    public ResultSet read(String username) throws SQLException {
+        String query = "SELECT * FROM users WHERE name = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, username);
+        return statement.executeQuery();
+    }
+
+    @Override
+    public void update(String username, User newData) throws SQLException {
+        String query = "UPDATE users SET name = ?, password = ? WHERE name = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, newData.getName());
+        statement.setString(2, newData.getPassword());
+        statement.setString(3, username);
+        statement.executeUpdate();
+    }
+
+    @Override
+    public void delete(String username) throws SQLException {
+        String query = "DELETE FROM users WHERE name = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, username);
+        statement.execute();
     }
 }

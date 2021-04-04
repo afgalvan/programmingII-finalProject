@@ -15,7 +15,8 @@ public class UserController {
         this.userService = new UserService();
     }
 
-    public String post(User user) {
+    // POST
+    public String postUser(User user) {
         Response<User> res = userService.create(user);
         if (res.isError()) {
             return "No se pudo registra el usuario.";
@@ -23,7 +24,8 @@ public class UserController {
         return "Usuario registrado con éxito.";
     }
 
-    public List<User> gets() {
+    // GET
+    public List<User> getUsers() {
         Response<List<User>> res = userService.readAll();
         if (res.isError()) {
             return null;
@@ -31,24 +33,27 @@ public class UserController {
         return res.getData();
     }
 
-    public User get(User user) {
-        Response<User> res = userService.read(user);
+    // GET
+    public User getUserById(String username) {
+        Response<User> res = userService.read(username);
         if (res.isError()) {
             return null;
         }
         return res.getData();
     }
 
-    public String delete(User user) {
-        Response<User> res = userService.delete(user);
+    // POST
+    public String deleteUserById(String username) {
+        Response<User> res = userService.delete(username);
         if (res.isError()) {
             return "Error inesperado.";
         }
         return "Usuario eliminado con exito.";
     }
 
-    public String put(User original, User newData) {
-        Response<User> res = userService.update(original, newData);
+    // PUT
+    public String updateUserById(String username, User newData) {
+        Response<User> res = userService.update(username, newData);
         if (res.isError()) {
             return "No se pudo modificar el usuario.";
         }

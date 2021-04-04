@@ -1,5 +1,8 @@
 package app.controllers;
 
+import app.models.DialogResponse;
+import javax.swing.*;
+
 public class LoginController {
 
     public void encryptPassword() {}
@@ -8,11 +11,19 @@ public class LoginController {
         return true;
     }
 
-    public String logUser(String name, String password) {
-        return "Perfect";
+    public DialogResponse logUser(String name, String password) {
+        return new DialogResponse(
+            "Inicio de sesion",
+            "Bienvenido " + name + "!",
+            JOptionPane.DEFAULT_OPTION
+        );
     }
 
-    public String registerUser(String name, String password) {
-        return "Perfect";
+    public DialogResponse registerUser(String name, String password) {
+        return new DialogResponse(
+            "Registro",
+            "El usuario " + name + " se registro con exito",
+            JOptionPane.DEFAULT_OPTION
+        );
     }
 }

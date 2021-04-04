@@ -1,13 +1,20 @@
 package app.views.login;
 
+import app.models.DialogResponse;
 import java.awt.*;
 import javax.swing.*;
 
-public class OptionPane extends JOptionPane {
+public class LoginDialog extends JOptionPane {
 
-    public OptionPane(Frame frame, String response, String title, int optionPane) {
+    public LoginDialog(Frame frame, DialogResponse dialogResponse) {
         UIManager.put("OptionPane.background", Color.WHITE);
         UIManager.put("OptionPane.setButtonMargin", false);
-        showConfirmDialog(frame, response, title, optionPane);
+
+        showConfirmDialog(
+            frame,
+            dialogResponse.getContent(),
+            dialogResponse.getTitle(),
+            dialogResponse.getOption()
+        );
     }
 }
