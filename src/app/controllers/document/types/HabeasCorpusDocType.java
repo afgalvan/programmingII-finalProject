@@ -1,5 +1,8 @@
 package app.controllers.document.types;
 
+/**
+ * A class that stores all document types from the HabeasCorpus sub series.
+ */
 public class HabeasCorpusDocType extends DocType {
 
     public HabeasCorpusDocType() {

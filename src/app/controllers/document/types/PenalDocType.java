@@ -1,5 +1,8 @@
 package app.controllers.document.types;
 
+/**
+ * A class that stores all document types from the Penal sub series.
+ */
 public class PenalDocType extends DocType {
 
     public PenalDocType() {
