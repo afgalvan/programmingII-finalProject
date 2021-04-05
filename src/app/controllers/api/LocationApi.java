@@ -5,6 +5,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * A class to get the departments and cities list from Colombia got from a json file
+ * from https://github.com/marcovega/colombia-json.
+ */
 public class LocationApi {
 
     private static final Map<String, List<String>> locations;
@@ -14,7 +18,10 @@ public class LocationApi {
     }
 
     /**
-     * @return
+     * Map the json with the locations reference to a Map to relational the
+     * department with a list of its cities.
+     *
+     * @return A map with a String as key, and a List of Strings as value.
      */
     private static Map<String, List<String>> getLocations() {
         Map<String, List<String>> locations = new LinkedHashMap<>();
@@ -42,21 +49,28 @@ public class LocationApi {
     }
 
     /**
-     * @return A map with a key for the department and a value of its cities.
+     * Obtain all the locations of Colombia from the API, getting a Map with a
+     * key for the department and a value of its cities.
+     *
+     * @return A map with a String as key, and a List of Strings as value.
      */
     public static Map<String, List<String>> getAll() {
         return locations;
     }
 
     /**
-     * @return All the departments of Colombia.
+     * Get all the departments of Colombia.
+     *
+     * @return A List of all departments of Colombia.
      */
     public static List<String> getDepartments() {
         return new ArrayList<>(locations.keySet());
     }
 
     /**
-     * @param department the name of the department to find the cities.
+     * Get all the cities from a given department of Colombia.
+     *
+     * @param department The name of the department to find the cities.
      * @return A List of the cities in a department.
      */
     public static List<String> getCities(String department) {
@@ -64,13 +78,20 @@ public class LocationApi {
     }
 
     /**
-     * @param department
-     * @return
+     * Get a number of cities of a given department.
+     *
+     * @param department The name of the department to calculate the cities len.
+     * @return A integer that is the number of cities that a department has.
      */
     public static int citiesLen(String department) {
         return locations.get(department).size();
     }
 
+    /**
+     * Get the last city from a department.
+     * @param department The name of the department to find last city.
+     * @return The name of the last city of a department.
+     */
     public static String getLastCity(String department) {
         return locations.get(department).get(citiesLen(department) - 1);
     }
