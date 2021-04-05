@@ -15,7 +15,7 @@
   "config": {
     "ghooks": {
       "pre-commit": "yarn run editorconfig-checker && yarn run format",
-      "pre-push": "yarn tests"
+      "pre-push": "yarn test"
     }
   },
   "devDependencies": {
