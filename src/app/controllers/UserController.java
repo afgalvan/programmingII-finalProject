@@ -3,9 +3,8 @@ package app.controllers;
 import app.models.User;
 import app.services.Response;
 import app.services.UserService;
-import lombok.Getter;
-
 import java.util.List;
+import lombok.Getter;
 
 /**
  * A class to control al user's CRUD processes.
@@ -55,7 +54,7 @@ public class UserController {
      * GET:
      * Get a User instance given his username from the database.
      *
-     * @param username String value from the username.
+     * @param username String value for the username.
      * @return Any kind of user depending of how was saved.
      */
     public User getUserById(String username) {
@@ -70,7 +69,7 @@ public class UserController {
      * POST:
      * Delete a determinate user given his username
      *
-     * @param username String value from the username.
+     * @param username String value for the username.
      * @return A message to be showed from the deleted status.
      */
     public String deleteUserById(String username) {
@@ -86,7 +85,7 @@ public class UserController {
      * Update a user credentials given his username and an object that contains
      * his new information to be saved on the database.
      *
-     * @param username String value from the username.
+     * @param username String value for the username.
      * @param newData Username object which contains his new credentials.
      * @return A message to be showed from the update status.
      */

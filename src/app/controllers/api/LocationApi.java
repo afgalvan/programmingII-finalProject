@@ -89,6 +89,7 @@ public class LocationApi {
 
     /**
      * Get the last city from a department.
+     *
      * @param department The name of the department to find last city.
      * @return The name of the last city of a department.
      */

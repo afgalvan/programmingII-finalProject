@@ -2,7 +2,6 @@ package test.main;
 
 import static org.junit.Assert.assertEquals;
 
-import app.main.Main;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import org.junit.After;

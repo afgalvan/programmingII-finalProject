@@ -4,7 +4,7 @@ import app.views.login.LoginView;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class View extends Window implements ActionListener {
 
