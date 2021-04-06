@@ -5,7 +5,7 @@ import javax.swing.*;
 import rojerusan.RSMaterialButtonRectangle;
 import rojerusan.RSPasswordTextPlaceHolder;
 
-public abstract class LoginLayout extends Window {
+public class LoginLayout extends Window {
 
     protected JPanel body;
     protected JPanel landing;

@@ -1,5 +1,8 @@
 package app.controllers.document.types;
 
+/**
+ * A class that stores all document types from the Tutelage sub series.
+ */
 public class TutelageDocType extends DocType {
 
     public TutelageDocType() {

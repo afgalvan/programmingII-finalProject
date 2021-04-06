@@ -10,6 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class that manages all business logic and database implementation.
+ */
 public class UserService implements Service<String, User> {
 
     private final UserRepository userRepository;
@@ -20,6 +23,12 @@ public class UserService implements Service<String, User> {
         this.userRepository = new UserRepository(connectionManager);
     }
 
+    /**
+     * Save a given User instance to the database.
+     *
+     * @param user Any object that inheritance from the User class.
+     * @return A response depending on the success of the action.
+     */
     @Override
     public Response<User> create(User user) {
         String userType = "SU";
@@ -38,6 +47,11 @@ public class UserService implements Service<String, User> {
         }
     }
 
+    /**
+     * Obtain all the users from the database.
+     *
+     * @return A response depending on the success of the action.
+     */
     @Override
     public Response<List<User>> readAll() {
         List<User> userList = new ArrayList<>();
@@ -57,6 +71,12 @@ public class UserService implements Service<String, User> {
         }
     }
 
+    /**
+     * Find an user from the database from his given username.
+     *
+     * @param username A String to find the user by his name.
+     * @return A response depending on the success of the action.
+     */
     @Override
     public Response<User> read(String username) {
         try {
@@ -70,6 +90,13 @@ public class UserService implements Service<String, User> {
         }
     }
 
+    /**
+     * Update an user info from the database depending of his username.
+     *
+     * @param username A String to find the user by his name.
+     * @param newData  An user object generated with his new information.
+     * @return A response depending on the success of the action.
+     */
     @Override
     public Response<User> update(String username, User newData) {
         try {
@@ -84,6 +111,12 @@ public class UserService implements Service<String, User> {
         }
     }
 
+    /**
+     * Deleting a user row from the database by looking for his username.
+     *
+     * @param username A String to find the user by his name.
+     * @return A response depending on the success of the action.
+     */
     @Override
     public Response<User> delete(String username) {
         try {
@@ -97,6 +130,14 @@ public class UserService implements Service<String, User> {
         }
     }
 
+    /**
+     * Convert a given result set from the database to a determinate user instance
+     * depending of his saved type.
+     *
+     * @param resultSet A ResultSet from the database.
+     * @return A user object generated from the database result set.
+     * @throws SQLException For invalid fields.
+     */
     private User resultSetMapToUser(ResultSet resultSet) throws SQLException {
         String name = resultSet.getString("name");
         String password = resultSet.getString("password");

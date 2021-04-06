@@ -1,6 +1,6 @@
 package app.views;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * The list of color descriptions to choose from.

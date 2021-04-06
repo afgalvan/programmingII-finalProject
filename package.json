@@ -8,14 +8,14 @@
   "license": "MIT",
   "scripts": {
     "build": "mkdir -p out/production/final_project && javac $(find ./src/* | grep .java) -d out/production/final_project -cp lib/junit-4.12.jar:lib/lombok.jar:lib/jackson-anotations-2.12.2.jar:lib/jackson-core-2.12.2.jar:lib/jackson-databind-2.12.2.jar:lib/sqlite-jdbc-3.32.3.2.jar:lib/RojeruSan.jar:lib/flatlaf-1.1.1.jar -Xlint:deprecation",
-    "tests": "yarn build && java -cp out/production/final_project/:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:lib/jackson-annotations-2.12.2.jar:lib/jackson-core-2.12.2.jar:lib/jackson-databind-2.12.2.jar:lib/sqlite-jdbc-3.32.3.2.jar:lib/RojeruSan.jar:lib/flatlaf-1.1.1.jar org.junit.runner.JUnitCore test.TestSuite",
+    "test": "yarn build && java -cp out/production/final_project/:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:lib/jackson-annotations-2.12.2.jar:lib/jackson-core-2.12.2.jar:lib/jackson-databind-2.12.2.jar:lib/sqlite-jdbc-3.32.3.2.jar:lib/RojeruSan.jar:lib/flatlaf-1.1.1.jar org.junit.runner.JUnitCore test.TestSuite",
     "start": "yarn build && java -cp out/production/final_project/:lib/jackson-annotations-2.12.2.jar:lib/jackson-core-2.12.2.jar:lib/jackson-databind-2.12.2.jar:lib/sqlite-jdbc-3.32.3.2.jar:lib/RojeruSan.jar:lib/flatlaf-1.1.1.jar app.main.Main",
     "format": "prettier --write ./"
   },
   "config": {
     "ghooks": {
       "pre-commit": "yarn run editorconfig-checker && yarn run format",
-      "pre-push": "yarn tests"
+      "pre-push": "yarn test"
     }
   },
   "devDependencies": {

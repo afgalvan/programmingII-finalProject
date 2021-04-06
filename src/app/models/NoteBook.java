@@ -1,5 +1,9 @@
 package app.models;
 
+import app.models.proceedings.ExtraData;
+import app.models.proceedings.PageData;
+import app.models.proceedings.ProceedingsDate;
+import app.models.proceedings.ProceedingsMetadata;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
