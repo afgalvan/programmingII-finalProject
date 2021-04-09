@@ -13,6 +13,8 @@ import lombok.Getter;
 public class UserController {
 
     private final UserService userService;
+    private final String postResponse = "Usuario registrado con éxito.";
+    private final String outpostResponse = "No se pudo registrar el usuario ";
 
     public UserController() {
         this.userService = new UserService();
@@ -28,9 +30,9 @@ public class UserController {
     public String postUser(User user) {
         Response<User> res = userService.create(user);
         if (res.isError()) {
-            return "No se pudo registra el usuario.";
+            return outpostResponse + user.getName() + ".";
         }
-        return "Usuario registrado con éxito.";
+        return postResponse;
     }
 
     /**
@@ -77,7 +79,7 @@ public class UserController {
         if (res.isError()) {
             return "Error inesperado.";
         }
-        return "Usuario eliminado con exito.";
+        return "Usuario eliminado con éxito.";
     }
 
     /**
@@ -94,6 +96,6 @@ public class UserController {
         if (res.isError()) {
             return "No se pudo modificar el usuario.";
         }
-        return "Datos del usuario actualizados";
+        return "Datos del usuario actualizados.";
     }
 }

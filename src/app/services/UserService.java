@@ -101,8 +101,8 @@ public class UserService implements Service<String, User> {
     public Response<User> update(String username, User newData) {
         try {
             connectionManager.open();
-            userRepository.update(username, newData);
             ResultSet user = userRepository.read(username);
+            userRepository.update(username, newData);
             return new Response<>(resultSetMapToUser(user));
         } catch (SQLException ignore) {
             return new Response<>();
@@ -122,7 +122,7 @@ public class UserService implements Service<String, User> {
         try {
             connectionManager.open();
             userRepository.delete(username);
-            return new Response<>();
+            return new Response<>(username);
         } catch (SQLException ignore) {
             return new Response<>();
         } finally {
