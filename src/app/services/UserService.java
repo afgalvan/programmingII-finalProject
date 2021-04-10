@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Class that manages all business logic and database implementation.
  */
-public class UserService implements Service<String, User> {
+public class UserService implements Service<User, String> {
 
     private final UserRepository userRepository;
     private final ConnectionManager connectionManager;

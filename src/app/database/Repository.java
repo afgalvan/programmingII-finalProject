@@ -3,14 +3,14 @@ package app.database;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public interface Repository<P, T> {
+public interface Repository<T, K> {
     void create(T user, String userType) throws SQLException;
 
     ResultSet readAll() throws SQLException;
 
-    ResultSet read(P id) throws SQLException;
+    ResultSet read(K id) throws SQLException;
 
-    void update(P id, T newData) throws SQLException;
+    void update(K id, T newData) throws SQLException;
 
-    void delete(P id) throws SQLException;
+    void delete(K id) throws SQLException;
 }
