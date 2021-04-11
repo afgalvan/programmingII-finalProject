@@ -2,21 +2,21 @@
 name: Java CI
 
 on:
-    push:
-        branches: [main]
-    pull_request:
-        branches: [main]
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-    build:
-        name: Build with Docker
-        runs-on: ubuntu-latest
+  build:
+    name: Build with Docker
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v2
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-            - name: Build with docker-compose (Linux)
-              run: docker-compose build --force-rm
-            - name: Run JUnit with docker-compose (Linux)
-              run: docker-compose run --rm tests
+      - name: Build with docker-compose (Linux)
+        run: docker-compose build --force-rm
+      - name: Run JUnit with docker-compose (Linux)
+        run: docker-compose run --rm tests
