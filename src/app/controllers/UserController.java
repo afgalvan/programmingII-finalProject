@@ -88,7 +88,7 @@ public class UserController {
      * his new information to be saved on the database.
      *
      * @param username String value for the username.
-     * @param newData Username object which contains his new credentials.
+     * @param newData  Username object which contains his new credentials.
      * @return A message to be showed from the update status.
      */
     public String updateUserById(String username, User newData) {
