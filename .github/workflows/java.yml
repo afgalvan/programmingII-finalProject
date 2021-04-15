@@ -16,7 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Build with docker-compose (Linux)
+      - name: Build with docker-compose
         run: docker-compose build --force-rm
-      - name: Run JUnit with docker-compose (Linux)
+      - name: Run JUnit with docker-compose
         run: docker-compose run --rm tests
