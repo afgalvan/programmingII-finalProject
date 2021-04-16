@@ -4,5 +4,7 @@ node_modules
 nbproject
 lib
 build
+*.yml
+*.yaml
 .idea
 yarn.lock

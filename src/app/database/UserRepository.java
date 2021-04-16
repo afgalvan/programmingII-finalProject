@@ -9,7 +9,7 @@ import java.sql.Statement;
 /**
  * Class to execute all CRUD queries for the Users to the database.
  */
-public class UserRepository implements Repository<String, User> {
+public class UserRepository implements Repository<User, String> {
 
     private final ConnectionManager connection;
 
