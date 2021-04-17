@@ -7,13 +7,9 @@ import app.models.DialogResponse;
  */
 public class LoginController {
 
-    private void encryptPassword(String password) {
+    private void encryptPassword(String password) {}
 
-    }
-
-    private void decryptPassword() {
-
-    }
+    private void decryptPassword() {}
 
     /**
      * Authenticate the credentials given, by comparing them to the database.
