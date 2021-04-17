@@ -1,4 +1,4 @@
-package app.models;
+package app.controllers;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

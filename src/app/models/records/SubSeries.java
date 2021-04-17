@@ -1,5 +1,6 @@
-package app.models;
+package app.models.records;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,8 +8,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public abstract class User {
+public class SubSeries {
 
     private String name;
-    private String password;
+    private int code;
+    private List<String> docType;
 }

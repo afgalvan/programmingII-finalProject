@@ -1,6 +1,6 @@
 package app.views.login;
 
-import app.models.DialogResponse;
+import app.controllers.DialogResponse;
 import java.awt.*;
 import javax.swing.*;
 

@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class NoteBook {
+public class Notebook {
 
     private String name;
     private final List<ProceedingsMetadata> proceedingsMetadataList = new ArrayList<>();

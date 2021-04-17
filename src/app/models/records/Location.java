@@ -1,17 +1,15 @@
-package app.models;
+package app.models.records;
 
+import app.models.ValueObject;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class JudicialOffice {
-
-    private String name;
-    private int code;
+@Data
+@ValueObject
+public class Location {
     private String department;
     private String city;
-    private String category;
 }

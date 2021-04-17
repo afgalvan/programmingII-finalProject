@@ -1,6 +1,5 @@
-package app.models;
+package app.models.records;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,9 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SubSeries {
+public class JudicialOffice {
 
     private String name;
     private int code;
-    private List<String> docType;
+    private String department;
+    private String city;
+    private String category;
 }

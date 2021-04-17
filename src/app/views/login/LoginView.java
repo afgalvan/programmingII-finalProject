@@ -2,7 +2,7 @@ package app.views.login;
 
 import app.controllers.LoginController;
 import app.controllers.UserController;
-import app.models.DialogResponse;
+import app.controllers.DialogResponse;
 import app.views.ColorPalette;
 import app.views.GraphicalInteraction;
 import java.awt.*;

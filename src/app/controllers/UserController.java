@@ -1,6 +1,6 @@
 package app.controllers;
 
-import app.models.User;
+import app.models.users.User;
 import app.services.ServiceResponse;
 import app.services.UserService;
 import java.util.List;

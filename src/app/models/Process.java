@@ -2,6 +2,11 @@ package app.models;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import app.models.records.JudicialOffice;
+import app.models.records.Location;
+import app.models.records.RecordMetadata;
+import app.models.records.Series;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,30 +18,28 @@ public class Process {
 
     private RecordMetadata recordMetadata;
     private int noteBooksLen;
-    private final List<NoteBook> noteBooksList = new ArrayList<>(noteBooksLen);
+    private final List<Notebook> notebooksList = new ArrayList<>(noteBooksLen);
 
     public void addNoteBook(String name) {
-        this.noteBooksList.add(new NoteBook(name));
+        this.notebooksList.add(new Notebook(name));
     }
 
-    public void settleRecordMetadata(
-        String department,
-        String city,
+    public void setRecordMetadata(
+        Location location,
         JudicialOffice judicialOffice,
         Series series,
         long processFilingNumber,
         Boolean hasPhysicalFile,
-        int notebookAmount
+        int notebooksAmount
     ) {
         this.recordMetadata =
             new RecordMetadata(
-                department,
-                city,
+                location,
                 judicialOffice,
                 series,
                 processFilingNumber,
                 hasPhysicalFile,
-                notebookAmount
+                notebooksAmount
             );
     }
 }

@@ -1,4 +1,4 @@
-package app.models;
+package app.models.records.parts;
 
 public class JuridicPerson extends Person {
 

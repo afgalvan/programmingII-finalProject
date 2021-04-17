@@ -1,7 +1,5 @@
 package app.controllers;
 
-import app.models.DialogResponse;
-
 /**
  * Class that controls all login validations and methods.
  */
