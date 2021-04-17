@@ -71,7 +71,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/afgalvan"><img src="https://avatars.githubusercontent.com/u/62343874?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Andrés Galván</b></sub></a><br /><a href="#infra-afgalvan" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/afgalvan/programmingII-finalProject/commits?author=afgalvan" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/afgalvan"><img src="https://avatars.githubusercontent.com/u/62343874?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Andrés Galván</b></sub></a><br /><a href="#infra-afgalvan" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/afgalvan/programmingII-finalProject/commits?author=afgalvan" title="Code">💻</a> <a href="https://github.com/afgalvan/programmingII-finalProject/commits?author=afgalvan" title="Tests">⚠️</a></td>
     <td align="center"><a href="https://github.com/jwar28"><img src="https://avatars.githubusercontent.com/u/64824859?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Javier Guerra</b></sub></a><br /><a href="https://github.com/afgalvan/programmingII-finalProject/commits?author=jwar28" title="Code">💻</a></td>
   </tr>
 </table>
