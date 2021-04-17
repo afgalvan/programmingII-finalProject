@@ -1,3 +1,3 @@
-package app.models;
+package app.models.users;
 
 public class Guest extends User {}

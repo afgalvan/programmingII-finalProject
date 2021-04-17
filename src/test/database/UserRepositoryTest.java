@@ -2,8 +2,8 @@ package test.database;
 
 import app.database.ConnectionManager;
 import app.database.UserRepository;
-import app.models.SuperUser;
-import app.models.User;
+import app.models.users.SuperUser;
+import app.models.users.User;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

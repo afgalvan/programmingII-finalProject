@@ -26,3 +26,9 @@ before_install:
 script:
   - docker-compose build --force-rm
   - docker-compose run --rm tests
+
+branches:
+  only:
+    - main
+    - development
+    - /^v\d+\.\d+(\.\d+)?(-\S*)?$/

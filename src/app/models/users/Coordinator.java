@@ -1,4 +1,4 @@
-package app.models;
+package app.models.users;
 
 public class Coordinator extends User {
 

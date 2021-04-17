@@ -1,5 +1,6 @@
-package app.models;
+package app.models.records;
 
+import app.models.records.parts.Person;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -11,8 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RecordMetadata {
 
-    private String department;
-    private String city;
+    private Location location;
     private JudicialOffice judicialOffice;
     private Series series;
     private long processFilingNumber;

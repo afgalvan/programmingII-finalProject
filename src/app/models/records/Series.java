@@ -1,4 +1,4 @@
-package app.models;
+package app.models.records;
 
 import java.util.ArrayList;
 import java.util.List;

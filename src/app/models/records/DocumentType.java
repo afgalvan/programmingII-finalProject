@@ -1,17 +1,14 @@
-package app.models;
+package app.models.records;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public abstract class Person {
+@Data
+public class DocumentType {
 
     private String name;
-    private String id;
-    private IdTypes idType;
-
-    public abstract String getFullName();
+    private int code;
 }

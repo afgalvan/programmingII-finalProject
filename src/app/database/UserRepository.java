@@ -1,6 +1,6 @@
 package app.database;
 
-import app.models.User;
+import app.models.users.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

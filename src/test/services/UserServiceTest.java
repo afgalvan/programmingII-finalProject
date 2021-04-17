@@ -1,7 +1,7 @@
 package test.services;
 
-import app.models.Coordinator;
-import app.models.User;
+import app.models.users.Coordinator;
+import app.models.users.User;
 import app.services.UserService;
 import java.util.List;
 import org.junit.Assert;
