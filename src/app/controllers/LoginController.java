@@ -1,5 +1,7 @@
 package app.controllers;
 
+import app.controllers.api.LocationApi;
+
 /**
  * Class that controls all login validations and methods.
  */
@@ -53,7 +55,8 @@ public class LoginController {
     public DialogResponse registerUser(String username, String password) {
         return new DialogResponse(
             "Registro",
-            "El usuario " + username + " se registró con exito",
+            //"El usuario " + username + " se registró con exito",
+            LocationApi.getLastCity("Cesar"),
             DialogResponse.ERROR_MESSAGE
         );
     }

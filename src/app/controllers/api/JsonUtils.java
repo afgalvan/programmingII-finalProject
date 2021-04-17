@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 /**
  * Class to perform certain functions to manipulate json files using the jackson library.
  */
-public class JsonUtils {
+public final class JsonUtils {
 
     private static final ObjectMapper objectMapper;
 

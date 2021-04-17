@@ -1,6 +1,8 @@
 package app.database;
 
 import app.models.users.User;
+import lombok.val;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,7 +28,7 @@ public class UserRepository implements Repository<User, String> {
      */
     @Override
     public void create(User user, String userType) throws SQLException {
-        String query = "INSERT INTO users (name, type, password) VALUES (?, ?, ?)";
+        val query = "INSERT INTO users (name, type, password) VALUES (?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, user.getName());
         statement.setString(2, userType);
@@ -42,7 +44,7 @@ public class UserRepository implements Repository<User, String> {
      */
     @Override
     public ResultSet readAll() throws SQLException {
-        String query = "SELECT * FROM users";
+        val query = "SELECT * FROM users";
         Statement statement = connection.createStatement();
         return statement.executeQuery(query);
     }
@@ -56,7 +58,7 @@ public class UserRepository implements Repository<User, String> {
      */
     @Override
     public ResultSet read(String username) throws SQLException {
-        String query = "SELECT * FROM users WHERE name = ?";
+        val query = "SELECT * FROM users WHERE name = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, username);
         return statement.executeQuery();
@@ -71,7 +73,7 @@ public class UserRepository implements Repository<User, String> {
      */
     @Override
     public void update(String username, User newData) throws SQLException {
-        String query = "UPDATE users SET name = ?, password = ? WHERE name = ?";
+        val query = "UPDATE users SET name = ?, password = ? WHERE name = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, newData.getName());
         statement.setString(2, newData.getPassword());
@@ -87,7 +89,7 @@ public class UserRepository implements Repository<User, String> {
      */
     @Override
     public void delete(String username) throws SQLException {
-        String query = "DELETE FROM users WHERE name = ?";
+        val query = "DELETE FROM users WHERE name = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, username);
         statement.execute();
