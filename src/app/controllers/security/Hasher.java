@@ -1,8 +1,7 @@
 package app.controllers.security;
 
-import lombok.val;
-
 import java.util.Arrays;
+import lombok.val;
 
 public final class Hasher {
 

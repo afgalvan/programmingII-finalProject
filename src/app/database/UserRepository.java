@@ -1,12 +1,11 @@
 package app.database;
 
 import app.models.users.User;
-import lombok.val;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import lombok.val;
 
 /**
  * Class to execute all CRUD queries for the Users to the database.

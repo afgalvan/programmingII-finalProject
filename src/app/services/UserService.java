@@ -5,13 +5,12 @@ import app.database.UserRepository;
 import app.models.users.Coordinator;
 import app.models.users.SuperUser;
 import app.models.users.User;
-import lombok.val;
-import lombok.var;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.val;
+import lombok.var;
 
 /**
  * Class that manages all business logic and database implementation.
