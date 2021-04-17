@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @ValueObject
 public class Location {
+
     private String department;
     private String city;
 }

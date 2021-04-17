@@ -1,9 +1,8 @@
 package app.models.records;
 
+import app.models.records.parts.Person;
 import java.util.ArrayList;
 import java.util.List;
-
-import app.models.records.parts.Person;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

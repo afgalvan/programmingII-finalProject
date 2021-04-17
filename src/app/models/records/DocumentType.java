@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class DocumentType {
+
     private String name;
     private int code;
 }

@@ -1,12 +1,11 @@
 package app.models;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import app.models.records.JudicialOffice;
 import app.models.records.Location;
 import app.models.records.RecordMetadata;
 import app.models.records.Series;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
