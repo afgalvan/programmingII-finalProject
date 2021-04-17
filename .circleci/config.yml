@@ -14,10 +14,10 @@ jobs:
       - run: pwsh .circleci/java.ps1
 
 workflows:
-  build-java:
+  build-app-on-windows:
     jobs:
       - build
-      filters:
-        branches:
-          only:
-            - main
+          filters:
+            branches:
+              only:
+                - main
