@@ -10,11 +10,11 @@ public class LoginDialog extends JOptionPane {
         UIManager.put("OptionPane.background", Color.WHITE);
         UIManager.put("OptionPane.setButtonMargin", false);
 
-        showConfirmDialog(
+        showMessageDialog(
             frame,
             dialogResponse.getContent(),
             dialogResponse.getTitle(),
-            dialogResponse.getOption()
+            dialogResponse.getType()
         );
     }
 }

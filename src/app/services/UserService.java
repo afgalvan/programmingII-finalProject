@@ -30,7 +30,7 @@ public class UserService implements Service<User, String> {
      * @return A response depending on the success of the action.
      */
     @Override
-    public Response<User> create(User user) {
+    public ServiceResponse<User> create(User user) {
         String userType = "SU";
         if (user instanceof Coordinator) {
             userType = "CO";
@@ -39,9 +39,9 @@ public class UserService implements Service<User, String> {
         try {
             connectionManager.open();
             userRepository.create(user, userType);
-            return new Response<>(user);
+            return new ServiceResponse<>(user);
         } catch (SQLException ignore) {
-            return new Response<>();
+            return new ServiceResponse<>();
         } finally {
             connectionManager.close();
         }
@@ -53,7 +53,7 @@ public class UserService implements Service<User, String> {
      * @return A response depending on the success of the action.
      */
     @Override
-    public Response<List<User>> readAll() {
+    public ServiceResponse<List<User>> readAll() {
         List<User> userList = new ArrayList<>();
 
         try {
@@ -63,9 +63,9 @@ public class UserService implements Service<User, String> {
                 userList.add(resultSetMapToUser(resultSet));
             }
 
-            return new Response<>(userList);
+            return new ServiceResponse<>(userList);
         } catch (SQLException ignore) {
-            return new Response<>();
+            return new ServiceResponse<>();
         } finally {
             connectionManager.close();
         }
@@ -78,13 +78,13 @@ public class UserService implements Service<User, String> {
      * @return A response depending on the success of the action.
      */
     @Override
-    public Response<User> read(String username) {
+    public ServiceResponse<User> read(String username) {
         try {
             connectionManager.open();
             ResultSet resultSet = userRepository.read(username);
-            return new Response<>(resultSetMapToUser(resultSet));
+            return new ServiceResponse<>(resultSetMapToUser(resultSet));
         } catch (SQLException ignore) {
-            return new Response<>();
+            return new ServiceResponse<>();
         } finally {
             connectionManager.close();
         }
@@ -98,14 +98,14 @@ public class UserService implements Service<User, String> {
      * @return A response depending on the success of the action.
      */
     @Override
-    public Response<User> update(String username, User newData) {
+    public ServiceResponse<User> update(String username, User newData) {
         try {
             connectionManager.open();
             ResultSet user = userRepository.read(username);
             userRepository.update(username, newData);
-            return new Response<>(resultSetMapToUser(user));
+            return new ServiceResponse<>(resultSetMapToUser(user));
         } catch (SQLException ignore) {
-            return new Response<>();
+            return new ServiceResponse<>();
         } finally {
             connectionManager.close();
         }
@@ -118,13 +118,13 @@ public class UserService implements Service<User, String> {
      * @return A response depending on the success of the action.
      */
     @Override
-    public Response<User> delete(String username) {
+    public ServiceResponse<User> delete(String username) {
         try {
             connectionManager.open();
             userRepository.delete(username);
-            return new Response<>(username);
+            return new ServiceResponse<>(username);
         } catch (SQLException ignore) {
-            return new Response<>();
+            return new ServiceResponse<>();
         } finally {
             connectionManager.close();
         }

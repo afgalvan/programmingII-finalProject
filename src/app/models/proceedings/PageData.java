@@ -1,5 +1,6 @@
 package app.models.proceedings;
 
+import app.models.ValueObject;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ValueObject
 public class PageData {
 
     private int pagesAmount;

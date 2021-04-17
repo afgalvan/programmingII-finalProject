@@ -1,14 +1,19 @@
 package app.controllers;
 
 import app.models.DialogResponse;
-import javax.swing.*;
 
 /**
  * Class that controls all login validations and methods.
  */
 public class LoginController {
 
-    public void encryptPassword() {}
+    private void encryptPassword(String password) {
+
+    }
+
+    private void decryptPassword() {
+
+    }
 
     /**
      * Authenticate the credentials given, by comparing them to the database.
@@ -29,10 +34,18 @@ public class LoginController {
      * @return A dialog response to be shown on the views.
      */
     public DialogResponse logUser(String username, String password) {
+        if (areValidCredentials(username, password)) {
+            return new DialogResponse(
+                "Inicio de sesion",
+                "Bienvenido " + username + "!",
+                DialogResponse.INFORMATION_MESSAGE
+            );
+        }
+
         return new DialogResponse(
             "Inicio de sesion",
-            "Bienvenido " + username + "!",
-            JOptionPane.DEFAULT_OPTION
+            "No se pudo validar los datos del usuario " + username + "!",
+            DialogResponse.ERROR_MESSAGE
         );
     }
 
@@ -46,8 +59,8 @@ public class LoginController {
     public DialogResponse registerUser(String username, String password) {
         return new DialogResponse(
             "Registro",
-            "El usuario " + username + " se registro con exito",
-            JOptionPane.DEFAULT_OPTION
+            "El usuario " + username + " se registró con exito",
+            DialogResponse.ERROR_MESSAGE
         );
     }
 }
