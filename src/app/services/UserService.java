@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.val;
+import lombok.var;
 
 /**
  * Class that manages all business logic and database implementation.
@@ -31,7 +33,7 @@ public class UserService implements Service<User, String> {
      */
     @Override
     public ServiceResponse<User> create(User user) {
-        String userType = "SU";
+        var userType = "SU";
         if (user instanceof Coordinator) {
             userType = "CO";
         }
@@ -54,7 +56,7 @@ public class UserService implements Service<User, String> {
      */
     @Override
     public ServiceResponse<List<User>> readAll() {
-        List<User> userList = new ArrayList<>();
+        val userList = new ArrayList<User>();
 
         try {
             connectionManager.open();
@@ -81,7 +83,7 @@ public class UserService implements Service<User, String> {
     public ServiceResponse<User> read(String username) {
         try {
             connectionManager.open();
-            ResultSet resultSet = userRepository.read(username);
+            val resultSet = userRepository.read(username);
             return new ServiceResponse<>(resultSetMapToUser(resultSet));
         } catch (SQLException ignore) {
             return new ServiceResponse<>();
@@ -101,7 +103,7 @@ public class UserService implements Service<User, String> {
     public ServiceResponse<User> update(String username, User newData) {
         try {
             connectionManager.open();
-            ResultSet user = userRepository.read(username);
+            val user = userRepository.read(username);
             userRepository.update(username, newData);
             return new ServiceResponse<>(resultSetMapToUser(user));
         } catch (SQLException ignore) {
@@ -139,8 +141,8 @@ public class UserService implements Service<User, String> {
      * @throws SQLException For invalid fields.
      */
     private User resultSetMapToUser(ResultSet resultSet) throws SQLException {
-        String name = resultSet.getString("name");
-        String password = resultSet.getString("password");
+        val name = resultSet.getString("name");
+        val password = resultSet.getString("password");
 
         if (resultSet.getString("type").equals("SU")) {
             return new SuperUser(name, password);
