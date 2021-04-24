@@ -2,6 +2,10 @@ package app.services;
 
 import lombok.Data;
 
+/**
+ *
+ * @param <T>
+ */
 @Data
 public class ServiceResponse<T> {
 
@@ -9,6 +13,10 @@ public class ServiceResponse<T> {
     private T data;
     private String message;
 
+    /**
+     *
+     * @param data
+     */
     public ServiceResponse(T data) {
         this.data = data;
         this.error = false;

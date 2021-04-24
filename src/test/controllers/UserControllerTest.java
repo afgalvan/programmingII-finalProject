@@ -21,7 +21,7 @@ public class UserControllerTest {
     @Order(order = 1)
     public void postTest() {
         Assert.assertEquals(
-            userController.getPostResponse(),
+            userController.getPostResponse().apply(sample.getName()),
             userController.postUser(sample)
         );
     }
@@ -30,7 +30,7 @@ public class UserControllerTest {
     @Order(order = 2)
     public void postDuplicateUser() {
         Assert.assertEquals(
-            userController.getOutpostResponse() + sample.getName() + ".",
+            userController.getOutpostResponse().apply(sample.getName()),
             userController.postUser(sample)
         );
     }
