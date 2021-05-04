@@ -12,6 +12,6 @@ public class ProceedingsMetadata {
     private String name;
     private int docOrder;
     private ProceedingsDate dates;
-    private PageData pageData;
-    private ExtraData extraData;
+    private ProceedingsPageData pageData;
+    private ProceedingsExtraData extraData;
 }

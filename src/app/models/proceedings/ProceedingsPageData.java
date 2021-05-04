@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @ValueObject
-public class PageData {
+public class ProceedingsPageData {
 
     private int pagesAmount;
     private int initPage;

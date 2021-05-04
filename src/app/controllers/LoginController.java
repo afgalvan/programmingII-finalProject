@@ -19,7 +19,9 @@ public class LoginController {
     private boolean areValidCredentials(String username, String password) {
         val userController = new UserController();
         val user = userController.getUserById(username);
-        return user != null && PasswordHandler.areEquals(password, user.getPassword());
+        return (
+            user != null && PasswordHandler.areEquals(password, user.getPassword())
+        );
     }
 
     /**
