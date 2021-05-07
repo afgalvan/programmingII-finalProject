@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Indica el nombre y código de serie del tipo proceso que se realizará.
+ * Indicates the name and code of the process to be executed.
  */
 
 @Data
@@ -20,10 +20,10 @@ public class Series {
     private final List<SubSeries> subSeriesList = new ArrayList<>();
 
     /**
-     * Añade una subserie a una seria.
-     * @param name
-     * @param code
-     * @param docType
+     * Add a subserie to a serie.
+     * @param name name of the subserie.
+     * @param code code of the subserie.
+     * @param docType docType of the subserie.
      */
     public void addSubSeries(String name, int code, List<String> docType) {
         SubSeries subSeries = new SubSeries(name, code, docType);

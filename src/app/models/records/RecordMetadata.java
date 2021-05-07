@@ -26,16 +26,16 @@ public class RecordMetadata {
     private int foldersAmount;
 
     /**
-     * Agrega al demandante al metadato de la actuacion.
-     * @param person
+     * Add a prosecutor to the prosecutorList of the metadata.
+     * @param person the prosecutor of the process.
      */
     public void addProsecutor(Person person) {
         prosecutorList.add(person);
     }
 
     /**
-     * Agrega al demandado al metadato de la actuacion.
-     * @param person
+     * Add a judge party to the judgePartyList of the metadata.
+     * @param person the judge party in the process.
      */
     public void addJudgeParty(Person person) {
         judgePartyList.add(person);

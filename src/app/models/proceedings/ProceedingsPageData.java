@@ -6,7 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Indica la cantidad de páginas de un expediente, así como su página inicial y la final.
+ * Indicates the number of pages in a file, and its
+ * init and last page.
  */
 
 @Data

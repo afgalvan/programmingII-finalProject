@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Describe la información de los documentos que conforman el expediente.
+ * Describes the information that takes part in the file.
  */
 
 @Data

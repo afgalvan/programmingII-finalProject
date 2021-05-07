@@ -9,8 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Describe la fecha de creacion y la fecha de incorporacion
- * de un expediente.
+ * Describe the creation and incorporation date of a file.
  */
 
 @Data

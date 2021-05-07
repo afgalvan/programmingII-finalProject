@@ -4,8 +4,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * Hace referencia al tipo de persona natural.
- */
+ * Make reference to natural person.
+*/
 
 @EqualsAndHashCode(callSuper = true)
 @Data

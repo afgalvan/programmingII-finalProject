@@ -1,7 +1,7 @@
 package app.models.records.parts;
 
 /**
- * Hace referencia a aquellas entidades que pertenecen al estado.
+ * Make reference to state entities.
  */
 
 public class StateEntity extends Person {

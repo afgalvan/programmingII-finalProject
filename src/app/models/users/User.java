@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Representa cualquier usuario.
+ * Represent any user.
  */
 
 @Data

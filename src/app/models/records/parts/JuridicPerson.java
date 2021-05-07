@@ -1,7 +1,7 @@
 package app.models.records.parts;
 
 /**
- * Hacer referencia al tipo de persona jurídica.
+ * Make reference to juridic person.
  */
 
 public class JuridicPerson extends Person {

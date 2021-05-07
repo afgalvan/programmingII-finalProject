@@ -1,7 +1,6 @@
 package app.models.users;
 
 /**
- * Representa un usuario abierto.
- * Sólo tiene acceso al panel de consultas.
+ * Open user, only have access to search panel.
  */
 public class Guest extends User {}

@@ -11,7 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Hace referencia a todo proceso judicial a ser digitalizado.
+ * It refers to any judicial process to be digitalized.
  */
 
 @Data
@@ -24,18 +24,18 @@ public class Process {
     private final List<Notebook> notebooksList = new ArrayList<>(noteBooksLen);
 
     /**
-     * Permite agregar un cuaderno a la lista de cuadernos a partir de un nombre.
-     * @param name
+     * Add a notebook to the notebook list from a name.
+     * @param name name of the notebook.
      */
     public void addNoteBook(String name) {
         this.notebooksList.add(new Notebook(name));
     }
 
     /**
-     * Permite instanciar un expediente a partir de los parametros recibidos.
-     * @param location
-     * @param judicialOffice
-     * @param series
+     * It allows to instantiate a file from the parameters received.
+     * @param location place where the process is being instantiated.
+     * @param judicialOffice judicial office where the process is being executed.
+     * @param series serie of the record.
      * @param processFilingNumber
      * @param hasPhysicalFile
      * @param notebooksAmount

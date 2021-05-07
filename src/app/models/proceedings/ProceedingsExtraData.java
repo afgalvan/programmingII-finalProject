@@ -6,8 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Indica el tipo de archivo, el tamaño del archivo,
- * el origen del documento y las observaciones en el expediente.
+ * Indicates the type, size and origin of the file and its observations.
  */
 
 @Data

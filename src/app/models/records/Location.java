@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Indica el departamento y ciudad donde se inició el trámite del proceso.
+ * Indicate the department and city where the process begin.
  */
 
 @NoArgsConstructor

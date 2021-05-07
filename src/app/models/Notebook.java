@@ -11,8 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Representacion de los cuadernos que almacenan los
- * metadatos de las actuaciones.
+ * Representation of the notebooks that store the metadata of the actions.
  */
 
 @Data
@@ -24,9 +23,8 @@ public class Notebook {
     private final List<ProceedingsMetadata> proceedingsMetadataList = new ArrayList<>();
 
     /**
-     * Permite añadir un metadato del documento a una lista de metadatos
-     * del documento.
-     * @param name
+     * Add a document metadata to a document metadata list.
+     * @param name name of the document.
      * @param docOrder
      * @param dates
      * @param pageData

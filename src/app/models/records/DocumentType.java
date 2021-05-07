@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Indica el nombre y codigo de un documento.
+ * Indicates the name and code of a file.
  */
 
 @NoArgsConstructor

@@ -1,8 +1,7 @@
 package app.models.users;
 
 /**
- * Representa al usuario el cual puede tener acceso al panel de
- * administracion, pero no puede crear nuevos usuarios.
+ * User who has access to admin panel, but can't create new users.
  */
 public class Coordinator extends User {
 

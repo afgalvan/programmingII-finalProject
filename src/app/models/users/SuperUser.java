@@ -1,8 +1,7 @@
 package app.models.users;
 
 /**
- * Representa al usuario super administrador.
- * Tiene todas las funcionalidades.
+ * Superuser who has complete control.
  */
 public class SuperUser extends User {
 

@@ -3,7 +3,7 @@ package app.models.records.parts;
 import lombok.Getter;
 
 /**
- * Enumeración que contiene los tipos de identificación para una persona.
+ * Enum that contains the id types of a person.
  */
 
 @Getter

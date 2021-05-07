@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Entidad que modela de manera abstracta a una persona.
+ * Abstract entity of a person.
  */
 
 @Data

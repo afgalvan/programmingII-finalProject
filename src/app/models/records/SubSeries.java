@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Indica el nombre y código de subserie del proceso que se realizará.
+ * Indicates the name and code of the subserie that is going to be processed.
  */
 
 @Data
