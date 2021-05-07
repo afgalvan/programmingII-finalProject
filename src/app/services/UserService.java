@@ -103,7 +103,7 @@ public class UserService implements Service<User, String> {
     public ServiceResponse<User> update(String username, User newData) {
         try {
             connectionManager.open();
-            val user = userRepository.read(username);
+            ResultSet user = userRepository.read(username);
             userRepository.update(username, newData);
             return new ServiceResponse<>(resultSetMapToUser(user));
         } catch (SQLException ignore) {

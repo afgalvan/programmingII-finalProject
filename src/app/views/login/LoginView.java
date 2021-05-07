@@ -8,7 +8,9 @@ import app.views.GraphicalInteraction;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
+
 import lombok.Setter;
+import lombok.val;
 import rojerusan.RSMaterialButtonRectangle;
 
 @Setter
@@ -29,7 +31,7 @@ public class LoginView extends LoginLayout {
         setButtonActions();
         layoutConfiguration();
 
-        setSize(new Dimension(837, 480));
+        setSize(new Dimension(835, 480));
         setLocationRelativeTo(null);
     }
 
@@ -37,12 +39,12 @@ public class LoginView extends LoginLayout {
         body.setBackground(Color.WHITE);
         formTitle.setFont(new Font("Segoe UI", Font.BOLD, 28));
         formTitle.setHorizontalAlignment(SwingConstants.CENTER);
-        formTitle.setText("Sesiones");
+        formTitle.setText("Iniciar Sesión");
 
         setUpField(usernameField, "Nombre de usuario");
         setUpField(passwordField, "Contraseña");
-        userIcon = reactiveFieldIcon("/app/views/assets/pass.png");
-        passwordIcon = reactiveFieldIcon("/app/views/assets/user.png");
+        userIcon = reactiveFieldIcon("src/app/views/assets/pass.png");
+        passwordIcon = reactiveFieldIcon("src/app/views/assets/user.png");
 
         usernamePadding.setBorder(
             BorderFactory.createMatteBorder(1, 1, 1, 0, ColorPalette.CREAM)
@@ -52,23 +54,39 @@ public class LoginView extends LoginLayout {
         );
 
         signInButton = reactiveButton("Iniciar");
-        signUpButton = reactiveButton("Registrarse");
+        signUpButton = reactiveButton("Registrar");
     }
 
     private void setLandingPanel() {
-        landing.setBackground(ColorPalette.GREEN);
+        landing.setBackground(ColorPalette.BLUE);
         landing.setLayout(null);
 
-        JLabel councilLogo = new JLabel();
+        val councilLogo = new JLabel();
+        val councilIcon = new ImageIcon("src/app/views/assets/councilIcon.png")
+            .getImage()
+            .getScaledInstance(149, 157, Image.SCALE_DEFAULT);
         councilLogo.setIcon(
-            new ImageIcon(getClass().getResource("/app/views/assets/council.jpg"))
+           new ImageIcon(councilIcon)
         );
-        JLabel upcLogo = new JLabel();
-        upcLogo.setIcon(
-            new ImageIcon(getClass().getResource("/app/views/assets/UPC.png"))
-        );
-        landing.add(upcLogo);
-        upcLogo.setBounds(85, -30, 550, 550);
+        JLabel judicialBranch = landingLabel("Rama Judicial");
+        JLabel councilLabel = landingLabel("Consejo Superior de la Judicatura");
+        JLabel colombianRepublic = landingLabel("República de Colombia");
+
+        landing.add(councilLogo);
+
+        councilLogo.setBounds(130, 30, 290, 280);
+        judicialBranch.setBounds(140, 180, 290, 180);
+        councilLabel.setBounds(50, 210, 390, 190);
+        colombianRepublic.setBounds(95, 290, 290, 190);
+    }
+
+    private JLabel landingLabel(String content) {
+        val label = new JLabel();
+        label.setForeground(Color.WHITE);
+        label.setText(content);
+        label.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+        landing.add(label);
+        return label;
     }
 
     private void setUpField(JTextComponent field, String placeHolder) {
@@ -86,7 +104,7 @@ public class LoginView extends LoginLayout {
 
         fieldIcon.setBackground(Color.WHITE);
         fieldIcon.setHorizontalAlignment(SwingConstants.CENTER);
-        fieldIcon.setIcon(new ImageIcon(getClass().getResource(iconPath)));
+        fieldIcon.setIcon(new ImageIcon(iconPath));
         fieldIcon.setBorder(
             BorderFactory.createMatteBorder(1, 0, 1, 1, ColorPalette.CREAM)
         );
@@ -97,7 +115,7 @@ public class LoginView extends LoginLayout {
 
     private RSMaterialButtonRectangle reactiveButton(String title) {
         RSMaterialButtonRectangle button = new RSMaterialButtonRectangle();
-        button.setBackground(ColorPalette.GREEN);
+        button.setBackground(ColorPalette.BLUE);
         button.setText(title);
 
         return button;
