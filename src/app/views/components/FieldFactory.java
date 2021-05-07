@@ -28,7 +28,7 @@ public class FieldFactory {
         component.setText(placeHolder);
         component.setToolTipText(placeHolder);
         component.setBorder(
-            BorderFactory.createMatteBorder(1, 0, 1, 0, ColorPalette.CREAM)
+            BorderFactory.createMatteBorder(1, 0, 1, 1, ColorPalette.CREAM)
         );
         component.setForeground(ColorPalette.CREAM);
         component.setFont(new Font("Segoe UI", Font.BOLD, 12));
