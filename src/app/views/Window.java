@@ -14,13 +14,19 @@ public abstract class Window extends JFrame {
     private final JLabel close = new JLabel();
 
     public Window() {
+        super("Digitalización de procesos.");
         FlatLightLaf.install();
-        Image icon = new ImageIcon("src/app/views/assets/UPC.png").getImage();
-        setIconImage(icon);
-        windowConfiguration();
+        configureIcon();
+        configureButtons();
     }
 
-    private void windowConfiguration() {
+    private void configureIcon() {
+        Image icon = new ImageIcon("src/app/views/assets/councilIcon.png")
+            .getImage();
+        setIconImage(icon);
+    }
+
+    private void configureButtons() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 

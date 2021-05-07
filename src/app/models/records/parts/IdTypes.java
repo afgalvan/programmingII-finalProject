@@ -2,6 +2,10 @@ package app.models.records.parts;
 
 import lombok.Getter;
 
+/**
+ * Enum that contains the id types of a person.
+ */
+
 @Getter
 public enum IdTypes {
     NIT("NIT"),

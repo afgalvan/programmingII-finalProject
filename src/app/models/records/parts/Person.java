@@ -4,6 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Abstract entity of a person.
+ */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

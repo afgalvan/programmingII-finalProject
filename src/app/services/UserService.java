@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.val;
 
 /**
  * Class that manages all business logic and database implementation.
@@ -54,7 +55,7 @@ public class UserService implements Service<User, String> {
      */
     @Override
     public ServiceResponse<List<User>> readAll() {
-        List<User> userList = new ArrayList<>();
+        val userList = new ArrayList<User>();
 
         try {
             connectionManager.open();

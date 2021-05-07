@@ -4,6 +4,7 @@ import app.models.users.User;
 import app.services.ServiceResponse;
 import app.services.UserService;
 import java.util.List;
+import java.util.function.Function;
 import lombok.Getter;
 
 /**
@@ -13,8 +14,10 @@ import lombok.Getter;
 public class UserController {
 
     private final UserService userService;
-    private final String postResponse = "Usuario registrado con éxito.";
-    private final String outpostResponse = "No se pudo registrar el usuario ";
+    private final Function<String, String> postResponse = u ->
+        u + " registrado con éxito.";
+    private final Function<String, String> outpostResponse = u ->
+        "No se pudo registrar el usuario " + u + ".";
 
     public UserController() {
         this.userService = new UserService();
@@ -30,9 +33,9 @@ public class UserController {
     public String postUser(User user) {
         ServiceResponse<User> res = userService.create(user);
         if (res.isError()) {
-            return outpostResponse + user.getName() + ".";
+            return outpostResponse.apply(user.getName());
         }
-        return postResponse;
+        return postResponse.apply(user.getName());
     }
 
     /**
@@ -83,7 +86,7 @@ public class UserController {
     }
 
     /**
-     * PUT:
+     * PATCH:
      * Update a user credentials given his username and an object that contains
      * his new information to be saved on the database.
      *

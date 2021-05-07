@@ -5,6 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Indicates the name and code of the subserie that is going to be processed.
+ */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -1,15 +1,15 @@
 package app.controllers.api;
 
 import com.fasterxml.jackson.databind.JsonNode;
-
+import lombok.val;
 import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * A class to get the departments and cities list from Colombia got from a json file
- * from https://github.com/marcovega/colombia-json.
+ * A class to get the departments and cities list from Colombia. Got from a json file
+ * from https://github.com/marcovega/colombia-json repo.
  */
-public class LocationApi {
+public final class LocationApi {
 
     private static final Map<String, List<String>> locations;
 
@@ -24,8 +24,8 @@ public class LocationApi {
      * @return A map with a String as key, and a List of Strings as value.
      */
     private static Map<String, List<String>> getLocations() {
-        Map<String, List<String>> locations = new LinkedHashMap<>();
-        String jsonString = JsonUtils.readFile(
+        val locations = new LinkedHashMap<String, List<String>>();
+        String  jsonString = JsonUtils.readFile(
             "./src/app/controllers/api/locations.json"
         );
         JsonNode jsonNode = JsonUtils.parse(jsonString);
@@ -37,7 +37,7 @@ public class LocationApi {
                 c.toString().replaceAll("[\\[\\]\"]", "").split(",")
             )).collect(Collectors.toList());
 
-        List<String> departments = new ArrayList<>(
+        val departments = new ArrayList<>(
             jsonNode.findValuesAsText("departamento")
         );
 

@@ -6,6 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Describe the creation and incorporation date of a file.
+ */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
