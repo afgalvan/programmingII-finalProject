@@ -3,6 +3,10 @@ package app.models.records.parts;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * Make reference to natural person.
+ */
+
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class NaturalPerson extends Person {
