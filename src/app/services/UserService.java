@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.val;
-import lombok.var;
 
 /**
  * Class that manages all business logic and database implementation.
@@ -33,7 +32,7 @@ public class UserService implements Service<User, String> {
      */
     @Override
     public ServiceResponse<User> create(User user) {
-        var userType = "SU";
+        String userType = "SU";
         if (user instanceof Coordinator) {
             userType = "CO";
         }

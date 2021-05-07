@@ -1,8 +1,7 @@
 package app.controllers.api;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.val;
-import lombok.var;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -26,13 +25,13 @@ public final class LocationApi {
      */
     private static Map<String, List<String>> getLocations() {
         val locations = new LinkedHashMap<String, List<String>>();
-        val jsonString = JsonUtils.readFile(
+        String  jsonString = JsonUtils.readFile(
             "./src/app/controllers/api/locations.json"
         );
-        val jsonNode = JsonUtils.parse(jsonString);
+        JsonNode jsonNode = JsonUtils.parse(jsonString);
 
         assert jsonNode != null;
-        val cities = jsonNode.findValues("ciudades")
+        List<List<String>> cities = jsonNode.findValues("ciudades")
             .stream()
             .map(c -> Arrays.asList(
                 c.toString().replaceAll("[\\[\\]\"]", "").split(",")
@@ -42,7 +41,7 @@ public final class LocationApi {
             jsonNode.findValuesAsText("departamento")
         );
 
-        for (var i = 0; i < departments.size(); i++) {
+        for (int i = 0; i < departments.size(); i++) {
             locations.put(departments.get(i), cities.get(i));
         }
 
