@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @ValueObject
-public class ExtraData {
+public class ProceedingsExtraData {
 
     private String fileType;
     private double size;

@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 /**
  * A class to get the departments and cities list from Colombia. Got from a json file
- * from https://github.com/marcovega/colombia-json .
+ * from https://github.com/marcovega/colombia-json repo.
  */
 public final class LocationApi {
 

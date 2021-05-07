@@ -1,15 +1,14 @@
 package app.controllers;
 
 import app.controllers.api.LocationApi;
+import app.controllers.security.PasswordHandler;
+import app.models.users.User;
+import lombok.val;
 
 /**
  * Class that controls all login validations and methods.
  */
 public class LoginController {
-
-    private void encryptPassword(String password) {}
-
-    private void decryptPassword() {}
 
     /**
      * Authenticate the credentials given, by comparing them to the database.
@@ -18,8 +17,12 @@ public class LoginController {
      * @param password String value for the password.
      * @return the response boolean from the user controller.
      */
-    public boolean areValidCredentials(String username, String password) {
-        return true;
+    private boolean areValidCredentials(String username, String password) {
+        val userController = new UserController();
+        User user = userController.getUserById(username);
+        return (
+            user != null && PasswordHandler.areEquals(password, user.getPassword())
+        );
     }
 
     /**

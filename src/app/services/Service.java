@@ -2,6 +2,11 @@ package app.services;
 
 import java.util.List;
 
+/**
+ *
+ * @param <T>
+ * @param <K>
+ */
 public interface Service<T, K> {
     public ServiceResponse<T> create(T data);
 

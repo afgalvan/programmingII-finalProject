@@ -83,7 +83,7 @@ public class UserService implements Service<User, String> {
     public ServiceResponse<User> read(String username) {
         try {
             connectionManager.open();
-            val resultSet = userRepository.read(username);
+            ResultSet resultSet = userRepository.read(username);
             return new ServiceResponse<>(resultSetMapToUser(resultSet));
         } catch (SQLException ignore) {
             return new ServiceResponse<>();
@@ -103,7 +103,7 @@ public class UserService implements Service<User, String> {
     public ServiceResponse<User> update(String username, User newData) {
         try {
             connectionManager.open();
-            val user = userRepository.read(username);
+            ResultSet user = userRepository.read(username);
             userRepository.update(username, newData);
             return new ServiceResponse<>(resultSetMapToUser(user));
         } catch (SQLException ignore) {
@@ -141,8 +141,8 @@ public class UserService implements Service<User, String> {
      * @throws SQLException For invalid fields.
      */
     private User resultSetMapToUser(ResultSet resultSet) throws SQLException {
-        val name = resultSet.getString("name");
-        val password = resultSet.getString("password");
+        String name = resultSet.getString("name");
+        String password = resultSet.getString("password");
 
         if (resultSet.getString("type").equals("SU")) {
             return new SuperUser(name, password);
