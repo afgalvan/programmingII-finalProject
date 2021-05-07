@@ -5,6 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Indica el tipo de archivo, el tamaño del archivo,
+ * el origen del documento y las observaciones en el expediente.
+ */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

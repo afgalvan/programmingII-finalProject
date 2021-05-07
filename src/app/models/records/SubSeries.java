@@ -5,6 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Indica el nombre y código de subserie del proceso que se realizará.
+ */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

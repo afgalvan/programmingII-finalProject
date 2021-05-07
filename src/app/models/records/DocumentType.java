@@ -4,6 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Indica el nombre y codigo de un documento.
+ */
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

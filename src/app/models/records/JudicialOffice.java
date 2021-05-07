@@ -4,6 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Representa el despacho judicial del proceso.
+ */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

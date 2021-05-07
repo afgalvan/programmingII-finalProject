@@ -5,6 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Indica la cantidad de páginas de un expediente, así como su página inicial y la final.
+ */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
