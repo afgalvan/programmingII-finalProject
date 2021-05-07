@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * Make reference to natural person.
-*/
+ */
 
 @EqualsAndHashCode(callSuper = true)
 @Data
