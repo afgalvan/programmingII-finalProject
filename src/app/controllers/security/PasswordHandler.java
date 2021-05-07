@@ -16,6 +16,8 @@ public final class PasswordHandler {
         hasher = new Hasher(key);
     }
 
+    private PasswordHandler() {}
+
     /**
      * Check if a decrypted password is equal to an encrypted one.
      *

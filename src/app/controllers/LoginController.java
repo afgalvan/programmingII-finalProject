@@ -2,6 +2,7 @@ package app.controllers;
 
 import app.controllers.api.LocationApi;
 import app.controllers.security.PasswordHandler;
+import app.models.users.User;
 import lombok.val;
 
 /**
@@ -18,7 +19,7 @@ public class LoginController {
      */
     private boolean areValidCredentials(String username, String password) {
         val userController = new UserController();
-        val user = userController.getUserById(username);
+        User user = userController.getUserById(username);
         return (
             user != null && PasswordHandler.areEquals(password, user.getPassword())
         );

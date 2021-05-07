@@ -1,4 +1,4 @@
-package app.views.login;
+package app.views.auth;
 
 import app.controllers.DialogResponse;
 import java.awt.*;

@@ -1,17 +1,17 @@
-package app.views.login;
+package app.views.auth;
 
 import app.controllers.DialogResponse;
 import app.controllers.LoginController;
 import app.controllers.UserController;
 import app.views.ColorPalette;
 import app.views.GraphicalInteraction;
+import app.views.components.ButtonFactory;
+import app.views.components.FieldFactory;
+import app.views.components.ImageFactory;
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.text.JTextComponent;
-
 import lombok.Setter;
 import lombok.val;
-import rojerusan.RSMaterialButtonRectangle;
 
 @Setter
 public class LoginView extends LoginLayout {
@@ -41,10 +41,11 @@ public class LoginView extends LoginLayout {
         formTitle.setHorizontalAlignment(SwingConstants.CENTER);
         formTitle.setText("Iniciar Sesión");
 
-        setUpField(usernameField, "Nombre de usuario");
-        setUpField(passwordField, "Contraseña");
-        userIcon = reactiveFieldIcon("src/app/views/assets/pass.png");
-        passwordIcon = reactiveFieldIcon("src/app/views/assets/user.png");
+        usernameField = FieldFactory.fieldForm("Nombre de usuario");
+        passwordField = FieldFactory.passwordForm("Contraseña");
+
+        userIcon = ImageFactory.fieldIcon("src/app/views/assets/pass.png");
+        passwordIcon = ImageFactory.fieldIcon("src/app/views/assets/user.png");
 
         usernamePadding.setBorder(
             BorderFactory.createMatteBorder(1, 1, 1, 0, ColorPalette.CREAM)
@@ -53,8 +54,8 @@ public class LoginView extends LoginLayout {
             BorderFactory.createMatteBorder(1, 1, 1, 0, ColorPalette.CREAM)
         );
 
-        signInButton = reactiveButton("Iniciar");
-        signUpButton = reactiveButton("Registrar");
+        signInButton = ButtonFactory.mainButton("Iniciar");
+        signUpButton = ButtonFactory.mainButton("Registrar");
     }
 
     private void setLandingPanel() {
@@ -62,17 +63,17 @@ public class LoginView extends LoginLayout {
         landing.setLayout(null);
 
         val councilLogo = new JLabel();
-        val councilIcon = new ImageIcon("src/app/views/assets/councilIcon.png")
-            .getImage()
-            .getScaledInstance(149, 157, Image.SCALE_DEFAULT);
-        councilLogo.setIcon(
-           new ImageIcon(councilIcon)
+        ImageIcon councilIcon = ImageFactory.iconSized(
+            "src/app/views/assets/councilIcon.png",
+            149,
+            157
         );
+        councilLogo.setIcon(councilIcon);
+        landing.add(councilLogo);
+
         JLabel judicialBranch = landingLabel("Rama Judicial");
         JLabel councilLabel = landingLabel("Consejo Superior de la Judicatura");
         JLabel colombianRepublic = landingLabel("República de Colombia");
-
-        landing.add(councilLogo);
 
         councilLogo.setBounds(130, 30, 290, 280);
         judicialBranch.setBounds(140, 180, 290, 180);
@@ -87,38 +88,6 @@ public class LoginView extends LoginLayout {
         label.setFont(new Font("Segoe UI", Font.PLAIN, 20));
         landing.add(label);
         return label;
-    }
-
-    private void setUpField(JTextComponent field, String placeHolder) {
-        field.setText(placeHolder);
-        field.setToolTipText(placeHolder);
-        field.setBorder(
-            BorderFactory.createMatteBorder(1, 0, 1, 0, ColorPalette.CREAM)
-        );
-        field.setForeground(ColorPalette.CREAM);
-        field.setFont(new Font("Segoe UI", Font.BOLD, 12));
-    }
-
-    private JLabel reactiveFieldIcon(String iconPath) {
-        JLabel fieldIcon = new JLabel();
-
-        fieldIcon.setBackground(Color.WHITE);
-        fieldIcon.setHorizontalAlignment(SwingConstants.CENTER);
-        fieldIcon.setIcon(new ImageIcon(iconPath));
-        fieldIcon.setBorder(
-            BorderFactory.createMatteBorder(1, 0, 1, 1, ColorPalette.CREAM)
-        );
-        fieldIcon.setOpaque(true);
-
-        return fieldIcon;
-    }
-
-    private RSMaterialButtonRectangle reactiveButton(String title) {
-        RSMaterialButtonRectangle button = new RSMaterialButtonRectangle();
-        button.setBackground(ColorPalette.BLUE);
-        button.setText(title);
-
-        return button;
     }
 
     private void setButtonActions() {

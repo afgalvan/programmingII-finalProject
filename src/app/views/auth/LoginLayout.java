@@ -1,4 +1,4 @@
-package app.views.login;
+package app.views.auth;
 
 import app.views.Window;
 import javax.swing.*;

@@ -2,7 +2,7 @@ package app.main;
 
 import static java.awt.EventQueue.invokeLater;
 
-import app.views.login.LoginView;
+import app.views.auth.LoginView;
 import lombok.val;
 
 public class Main {

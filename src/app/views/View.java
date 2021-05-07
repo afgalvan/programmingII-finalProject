@@ -1,6 +1,6 @@
 package app.views;
 
-import app.views.login.LoginView;
+import app.views.auth.LoginView;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

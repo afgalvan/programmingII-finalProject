@@ -15,7 +15,8 @@ public abstract class Window extends JFrame {
 
     public Window() {
         FlatLightLaf.install();
-        Image icon = new ImageIcon("src/app/views/assets/councilIcon.png").getImage();
+        Image icon = new ImageIcon("src/app/views/assets/councilIcon.png")
+            .getImage();
         setIconImage(icon);
         windowConfiguration();
     }

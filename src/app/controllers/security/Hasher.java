@@ -4,7 +4,6 @@ import java.nio.charset.StandardCharsets;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import lombok.SneakyThrows;
-import lombok.val;
 
 class Hasher {
 
@@ -32,8 +31,8 @@ class Hasher {
      */
     @SneakyThrows
     protected String encrypt(String password) {
-        val passwordBytes = password.getBytes(StandardCharsets.UTF_8);
-        val hashedBytes = this.eCipher.doFinal(passwordBytes);
+        byte[] passwordBytes = password.getBytes(StandardCharsets.UTF_8);
+        byte[] hashedBytes = this.eCipher.doFinal(passwordBytes);
         return java.util.Base64.getEncoder().encodeToString(hashedBytes);
     }
 
@@ -45,8 +44,8 @@ class Hasher {
      */
     @SneakyThrows
     protected String decrypt(String password) {
-        val passwordDecoded = java.util.Base64.getDecoder().decode(password);
-        val passwordUTF8 = this.deCipher.doFinal(passwordDecoded);
+        byte[] passwordDecoded = java.util.Base64.getDecoder().decode(password);
+        byte[] passwordUTF8 = this.deCipher.doFinal(passwordDecoded);
         return new String(passwordUTF8, StandardCharsets.UTF_8);
     }
 }
