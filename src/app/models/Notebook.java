@@ -27,14 +27,14 @@ public class Notebook {
      * @param name name of the document.
      * @param docOrder
      * @param dates
-     * @param pageData
-     * @param extraData
+     * @param proceedingsPageData
+     * @param proceedingsExtraData
      */
     public void addProceedingsMetadata(
         String name,
         int docOrder,
         ProceedingsDate dates,
-        ProceedingsPageData proceedginsPageData,
+        ProceedingsPageData proceedingsPageData,
         ProceedingsExtraData proceedingsExtraData
     ) {
         this.proceedingsMetadataList.add(
@@ -42,7 +42,7 @@ public class Notebook {
                     name,
                     docOrder,
                     dates,
-                    proceedginsPageData,
+                    proceedingsPageData,
                     proceedingsExtraData
                 )
             );

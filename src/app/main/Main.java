@@ -2,7 +2,6 @@ package app.main;
 
 import static java.awt.EventQueue.invokeLater;
 
-import app.views.View;
 import app.views.auth.AuthWindow;
 import lombok.val;
 
