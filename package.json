@@ -10,6 +10,9 @@
     "build": "mkdir -p out/production/FinalProject && javac $(find ./src/* | grep .java) -d out/production/FinalProject -cp lib/junit-4.12.jar:lib/lombok.jar:lib/jackson-anotations-2.12.2.jar:lib/jackson-core-2.12.2.jar:lib/jackson-databind-2.12.2.jar:lib/sqlite-jdbc-3.32.3.2.jar:lib/RojeruSan.jar:lib/flatlaf-1.1.1.jar -Xlint:deprecation",
     "test": "yarn build && java -cp out/production/FinalProject/:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:lib/jackson-annotations-2.12.2.jar:lib/jackson-core-2.12.2.jar:lib/jackson-databind-2.12.2.jar:lib/sqlite-jdbc-3.32.3.2.jar:lib/RojeruSan.jar:lib/flatlaf-1.1.1.jar org.junit.runner.JUnitCore test.TestSuite",
     "start": "yarn build && java -cp out/production/FinalProject/:lib/jackson-annotations-2.12.2.jar:lib/jackson-core-2.12.2.jar:lib/jackson-databind-2.12.2.jar:lib/sqlite-jdbc-3.32.3.2.jar:lib/RojeruSan.jar:lib/flatlaf-1.1.1.jar app.main.Main",
+    "submodule:sync": "git -C src/app/views submodule sync --quiet --recursive",
+    "submodule:pull": "git submodule update --init --recursive",
+    "submodule:dir": "cd src/app/views",
     "format": "prettier --write ./"
   },
   "config": {
