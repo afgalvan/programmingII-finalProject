@@ -35,7 +35,7 @@ public class Process {
      * It allows to instantiate a file from the parameters received.
      * @param location place where the process is being instantiated.
      * @param judicialOffice judicial office where the process is being executed.
-     * @param series serie of the record.
+     * @param series series of the record.
      * @param processFilingNumber
      * @param hasPhysicalFile
      * @param notebooksAmount
