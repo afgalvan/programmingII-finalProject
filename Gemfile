@@ -5,7 +5,7 @@ if ENV['CI']
   # use HTTPS with password on Travis CI
   git_source :github do |repo_name|
     repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-    "https://ci-user:#{ENV.fetch("CI_USER_PASSWORD")}@github.com/#{repo_name}.git"
+    "https://afgalvan:#{ENV.fetch("CI_USER_PASSWORD")}@github.com/#{repo_name}.git"
   end
 end
 
