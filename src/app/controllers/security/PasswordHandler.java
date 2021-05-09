@@ -1,9 +1,8 @@
 package app.controllers.security;
 
+import java.security.KeyPair;
 import javax.crypto.spec.SecretKeySpec;
 import lombok.val;
-
-import java.security.KeyPair;
 
 /**
  * A final class that consists exclusively of static methods for password handling.
@@ -26,7 +25,11 @@ public final class PasswordHandler {
      *
      * @return If both passwords are equals.
      */
-    public static boolean areEquals(String password, String encryptedPassword, String salt) {
+    public static boolean areEquals(
+        String password,
+        String encryptedPassword,
+        String salt
+    ) {
         return PasswordHandler.encrypt(password, salt).equals(encryptedPassword);
     }
 

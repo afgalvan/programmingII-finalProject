@@ -29,7 +29,8 @@ public class AuthController implements Auth {
     private boolean areValidCredentials(String username, String password) {
         User user = this.userController.getUserById(username);
         return (
-            user != null && PasswordHandler.areEquals(password, user.getPassword(), user.getSalt())
+            user != null &&
+            PasswordHandler.areEquals(password, user.getPassword(), user.getSalt())
         );
     }
 

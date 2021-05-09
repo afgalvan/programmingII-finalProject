@@ -6,7 +6,6 @@ import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-
 import lombok.SneakyThrows;
 
 /**
