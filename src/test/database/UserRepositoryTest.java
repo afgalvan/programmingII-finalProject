@@ -13,8 +13,11 @@ import org.junit.Test;
 
 public class UserRepositoryTest {
 
-    public static final String URL_TEST = "jdbc:sqlite:./src/test/database/test.sqlite";
-    public static ConnectionManager connectionManager = new ConnectionManager(URL_TEST);
+    public static final String URL_TEST =
+        "jdbc:sqlite:./src/test/database/test.sqlite";
+    public static ConnectionManager connectionManager = new ConnectionManager(
+        URL_TEST
+    );
     public UserRepository userRepository = new UserRepository(connectionManager);
 
     @SneakyThrows

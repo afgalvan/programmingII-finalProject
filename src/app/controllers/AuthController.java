@@ -29,7 +29,7 @@ public class AuthController implements Auth {
     private boolean areValidCredentials(String username, String password) {
         User user = this.userController.getUserById(username);
         return (
-            user != null && PasswordHandler.areEquals(password, user.getPassword())
+            user != null && PasswordHandler.areEquals(password, user.getPassword(), user.getSalt())
         );
     }
 
@@ -42,18 +42,18 @@ public class AuthController implements Auth {
      */
     @Override
     public DialogResponse logUser(String username, String password) {
-        if (areValidCredentials(username, password)) {
+        if (!areValidCredentials(username, password)) {
             return new DialogResponse(
                 "Inicio de sesion",
-                "Bienvenido " + username + "!",
-                DialogResponse.INFORMATION_MESSAGE
+                "No se pudo validar los datos del usuario " + username + "!",
+                DialogResponse.ERROR_MESSAGE
             );
         }
 
         return new DialogResponse(
             "Inicio de sesion",
-            "No se pudo validar los datos del usuario " + username + "!",
-            DialogResponse.ERROR_MESSAGE
+            "Bienvenido " + username + "!",
+            DialogResponse.INFORMATION_MESSAGE
         );
     }
 
@@ -70,11 +70,12 @@ public class AuthController implements Auth {
         String password,
         int permission
     ) {
-        password = PasswordHandler.encrypt(password);
+        String salt = PasswordHandler.generateSalt();
+        String encryptPassword = PasswordHandler.encrypt(password, salt);
 
         User newUser = (permission == 0)
-            ? new Coordinator(username, password)
-            : new SuperUser(username, password);
+            ? new Coordinator(username, encryptPassword, salt)
+            : new SuperUser(username, encryptPassword, salt);
 
         if (userService.create(newUser).isError()) {
             return new DialogResponse(

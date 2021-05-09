@@ -146,10 +146,11 @@ public class UserService implements Service<String, User> {
     private User resultSetMapToUser(ResultSet resultSet) throws SQLException {
         String name = resultSet.getString("name");
         String password = resultSet.getString("password");
+        String salt = resultSet.getString("salt");
 
         if (resultSet.getString("type").equals("SU")) {
-            return new SuperUser(name, password);
+            return new SuperUser(name, password, salt);
         }
-        return new Coordinator(name, password);
+        return new Coordinator(name, password, salt);
     }
 }

@@ -3,6 +3,11 @@ package app.database;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ *
+ * @param <K> Data Key.
+ * @param <T> Data Type.
+ */
 public interface Repository<K, T> {
     void create(T user, String userType) throws SQLException;
 

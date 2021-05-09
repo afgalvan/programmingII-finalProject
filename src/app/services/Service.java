@@ -4,8 +4,8 @@ import java.util.List;
 
 /**
  *
- * @param <T>
- * @param <K>
+ * @param <K> Data Key.
+ * @param <T> Data Type.
  */
 public interface Service<K, T> {
     ServiceResponse<T> create(T data);

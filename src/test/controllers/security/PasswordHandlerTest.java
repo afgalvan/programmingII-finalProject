@@ -9,7 +9,7 @@ public class PasswordHandlerTest {
     @Test
     public void encrypt() {
         Assert.assertNotEquals(
-            PasswordHandler.encrypt("J stands for retard"),
+            PasswordHandler.encrypt("J stands for retard", "Brocoli"),
             "J stands for retard"
         );
     }
