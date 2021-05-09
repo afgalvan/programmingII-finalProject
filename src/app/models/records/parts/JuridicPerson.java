@@ -6,7 +6,7 @@ package app.models.records.parts;
 
 public class JuridicPerson extends Person {
 
-    public JuridicPerson(String name, String id, IdTypes idType) {
+    public JuridicPerson(String name, String id, IdType idType) {
         super(name, id, idType);
     }
 

@@ -21,7 +21,7 @@ public class NaturalPerson extends Person {
         String lastName,
         String secondLastName,
         String id,
-        IdTypes idType
+        IdType idType
     ) {
         super(name, id, idType);
         this.secondName = secondName;
