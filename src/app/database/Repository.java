@@ -8,9 +8,9 @@ public interface Repository<K, T> {
 
     ResultSet readAll() throws SQLException;
 
-    ResultSet read(K id) throws SQLException;
+    ResultSet readById(K id) throws SQLException;
 
-    void update(K id, T newData) throws SQLException;
+    void updateById(K id, T newData) throws SQLException;
 
-    void delete(K id) throws SQLException;
+    void deleteById(K id) throws SQLException;
 }

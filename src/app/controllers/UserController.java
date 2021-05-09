@@ -65,7 +65,7 @@ public class UserController {
      * @return Any kind of user depending of how was saved.
      */
     public User getUserById(String username) {
-        ServiceResponse<User> res = userService.read(username);
+        ServiceResponse<User> res = userService.readById(username);
         if (res.isError()) {
             return null;
         }
@@ -80,7 +80,7 @@ public class UserController {
      * @return A message to be showed from the deleted status.
      */
     public String deleteUserById(String username) {
-        ServiceResponse<User> res = userService.delete(username);
+        ServiceResponse<User> res = userService.deleteById(username);
         if (res.isError()) {
             return "Error inesperado.";
         }
@@ -94,10 +94,10 @@ public class UserController {
      *
      * @param username String value for the username.
      * @param newData  Username object which contains his new credentials.
-     * @return A message to be showed from the update status.
+     * @return A message to be showed from the updateById status.
      */
     public String updateUserById(String username, User newData) {
-        ServiceResponse<User> res = userService.update(username, newData);
+        ServiceResponse<User> res = userService.updateById(username, newData);
         if (res.isError()) {
             return "No se pudo modificar el usuario.";
         }

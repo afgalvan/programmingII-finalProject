@@ -40,6 +40,7 @@ public class AuthController implements Auth {
      * @param password String value for the password.
      * @return A dialog response to be shown on the views.
      */
+    @Override
     public DialogResponse logUser(String username, String password) {
         if (areValidCredentials(username, password)) {
             return new DialogResponse(
@@ -63,6 +64,7 @@ public class AuthController implements Auth {
      * @param password String value for the password.
      * @return A dialog response to be shown on the views.
      */
+    @Override
     public DialogResponse registerUser(
         String username,
         String password,

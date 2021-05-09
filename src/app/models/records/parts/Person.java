@@ -15,7 +15,7 @@ public abstract class Person {
 
     private String name;
     private String id;
-    private IdTypes idType;
+    private IdType idType;
 
     public abstract String getFullName();
 }

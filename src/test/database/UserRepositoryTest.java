@@ -50,7 +50,7 @@ public class UserRepositoryTest {
         try {
             Assert.assertEquals(
                 sample.getName(),
-                userRepository.read("Joe").getString("name")
+                userRepository.readById("Joe").getString("name")
             );
         } catch (SQLException throwables) {
             throwables.printStackTrace();

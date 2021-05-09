@@ -12,10 +12,10 @@
       https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html
     - the JDK Api documentation https://docs.oracle.com/en/java/javase/11/
     - some best practices
-  Checkstyle is very configurable. Be sure to read the documentation at
+  Checkstyle is very configurable. Be sure to readById the documentation at
   https://checkstyle.org (or in your downloaded distribution).
   Most Checks are configurable, be sure to consult the documentation.
-  To completely disable a check, just comment it out or delete it from the file.
+  To completely disable a check, just comment it out or deleteById it from the file.
   To suppress certain violations please review suppression filters.
   Finally, it is worth reading the documentation.
 -->

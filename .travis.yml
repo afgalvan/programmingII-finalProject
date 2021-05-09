@@ -17,10 +17,10 @@ env:
 
 before_install:
   - echo -e "machine github.com\n  login afgalvan\n  password $CI_USER_PASSWORD" >~/.netrc
-  - git submodule update --init --recursive
+  - git submodule updateById --init --recursive
   - sudo sh -c 'echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main"\
     > /etc/apt/sources.list.d/docker.list'
-  - sudo apt-get update
+  - sudo apt-get updateById
   - curl -L ${COMPOSE_URL}${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin

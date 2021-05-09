@@ -79,10 +79,10 @@ public class UserService implements Service<String, User> {
      * @return A response depending on the success of the action.
      */
     @Override
-    public ServiceResponse<User> read(String username) {
+    public ServiceResponse<User> readById(String username) {
         try {
             connectionManager.open();
-            ResultSet resultSet = userRepository.read(username);
+            ResultSet resultSet = userRepository.readById(username);
             return new ServiceResponse<>(resultSetMapToUser(resultSet));
         } catch (SQLException ignore) {
             return new ServiceResponse<>();
@@ -99,11 +99,11 @@ public class UserService implements Service<String, User> {
      * @return A response depending on the success of the action.
      */
     @Override
-    public ServiceResponse<User> update(String username, User newData) {
+    public ServiceResponse<User> updateById(String username, User newData) {
         try {
             connectionManager.open();
-            ResultSet user = userRepository.read(username);
-            userRepository.update(username, newData);
+            ResultSet user = userRepository.readById(username);
+            userRepository.updateById(username, newData);
             return new ServiceResponse<>(resultSetMapToUser(user));
         } catch (SQLException ignore) {
             return new ServiceResponse<>();
@@ -119,10 +119,10 @@ public class UserService implements Service<String, User> {
      * @return A response depending on the success of the action.
      */
     @Override
-    public ServiceResponse<User> delete(String username) {
+    public ServiceResponse<User> deleteById(String username) {
         try {
             connectionManager.open();
-            userRepository.delete(username);
+            userRepository.deleteById(username);
             return new ServiceResponse<>(username);
         } catch (SQLException ignore) {
             return new ServiceResponse<>();
