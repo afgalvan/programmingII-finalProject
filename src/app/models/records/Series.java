@@ -23,7 +23,7 @@ public class Series {
      * Add a subserie to a serie.
      * @param name name of the subserie.
      * @param code code of the subserie.
-     * @param docType docType of the subserie.
+     * @param docType Document type of the subserie.
      */
     public void addSubSeries(String name, int code, List<String> docType) {
         SubSeries subSeries = new SubSeries(name, code, docType);

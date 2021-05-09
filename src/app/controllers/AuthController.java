@@ -1,14 +1,23 @@
 package app.controllers;
 
-import app.controllers.api.LocationApi;
 import app.controllers.security.PasswordHandler;
+import app.models.users.Coordinator;
+import app.models.users.SuperUser;
 import app.models.users.User;
-import lombok.val;
+import app.services.UserService;
 
 /**
  * Class that controls all login validations and methods.
  */
-public class LoginController {
+public class AuthController {
+
+    private UserController userController;
+    private UserService userService;
+
+    public AuthController() {
+        this.userService = new UserService();
+        this.userController = new UserController();
+    }
 
     /**
      * Authenticate the credentials given, by comparing them to the database.
@@ -18,8 +27,7 @@ public class LoginController {
      * @return the response boolean from the user controller.
      */
     private boolean areValidCredentials(String username, String password) {
-        val userController = new UserController();
-        User user = userController.getUserById(username);
+        User user = this.userController.getUserById(username);
         return (
             user != null && PasswordHandler.areEquals(password, user.getPassword())
         );
@@ -55,12 +63,29 @@ public class LoginController {
      * @param password String value for the password.
      * @return A dialog response to be shown on the views.
      */
-    public DialogResponse registerUser(String username, String password) {
+    public DialogResponse registerUser(
+        String username,
+        String password,
+        int permission
+    ) {
+        password = PasswordHandler.encrypt(password);
+
+        User newUser = (permission == 0)
+            ? new Coordinator(username, password)
+            : new SuperUser(username, password);
+
+        if (userService.create(newUser).isError()) {
+            return new DialogResponse(
+                "Registro",
+                "El usuario " + username + " ya se encuentra registrado",
+                DialogResponse.ERROR_MESSAGE
+            );
+        }
+
         return new DialogResponse(
             "Registro",
-            //"El usuario " + username + " se registró con exito",
-            LocationApi.getLastCity("Cesar"),
-            DialogResponse.ERROR_MESSAGE
+            "El usuario " + username + " se registró con exito",
+            DialogResponse.INFORMATION_MESSAGE
         );
     }
 }

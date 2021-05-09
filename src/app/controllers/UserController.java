@@ -14,8 +14,10 @@ import lombok.Getter;
 public class UserController {
 
     private final UserService userService;
+
     private final Function<String, String> postResponse = u ->
         u + " registrado con éxito.";
+
     private final Function<String, String> outpostResponse = u ->
         "No se pudo registrar el usuario " + u + ".";
 
