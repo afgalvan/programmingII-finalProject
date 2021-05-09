@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Represent any user.
+ * Represents any user.
  */
 
 @Data
@@ -15,4 +15,5 @@ public abstract class User {
 
     private String name;
     private String password;
+    private String salt;
 }

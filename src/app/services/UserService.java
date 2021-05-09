@@ -14,14 +14,18 @@ import lombok.val;
 /**
  * Class that manages all business logic and database implementation.
  */
-public class UserService implements Service<User, String> {
+public class UserService implements Service<String, User> {
 
     private final UserRepository userRepository;
     private final ConnectionManager connectionManager;
 
     public UserService() {
-        this.connectionManager = new ConnectionManager();
-        this.userRepository = new UserRepository(connectionManager);
+        this(new ConnectionManager());
+    }
+
+    public UserService(ConnectionManager connectionManager) {
+        this.connectionManager = connectionManager;
+        this.userRepository = new UserRepository(this.connectionManager);
     }
 
     /**
@@ -79,10 +83,10 @@ public class UserService implements Service<User, String> {
      * @return A response depending on the success of the action.
      */
     @Override
-    public ServiceResponse<User> read(String username) {
+    public ServiceResponse<User> readById(String username) {
         try {
             connectionManager.open();
-            ResultSet resultSet = userRepository.read(username);
+            ResultSet resultSet = userRepository.readById(username);
             return new ServiceResponse<>(resultSetMapToUser(resultSet));
         } catch (SQLException ignore) {
             return new ServiceResponse<>();
@@ -99,11 +103,11 @@ public class UserService implements Service<User, String> {
      * @return A response depending on the success of the action.
      */
     @Override
-    public ServiceResponse<User> update(String username, User newData) {
+    public ServiceResponse<User> updateById(String username, User newData) {
         try {
             connectionManager.open();
-            ResultSet user = userRepository.read(username);
-            userRepository.update(username, newData);
+            ResultSet user = userRepository.readById(username);
+            userRepository.updateById(username, newData);
             return new ServiceResponse<>(resultSetMapToUser(user));
         } catch (SQLException ignore) {
             return new ServiceResponse<>();
@@ -119,10 +123,10 @@ public class UserService implements Service<User, String> {
      * @return A response depending on the success of the action.
      */
     @Override
-    public ServiceResponse<User> delete(String username) {
+    public ServiceResponse<User> deleteById(String username) {
         try {
             connectionManager.open();
-            userRepository.delete(username);
+            userRepository.deleteById(username);
             return new ServiceResponse<>(username);
         } catch (SQLException ignore) {
             return new ServiceResponse<>();
@@ -142,10 +146,11 @@ public class UserService implements Service<User, String> {
     private User resultSetMapToUser(ResultSet resultSet) throws SQLException {
         String name = resultSet.getString("name");
         String password = resultSet.getString("password");
+        String salt = resultSet.getString("salt");
 
         if (resultSet.getString("type").equals("SU")) {
-            return new SuperUser(name, password);
+            return new SuperUser(name, password, salt);
         }
-        return new Coordinator(name, password);
+        return new Coordinator(name, password, salt);
     }
 }

@@ -4,17 +4,17 @@ import java.util.List;
 
 /**
  *
- * @param <T>
- * @param <K>
+ * @param <K> Data Key.
+ * @param <T> Data Type.
  */
-public interface Service<T, K> {
-    public ServiceResponse<T> create(T data);
+public interface Service<K, T> {
+    ServiceResponse<T> create(T data);
 
-    public ServiceResponse<List<T>> readAll();
+    ServiceResponse<List<T>> readAll();
 
-    public ServiceResponse<T> read(K id);
+    ServiceResponse<T> readById(K id);
 
-    public ServiceResponse<T> update(K id, T newData);
+    ServiceResponse<T> updateById(K id, T newData);
 
-    public ServiceResponse<T> delete(K id);
+    ServiceResponse<T> deleteById(K id);
 }

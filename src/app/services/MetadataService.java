@@ -3,7 +3,7 @@ package app.services;
 import app.models.proceedings.ProceedingsMetadata;
 import java.util.List;
 
-public class MetadataService implements Service<ProceedingsMetadata, Integer> {
+public class MetadataService implements Service<Integer, ProceedingsMetadata> {
 
     @Override
     public ServiceResponse<ProceedingsMetadata> create(ProceedingsMetadata data) {
@@ -16,12 +16,12 @@ public class MetadataService implements Service<ProceedingsMetadata, Integer> {
     }
 
     @Override
-    public ServiceResponse<ProceedingsMetadata> read(Integer id) {
+    public ServiceResponse<ProceedingsMetadata> readById(Integer id) {
         return null;
     }
 
     @Override
-    public ServiceResponse<ProceedingsMetadata> update(
+    public ServiceResponse<ProceedingsMetadata> updateById(
         Integer id,
         ProceedingsMetadata newData
     ) {
@@ -29,7 +29,7 @@ public class MetadataService implements Service<ProceedingsMetadata, Integer> {
     }
 
     @Override
-    public ServiceResponse<ProceedingsMetadata> delete(Integer id) {
+    public ServiceResponse<ProceedingsMetadata> deleteById(Integer id) {
         return null;
     }
 }

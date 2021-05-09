@@ -23,7 +23,7 @@ public class AuthControllerTest {
     public void setUp() {
         authController = new AuthController();
         controller = new UserController();
-        sample = new SuperUser("+uvxxdMWt3ssCJXCr4Huvw==", "xmen-10-------");
+        sample = new SuperUser("+uvaBxdt3ssCJXCr4Huvw==", "xmen-10-------");
     }
 
     @Test

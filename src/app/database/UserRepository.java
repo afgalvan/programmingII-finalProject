@@ -10,7 +10,7 @@ import lombok.val;
 /**
  * Class to execute all CRUD queries for the Users to the database.
  */
-public class UserRepository implements Repository<User, String> {
+public class UserRepository implements Repository<String, User> {
 
     private final ConnectionManager connection;
 
@@ -27,11 +27,13 @@ public class UserRepository implements Repository<User, String> {
      */
     @Override
     public void create(User user, String userType) throws SQLException {
-        val query = "INSERT INTO users (name, type, password) VALUES (?, ?, ?)";
+        val query =
+            "INSERT INTO users (name, type, password, salt) VALUES (?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, user.getName());
         statement.setString(2, userType);
         statement.setString(3, user.getPassword());
+        statement.setString(4, user.getSalt());
         statement.execute();
     }
 
@@ -56,7 +58,7 @@ public class UserRepository implements Repository<User, String> {
      * @throws SQLException When any username match.
      */
     @Override
-    public ResultSet read(String username) throws SQLException {
+    public ResultSet readById(String username) throws SQLException {
         val query = "SELECT * FROM users WHERE name = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, username);
@@ -71,7 +73,7 @@ public class UserRepository implements Repository<User, String> {
      * @throws SQLException For a syntax error on SQL.
      */
     @Override
-    public void update(String username, User newData) throws SQLException {
+    public void updateById(String username, User newData) throws SQLException {
         val query = "UPDATE users SET name = ?, password = ? WHERE name = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, newData.getName());
@@ -87,7 +89,7 @@ public class UserRepository implements Repository<User, String> {
      * @throws SQLException For a syntax error on SQL.
      */
     @Override
-    public void delete(String username) throws SQLException {
+    public void deleteById(String username) throws SQLException {
         val query = "DELETE FROM users WHERE name = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, username);

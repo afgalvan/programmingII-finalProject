@@ -1,5 +1,6 @@
 package app.controllers.security;
 
+import java.security.KeyPair;
 import javax.crypto.spec.SecretKeySpec;
 import lombok.val;
 
@@ -11,9 +12,7 @@ public final class PasswordHandler {
     private static final Hasher hasher;
 
     static {
-        val stringKey = "sYFogZTsRywTQ9aa";
-        val key = new SecretKeySpec(stringKey.getBytes(), "AES");
-        hasher = new Hasher(key);
+        hasher = new Hasher();
     }
 
     private PasswordHandler() {}
@@ -26,8 +25,16 @@ public final class PasswordHandler {
      *
      * @return If both passwords are equals.
      */
-    public static boolean areEquals(String password, String encryptedPassword) {
-        return hasher.encrypt(password).equals(encryptedPassword);
+    public static boolean areEquals(
+        String password,
+        String encryptedPassword,
+        String salt
+    ) {
+        return PasswordHandler.encrypt(password, salt).equals(encryptedPassword);
+    }
+
+    public static String generateSalt() {
+        return hasher.generateSalt();
     }
 
     /**
@@ -36,7 +43,9 @@ public final class PasswordHandler {
      * @param password A String for the password to be encrypted.
      * @return A String for encrypted password.
      */
-    public static String encrypt(String password) {
-        return hasher.encrypt(password);
+    public static String encrypt(String password, String salt) {
+        String firstEncryption = hasher.encrypt(password, salt);
+        String secondEncryption = hasher.encrypt(salt, "sYFogZTsRywTQ9aa");
+        return hasher.encrypt(firstEncryption, secondEncryption.substring(0, 24));
     }
 }

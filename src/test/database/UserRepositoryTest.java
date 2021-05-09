@@ -13,8 +13,11 @@ import org.junit.Test;
 
 public class UserRepositoryTest {
 
-    public final String URL_TEST = "jdbc:sqlite:./src/test/database/test.sqlite";
-    public ConnectionManager connectionManager = new ConnectionManager(URL_TEST);
+    public static final String URL_TEST =
+        "jdbc:sqlite:./src/test/database/test.sqlite";
+    public static ConnectionManager connectionManager = new ConnectionManager(
+        URL_TEST
+    );
     public UserRepository userRepository = new UserRepository(connectionManager);
 
     @SneakyThrows
@@ -50,7 +53,7 @@ public class UserRepositoryTest {
         try {
             Assert.assertEquals(
                 sample.getName(),
-                userRepository.read("Joe").getString("name")
+                userRepository.readById("Joe").getString("name")
             );
         } catch (SQLException throwables) {
             throwables.printStackTrace();

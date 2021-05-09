@@ -9,10 +9,10 @@ import app.services.UserService;
 /**
  * Class that controls all login validations and methods.
  */
-public class AuthController {
+public class AuthController implements Auth {
 
-    private UserController userController;
-    private UserService userService;
+    private final UserController userController;
+    private final UserService userService;
 
     public AuthController() {
         this.userService = new UserService();
@@ -29,7 +29,8 @@ public class AuthController {
     private boolean areValidCredentials(String username, String password) {
         User user = this.userController.getUserById(username);
         return (
-            user != null && PasswordHandler.areEquals(password, user.getPassword())
+            user != null &&
+            PasswordHandler.areEquals(password, user.getPassword(), user.getSalt())
         );
     }
 
@@ -40,19 +41,20 @@ public class AuthController {
      * @param password String value for the password.
      * @return A dialog response to be shown on the views.
      */
+    @Override
     public DialogResponse logUser(String username, String password) {
-        if (areValidCredentials(username, password)) {
+        if (!areValidCredentials(username, password)) {
             return new DialogResponse(
                 "Inicio de sesion",
-                "Bienvenido " + username + "!",
-                DialogResponse.INFORMATION_MESSAGE
+                "No se pudo validar los datos del usuario " + username + "!",
+                DialogResponse.ERROR_MESSAGE
             );
         }
 
         return new DialogResponse(
             "Inicio de sesion",
-            "No se pudo validar los datos del usuario " + username + "!",
-            DialogResponse.ERROR_MESSAGE
+            "Bienvenido " + username + "!",
+            DialogResponse.INFORMATION_MESSAGE
         );
     }
 
@@ -63,16 +65,18 @@ public class AuthController {
      * @param password String value for the password.
      * @return A dialog response to be shown on the views.
      */
+    @Override
     public DialogResponse registerUser(
         String username,
         String password,
         int permission
     ) {
-        password = PasswordHandler.encrypt(password);
+        String salt = PasswordHandler.generateSalt();
+        String encryptPassword = PasswordHandler.encrypt(password, salt);
 
         User newUser = (permission == 0)
-            ? new Coordinator(username, password)
-            : new SuperUser(username, password);
+            ? new Coordinator(username, encryptPassword, salt)
+            : new SuperUser(username, encryptPassword, salt);
 
         if (userService.create(newUser).isError()) {
             return new DialogResponse(
