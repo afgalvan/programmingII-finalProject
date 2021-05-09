@@ -20,8 +20,12 @@ public class UserService implements Service<String, User> {
     private final ConnectionManager connectionManager;
 
     public UserService() {
-        this.connectionManager = new ConnectionManager();
-        this.userRepository = new UserRepository(connectionManager);
+        this(new ConnectionManager());
+    }
+
+    public UserService(ConnectionManager connectionManager) {
+        this.connectionManager = connectionManager;
+        this.userRepository = new UserRepository(this.connectionManager);
     }
 
     /**
