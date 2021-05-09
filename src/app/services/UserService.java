@@ -14,7 +14,7 @@ import lombok.val;
 /**
  * Class that manages all business logic and database implementation.
  */
-public class UserService implements Service<User, String> {
+public class UserService implements Service<String, User> {
 
     private final UserRepository userRepository;
     private final ConnectionManager connectionManager;

@@ -7,7 +7,7 @@ import java.util.List;
  * @param <T>
  * @param <K>
  */
-public interface Service<T, K> {
+public interface Service<K, T> {
     public ServiceResponse<T> create(T data);
 
     public ServiceResponse<List<T>> readAll();

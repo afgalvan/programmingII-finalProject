@@ -9,10 +9,10 @@ import app.services.UserService;
 /**
  * Class that controls all login validations and methods.
  */
-public class AuthController {
+public class AuthController implements Auth {
 
-    private UserController userController;
-    private UserService userService;
+    private final UserController userController;
+    private final UserService userService;
 
     public AuthController() {
         this.userService = new UserService();

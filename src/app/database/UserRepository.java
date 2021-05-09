@@ -10,7 +10,7 @@ import lombok.val;
 /**
  * Class to execute all CRUD queries for the Users to the database.
  */
-public class UserRepository implements Repository<User, String> {
+public class UserRepository implements Repository<String, User> {
 
     private final ConnectionManager connection;
 
