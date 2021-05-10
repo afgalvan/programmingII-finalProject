@@ -721,12 +721,7 @@
     {
         "id": 15,
         "departamento": "Guaviare",
-        "ciudades": [
-            "Calamar",
-            "El Retorno",
-            "Miraflores",
-            "San Jos\u00e9 del Guaviare"
-        ]
+        "ciudades": ["Calamar", "El Retorno", "Miraflores", "San Jos\u00e9 del Guaviare"]
     },
     {
         "id": 16,

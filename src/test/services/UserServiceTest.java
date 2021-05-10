@@ -37,9 +37,7 @@ public class UserServiceTest {
             userService.create(sample);
         }
 
-        Assert.assertTrue(
-            userService.readById("Maria").getData() instanceof Coordinator
-        );
+        Assert.assertTrue(userService.readById("Maria").getData() instanceof Coordinator);
     }
 
     @Test

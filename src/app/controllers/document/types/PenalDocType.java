@@ -29,15 +29,11 @@ public class PenalDocType extends DocType {
         this.getTypes().add("Solicitud de medidas cautelares sobre bienes");
         this.getTypes().add("Audiencia decreto de embargo y secuestro");
         this.getTypes().add("Audiencia de desembargo de bienes en medio magnético");
+        this.getTypes().add("Solicitud de control de legalidad por parte de la Fiscalía");
         this.getTypes()
-            .add("Solicitud de control de legalidad por parte de la Fiscalía");
-        this.getTypes()
-            .add(
-                "Solicitar de declaratoria de persona ausente por parte de la Fiscalía"
-            );
+            .add("Solicitar de declaratoria de persona ausente por parte de la Fiscalía");
         this.getTypes().add("Audiencia de declaratoria de persona ausente");
         this.getTypes().add("Acta de audiencia de declaratoria de persona ausente");
-        this.getTypes()
-            .add("Solicitud de medidas de protección y atención a victimas");
+        this.getTypes().add("Solicitud de medidas de protección y atención a victimas");
     }
 }

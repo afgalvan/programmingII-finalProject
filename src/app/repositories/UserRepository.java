@@ -36,8 +36,7 @@ public class UserRepository implements Repository<String, User> {
             userType = "CO";
         }
 
-        val query =
-            "INSERT INTO users (name, type, password, salt) VALUES (?, ?, ?, ?)";
+        val query = "INSERT INTO users (name, type, password, salt) VALUES (?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, user.getName());
         statement.setString(2, userType);
