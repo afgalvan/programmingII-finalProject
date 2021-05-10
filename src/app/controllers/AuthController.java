@@ -14,6 +14,7 @@ public class AuthController implements Auth {
 
     private final UserController userController;
     private final UserService userService;
+    private User currentUser;
 
     public AuthController() {
         this.userService = new UserService();
@@ -28,10 +29,14 @@ public class AuthController implements Auth {
      * @return the response boolean from the user controller.
      */
     private boolean areValidCredentials(String username, String password) {
-        User user = this.userController.getUserById(username);
+        currentUser = this.userController.getUserById(username);
         return (
-            user != null &&
-            PasswordHandler.areEquals(password, user.getPassword(), user.getSalt())
+            currentUser != null &&
+            PasswordHandler.areEquals(
+                password,
+                currentUser.getPassword(),
+                currentUser.getSalt()
+            )
         );
     }
 
@@ -43,19 +48,20 @@ public class AuthController implements Auth {
      * @return A dialog response to be shown on the views.
      */
     @Override
-    public DialogResponse loginUser(String username, String password) {
+    public DialogResponse<User> loginUser(String username, String password) {
         if (!areValidCredentials(username, password)) {
-            return new DialogResponse(
+            return new DialogResponse<>(
                 "Inicio de sesion",
                 "No se pudo validar los datos del usuario " + username + "!",
                 DialogResponse.ERROR_MESSAGE
             );
         }
 
-        return new DialogResponse(
+        return new DialogResponse<>(
             "Inicio de sesion",
             "Bienvenido " + username + "!",
-            DialogResponse.INFORMATION_MESSAGE
+            DialogResponse.INFORMATION_MESSAGE,
+            this.currentUser
         );
     }
 
@@ -67,7 +73,7 @@ public class AuthController implements Auth {
      * @return A dialog response to be shown on the views.
      */
     @Override
-    public DialogResponse registerUser(
+    public DialogResponse<User> registerUser(
         String username,
         String password,
         UserType permission
@@ -80,14 +86,14 @@ public class AuthController implements Auth {
             : new SuperUser(username, encryptPassword, salt);
 
         if (userService.create(newUser).isError()) {
-            return new DialogResponse(
+            return new DialogResponse<>(
                 "Registro",
                 "El usuario " + username + " ya se encuentra registrado",
                 DialogResponse.ERROR_MESSAGE
             );
         }
 
-        return new DialogResponse(
+        return new DialogResponse<>(
             "Registro",
             "El usuario " + username + " se registró con exito",
             DialogResponse.INFORMATION_MESSAGE
