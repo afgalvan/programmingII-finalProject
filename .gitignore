@@ -1,6 +1,6 @@
 discord.xml
 node_modules
-
+.gitmodules
 # Package Files #
 *.jar
 *.war
