@@ -44,7 +44,7 @@ public class UserServiceTest {
 
     @Test
     @Order(order = 3)
-    public void readAllUsers() {
+    public void readAllUsersTest() {
         Assert.assertTrue(userService.readAll().getData() instanceof List);
         Assert.assertFalse(userService.readAll().isError());
     }
@@ -69,7 +69,7 @@ public class UserServiceTest {
 
     @Test
     @Order(order = 7)
-    public void updateUser() {
+    public void updateUserTest() {
         Assert.assertFalse(userService.readById("Maria").isError());
         Assert.assertFalse(
             userService.updateById(sample.getName(), updateSample).isError()

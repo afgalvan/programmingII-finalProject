@@ -23,7 +23,12 @@ public class ServiceResponse<T> {
     }
 
     public ServiceResponse(String message) {
-        this.error = false;
+        this.error = true;
+        this.message = message;
+    }
+
+    public ServiceResponse(String message, boolean error) {
+        this.error = error;
         this.message = message;
     }
 

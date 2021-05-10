@@ -1,9 +1,9 @@
 package test.database;
 
 import app.database.ConnectionManager;
-import app.database.UserRepository;
 import app.models.users.SuperUser;
 import app.models.users.User;
+import app.repositories.UserRepository;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -47,13 +47,13 @@ public class UserRepositoryTest {
 
         try {
             connectionManager.open();
-            userRepository.create(sample, "SU");
+            userRepository.create(sample);
         } catch (SQLException ignored) {}
 
         try {
             Assert.assertEquals(
                 sample.getName(),
-                userRepository.readById("Joe").getString("name")
+                userRepository.readById("Joe").getName()
             );
         } catch (SQLException throwables) {
             throwables.printStackTrace();

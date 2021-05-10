@@ -1,10 +1,15 @@
-package app.database;
+package app.repositories;
 
+import app.database.ConnectionManager;
+import app.models.users.Coordinator;
+import app.models.users.SuperUser;
 import app.models.users.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.val;
 
 /**
@@ -22,11 +27,15 @@ public class UserRepository implements Repository<String, User> {
      * Execute the query for saving an User instance.
      *
      * @param user     An instance of the User class to be saved.
-     * @param userType A String that indicates which user types is
      * @throws SQLException When an username was already registered.
      */
     @Override
-    public void create(User user, String userType) throws SQLException {
+    public void create(User user) throws SQLException {
+        String userType = "SU";
+        if (user instanceof Coordinator) {
+            userType = "CO";
+        }
+
         val query =
             "INSERT INTO users (name, type, password, salt) VALUES (?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(query);
@@ -44,10 +53,17 @@ public class UserRepository implements Repository<String, User> {
      * @throws SQLException When no users found.
      */
     @Override
-    public ResultSet readAll() throws SQLException {
+    public List<User> readAll() throws SQLException {
         val query = "SELECT * FROM users";
         Statement statement = connection.createStatement();
-        return statement.executeQuery(query);
+        ResultSet resultSet = statement.executeQuery(query);
+
+        val userList = new ArrayList<User>();
+        while (resultSet.next()) {
+            userList.add(resultSetMapToUser(resultSet));
+        }
+
+        return userList;
     }
 
     /**
@@ -58,11 +74,11 @@ public class UserRepository implements Repository<String, User> {
      * @throws SQLException When any username match.
      */
     @Override
-    public ResultSet readById(String username) throws SQLException {
+    public User readById(String username) throws SQLException {
         val query = "SELECT * FROM users WHERE name = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, username);
-        return statement.executeQuery();
+        return resultSetMapToUser(statement.executeQuery());
     }
 
     /**
@@ -94,5 +110,24 @@ public class UserRepository implements Repository<String, User> {
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, username);
         statement.execute();
+    }
+
+    /**
+     * Convert a given result set from the database to a determinate user instance
+     * depending of his saved type.
+     *
+     * @param resultSet A ResultSet from the database.
+     * @return A user object generated from the database result set.
+     * @throws SQLException For invalid fields.
+     */
+    private User resultSetMapToUser(ResultSet resultSet) throws SQLException {
+        String name = resultSet.getString("name");
+        String password = resultSet.getString("password");
+        String salt = resultSet.getString("salt");
+
+        if (resultSet.getString("type").equals("SU")) {
+            return new SuperUser(name, password, salt);
+        }
+        return new Coordinator(name, password, salt);
     }
 }

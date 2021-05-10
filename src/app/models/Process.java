@@ -19,6 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Process {
 
+    private int id;
     private RecordMetadata recordMetadata;
     private int noteBooksLen;
     private final List<Notebook> notebooksList = new ArrayList<>(noteBooksLen);

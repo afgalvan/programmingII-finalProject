@@ -1,15 +1,10 @@
 package app.services;
 
 import app.database.ConnectionManager;
-import app.database.UserRepository;
-import app.models.users.Coordinator;
-import app.models.users.SuperUser;
 import app.models.users.User;
-import java.sql.ResultSet;
+import app.repositories.UserRepository;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-import lombok.val;
 
 /**
  * Class that manages all business logic and database implementation.
@@ -36,14 +31,9 @@ public class UserService implements Service<String, User> {
      */
     @Override
     public ServiceResponse<User> create(User user) {
-        String userType = "SU";
-        if (user instanceof Coordinator) {
-            userType = "CO";
-        }
-
         try {
             connectionManager.open();
-            userRepository.create(user, userType);
+            userRepository.create(user);
             return new ServiceResponse<>(user);
         } catch (SQLException ignore) {
             return new ServiceResponse<>();
@@ -59,15 +49,9 @@ public class UserService implements Service<String, User> {
      */
     @Override
     public ServiceResponse<List<User>> readAll() {
-        val userList = new ArrayList<User>();
-
         try {
             connectionManager.open();
-            ResultSet resultSet = userRepository.readAll();
-            while (resultSet.next()) {
-                userList.add(resultSetMapToUser(resultSet));
-            }
-
+            List<User> userList = userRepository.readAll();
             return new ServiceResponse<>(userList);
         } catch (SQLException ignore) {
             return new ServiceResponse<>();
@@ -86,8 +70,8 @@ public class UserService implements Service<String, User> {
     public ServiceResponse<User> readById(String username) {
         try {
             connectionManager.open();
-            ResultSet resultSet = userRepository.readById(username);
-            return new ServiceResponse<>(resultSetMapToUser(resultSet));
+            User user = userRepository.readById(username);
+            return new ServiceResponse<>(user);
         } catch (SQLException ignore) {
             return new ServiceResponse<>();
         } finally {
@@ -106,9 +90,9 @@ public class UserService implements Service<String, User> {
     public ServiceResponse<User> updateById(String username, User newData) {
         try {
             connectionManager.open();
-            ResultSet user = userRepository.readById(username);
+            User user = userRepository.readById(username);
             userRepository.updateById(username, newData);
-            return new ServiceResponse<>(resultSetMapToUser(user));
+            return new ServiceResponse<>(user);
         } catch (SQLException ignore) {
             return new ServiceResponse<>();
         } finally {
@@ -127,30 +111,11 @@ public class UserService implements Service<String, User> {
         try {
             connectionManager.open();
             userRepository.deleteById(username);
-            return new ServiceResponse<>(username);
+            return new ServiceResponse<>(username, false);
         } catch (SQLException ignore) {
             return new ServiceResponse<>();
         } finally {
             connectionManager.close();
         }
-    }
-
-    /**
-     * Convert a given result set from the database to a determinate user instance
-     * depending of his saved type.
-     *
-     * @param resultSet A ResultSet from the database.
-     * @return A user object generated from the database result set.
-     * @throws SQLException For invalid fields.
-     */
-    private User resultSetMapToUser(ResultSet resultSet) throws SQLException {
-        String name = resultSet.getString("name");
-        String password = resultSet.getString("password");
-        String salt = resultSet.getString("salt");
-
-        if (resultSet.getString("type").equals("SU")) {
-            return new SuperUser(name, password, salt);
-        }
-        return new Coordinator(name, password, salt);
     }
 }

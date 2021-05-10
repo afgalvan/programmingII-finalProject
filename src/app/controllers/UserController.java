@@ -47,9 +47,6 @@ public class UserController {
      * @return A List of users all users from the database.
      */
     public List<User> getUsers() {
-        /* TODO: Differentiate between an error and an empty database
-         * TODO: Return a message to show.
-         */
         ServiceResponse<List<User>> res = userService.readAll();
         if (res.isError()) {
             return null;
