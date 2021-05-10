@@ -43,7 +43,7 @@ public class AuthController implements Auth {
      * @return A dialog response to be shown on the views.
      */
     @Override
-    public DialogResponse logUser(String username, String password) {
+    public DialogResponse loginUser(String username, String password) {
         if (!areValidCredentials(username, password)) {
             return new DialogResponse(
                 "Inicio de sesion",

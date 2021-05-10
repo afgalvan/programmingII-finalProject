@@ -31,7 +31,9 @@ public class AuthControllerTest {
     @Order(order = 1)
     public void logInvalidUser() {
         Assert.assertEquals(
-            authController.logUser(sample.getName(), sample.getPassword()).getType(),
+            authController
+                .loginUser(sample.getName(), sample.getPassword())
+                .getType(),
             DialogResponse.ERROR_MESSAGE
         );
     }
@@ -62,7 +64,9 @@ public class AuthControllerTest {
     @Order(order = 4)
     public void logInUser() {
         Assert.assertEquals(
-            authController.logUser(sample.getName(), sample.getPassword()).getType(),
+            authController
+                .loginUser(sample.getName(), sample.getPassword())
+                .getType(),
             DialogResponse.INFORMATION_MESSAGE
         );
     }
