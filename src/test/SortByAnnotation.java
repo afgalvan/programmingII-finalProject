@@ -1,10 +1,10 @@
 package test;
 
+import java.util.Comparator;
 import org.junit.runners.model.FrameworkMethod;
 
-import java.util.Comparator;
-
 public class SortByAnnotation implements Comparator<FrameworkMethod> {
+
     @Override
     public int compare(FrameworkMethod method1, FrameworkMethod method2) {
         Order order1 = method1.getAnnotation(Order.class);
