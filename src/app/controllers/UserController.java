@@ -82,7 +82,7 @@ public class UserController {
     public String deleteUserById(String username) {
         ServiceResponse<User> res = userService.deleteById(username);
         if (res.isError()) {
-            return "Error inesperado.";
+            return "No se pudo eliminar el usuario.";
         }
         return "Usuario eliminado con éxito.";
     }

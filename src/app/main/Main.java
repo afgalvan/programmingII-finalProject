@@ -1,5 +1,6 @@
 package app.main;
 
+import app.views.ProceedingRegister;
 import app.views.TerminalView;
 
 public class Main {

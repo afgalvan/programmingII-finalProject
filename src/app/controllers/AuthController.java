@@ -4,6 +4,7 @@ import app.controllers.security.PasswordHandler;
 import app.models.users.Coordinator;
 import app.models.users.SuperUser;
 import app.models.users.User;
+import app.models.users.UserType;
 import app.services.UserService;
 
 /**
@@ -69,12 +70,12 @@ public class AuthController implements Auth {
     public DialogResponse registerUser(
         String username,
         String password,
-        int permission
+        UserType permission
     ) {
         String salt = PasswordHandler.generateSalt();
         String encryptPassword = PasswordHandler.encrypt(password, salt);
 
-        User newUser = (permission == 0)
+        User newUser = (permission == UserType.CO)
             ? new Coordinator(username, encryptPassword, salt)
             : new SuperUser(username, encryptPassword, salt);
 
