@@ -19,5 +19,6 @@
     <orderEntry type="library" name="junit-4.12" level="project" />
     <orderEntry type="library" name="flatlaf-1.1.1" level="project" />
     <orderEntry type="library" name="lombok" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>

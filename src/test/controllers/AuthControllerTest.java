@@ -5,6 +5,7 @@ import app.controllers.DialogResponse;
 import app.controllers.UserController;
 import app.models.users.SuperUser;
 import app.models.users.User;
+import app.models.users.UserType;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,7 +41,7 @@ public class AuthControllerTest {
     public void registerUser() {
         Assert.assertEquals(
             authController
-                .registerUser(sample.getName(), sample.getPassword(), 0)
+                .registerUser(sample.getName(), sample.getPassword(), UserType.CO)
                 .getType(),
             DialogResponse.INFORMATION_MESSAGE
         );
@@ -51,7 +52,7 @@ public class AuthControllerTest {
     public void registerInvalidUser() {
         Assert.assertEquals(
             authController
-                .registerUser(sample.getName(), sample.getPassword(), 1)
+                .registerUser(sample.getName(), sample.getPassword(), UserType.SU)
                 .getType(),
             DialogResponse.ERROR_MESSAGE
         );
