@@ -16,7 +16,7 @@ public class LocationApiTest {
             " Córdoba, Guainía, Guaviare, Huila, La Guajira, Magdalena, Meta, Nariño," +
             " Norte de Santander, Putumayo, Quindío, Risaralda, San Andrés y " +
             "Providencia, Santander, Sucre, Tolima, Valle del Cauca, Vaupés," +
-            " Vichada]",
+            " Vichada]".toLowerCase(),
             LocationApi.getDepartments().toString()
         );
     }
@@ -29,7 +29,7 @@ public class LocationApiTest {
         );
 
         assertEquals(
-            "[Cumaribo, La Primavera, Puerto Carreño, Santa Rosalía]",
+            "[Cumaribo, La Primavera, Puerto Carreño, Santa Rosalía]".toLowerCase(),
             LocationApi.getCities("Vichada").toString()
         );
     }
