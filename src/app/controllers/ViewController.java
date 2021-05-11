@@ -1,11 +1,9 @@
 package app.controllers;
 
 import app.views.View;
-
 import java.util.function.Supplier;
 
 public class ViewController {
-
 
     public <T> T saveInput(
         String question,
