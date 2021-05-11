@@ -24,13 +24,13 @@ public class LocationApiTest {
     @Test
     public void getCitiesFromDepartment() {
         assertEquals(
-            "[Leticia, Puerto Nariño]",
-            LocationApi.getCities("Amazonas").toString()
+            "[Leticia, Puerto Nariño]".toLowerCase(),
+            LocationApi.getCities("Amazonas".toLowerCase()).toString()
         );
 
         assertEquals(
             "[Cumaribo, La Primavera, Puerto Carreño, Santa Rosalía]".toLowerCase(),
-            LocationApi.getCities("Vichada").toString()
+            LocationApi.getCities("Vichada".toLowerCase()).toString()
         );
     }
 
