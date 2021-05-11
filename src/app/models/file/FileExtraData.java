@@ -1,6 +1,6 @@
-package app.models.proceedings;
+package app.models.file;
 
-import app.models.ValueObject;
+import app.models.annotations.ValueObject;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @ValueObject
-public class ProceedingsExtraData {
+public class FileExtraData {
 
     private String fileType;
     private double size;

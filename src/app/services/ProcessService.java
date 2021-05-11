@@ -5,9 +5,9 @@ import app.models.Process;
 import app.repositories.ProcessRepository;
 import java.util.List;
 
-public class ProcessService implements Service<Integer, Process> {
+public class ProcessService implements Service<Long, Process> {
 
-    ProcessRepository processRepository;
+    private final ProcessRepository processRepository;
 
     public ProcessService() {
         this.processRepository = new ProcessRepository();
@@ -33,7 +33,7 @@ public class ProcessService implements Service<Integer, Process> {
     }
 
     @Override
-    public ServiceResponse<Process> readById(Integer id) {
+    public ServiceResponse<Process> readById(Long id) {
         try {
             return new ServiceResponse<>(processRepository.readById(id));
         } catch (DataAccessException error) {
@@ -42,12 +42,12 @@ public class ProcessService implements Service<Integer, Process> {
     }
 
     @Override
-    public ServiceResponse<Process> updateById(Integer id, Process newData) {
+    public ServiceResponse<Process> updateById(Long id, Process newData) {
         return null;
     }
 
     @Override
-    public ServiceResponse<Process> deleteById(Integer id) {
+    public ServiceResponse<Process> deleteById(Long id) {
         try {
             Process process = processRepository.readById(id);
             processRepository.deleteById(id);

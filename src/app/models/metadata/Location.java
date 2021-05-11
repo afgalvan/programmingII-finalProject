@@ -1,6 +1,6 @@
-package app.models.records;
+package app.models.metadata;
 
-import app.models.ValueObject;
+import app.models.annotations.ValueObject;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

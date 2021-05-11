@@ -1,4 +1,4 @@
-package app.models.records;
+package app.models.metadata;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -16,5 +16,5 @@ public class SubSeries {
 
     private String name;
     private int code;
-    private List<String> docType;
+    private List<DocumentType> docType;
 }

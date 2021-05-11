@@ -1,6 +1,6 @@
-package app.models.proceedings;
+package app.models.file;
 
-import app.models.ValueObject;
+import app.models.annotations.ValueObject;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @ValueObject
-public class ProceedingsDate {
+public class FileDate {
 
     private LocalDate creationDate;
     private LocalDate incorporationDate;

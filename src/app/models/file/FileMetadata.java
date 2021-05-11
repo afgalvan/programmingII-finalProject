@@ -1,4 +1,4 @@
-package app.models.proceedings;
+package app.models.file;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProceedingsMetadata {
+public class FileMetadata {
 
     private String name;
     private int docOrder;
-    private ProceedingsDate dates;
-    private ProceedingsPageData pageData;
-    private ProceedingsExtraData extraData;
+    private FileDate dates;
+    private FilePageData pageData;
+    private FileExtraData extraData;
 }

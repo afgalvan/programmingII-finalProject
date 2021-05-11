@@ -1,4 +1,4 @@
-package app.models.records.parts;
+package app.models.metadata.parts;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

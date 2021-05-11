@@ -35,7 +35,7 @@ public final class LocationApi {
         List<List<String>> cities = jsonNode.findValues("ciudades")
             .stream()
             .map(c -> Arrays.asList(
-                c.toString().replaceAll("[\\[\\]\"]", "").split(",")
+                c.toString().toLowerCase().replaceAll("[\\[\\]\"]", "").split(",")
             )).collect(Collectors.toList());
 
         val departments = new ArrayList<>(
@@ -43,7 +43,7 @@ public final class LocationApi {
         );
 
         for (int i = 0; i < departments.size(); i++) {
-            locations.put(departments.get(i), cities.get(i));
+            locations.put(departments.get(i).toLowerCase(), cities.get(i));
         }
 
         return locations;

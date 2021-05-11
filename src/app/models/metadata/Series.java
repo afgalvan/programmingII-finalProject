@@ -1,4 +1,4 @@
-package app.models.records;
+package app.models.metadata;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +20,12 @@ public class Series {
     private final List<SubSeries> subSeriesList = new ArrayList<>();
 
     /**
-     * Add a subserie to a serie.
-     * @param name name of the subserie.
-     * @param code code of the subserie.
-     * @param docType Document type of the subserie.
+     * Add a sub series to a series.
+     * @param name name of the sub series.
+     * @param code code of the sub series.
+     * @param docType Document type of the sub series.
      */
-    public void addSubSeries(String name, int code, List<String> docType) {
+    public void addSubSeries(String name, int code, List<DocumentType> docType) {
         SubSeries subSeries = new SubSeries(name, code, docType);
         subSeriesList.add(subSeries);
     }

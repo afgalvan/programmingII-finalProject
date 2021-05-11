@@ -7,9 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ProcessRepository implements Repository<Integer, Process> {
+public class ProcessRepository implements Repository<Long, Process> {
 
-    private final Map<Integer, Process> database;
+    private final Map<Long, Process> database;
 
     public ProcessRepository() {
         this.database = new HashMap<>();
@@ -20,10 +20,10 @@ public class ProcessRepository implements Repository<Integer, Process> {
         if (process == null) {
             throw new DataAccessException("El proceso es null");
         }
-        if (readById(process.getId()) != null) {
+        if (readById(process.getMetadata().getId()) != null) {
             throw new DataAccessException("Id del procesor repetido");
         }
-        database.put(process.getId(), process);
+        database.put(process.getMetadata().getId(), process);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ProcessRepository implements Repository<Integer, Process> {
     }
 
     @Override
-    public Process readById(Integer id) throws DataAccessException {
+    public Process readById(Long id) throws DataAccessException {
         Process process = database.get(id);
         if (process == null) {
             throw new DataAccessException("El proceso es null");
@@ -44,13 +44,13 @@ public class ProcessRepository implements Repository<Integer, Process> {
     }
 
     @Override
-    public void updateById(Integer id, Process newData) throws DataAccessException {
+    public void updateById(Long id, Process newData) throws DataAccessException {
         readById(id);
         database.put(id, newData);
     }
 
     @Override
-    public void deleteById(Integer id) throws DataAccessException {
+    public void deleteById(Long id) throws DataAccessException {
         readById(id);
         database.remove(id);
     }

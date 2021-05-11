@@ -1,4 +1,4 @@
-package app.models.records;
+package app.models.metadata;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +13,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class DocumentType {
 
-    private String name;
     private int code;
+    private String name;
 }

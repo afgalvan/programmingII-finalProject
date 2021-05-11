@@ -1,4 +1,4 @@
-package app.models.records.parts;
+package app.models.metadata.parts;
 
 /**
  * Make reference to juridic person.

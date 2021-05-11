@@ -1,4 +1,4 @@
-package app.models.records;
+package app.models.metadata;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +15,6 @@ public class JudicialOffice {
 
     private String name;
     private int code;
-    private String department;
-    private String city;
+    private Location location;
     private String category;
 }

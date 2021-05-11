@@ -1,6 +1,6 @@
-package app.models.records;
+package app.models.metadata;
 
-import app.models.records.parts.Person;
+import app.models.metadata.parts.Person;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -14,16 +14,15 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RecordMetadata {
+public class ProcessMetadata {
 
+    private Long id;
     private Location location;
     private JudicialOffice judicialOffice;
     private Series series;
-    private long processFilingNumber;
     private final List<Person> judgePartyList = new ArrayList<>();
     private final List<Person> prosecutorList = new ArrayList<>();
-    private Boolean hasPhysicalFile;
-    private int foldersAmount;
+    private PhysicalInformation physicalInformation;
 
     /**
      * Add a prosecutor to the prosecutorList of the metadata.

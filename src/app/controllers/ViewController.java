@@ -1,15 +1,11 @@
 package app.controllers;
 
-import java.util.Scanner;
+import app.views.View;
+
 import java.util.function.Supplier;
 
 public class ViewController {
 
-    private final Scanner scanner;
-
-    public ViewController() {
-        this.scanner = new Scanner(System.in);
-    }
 
     public <T> T saveInput(
         String question,
@@ -26,10 +22,10 @@ public class ViewController {
                 hasError = false;
             } catch (Exception exception) {
                 System.out.println(errorMsg);
-                if (flush) {
-                    scanner.nextLine();
-                }
                 hasError = true;
+            }
+            if (flush) {
+                View.scanner.nextLine();
             }
         } while (hasError);
 
