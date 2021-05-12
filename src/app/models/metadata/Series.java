@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
- public class Series implements Serializable {
+public class Series implements Serializable {
 
     private String name;
     private int code;

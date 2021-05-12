@@ -1,11 +1,10 @@
 package app.models.file;
 
 import app.models.annotations.ValueObject;
+import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.io.Serializable;
 
 /**
  * Indicates the type, size and origin of the file and its observations.

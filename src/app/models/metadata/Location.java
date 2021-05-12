@@ -1,11 +1,10 @@
 package app.models.metadata;
 
 import app.models.annotations.ValueObject;
+import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.io.Serializable;
 
 /**
  * Indicate the department and city where the process begin.

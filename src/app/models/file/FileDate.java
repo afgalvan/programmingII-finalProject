@@ -1,7 +1,6 @@
 package app.models.file;
 
 import app.models.annotations.ValueObject;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;

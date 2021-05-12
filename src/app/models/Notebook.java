@@ -4,7 +4,6 @@ import app.models.file.File;
 import app.models.file.FileDate;
 import app.models.file.FileExtraData;
 import app.models.file.FilePage;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

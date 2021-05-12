@@ -1,7 +1,6 @@
 package app.models.metadata;
 
 import app.models.metadata.parts.Person;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
