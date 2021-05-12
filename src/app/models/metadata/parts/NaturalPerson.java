@@ -3,13 +3,15 @@ package app.models.metadata.parts;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
+
 /**
  * Make reference to natural person.
  */
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class NaturalPerson extends Person {
+public class NaturalPerson extends Person implements Serializable {
 
     private String secondName;
     private String lastName;

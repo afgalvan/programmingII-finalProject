@@ -1,6 +1,8 @@
 package app.models;
 
 import app.models.metadata.*;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -14,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Process {
+public class Process implements Serializable {
 
     private ProcessMetadata metadata;
     private int noteBooksLen;

@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  *
  */
@@ -12,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @ValueObject
 @Data
-public class PhysicalInformation {
+public class PhysicalInformation implements Serializable {
 
     private Boolean hasPhysicalFile;
     private Integer foldersAmount;

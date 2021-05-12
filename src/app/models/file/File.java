@@ -1,5 +1,6 @@
 package app.models.file;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -13,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class File {
+public class File implements Serializable {
 
     private String name;
     private Integer docOrder;

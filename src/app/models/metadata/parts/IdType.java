@@ -1,5 +1,6 @@
 package app.models.metadata.parts;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,7 +11,7 @@ import lombok.Getter;
  */
 
 @Getter
-public enum IdType {
+public enum IdType implements Serializable {
     NIT("NIT"),
     CC("Cédula ciudadana"),
     TI("Tarjeta de identidad"),

@@ -1,6 +1,8 @@
 package app.models.file;
 
 import app.models.annotations.ValueObject;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @ValueObject
-public class FileDate {
+public class FileDate implements Serializable {
 
     private LocalDate creationDate;
     private LocalDate incorporationDate;

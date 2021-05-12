@@ -1,5 +1,6 @@
 package app.controllers;
 
+import app.views.Color;
 import app.views.View;
 import java.util.function.Supplier;
 
@@ -28,7 +29,7 @@ public class ViewController {
                 data = scan.get();
                 hasError = false;
             } catch (Exception exception) {
-                System.out.println(errorMsg);
+                System.out.println(Color.RED + errorMsg + Color.NORMAL);
                 hasError = true;
             }
             if (flush) {

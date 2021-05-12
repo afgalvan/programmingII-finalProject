@@ -4,6 +4,8 @@ import app.models.file.File;
 import app.models.file.FileDate;
 import app.models.file.FileExtraData;
 import app.models.file.FilePage;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -17,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Notebook {
+public class Notebook implements Serializable {
 
     private String name;
     private final List<File> filesList = new ArrayList<>();

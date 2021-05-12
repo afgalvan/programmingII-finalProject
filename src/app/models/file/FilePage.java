@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * Indicates the number of pages in a file, and its
  * init and last page.
@@ -14,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @ValueObject
-public class FilePage {
+public class FilePage implements Serializable {
 
     private Integer pagesAmount;
     private Integer initPage;

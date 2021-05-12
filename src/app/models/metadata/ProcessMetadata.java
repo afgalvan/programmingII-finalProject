@@ -1,6 +1,8 @@
 package app.models.metadata;
 
 import app.models.metadata.parts.Person;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProcessMetadata {
+public class ProcessMetadata implements Serializable {
 
     private Long id;
     private Location location;
