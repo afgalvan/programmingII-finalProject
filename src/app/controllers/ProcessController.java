@@ -4,6 +4,9 @@ import app.models.Process;
 import app.services.ProcessService;
 import app.services.ServiceResponse;
 
+/**
+ *
+ */
 public class ProcessController {
 
     private final ProcessService service;
@@ -12,6 +15,11 @@ public class ProcessController {
         this.service = new ProcessService();
     }
 
+    /**
+     *
+     * @param process
+     * @return
+     */
     public DialogResponse<Process> register(Process process) {
         ServiceResponse<Process> response = service.create(process);
         return new DialogResponse<>(

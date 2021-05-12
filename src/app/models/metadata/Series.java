@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 /**
  * Indicates the name and code of the process to be executed.
  */
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

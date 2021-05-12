@@ -5,8 +5,16 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
+/**
+ *
+ */
 public class TableController {
 
+    /**
+     *
+     * @param columnWidths
+     * @return
+     */
     public int computeTableWidth(List<Integer> columnWidths) {
         int divisorsCount = 3;
         int firstDivisor = 1;
@@ -17,6 +25,11 @@ public class TableController {
         // prettier-ignore-end
     }
 
+    /**
+     *
+     * @param list
+     * @return
+     */
     public int length(List<String> list) {
         // prettier-ignore-start
         return list.stream()
@@ -28,6 +41,11 @@ public class TableController {
         // prettier-ignore-end
     }
 
+    /**
+     *
+     * @param table
+     * @return
+     */
     public List<Integer> computeColumnsWidth(List<List<String>> table) {
         AtomicInteger max = new AtomicInteger();
         List<Integer> widthsArray = new ArrayList<>();
@@ -50,6 +68,11 @@ public class TableController {
         return widthsArray;
     }
 
+    /**
+     *
+     * @param spaceWidth
+     * @return
+     */
     public static String voidSpaceOf(int spaceWidth) {
         return new String(new char[spaceWidth]).replace('\0', ' ');
     }

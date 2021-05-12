@@ -1,9 +1,9 @@
 package app.models;
 
+import app.models.file.File;
 import app.models.file.FileDate;
 import app.models.file.FileExtraData;
-import app.models.file.FileMetadata;
-import app.models.file.FilePageData;
+import app.models.file.FilePage;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -20,25 +20,23 @@ import lombok.NoArgsConstructor;
 public class Notebook {
 
     private String name;
-    private final List<FileMetadata> fileMetadataList = new ArrayList<>();
+    private final List<File> filesList = new ArrayList<>();
 
     /**
      * Add a document metadata to a document metadata list.
      * @param name name of the document.
      * @param docOrder
      * @param dates
-     * @param filePageData
+     * @param filePage
      * @param fileExtraData
      */
-    public void addProceedingsMetadata(
+    public void addFile(
         String name,
         int docOrder,
         FileDate dates,
-        FilePageData filePageData,
+        FilePage filePage,
         FileExtraData fileExtraData
     ) {
-        this.fileMetadataList.add(
-                new FileMetadata(name, docOrder, dates, filePageData, fileExtraData)
-            );
+        this.filesList.add(new File(name, docOrder, dates, filePage, fileExtraData));
     }
 }

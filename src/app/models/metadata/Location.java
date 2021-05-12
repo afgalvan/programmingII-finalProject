@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 /**
  * Indicate the department and city where the process begin.
  */
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

@@ -56,16 +56,4 @@ public class UserRepositoryTest {
             connectionManager.close();
         }
     }
-
-    @Test
-    public void readAllUsersTest() {}
-
-    @Test
-    public void readUserTest() {}
-
-    @Test
-    public void updateUserTest() {}
-
-    @Test
-    public void deleteUserTest() {}
 }

@@ -28,8 +28,8 @@ public class ProcessRepository implements Repository<Long, Process> {
 
     @Override
     public List<Process> readAll() throws DataAccessException {
-        if (database.values() == null) {
-            throw new DataAccessException("");
+        if (database == null) {
+            throw new DataAccessException("Unable to get enough information.");
         }
         return new ArrayList<>(database.values());
     }

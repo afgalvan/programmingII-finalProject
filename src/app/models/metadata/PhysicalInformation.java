@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ *
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @ValueObject
@@ -12,5 +15,5 @@ import lombok.NoArgsConstructor;
 public class PhysicalInformation {
 
     private Boolean hasPhysicalFile;
-    private int foldersAmount;
+    private Integer foldersAmount;
 }

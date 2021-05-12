@@ -18,6 +18,12 @@ public class DialogResponse<T> {
     private int type;
     private T data;
 
+    /**
+     *
+     * @param title
+     * @param content
+     * @param type
+     */
     public DialogResponse(String title, String content, int type) {
         this.title = title;
         this.content = content;

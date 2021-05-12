@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class FileExtraData {
 
     private String fileType;
-    private double size;
+    private Double size;
     private String origin;
     private String observations;
 }

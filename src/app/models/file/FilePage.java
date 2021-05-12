@@ -14,9 +14,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @ValueObject
-public class FilePageData {
+public class FilePage {
 
-    private int pagesAmount;
-    private int initPage;
-    private int lastPage;
+    private Integer pagesAmount;
+    private Integer initPage;
+    private Integer lastPage;
 }

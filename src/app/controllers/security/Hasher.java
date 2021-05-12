@@ -2,6 +2,7 @@ package app.controllers.security;
 
 import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -32,7 +33,7 @@ class Hasher {
      */
     @SneakyThrows
     public Cipher generateCipher(String salt) {
-        SecretKey key = new SecretKeySpec(salt.getBytes(), "AES");
+        SecretKey key = new SecretKeySpec(Arrays.copyOf(salt.getBytes(), 16), "AES");
         Cipher encryptor = Cipher.getInstance("AES");
         encryptor.init(Cipher.ENCRYPT_MODE, key);
 

@@ -5,7 +5,16 @@ import java.util.function.Supplier;
 
 public class ViewController {
 
-    public <T> T saveInput(
+    /**
+     *
+     * @param question
+     * @param scan
+     * @param errorMsg
+     * @param flush
+     * @param <T>
+     * @return
+     */
+    public <T> T safeInput(
         String question,
         Supplier<T> scan,
         String errorMsg,
