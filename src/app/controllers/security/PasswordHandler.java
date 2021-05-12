@@ -1,6 +1,5 @@
 package app.controllers.security;
 
-
 /**
  * A final class that consists exclusively of static methods for password handling.
  */
