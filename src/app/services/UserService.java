@@ -1,27 +1,26 @@
 package app.services;
 
 import app.database.ConnectionManager;
-import app.database.UserRepository;
-import app.models.users.Coordinator;
-import app.models.users.SuperUser;
 import app.models.users.User;
-import java.sql.ResultSet;
+import app.repositories.UserRepository;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-import lombok.val;
 
 /**
  * Class that manages all business logic and database implementation.
  */
-public class UserService implements Service<User, String> {
+public class UserService implements Service<String, User> {
 
     private final UserRepository userRepository;
     private final ConnectionManager connectionManager;
 
     public UserService() {
-        this.connectionManager = new ConnectionManager();
-        this.userRepository = new UserRepository(connectionManager);
+        this(new ConnectionManager());
+    }
+
+    public UserService(ConnectionManager connectionManager) {
+        this.connectionManager = connectionManager;
+        this.userRepository = new UserRepository(this.connectionManager);
     }
 
     /**
@@ -32,14 +31,9 @@ public class UserService implements Service<User, String> {
      */
     @Override
     public ServiceResponse<User> create(User user) {
-        String userType = "SU";
-        if (user instanceof Coordinator) {
-            userType = "CO";
-        }
-
         try {
             connectionManager.open();
-            userRepository.create(user, userType);
+            userRepository.create(user);
             return new ServiceResponse<>(user);
         } catch (SQLException ignore) {
             return new ServiceResponse<>();
@@ -55,15 +49,9 @@ public class UserService implements Service<User, String> {
      */
     @Override
     public ServiceResponse<List<User>> readAll() {
-        val userList = new ArrayList<User>();
-
         try {
             connectionManager.open();
-            ResultSet resultSet = userRepository.readAll();
-            while (resultSet.next()) {
-                userList.add(resultSetMapToUser(resultSet));
-            }
-
+            List<User> userList = userRepository.readAll();
             return new ServiceResponse<>(userList);
         } catch (SQLException ignore) {
             return new ServiceResponse<>();
@@ -79,11 +67,11 @@ public class UserService implements Service<User, String> {
      * @return A response depending on the success of the action.
      */
     @Override
-    public ServiceResponse<User> read(String username) {
+    public ServiceResponse<User> getById(String username) {
         try {
             connectionManager.open();
-            ResultSet resultSet = userRepository.read(username);
-            return new ServiceResponse<>(resultSetMapToUser(resultSet));
+            User user = userRepository.getById(username);
+            return new ServiceResponse<>(user);
         } catch (SQLException ignore) {
             return new ServiceResponse<>();
         } finally {
@@ -99,12 +87,12 @@ public class UserService implements Service<User, String> {
      * @return A response depending on the success of the action.
      */
     @Override
-    public ServiceResponse<User> update(String username, User newData) {
+    public ServiceResponse<User> updateById(String username, User newData) {
         try {
             connectionManager.open();
-            ResultSet user = userRepository.read(username);
-            userRepository.update(username, newData);
-            return new ServiceResponse<>(resultSetMapToUser(user));
+            User user = userRepository.getById(username);
+            userRepository.updateById(username, newData);
+            return new ServiceResponse<>(user);
         } catch (SQLException ignore) {
             return new ServiceResponse<>();
         } finally {
@@ -119,33 +107,15 @@ public class UserService implements Service<User, String> {
      * @return A response depending on the success of the action.
      */
     @Override
-    public ServiceResponse<User> delete(String username) {
+    public ServiceResponse<User> deleteById(String username) {
         try {
             connectionManager.open();
-            userRepository.delete(username);
-            return new ServiceResponse<>(username);
+            userRepository.deleteById(username);
+            return new ServiceResponse<>(username, false);
         } catch (SQLException ignore) {
             return new ServiceResponse<>();
         } finally {
             connectionManager.close();
         }
-    }
-
-    /**
-     * Convert a given result set from the database to a determinate user instance
-     * depending of his saved type.
-     *
-     * @param resultSet A ResultSet from the database.
-     * @return A user object generated from the database result set.
-     * @throws SQLException For invalid fields.
-     */
-    private User resultSetMapToUser(ResultSet resultSet) throws SQLException {
-        String name = resultSet.getString("name");
-        String password = resultSet.getString("password");
-
-        if (resultSet.getString("type").equals("SU")) {
-            return new SuperUser(name, password);
-        }
-        return new Coordinator(name, password);
     }
 }

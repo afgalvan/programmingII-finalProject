@@ -36,8 +36,8 @@ public class ConnectionManager {
     public void close() {
         try {
             this.connection.close();
-        } catch (SQLException | NullPointerException ignore) {
-            System.out.println(connection);
+        } catch (SQLException | NullPointerException error) {
+            System.out.println(error.getMessage());
         }
     }
 

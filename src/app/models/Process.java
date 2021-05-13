@@ -1,9 +1,7 @@
 package app.models;
 
-import app.models.records.JudicialOffice;
-import app.models.records.Location;
-import app.models.records.RecordMetadata;
-import app.models.records.Series;
+import app.models.metadata.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -17,9 +15,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Process {
+public class Process implements Serializable {
 
-    private RecordMetadata recordMetadata;
+    private ProcessMetadata metadata;
     private int noteBooksLen;
     private final List<Notebook> notebooksList = new ArrayList<>(noteBooksLen);
 
@@ -36,26 +34,31 @@ public class Process {
      * @param location place where the process is being instantiated.
      * @param judicialOffice judicial office where the process is being executed.
      * @param series series of the record.
-     * @param processFilingNumber
-     * @param hasPhysicalFile
-     * @param notebooksAmount
+     * @param id
+     * @param physicalInformation
      */
-    public void setRecordMetadata(
+    public void setMetadata(
+        Long id,
         Location location,
         JudicialOffice judicialOffice,
         Series series,
-        long processFilingNumber,
-        Boolean hasPhysicalFile,
-        int notebooksAmount
+        PhysicalInformation physicalInformation
     ) {
-        this.recordMetadata =
-            new RecordMetadata(
+        this.metadata =
+            new ProcessMetadata(
+                id,
                 location,
                 judicialOffice,
                 series,
-                processFilingNumber,
-                hasPhysicalFile,
-                notebooksAmount
+                physicalInformation
             );
+    }
+
+    public Notebook getNotebookByName(String name) {
+        return notebooksList
+            .stream()
+            .filter(notebook -> notebook.getName().equals(name))
+            .findFirst()
+            .orElse(null);
     }
 }

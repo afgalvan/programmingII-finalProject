@@ -2,12 +2,13 @@ package app.controllers.api;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.val;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
 /**
  * A class to get the departments and cities list from Colombia. Got from a json file
- * from https://github.com/marcovega/colombia-json repo.
+ * from https://github.com/marcovega/colombia-json repository.
  */
 public final class LocationApi {
 
@@ -34,7 +35,7 @@ public final class LocationApi {
         List<List<String>> cities = jsonNode.findValues("ciudades")
             .stream()
             .map(c -> Arrays.asList(
-                c.toString().replaceAll("[\\[\\]\"]", "").split(",")
+                c.toString().toLowerCase().replaceAll("[\\[\\]\"]", "").split(",")
             )).collect(Collectors.toList());
 
         val departments = new ArrayList<>(
@@ -42,7 +43,7 @@ public final class LocationApi {
         );
 
         for (int i = 0; i < departments.size(); i++) {
-            locations.put(departments.get(i), cities.get(i));
+            locations.put(departments.get(i).toLowerCase(), cities.get(i));
         }
 
         return locations;

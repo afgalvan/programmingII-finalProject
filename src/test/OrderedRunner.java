@@ -16,18 +16,8 @@ public class OrderedRunner extends BlockJUnit4ClassRunner {
     protected List<FrameworkMethod> computeTestMethods() {
         List<FrameworkMethod> list = super.computeTestMethods();
         List<FrameworkMethod> sortedMethods = new ArrayList<>(list);
-        sortedMethods.sort(
-            (method1, method2) -> {
-                Order o1 = method1.getAnnotation(Order.class);
-                Order o2 = method2.getAnnotation(Order.class);
+        sortedMethods.sort(new SortByAnnotation());
 
-                if (o1 == null || o2 == null) {
-                    return -1;
-                }
-
-                return o1.order() - o2.order();
-            }
-        );
         return sortedMethods;
     }
 }

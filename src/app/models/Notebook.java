@@ -1,9 +1,10 @@
 package app.models;
 
-import app.models.proceedings.ProceedingsDate;
-import app.models.proceedings.ProceedingsExtraData;
-import app.models.proceedings.ProceedingsMetadata;
-import app.models.proceedings.ProceedingsPageData;
+import app.models.documents.Document;
+import app.models.documents.DocumentDate;
+import app.models.documents.DocumentExtraData;
+import app.models.documents.DocumentPage;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -17,34 +18,28 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Notebook {
+public class Notebook implements Serializable {
 
     private String name;
-    private final List<ProceedingsMetadata> proceedingsMetadataList = new ArrayList<>();
+    private final List<Document> filesList = new ArrayList<>();
 
     /**
      * Add a document metadata to a document metadata list.
      * @param name name of the document.
      * @param docOrder
      * @param dates
-     * @param proceedingsPageData
-     * @param proceedingsExtraData
+     * @param documentPage
+     * @param documentExtraData
      */
-    public void addProceedingsMetadata(
+    public void addFile(
         String name,
         int docOrder,
-        ProceedingsDate dates,
-        ProceedingsPageData proceedingsPageData,
-        ProceedingsExtraData proceedingsExtraData
+        DocumentDate dates,
+        DocumentPage documentPage,
+        DocumentExtraData documentExtraData
     ) {
-        this.proceedingsMetadataList.add(
-                new ProceedingsMetadata(
-                    name,
-                    docOrder,
-                    dates,
-                    proceedingsPageData,
-                    proceedingsExtraData
-                )
+        this.filesList.add(
+                new Document(name, docOrder, dates, documentPage, documentExtraData)
             );
     }
 }

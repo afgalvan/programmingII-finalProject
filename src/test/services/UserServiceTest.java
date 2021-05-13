@@ -9,11 +9,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import test.Order;
 import test.OrderedRunner;
+import test.database.UserRepositoryTest;
 
 @RunWith(OrderedRunner.class)
 public class UserServiceTest {
 
-    public UserService userService = new UserService();
+    public UserService userService = new UserService(
+        UserRepositoryTest.connectionManager
+    );
     public User sample = new Coordinator("Maria", "Okiss123");
     public User updateSample = new Coordinator("María", "Okiss123");
 
@@ -22,7 +25,7 @@ public class UserServiceTest {
     public void userCreationTest() {
         userService.create(sample);
         Assert.assertEquals(
-            userService.read("Maria").getData().getName(),
+            userService.getById("Maria").getData().getName(),
             sample.getName()
         );
     }
@@ -30,18 +33,16 @@ public class UserServiceTest {
     @Test
     @Order(order = 2)
     public void saveCorrectUserType() {
-        if (userService.read("Maria").getData() == null) {
+        if (userService.getById("Maria").getData() == null) {
             userService.create(sample);
         }
 
-        Assert.assertTrue(
-            userService.read("Maria").getData() instanceof Coordinator
-        );
+        Assert.assertTrue(userService.getById("Maria").getData() instanceof Coordinator);
     }
 
     @Test
     @Order(order = 3)
-    public void readAllUsers() {
+    public void readAllUsersTest() {
         Assert.assertTrue(userService.readAll().getData() instanceof List);
         Assert.assertFalse(userService.readAll().isError());
     }
@@ -49,34 +50,34 @@ public class UserServiceTest {
     @Test
     @Order(order = 4)
     public void readUserTest() {
-        Assert.assertFalse(userService.read("Maria").isError());
+        Assert.assertFalse(userService.getById("Maria").isError());
     }
 
     @Test
     @Order(order = 5)
     public void readBadUserTest() {
-        Assert.assertTrue(userService.read("xadacsa31$#").isError());
+        Assert.assertTrue(userService.getById("xadacsa31$#").isError());
     }
 
     @Test
     @Order(order = 6)
     public void updateBadUserTest() {
-        Assert.assertTrue(userService.update("x1dsadassas", sample).isError());
+        Assert.assertTrue(userService.updateById("x1dsadassas", sample).isError());
     }
 
     @Test
     @Order(order = 7)
-    public void updateUser() {
-        Assert.assertFalse(userService.read("Maria").isError());
+    public void updateUserTest() {
+        Assert.assertFalse(userService.getById("Maria").isError());
         Assert.assertFalse(
-            userService.update(sample.getName(), updateSample).isError()
+            userService.updateById(sample.getName(), updateSample).isError()
         );
     }
 
     @Test
     @Order(order = 8)
     public void userDeletionTest() {
-        userService.delete(updateSample.getName());
-        Assert.assertNull(userService.read(updateSample.getName()).getData());
+        userService.deleteById(updateSample.getName());
+        Assert.assertNull(userService.getById(updateSample.getName()).getData());
     }
 }

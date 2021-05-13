@@ -14,8 +14,10 @@ import lombok.Getter;
 public class UserController {
 
     private final UserService userService;
+
     private final Function<String, String> postResponse = u ->
         u + " registrado con éxito.";
+
     private final Function<String, String> outpostResponse = u ->
         "No se pudo registrar el usuario " + u + ".";
 
@@ -45,9 +47,6 @@ public class UserController {
      * @return A List of users all users from the database.
      */
     public List<User> getUsers() {
-        /* TODO: Differentiate between an error and an empty database
-         * TODO: Return a message to show.
-         */
         ServiceResponse<List<User>> res = userService.readAll();
         if (res.isError()) {
             return null;
@@ -63,7 +62,7 @@ public class UserController {
      * @return Any kind of user depending of how was saved.
      */
     public User getUserById(String username) {
-        ServiceResponse<User> res = userService.read(username);
+        ServiceResponse<User> res = userService.getById(username);
         if (res.isError()) {
             return null;
         }
@@ -78,9 +77,9 @@ public class UserController {
      * @return A message to be showed from the deleted status.
      */
     public String deleteUserById(String username) {
-        ServiceResponse<User> res = userService.delete(username);
+        ServiceResponse<User> res = userService.deleteById(username);
         if (res.isError()) {
-            return "Error inesperado.";
+            return "No se pudo eliminar el usuario.";
         }
         return "Usuario eliminado con éxito.";
     }
@@ -92,10 +91,10 @@ public class UserController {
      *
      * @param username String value for the username.
      * @param newData  Username object which contains his new credentials.
-     * @return A message to be showed from the update status.
+     * @return A message to be showed from the updateById status.
      */
     public String updateUserById(String username, User newData) {
-        ServiceResponse<User> res = userService.update(username, newData);
+        ServiceResponse<User> res = userService.updateById(username, newData);
         if (res.isError()) {
             return "No se pudo modificar el usuario.";
         }

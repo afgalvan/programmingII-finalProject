@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class DialogResponse {
+public class DialogResponse<T> {
 
     public static final int ERROR_MESSAGE = 0;
     public static final int INFORMATION_MESSAGE = 1;
@@ -14,6 +14,19 @@ public class DialogResponse {
     public static final int PLAIN_MESSAGE = -1;
 
     private String title;
-    private String content;
+    private String message;
     private int type;
+    private T data;
+
+    /**
+     *
+     * @param title
+     * @param message
+     * @param type
+     */
+    public DialogResponse(String title, String message, int type) {
+        this.title = title;
+        this.message = message;
+        this.type = type;
+    }
 }
