@@ -13,7 +13,7 @@
     "submodule:sync": "git -C src/app/views submodule sync --quiet --recursive",
     "submodule:pull": "git submodule update --init --recursive",
     "submodule:dir": "cd src/app/views",
-    "format": "prettier --write ./"
+    "format": "prettier --write ./src"
   },
   "config": {
     "ghooks": {
