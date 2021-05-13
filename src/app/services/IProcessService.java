@@ -1,7 +1,6 @@
 package app.services;
 
 import app.models.Process;
-
 import java.util.List;
 
 public interface IProcessService extends Service<Long, Process> {

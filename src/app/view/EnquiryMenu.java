@@ -5,7 +5,6 @@ import app.controllers.ProcessController;
 import app.models.Process;
 import java.util.LinkedHashMap;
 import java.util.List;
-
 import lombok.val;
 
 public class EnquiryMenu implements Menu {
