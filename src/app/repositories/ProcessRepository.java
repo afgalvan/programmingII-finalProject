@@ -1,6 +1,6 @@
 package app.repositories;
 
-import app.database.ProcessDatabase;
+import app.database.ProcessFileManager;
 import app.exceptions.DataAccessException;
 import app.models.Process;
 import app.models.metadata.parts.Person;
@@ -9,11 +9,11 @@ import java.util.*;
 public class ProcessRepository implements IProcessRepository {
 
     private Map<Long, Process> processMap;
-    private final ProcessDatabase database;
+    private final ProcessFileManager database;
 
     public ProcessRepository() {
         this.processMap = new LinkedHashMap<>();
-        this.database = new ProcessDatabase();
+        this.database = new ProcessFileManager();
     }
 
     public boolean isUnique(Process process) {
@@ -25,7 +25,7 @@ public class ProcessRepository implements IProcessRepository {
     }
 
     @Override
-    public void create(Process process) throws DataAccessException {
+    public void insert(Process process) throws DataAccessException {
         if (process == null) {
             throw new DataAccessException("El proceso es null");
         }
@@ -45,7 +45,7 @@ public class ProcessRepository implements IProcessRepository {
     }
 
     @Override
-    public List<Process> readAll() throws DataAccessException {
+    public List<Process> getAll() throws DataAccessException {
         processMap = database.read();
         if (processMap == null) {
             throw new DataAccessException("Unable to get enough information.");
@@ -57,7 +57,7 @@ public class ProcessRepository implements IProcessRepository {
     public Process getById(Long id) throws DataAccessException {
         processMap = database.read();
         if (processMap == null) {
-            return null;
+            throw new DataAccessException("No existen procesos registrados");
         }
         Process process = processMap.get(id);
         if (process == null) {
@@ -82,22 +82,31 @@ public class ProcessRepository implements IProcessRepository {
         database.save(processMap);
     }
 
+    private boolean containsIgnoreCase(String s1, String s2) {
+        return s1.toLowerCase().contains(s2.toLowerCase());
+    }
+
     @Override
-    public Process getProcessByJudged(String name) throws DataAccessException {
+    public List<Process> getProcessByJudged(String name) throws DataAccessException {
         if (name == null) {
             throw new DataAccessException("El nombre del demandado es null");
         }
 
-        List<Process> allProcess = this.readAll();
+        List<Process> allProcess = this.getAll();
+        List<Process> processList = new ArrayList<>();
         for (Process process : allProcess) {
             for (Person person : process.getMetadata().getJudgedList()) {
-                if (person.getFullName().equalsIgnoreCase(name)) {
-                    return process;
+                if (containsIgnoreCase(person.getName(), name)) {
+                    processList.add(process);
                 }
             }
         }
 
-        throw new DataAccessException("Proceso no encontrado");
+        if (processList.size() == 0) {
+            throw new DataAccessException("Ningún proceso encontrado");
+        }
+
+        return processList;
     }
 
     @Override
@@ -106,7 +115,7 @@ public class ProcessRepository implements IProcessRepository {
             throw new DataAccessException("El nombre del demandado es null");
         }
 
-        List<Process> allProcess = this.readAll();
+        List<Process> allProcess = this.getAll();
         for (Process process : allProcess) {
             for (Person person : process.getMetadata().getProsecutorList()) {
                 if (person.getFullName().equalsIgnoreCase(name)) {

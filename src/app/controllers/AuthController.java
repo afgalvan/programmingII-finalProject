@@ -85,7 +85,7 @@ public class AuthController implements Auth {
             ? new Coordinator(username, encryptPassword, salt)
             : new SuperUser(username, encryptPassword, salt);
 
-        if (userService.create(newUser).isError()) {
+        if (userService.insert(newUser).isError()) {
             return new DialogResponse<>(
                 "Registro",
                 "El usuario " + username + " ya se encuentra registrado",

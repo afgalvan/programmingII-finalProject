@@ -30,7 +30,7 @@ public class UserRepository implements Repository<String, User> {
      * @throws SQLException When an username was already registered.
      */
     @Override
-    public void create(User user) throws SQLException {
+    public void insert(User user) throws SQLException {
         String userType = "SU";
         if (user instanceof Coordinator) {
             userType = "CO";
@@ -52,7 +52,7 @@ public class UserRepository implements Repository<String, User> {
      * @throws SQLException When no users found.
      */
     @Override
-    public List<User> readAll() throws SQLException {
+    public List<User> getAll() throws SQLException {
         val query = "SELECT * FROM users";
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(query);

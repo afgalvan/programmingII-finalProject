@@ -33,7 +33,7 @@ public class UserController {
      * @return A string to show to the user
      */
     public String postUser(User user) {
-        ServiceResponse<User> res = userService.create(user);
+        ServiceResponse<User> res = userService.insert(user);
         if (res.isError()) {
             return outpostResponse.apply(user.getName());
         }
@@ -47,7 +47,7 @@ public class UserController {
      * @return A List of users all users from the database.
      */
     public List<User> getUsers() {
-        ServiceResponse<List<User>> res = userService.readAll();
+        ServiceResponse<List<User>> res = userService.getAll();
         if (res.isError()) {
             return null;
         }

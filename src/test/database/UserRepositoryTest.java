@@ -42,7 +42,7 @@ public class UserRepositoryTest {
 
         try {
             connectionManager.open();
-            userRepository.create(sample);
+            userRepository.insert(sample);
         } catch (SQLException ignored) {}
 
         try {

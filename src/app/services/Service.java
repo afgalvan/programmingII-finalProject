@@ -8,9 +8,9 @@ import java.util.List;
  * @param <T> Data Type.
  */
 public interface Service<K, T> {
-    ServiceResponse<T> create(T data);
+    ServiceResponse<T> insert(T data);
 
-    ServiceResponse<List<T>> readAll();
+    ServiceResponse<List<T>> getAll();
 
     ServiceResponse<T> getById(K id);
 

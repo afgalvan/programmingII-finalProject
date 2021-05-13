@@ -1,6 +1,5 @@
 package app.view;
 
-import app.controllers.ViewController;
 import java.io.Console;
 import java.util.Scanner;
 import java.util.function.Supplier;
@@ -10,13 +9,11 @@ public final class View {
     public static boolean isInTerminal;
     public static final Scanner scanner;
     public static final Console console;
-    private static final ViewController controller;
 
     static {
         scanner = new Scanner(System.in);
         console = System.console();
         isInTerminal = console != null;
-        controller = new ViewController();
     }
 
     private View() {}
@@ -53,19 +50,60 @@ public final class View {
         }
     }
 
+    /**
+     * Ask a user for input and verify it's a valid one by catching the exception, if there is any.
+     *
+     * @param scan Scan method to ask user for input.
+     * @param <T> The type of the returned and the scan method.
+     * @return An object given users input for a scan method.
+     */
     public static <T> T input(Supplier<T> scan) {
         return input("", scan);
     }
 
+    /**
+     * Ask a user for input and verify it's a valid one by catching the exception, if there is any.
+     *
+     * @param question A String to print as a question.
+     * @param scan Scan method to ask user for input.
+     * @param errorMsg A String for error message to show in case of an Exception.
+     * @param flush A boolean for flushing or not after asking the data for keyboard.
+     * @param <T> The type of the returned and the scan method.
+     * @return An object given users input for a scan method.
+     */
     public static <T> T input(
         String question,
         Supplier<T> scan,
         String errorMsg,
         boolean flush
     ) {
-        return controller.safeInput(question, scan, errorMsg, flush);
+        boolean hasError;
+        T data = null;
+        do {
+            try {
+                System.out.print(question);
+                data = scan.get();
+                hasError = false;
+            } catch (Exception exception) {
+                System.out.println(Color.RED + errorMsg + Color.NORMAL);
+                hasError = true;
+            }
+            if (flush) {
+                View.scanner.nextLine();
+            }
+        } while (hasError);
+
+        return data;
     }
 
+    /**
+     * Ask a user for input and verify it's a valid one by catching the exception, if there is any.
+     *
+     * @param question A String to print as a question.
+     * @param scan Scan method to ask user for input.
+     * @param <T> The type of the returned and the scan method.
+     * @return An object given users input for a scan method.
+     */
     public static <T> T input(String question, Supplier<T> scan) {
         return input(question, scan, "Valor inválido", true);
     }

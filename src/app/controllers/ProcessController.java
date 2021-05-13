@@ -1,15 +1,18 @@
 package app.controllers;
 
 import app.models.Process;
+import app.services.IProcessService;
 import app.services.ProcessService;
 import app.services.ServiceResponse;
+
+import java.util.List;
 
 /**
  *
  */
 public class ProcessController {
 
-    private final ProcessService service;
+    private final IProcessService service;
 
     public ProcessController() {
         this.service = new ProcessService();
@@ -17,11 +20,11 @@ public class ProcessController {
 
     /**
      *
-     * @param process
-     * @return
+     * @param process process to be stored in database.
+     * @return A response of the save operation.
      */
     public DialogResponse<Process> add(Process process) {
-        ServiceResponse<Process> response = service.create(process);
+        ServiceResponse<Process> response = service.insert(process);
         if (response.isError()) {
             return new DialogResponse<>(
                 "Registro de proceso",
@@ -56,8 +59,8 @@ public class ProcessController {
         );
     }
 
-    public DialogResponse<Process> getProcessByJudged(String name) {
-        ServiceResponse<Process> response = service.getProcessByJudged(name);
+    public DialogResponse<List<Process>> getProcessByJudged(String name) {
+        ServiceResponse<List<Process>> response = service.getProcessByJudged(name);
         if (response.isError()) {
             return new DialogResponse<>(
                 "Registro de proceso",

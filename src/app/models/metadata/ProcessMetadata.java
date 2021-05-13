@@ -5,6 +5,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Supplier;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -43,10 +46,10 @@ public class ProcessMetadata implements Serializable {
 
     public List<String> getAsRow() {
         return Arrays.asList(
-            location.getCity(),
-            judicialOffice.getName(),
-            series.getName(),
-            id.toString(),
+            (location != null) ? location.getCity() : "",
+            (judicialOffice != null) ? judicialOffice.getName() : "",
+            (series != null) ? series.getName() : "",
+            (id != null) ? id.toString() : "",
             judgedList.toString(),
             prosecutorList.toString()
         );

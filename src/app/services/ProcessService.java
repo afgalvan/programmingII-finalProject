@@ -2,32 +2,34 @@ package app.services;
 
 import app.exceptions.DataAccessException;
 import app.models.Process;
+import app.repositories.IProcessRepository;
 import app.repositories.ProcessRepository;
+import java.sql.SQLException;
 import java.util.List;
 
 public class ProcessService implements IProcessService {
 
-    private final ProcessRepository processRepository;
+    private final IProcessRepository processRepository;
 
     public ProcessService() {
         this.processRepository = new ProcessRepository();
     }
 
     @Override
-    public ServiceResponse<Process> create(Process process) {
+    public ServiceResponse<Process> insert(Process process) {
         try {
-            processRepository.create(process);
+            processRepository.insert(process);
             return new ServiceResponse<>(process);
-        } catch (DataAccessException error) {
+        } catch (SQLException | DataAccessException error) {
             return new ServiceResponse<>(error.getMessage());
         }
     }
 
     @Override
-    public ServiceResponse<List<Process>> readAll() {
+    public ServiceResponse<List<Process>> getAll() {
         try {
-            return new ServiceResponse<>(processRepository.readAll());
-        } catch (DataAccessException error) {
+            return new ServiceResponse<>(processRepository.getAll());
+        } catch (Exception error) {
             return new ServiceResponse<>(error.getMessage());
         }
     }
@@ -36,7 +38,7 @@ public class ProcessService implements IProcessService {
     public ServiceResponse<Process> getById(Long id) {
         try {
             return new ServiceResponse<>(processRepository.getById(id));
-        } catch (DataAccessException error) {
+        } catch (SQLException | DataAccessException error) {
             return new ServiceResponse<>(error.getMessage());
         }
     }
@@ -52,16 +54,16 @@ public class ProcessService implements IProcessService {
             Process process = processRepository.getById(id);
             processRepository.deleteById(id);
             return new ServiceResponse<>(process);
-        } catch (DataAccessException error) {
-            return new ServiceResponse<>();
+        } catch (SQLException | DataAccessException error) {
+            return new ServiceResponse<>(error.getMessage());
         }
     }
 
     @Override
-    public ServiceResponse<Process> getProcessByJudged(String name) {
+    public ServiceResponse<List<Process>> getProcessByJudged(String name) {
         try {
             return new ServiceResponse<>(processRepository.getProcessByJudged(name));
-        } catch (DataAccessException error) {
+        } catch (SQLException | DataAccessException error) {
             return new ServiceResponse<>(error.getMessage());
         }
     }
@@ -70,7 +72,7 @@ public class ProcessService implements IProcessService {
     public ServiceResponse<Process> getProcessByProsecutor(String name) {
         try {
             return new ServiceResponse<>(processRepository.getProcessByProsecutor(name));
-        } catch (DataAccessException error) {
+        } catch (SQLException | DataAccessException error) {
             return new ServiceResponse<>(error.getMessage());
         }
     }
