@@ -67,10 +67,10 @@ public class UserService implements Service<String, User> {
      * @return A response depending on the success of the action.
      */
     @Override
-    public ServiceResponse<User> readById(String username) {
+    public ServiceResponse<User> getById(String username) {
         try {
             connectionManager.open();
-            User user = userRepository.readById(username);
+            User user = userRepository.getById(username);
             return new ServiceResponse<>(user);
         } catch (SQLException ignore) {
             return new ServiceResponse<>();
@@ -90,7 +90,7 @@ public class UserService implements Service<String, User> {
     public ServiceResponse<User> updateById(String username, User newData) {
         try {
             connectionManager.open();
-            User user = userRepository.readById(username);
+            User user = userRepository.getById(username);
             userRepository.updateById(username, newData);
             return new ServiceResponse<>(user);
         } catch (SQLException ignore) {

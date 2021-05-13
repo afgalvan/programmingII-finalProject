@@ -23,6 +23,11 @@ public enum IdType implements Serializable {
         this.type = _type;
     }
 
+    @Override
+    public String toString() {
+        return type;
+    }
+
     public static List<String> getAll() {
         return Arrays
             .stream(IdType.values())

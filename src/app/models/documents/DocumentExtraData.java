@@ -1,4 +1,4 @@
-package app.models.file;
+package app.models.documents;
 
 import app.models.annotations.ValueObject;
 import java.io.Serializable;
@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @ValueObject
-public class FileExtraData implements Serializable {
+public class DocumentExtraData implements Serializable {
 
     private String fileType;
     private Double size;

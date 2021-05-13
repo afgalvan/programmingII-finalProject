@@ -25,7 +25,7 @@ public class UserServiceTest {
     public void userCreationTest() {
         userService.create(sample);
         Assert.assertEquals(
-            userService.readById("Maria").getData().getName(),
+            userService.getById("Maria").getData().getName(),
             sample.getName()
         );
     }
@@ -33,11 +33,11 @@ public class UserServiceTest {
     @Test
     @Order(order = 2)
     public void saveCorrectUserType() {
-        if (userService.readById("Maria").getData() == null) {
+        if (userService.getById("Maria").getData() == null) {
             userService.create(sample);
         }
 
-        Assert.assertTrue(userService.readById("Maria").getData() instanceof Coordinator);
+        Assert.assertTrue(userService.getById("Maria").getData() instanceof Coordinator);
     }
 
     @Test
@@ -50,13 +50,13 @@ public class UserServiceTest {
     @Test
     @Order(order = 4)
     public void readUserTest() {
-        Assert.assertFalse(userService.readById("Maria").isError());
+        Assert.assertFalse(userService.getById("Maria").isError());
     }
 
     @Test
     @Order(order = 5)
     public void readBadUserTest() {
-        Assert.assertTrue(userService.readById("xadacsa31$#").isError());
+        Assert.assertTrue(userService.getById("xadacsa31$#").isError());
     }
 
     @Test
@@ -68,7 +68,7 @@ public class UserServiceTest {
     @Test
     @Order(order = 7)
     public void updateUserTest() {
-        Assert.assertFalse(userService.readById("Maria").isError());
+        Assert.assertFalse(userService.getById("Maria").isError());
         Assert.assertFalse(
             userService.updateById(sample.getName(), updateSample).isError()
         );
@@ -78,6 +78,6 @@ public class UserServiceTest {
     @Order(order = 8)
     public void userDeletionTest() {
         userService.deleteById(updateSample.getName());
-        Assert.assertNull(userService.readById(updateSample.getName()).getData());
+        Assert.assertNull(userService.getById(updateSample.getName()).getData());
     }
 }

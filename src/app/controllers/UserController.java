@@ -62,7 +62,7 @@ public class UserController {
      * @return Any kind of user depending of how was saved.
      */
     public User getUserById(String username) {
-        ServiceResponse<User> res = userService.readById(username);
+        ServiceResponse<User> res = userService.getById(username);
         if (res.isError()) {
             return null;
         }

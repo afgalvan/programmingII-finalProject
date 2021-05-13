@@ -53,4 +53,12 @@ public class Process implements Serializable {
                 physicalInformation
             );
     }
+
+    public Notebook getNotebookByName(String name) {
+        return notebooksList
+            .stream()
+            .filter(notebook -> notebook.getName().equals(name))
+            .findFirst()
+            .orElse(null);
+    }
 }

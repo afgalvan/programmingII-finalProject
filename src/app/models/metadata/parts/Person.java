@@ -15,8 +15,12 @@ import lombok.NoArgsConstructor;
 public abstract class Person implements Serializable {
 
     private String name;
-    private String id;
+    private Integer id;
     private IdType idType;
 
     public abstract String getFullName();
+
+    public String toString() {
+        return getFullName();
+    }
 }

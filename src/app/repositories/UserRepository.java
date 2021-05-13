@@ -73,7 +73,7 @@ public class UserRepository implements Repository<String, User> {
      * @throws SQLException When any username match.
      */
     @Override
-    public User readById(String username) throws SQLException {
+    public User getById(String username) throws SQLException {
         val query = "SELECT * FROM users WHERE name = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, username);

@@ -1,4 +1,4 @@
-package app.models.file;
+package app.models.documents;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -14,13 +14,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class File implements Serializable {
+public class Document implements Serializable {
 
     private String name;
     private Integer docOrder;
-    private FileDate dates;
-    private FilePage pages;
-    private FileExtraData extraData;
+    private DocumentDate dates;
+    private DocumentPage pages;
+    private DocumentExtraData extraData;
 
     public List<String> getAsRow() {
         return Arrays.asList(

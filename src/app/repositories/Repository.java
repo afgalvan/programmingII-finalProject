@@ -13,7 +13,7 @@ public interface Repository<K, T> {
 
     List<T> readAll() throws Exception;
 
-    T readById(K id) throws Exception;
+    T getById(K id) throws Exception;
 
     void updateById(K id, T newData) throws Exception;
 

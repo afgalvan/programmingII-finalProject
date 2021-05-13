@@ -1,4 +1,4 @@
-package app.models.file;
+package app.models.documents;
 
 import app.models.annotations.ValueObject;
 import java.io.Serializable;
@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @ValueObject
-public class FileDate implements Serializable {
+public class DocumentDate implements Serializable {
 
     private LocalDate creationDate;
     private LocalDate incorporationDate;

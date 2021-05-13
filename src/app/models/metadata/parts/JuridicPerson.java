@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 public class JuridicPerson extends Person implements Serializable {
 
-    public JuridicPerson(String name, String id, IdType idType) {
+    public JuridicPerson(String name, Integer id, IdType idType) {
         super(name, id, idType);
     }
 

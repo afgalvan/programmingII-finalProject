@@ -14,19 +14,19 @@ public class DialogResponse<T> {
     public static final int PLAIN_MESSAGE = -1;
 
     private String title;
-    private String content;
+    private String message;
     private int type;
     private T data;
 
     /**
      *
      * @param title
-     * @param content
+     * @param message
      * @param type
      */
-    public DialogResponse(String title, String content, int type) {
+    public DialogResponse(String title, String message, int type) {
         this.title = title;
-        this.content = content;
+        this.message = message;
         this.type = type;
     }
 }

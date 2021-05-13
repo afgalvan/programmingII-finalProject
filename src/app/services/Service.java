@@ -12,7 +12,7 @@ public interface Service<K, T> {
 
     ServiceResponse<List<T>> readAll();
 
-    ServiceResponse<T> readById(K id);
+    ServiceResponse<T> getById(K id);
 
     ServiceResponse<T> updateById(K id, T newData);
 
