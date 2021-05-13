@@ -1,7 +1,7 @@
 package app.controllers;
 
-import app.views.Color;
-import app.views.View;
+import app.view.Color;
+import app.view.View;
 import java.util.function.Supplier;
 
 public class ViewController {
