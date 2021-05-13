@@ -91,7 +91,7 @@ public class ProcessRepository implements IProcessRepository {
         List<Process> allProcess = this.readAll();
         for (Process process : allProcess) {
             for (Person person : process.getMetadata().getJudgedList()) {
-                if (person.getFullName().contains(name)) {
+                if (person.getFullName().equalsIgnoreCase(name)) {
                     return process;
                 }
             }
@@ -109,7 +109,7 @@ public class ProcessRepository implements IProcessRepository {
         List<Process> allProcess = this.readAll();
         for (Process process : allProcess) {
             for (Person person : process.getMetadata().getProsecutorList()) {
-                if (person.getFullName().contains(name)) {
+                if (person.getFullName().equalsIgnoreCase(name)) {
                     return process;
                 }
             }
