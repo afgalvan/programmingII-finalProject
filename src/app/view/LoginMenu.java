@@ -5,9 +5,8 @@ import app.controllers.DialogResponse;
 import app.models.Session;
 import app.models.users.User;
 import app.models.users.UserType;
-import lombok.val;
-
 import java.util.LinkedHashMap;
+import lombok.val;
 
 public class LoginMenu implements Menu {
 

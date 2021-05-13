@@ -1,7 +1,6 @@
 package app.view;
 
 import app.models.Process;
-
 import java.util.Arrays;
 import java.util.List;
 

@@ -1,11 +1,10 @@
 package app.view;
 
 import app.controllers.TableController;
-import lombok.Getter;
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import lombok.Getter;
 
 @Getter
 public class Box {

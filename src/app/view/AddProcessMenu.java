@@ -2,10 +2,9 @@ package app.view;
 
 import app.controllers.ProcessController;
 import app.models.Process;
+import java.util.LinkedHashMap;
 import lombok.Getter;
 import lombok.val;
-
-import java.util.LinkedHashMap;
 
 @Getter
 public class AddProcessMenu implements Menu {

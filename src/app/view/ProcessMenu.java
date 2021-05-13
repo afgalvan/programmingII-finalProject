@@ -1,9 +1,8 @@
 package app.view;
 
 import app.models.Process;
-import lombok.val;
-
 import java.util.LinkedHashMap;
+import lombok.val;
 
 public class ProcessMenu implements Menu {
 

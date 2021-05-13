@@ -2,10 +2,9 @@ package app.view;
 
 import app.models.Session;
 import app.models.users.SuperUser;
+import java.util.LinkedHashMap;
 import lombok.Getter;
 import lombok.val;
-
-import java.util.LinkedHashMap;
 
 public class Dashboard implements Menu {
 

@@ -1,8 +1,7 @@
 package app.view;
 
-import lombok.Getter;
-
 import java.util.*;
+import lombok.Getter;
 
 public class MenuBuilder {
 

@@ -5,10 +5,9 @@ import app.models.Process;
 import app.models.documents.DocumentDate;
 import app.models.documents.DocumentExtraData;
 import app.models.documents.DocumentPage;
-import lombok.val;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import lombok.val;
 
 public class DocumentRegister {
 

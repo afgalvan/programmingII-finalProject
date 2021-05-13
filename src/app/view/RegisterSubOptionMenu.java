@@ -4,9 +4,8 @@ import app.models.metadata.DocumentType;
 import app.models.metadata.JudicialOffice;
 import app.models.metadata.Series;
 import app.models.metadata.SubSeries;
-import lombok.val;
-
 import java.util.LinkedHashMap;
+import lombok.val;
 
 public class RegisterSubOptionMenu implements Menu {
 

@@ -3,9 +3,8 @@ package app.view;
 import app.controllers.DialogResponse;
 import app.controllers.ProcessController;
 import app.models.Process;
-import lombok.val;
-
 import java.util.LinkedHashMap;
+import lombok.val;
 
 public class EnquiryMenu implements Menu {
 

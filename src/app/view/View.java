@@ -1,7 +1,6 @@
 package app.view;
 
 import app.controllers.ViewController;
-
 import java.io.Console;
 import java.util.Scanner;
 import java.util.function.Supplier;

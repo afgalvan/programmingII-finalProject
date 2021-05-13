@@ -3,9 +3,8 @@ package app.view;
 import app.controllers.AuthController;
 import app.controllers.UserController;
 import app.models.users.UserType;
-import lombok.val;
-
 import java.util.LinkedHashMap;
+import lombok.val;
 
 public class UserSubOptionMenu implements Menu {
 

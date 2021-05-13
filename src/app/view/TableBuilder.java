@@ -2,12 +2,11 @@ package app.view;
 
 import app.controllers.TableController;
 import app.exceptions.RowsOutOfBoundsException;
-import lombok.Data;
-import lombok.SneakyThrows;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.Data;
+import lombok.SneakyThrows;
 
 @Data
 public class TableBuilder<T> {

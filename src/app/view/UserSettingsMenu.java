@@ -1,8 +1,7 @@
 package app.view;
 
-import lombok.val;
-
 import java.util.LinkedHashMap;
+import lombok.val;
 
 public class UserSettingsMenu implements Menu {
 
