@@ -1,6 +1,6 @@
 package app.main;
 
-import app.views.TerminalView;
+import app.view.TerminalView;
 import java.security.Security;
 
 public class Main {
