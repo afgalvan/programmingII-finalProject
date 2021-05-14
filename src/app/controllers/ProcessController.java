@@ -32,6 +32,7 @@ public class ProcessController {
                 response.getData()
             );
         }
+
         return new DialogResponse<>(
             "Registro de proceso",
             "Proceso registrado con éxito",
@@ -50,6 +51,7 @@ public class ProcessController {
                 response.getData()
             );
         }
+
         return new DialogResponse<>(
             "Busqueda de proceso",
             "Proceso encontrado con éxito",
@@ -58,8 +60,8 @@ public class ProcessController {
         );
     }
 
-    public DialogResponse<List<Process>> getProcessByJudged(String name) {
-        ServiceResponse<List<Process>> response = service.getProcessByJudged(name);
+    public DialogResponse<List<Process>> getProcessesByJudged(String name) {
+        ServiceResponse<List<Process>> response = service.getProcessesByJudged(name);
         if (response.isError()) {
             return new DialogResponse<>(
                 "Registro de proceso",
@@ -68,6 +70,7 @@ public class ProcessController {
                 response.getData()
             );
         }
+
         return new DialogResponse<>(
             "Busqueda de proceso",
             "Proceso encontrado con éxito",
@@ -76,8 +79,8 @@ public class ProcessController {
         );
     }
 
-    public DialogResponse<Process> getProcessByProsecutor(String name) {
-        ServiceResponse<Process> response = service.getProcessByProsecutor(name);
+    public DialogResponse<List<Process>> getProcessesByProsecutor(String name) {
+        ServiceResponse<List<Process>> response = service.getProcessesByProsecutor(name);
         if (response.isError()) {
             return new DialogResponse<>(
                 "Registro de proceso",
@@ -86,6 +89,7 @@ public class ProcessController {
                 response.getData()
             );
         }
+
         return new DialogResponse<>(
             "Busqueda de proceso",
             "Proceso encontrado con éxito",

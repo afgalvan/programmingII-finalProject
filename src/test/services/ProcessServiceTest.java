@@ -30,7 +30,10 @@ public class ProcessServiceTest {
     @Order(order = 1)
     public void insertInvalidProcess() {
         val otherProcess = new Process();
-        Assert.assertTrue(service.insert(otherProcess).isError());
+        Assert.assertTrue(
+            "The process shouldn't be saved, it has no metadata",
+            service.insert(otherProcess).isError()
+        );
         otherProcess.setMetadata(new ProcessMetadata());
         Assert.assertTrue(service.insert(otherProcess).isError());
     }
@@ -59,7 +62,10 @@ public class ProcessServiceTest {
     }
 
     @Test
-    public void getById() {}
+    @Order(order = 5)
+    public void getById() {
+        Assert.assertNotNull(service.getById(ID));
+    }
 
     @Test
     public void updateById() {}

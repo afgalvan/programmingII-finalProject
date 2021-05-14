@@ -49,7 +49,7 @@ public class EnquiryMenu implements Menu {
         View.clear();
         System.out.print("Ingrese el nombre: ");
         String name = View.scanner.nextLine();
-        DialogResponse<List<Process>> response = controller.getProcessByJudged(name);
+        DialogResponse<List<Process>> response = controller.getProcessesByJudged(name);
         displayManyProcesses(response.getData(), response.getMessage());
     }
 
@@ -57,8 +57,10 @@ public class EnquiryMenu implements Menu {
         View.clear();
         System.out.print("Ingrese el nombre: ");
         String name = View.scanner.nextLine();
-        DialogResponse<Process> response = controller.getProcessByProsecutor(name);
-        displaySingleProcess(response.getData(), response.getMessage());
+        DialogResponse<List<Process>> response = controller.getProcessesByProsecutor(
+            name
+        );
+        displayManyProcesses(response.getData(), response.getMessage());
     }
 
     public void displaySingleProcess(Process process, String errorMessage) {

@@ -1,23 +1,21 @@
 package app.database;
 
-import app.models.Process;
 import java.io.IOException;
-import java.util.Map;
 
-public class ProcessFileManager implements FileOrchestrator<Map<Long, Process>> {
+public class ProcessFileManager implements FileOrchestrator {
 
-    private final FileHandler<Map<Long, Process>> connection;
+    private final FileHandler connection;
 
     public ProcessFileManager(String filePath) {
-        this.connection = new FileConnectionManager<>(filePath);
+        this.connection = new FileConnectionManager(filePath);
     }
 
     public ProcessFileManager() {
-        this.connection = new FileConnectionManager<>("src/app/database/Process.obj");
+        this.connection = new FileConnectionManager("src/app/database/Process.obj");
     }
 
     @Override
-    public void save(Map<Long, Process> dataset) {
+    public void save(Object dataset) {
         try {
             connection.save(dataset);
         } catch (IOException error) {
@@ -30,10 +28,10 @@ public class ProcessFileManager implements FileOrchestrator<Map<Long, Process>> 
     }
 
     @Override
-    public Map<Long, Process> read() {
+    public Object read() {
         try {
-            return (Map<Long, Process>) connection.read();
-        } catch (IOException | ClassNotFoundException | ClassCastException e) {
+            return connection.read();
+        } catch (IOException | ClassNotFoundException e) {
             return null;
         } finally {
             try {
