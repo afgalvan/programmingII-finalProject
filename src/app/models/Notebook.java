@@ -31,7 +31,7 @@ public class Notebook implements Serializable {
      * @param documentPage
      * @param documentExtraData
      */
-    public void addFile(
+    public void addDocument(
         String name,
         int docOrder,
         DocumentDate dates,

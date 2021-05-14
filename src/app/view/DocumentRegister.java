@@ -32,7 +32,7 @@ public class DocumentRegister {
             );
             View.waitForEnter();
         } else {
-            notebook.addFile(
+            notebook.addDocument(
                 askFileName(),
                 notebook.getFilesList().size() + 1,
                 fillDates(),

@@ -16,11 +16,11 @@ public class ProcessRepository implements IProcessRepository {
         this.database = new ProcessFileManager();
     }
 
-    public boolean isUnique(Process process) {
+    public boolean contains(Long id) {
         try {
-            return getById(process.getMetadata().getId()) == null;
+            return getById(id) != null;
         } catch (DataAccessException notFound) {
-            return true;
+            return false;
         }
     }
 
@@ -32,8 +32,13 @@ public class ProcessRepository implements IProcessRepository {
         if (process.getMetadata() == null) {
             throw new DataAccessException("El proceso no tiene metadata registrado");
         }
+        if (process.getMetadata().getId() == null) {
+            throw new DataAccessException(
+                "El proceso tiene un numero de radicado inválido"
+            );
+        }
 
-        if (!isUnique(process)) {
+        if (contains(process.getMetadata().getId())) {
             throw new DataAccessException("Id del proceso está repetido");
         }
         processMap = database.read();

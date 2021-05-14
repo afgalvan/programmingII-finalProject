@@ -16,6 +16,11 @@ public class ProcessService implements IProcessService {
     }
 
     @Override
+    public boolean contains(Long id) {
+        return processRepository.contains(id);
+    }
+
+    @Override
     public ServiceResponse<Process> insert(Process process) {
         try {
             processRepository.insert(process);
