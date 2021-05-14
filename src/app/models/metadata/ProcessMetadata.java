@@ -1,12 +1,11 @@
 package app.models.metadata;
 
+import app.models.Rowable;
 import app.models.metadata.parts.Person;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
-import java.util.function.Supplier;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProcessMetadata implements Serializable {
+public class ProcessMetadata implements Serializable, Rowable {
 
     private Long id;
     private Location location;
@@ -43,6 +42,7 @@ public class ProcessMetadata implements Serializable {
         judgedList.add(person);
     }
 
+    @Override
     public List<String> getAsRow() {
         return Arrays.asList(
             (location != null) ? location.getCity() : "",

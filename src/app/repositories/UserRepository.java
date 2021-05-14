@@ -31,15 +31,10 @@ public class UserRepository implements Repository<String, User> {
      */
     @Override
     public void insert(User user) throws SQLException {
-        String userType = "SU";
-        if (user instanceof Coordinator) {
-            userType = "CO";
-        }
-
         val query = "INSERT INTO users (name, type, password, salt) VALUES (?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, user.getName());
-        statement.setString(2, userType);
+        statement.setString(2, (user instanceof SuperUser) ? "SU" : "CO");
         statement.setString(3, user.getPassword());
         statement.setString(4, user.getSalt());
         statement.execute();

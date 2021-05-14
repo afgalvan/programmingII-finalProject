@@ -17,8 +17,8 @@ public class MainTest {
 
     @Before
     public void setUpOutput() {
-        //testOut = new ByteArrayOutputStream();
-        //System.setOut(new PrintStream(testOut));
+        testOut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(testOut));
     }
 
     private String getOutput() {
@@ -27,7 +27,7 @@ public class MainTest {
 
     @After
     public void restoreSystemOutput() {
-        //System.setOut(systemOut);
+        System.setOut(systemOut);
     }
 
     @Test(expected = Test.None.class/* no exception expected */)

@@ -40,6 +40,8 @@ public class DocumentRegister {
                 fillExtraData()
             );
         }
+        System.out.println(process.getNotebookByName(notebookName));
+        View.waitForEnter();
         last.display();
     }
 

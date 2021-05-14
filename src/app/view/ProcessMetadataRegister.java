@@ -160,7 +160,7 @@ public class ProcessMetadataRegister {
     public NaturalPerson askNaturalPerson() {
         System.out.print("Nombre: ");
         String name = View.scanner.nextLine();
-        System.out.print("Segundo nombre: ");
+        System.out.print("Apellido: ");
         String lastName = View.scanner.nextLine();
         int id = View.input("Id: ", View.scanner::nextInt);
         System.out.print("Tipo de documento: ");

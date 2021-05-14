@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Represent the judicial office of the process.
+ * Represents the judicial office of the process.
  */
 @Data
 @NoArgsConstructor

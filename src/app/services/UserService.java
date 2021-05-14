@@ -1,9 +1,12 @@
 package app.services;
 
 import app.database.ConnectionManager;
+import app.exceptions.DataAccessException;
 import app.models.users.User;
 import app.repositories.Repository;
 import app.repositories.UserRepository;
+
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -35,7 +38,7 @@ public class UserService implements Service<String, User> {
             connectionManager.open();
             userRepository.insert(user);
             return new ServiceResponse<>(user);
-        } catch (Exception ignore) {
+        } catch (SQLException | DataAccessException ignore) {
             return new ServiceResponse<>();
         } finally {
             connectionManager.close();
