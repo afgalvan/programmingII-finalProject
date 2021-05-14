@@ -5,7 +5,6 @@ import app.exceptions.DataAccessException;
 import app.models.users.User;
 import app.repositories.Repository;
 import app.repositories.UserRepository;
-
 import java.sql.SQLException;
 import java.util.List;
 
