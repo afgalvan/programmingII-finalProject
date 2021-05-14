@@ -11,23 +11,6 @@ public class DocumentTable extends MetadataTable {
     }
 
     @Override
-    public void fillTable() {
-        super
-            .getProcess()
-            .getNotebooksList()
-            .forEach(
-                notebook ->
-                    notebook
-                        .getFilesList()
-                        .forEach(file -> super.getBuilder().addRow(file.getAsRow()))
-            );
-    }
-
-    public void addRow(List<String> row) {
-        super.getBuilder().addRow(row);
-    }
-
-    @Override
     public void initTable() {
         // prettier-ignore-start
         List<String> headers = Arrays.asList(
@@ -37,5 +20,24 @@ public class DocumentTable extends MetadataTable {
         );
         // prettier-ignore-end
         super.setBuilder(new TableBuilder<>(headers));
+    }
+
+    @Override
+    public void fillTable() {
+        super.getProcess().getNotebooksList().forEach(System.out::println);
+        View.waitForEnter();
+        super
+            .getProcess()
+            .getNotebooksList()
+            .forEach(
+                notebook ->
+                    notebook
+                        .getDocumentList()
+                        .forEach(file -> super.getBuilder().addRow(file.getAsRow()))
+            );
+    }
+
+    public void addRow(List<String> row) {
+        super.getBuilder().addRow(row);
     }
 }

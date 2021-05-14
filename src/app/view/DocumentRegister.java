@@ -34,7 +34,7 @@ public class DocumentRegister {
         } else {
             notebook.addDocument(
                 askFileName(),
-                notebook.getFilesList().size() + 1,
+                notebook.getDocumentList().size() + 1,
                 fillDates(),
                 fillPageData(),
                 fillExtraData()

@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 public class Notebook implements Serializable {
 
     private String name;
-    private final List<Document> filesList = new ArrayList<>();
+    private final List<Document> documentList = new ArrayList<>();
 
     /**
      * Add a document metadata to a document metadata list.
@@ -38,7 +38,7 @@ public class Notebook implements Serializable {
         DocumentPage documentPage,
         DocumentExtraData documentExtraData
     ) {
-        this.filesList.add(
+        this.documentList.add(
                 new Document(name, docOrder, dates, documentPage, documentExtraData)
             );
     }
