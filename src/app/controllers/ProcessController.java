@@ -17,6 +17,10 @@ public class ProcessController {
         this.service = new ProcessService();
     }
 
+    public boolean contains(Long id) {
+        return service.contains(id);
+    }
+
     /**
      *
      * @param process process to be stored in database.

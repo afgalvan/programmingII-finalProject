@@ -1,5 +1,6 @@
 package app.view;
 
+import app.controllers.Auth;
 import app.controllers.AuthController;
 import app.controllers.UserController;
 import app.models.users.UserType;
@@ -37,7 +38,7 @@ public class UserSubOptionMenu implements Menu {
     }
 
     public void addUser() {
-        AuthController authController = new AuthController();
+        Auth authController = AuthController.getInstance();
 
         View.clear();
         System.out.println("CREACION DE USUARIO");

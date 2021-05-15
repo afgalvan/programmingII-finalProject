@@ -7,6 +7,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * It refers to any judicial process to be digitalized.
@@ -19,7 +20,11 @@ public class Process implements Serializable {
 
     private ProcessMetadata metadata;
     private int noteBooksLen;
-    private final List<Notebook> notebooksList = new ArrayList<>(noteBooksLen);
+    private List<Notebook> notebooksList = new ArrayList<>(noteBooksLen);
+
+    public Process(ProcessMetadata metadata) {
+        this.metadata = metadata;
+    }
 
     /**
      * Add a notebook to the notebook list from a name.
@@ -61,10 +66,11 @@ public class Process implements Serializable {
      * @return A {@code Notebook} that matches the given name.
      */
     public Notebook getNotebookByName(String name) {
-        return notebooksList
-            .stream()
-            .filter(notebook -> notebook.equals(new Notebook(name)))
-            .findFirst()
-            .orElse(null);
+        int index = notebooksList.indexOf(new Notebook(name));
+        if (index >= 0) {
+            return notebooksList.get(index);
+        }
+
+        return null;
     }
 }

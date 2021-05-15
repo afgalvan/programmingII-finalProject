@@ -1,6 +1,7 @@
 package app.repositories;
 
-import app.database.ProcessFileManager;
+import app.database.FileManagement;
+import app.database.FileManager;
 import app.exceptions.DataAccessException;
 import app.models.Process;
 import java.util.ArrayList;
@@ -12,11 +13,11 @@ import java.util.function.BiConsumer;
 public class ProcessRepository implements IProcessRepository {
 
     private Map<Long, Process> processMap;
-    private final ProcessFileManager database;
+    private final FileManagement database;
 
     public ProcessRepository() {
         this.processMap = new LinkedHashMap<>();
-        this.database = new ProcessFileManager();
+        this.database = new FileManager("src/app/database/Process.obj");
     }
 
     @Override

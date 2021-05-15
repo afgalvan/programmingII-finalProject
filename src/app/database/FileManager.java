@@ -2,16 +2,12 @@ package app.database;
 
 import java.io.IOException;
 
-public class ProcessFileManager implements FileOrchestrator {
+public class FileManager implements FileManagement {
 
-    private final FileHandler connection;
+    private final FileConnection connection;
 
-    public ProcessFileManager(String filePath) {
+    public FileManager(String filePath) {
         this.connection = new FileConnectionManager(filePath);
-    }
-
-    public ProcessFileManager() {
-        this.connection = new FileConnectionManager("src/app/database/Process.obj");
     }
 
     @Override

@@ -22,7 +22,11 @@ import lombok.NoArgsConstructor;
 public class Notebook implements Serializable {
 
     private String name;
-    private final List<Document> documentList = new ArrayList<>();
+    private List<Document> documentList = new ArrayList<>();
+
+    public Notebook(String name) {
+        this.name = name;
+    }
 
     /**
      * Add a document metadata to a document list.

@@ -2,7 +2,7 @@ package app.database;
 
 import java.io.*;
 
-public class FileConnectionManager implements FileHandler {
+public class FileConnectionManager implements FileConnection {
 
     private final File file;
     private ObjectOutputStream objectOutputStream;

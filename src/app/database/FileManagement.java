@@ -1,6 +1,6 @@
 package app.database;
 
-public interface FileOrchestrator {
+public interface FileManagement {
     void save(Object data);
 
     Object read();

@@ -7,19 +7,19 @@ import app.models.documents.DocumentExtraData;
 import app.models.documents.DocumentPage;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.List;
 import lombok.val;
 
 public class DocumentRegister {
 
     private final Process process;
-    private final AddProcessMenu last;
 
-    public DocumentRegister(AddProcessMenu last, Process process) {
+    public DocumentRegister(Process process) {
         this.process = process;
-        this.last = last;
     }
 
-    public void registration() {
+    public List<Notebook> registration() {
         View.clear();
         System.out.println("DATOS DEL DOCUMENTO\n");
 
@@ -40,9 +40,7 @@ public class DocumentRegister {
                 fillExtraData()
             );
         }
-        System.out.println(process.getNotebookByName(notebookName));
-        View.waitForEnter();
-        last.display();
+        return process.getNotebooksList();
     }
 
     public String askFileName() {

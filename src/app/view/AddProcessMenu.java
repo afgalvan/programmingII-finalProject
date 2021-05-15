@@ -1,6 +1,5 @@
 package app.view;
 
-import app.controllers.ProcessController;
 import app.models.Process;
 import java.util.LinkedHashMap;
 import lombok.Getter;
@@ -10,37 +9,39 @@ import lombok.val;
 public class AddProcessMenu implements Menu {
 
     private MenuBuilder builder;
-    private final ProcessController processController;
     private final Displayable last;
-    private final Process process;
-    private final ProcessMetadataRegister processMetadataRegister;
-    private final DocumentRegister documentRegister;
-    private final DocumentTable documentTable;
+    private Process process;
+    private ProcessMetadataRegister processMetadataRegister;
+    private DocumentRegister documentRegister;
 
-    public AddProcessMenu(Displayable last, Process process) {
-        this.processController = new ProcessController();
+    public AddProcessMenu(Displayable last) {
         this.last = last;
-        this.process = process;
-        this.documentRegister = new DocumentRegister(this, process);
-        this.processMetadataRegister = new ProcessMetadataRegister(process);
-        this.documentTable = new DocumentTable(this, process);
-        initMenu();
     }
 
     @Override
     public void initMenu() {
         val addingProcessOptions = new LinkedHashMap<String, Runnable>();
 
-        addingProcessOptions.put("Agregar fila", documentRegister::registration);
-        addingProcessOptions.put("Mostrar documentos", documentTable::display);
-        addingProcessOptions.put("", View::pass);
         addingProcessOptions.put(
-            "Volver",
+            "Agregar fila",
             () -> {
-                processController.add(process);
-                last.display();
+                process.setNotebooksList(documentRegister.registration());
+                this.display();
             }
         );
+        addingProcessOptions.put(
+            "Mostrar documentos",
+            () -> {
+                View.clear();
+                new ProcessMetadataTable(null, process).display(false);
+                System.out.println();
+                new DocumentTable(null, process).display(false);
+                View.waitForEnter();
+                this.display();
+            }
+        );
+        addingProcessOptions.put("", View::pass);
+        addingProcessOptions.put("Volver", last::display);
 
         this.builder = new MenuBuilder("EXPEDIENTE JUDICIAL", addingProcessOptions);
     }
@@ -52,5 +53,16 @@ public class AddProcessMenu implements Menu {
         }
         View.clear();
         builder.display();
+    }
+
+    public Process getProcessToAdd() {
+        this.process = new Process();
+        this.documentRegister = new DocumentRegister(process);
+        this.processMetadataRegister = new ProcessMetadataRegister(process);
+        initMenu();
+        this.display();
+        System.out.println(process.getNotebooksList());
+        View.waitForEnter();
+        return this.process;
     }
 }
