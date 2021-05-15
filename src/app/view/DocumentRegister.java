@@ -7,7 +7,6 @@ import app.models.documents.DocumentExtraData;
 import app.models.documents.DocumentPage;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 import java.util.List;
 import lombok.val;
 
