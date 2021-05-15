@@ -1,5 +1,6 @@
 package app.repositories;
 
+import app.exceptions.DataAccessException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -9,13 +10,13 @@ import java.util.List;
  * @param <T> Data Type.
  */
 public interface Repository<K, T> {
-    void create(T data) throws Exception;
+    void insert(T data) throws DataAccessException, SQLException;
 
-    List<T> readAll() throws Exception;
+    List<T> getAll() throws DataAccessException, SQLException;
 
-    T getById(K id) throws Exception;
+    T getById(K id) throws DataAccessException, SQLException;
 
-    void updateById(K id, T newData) throws Exception;
+    void updateById(K id, T newData) throws DataAccessException, SQLException;
 
-    void deleteById(K id) throws Exception;
+    void deleteById(K id) throws DataAccessException, SQLException;
 }

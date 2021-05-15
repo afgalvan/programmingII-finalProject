@@ -23,7 +23,7 @@ public class UserServiceTest {
     @Test
     @Order(order = 1)
     public void userCreationTest() {
-        userService.create(sample);
+        userService.insert(sample);
         Assert.assertEquals(
             userService.getById("Maria").getData().getName(),
             sample.getName()
@@ -34,7 +34,7 @@ public class UserServiceTest {
     @Order(order = 2)
     public void saveCorrectUserType() {
         if (userService.getById("Maria").getData() == null) {
-            userService.create(sample);
+            userService.insert(sample);
         }
 
         Assert.assertTrue(userService.getById("Maria").getData() instanceof Coordinator);
@@ -43,8 +43,8 @@ public class UserServiceTest {
     @Test
     @Order(order = 3)
     public void readAllUsersTest() {
-        Assert.assertTrue(userService.readAll().getData() instanceof List);
-        Assert.assertFalse(userService.readAll().isError());
+        Assert.assertTrue(userService.getAll().getData() instanceof List);
+        Assert.assertFalse(userService.getAll().isError());
     }
 
     @Test

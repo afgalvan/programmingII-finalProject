@@ -1,8 +1,12 @@
 package app.services;
 
 import app.models.Process;
+import java.util.List;
 
 public interface IProcessService extends Service<Long, Process> {
-    ServiceResponse<Process> getProcessByJudged(String name);
-    ServiceResponse<Process> getProcessByProsecutor(String name);
+    boolean contains(Long id);
+
+    ServiceResponse<List<Process>> getProcessesByJudged(String name);
+
+    ServiceResponse<List<Process>> getProcessesByProsecutor(String name);
 }

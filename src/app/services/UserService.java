@@ -1,7 +1,9 @@
 package app.services;
 
 import app.database.ConnectionManager;
+import app.exceptions.DataAccessException;
 import app.models.users.User;
+import app.repositories.Repository;
 import app.repositories.UserRepository;
 import java.sql.SQLException;
 import java.util.List;
@@ -11,7 +13,7 @@ import java.util.List;
  */
 public class UserService implements Service<String, User> {
 
-    private final UserRepository userRepository;
+    private final Repository<String, User> userRepository;
     private final ConnectionManager connectionManager;
 
     public UserService() {
@@ -30,12 +32,12 @@ public class UserService implements Service<String, User> {
      * @return A response depending on the success of the action.
      */
     @Override
-    public ServiceResponse<User> create(User user) {
+    public ServiceResponse<User> insert(User user) {
         try {
             connectionManager.open();
-            userRepository.create(user);
+            userRepository.insert(user);
             return new ServiceResponse<>(user);
-        } catch (SQLException ignore) {
+        } catch (SQLException | DataAccessException ignore) {
             return new ServiceResponse<>();
         } finally {
             connectionManager.close();
@@ -48,12 +50,12 @@ public class UserService implements Service<String, User> {
      * @return A response depending on the success of the action.
      */
     @Override
-    public ServiceResponse<List<User>> readAll() {
+    public ServiceResponse<List<User>> getAll() {
         try {
             connectionManager.open();
-            List<User> userList = userRepository.readAll();
+            List<User> userList = userRepository.getAll();
             return new ServiceResponse<>(userList);
-        } catch (SQLException ignore) {
+        } catch (Exception ignore) {
             return new ServiceResponse<>();
         } finally {
             connectionManager.close();
@@ -72,7 +74,7 @@ public class UserService implements Service<String, User> {
             connectionManager.open();
             User user = userRepository.getById(username);
             return new ServiceResponse<>(user);
-        } catch (SQLException ignore) {
+        } catch (Exception ignore) {
             return new ServiceResponse<>();
         } finally {
             connectionManager.close();
@@ -93,7 +95,7 @@ public class UserService implements Service<String, User> {
             User user = userRepository.getById(username);
             userRepository.updateById(username, newData);
             return new ServiceResponse<>(user);
-        } catch (SQLException ignore) {
+        } catch (Exception ignore) {
             return new ServiceResponse<>();
         } finally {
             connectionManager.close();
@@ -112,7 +114,7 @@ public class UserService implements Service<String, User> {
             connectionManager.open();
             userRepository.deleteById(username);
             return new ServiceResponse<>(username, false);
-        } catch (SQLException ignore) {
+        } catch (Exception ignore) {
             return new ServiceResponse<>();
         } finally {
             connectionManager.close();

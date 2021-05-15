@@ -1,5 +1,6 @@
 package app.models.documents;
 
+import app.models.Rowable;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Document implements Serializable {
+public class Document implements Serializable, Rowable {
 
     private String name;
     private Integer docOrder;
@@ -22,19 +23,20 @@ public class Document implements Serializable {
     private DocumentPage pages;
     private DocumentExtraData extraData;
 
+    @Override
     public List<String> getAsRow() {
         return Arrays.asList(
             name,
-            dates.getCreationDate().toString(),
-            dates.getIncorporationDate().toString(),
-            docOrder.toString(),
-            pages.getPagesAmount().toString(),
-            pages.getInitPage().toString(),
-            pages.getLastPage().toString(),
-            extraData.getFileType(),
-            extraData.getOrigin(),
-            extraData.getSize().toString(),
-            extraData.getObservations()
+            dates != null ? dates.getCreationDate().toString() : "",
+            dates != null ? dates.getIncorporationDate().toString() : "",
+            docOrder != null ? docOrder.toString() : "",
+            pages != null ? pages.getPagesAmount().toString() : "",
+            pages != null ? pages.getInitPage().toString() : "",
+            pages != null ? pages.getLastPage().toString() : "",
+            extraData != null ? extraData.getFileType() : "",
+            extraData != null ? extraData.getOrigin() : "",
+            extraData != null ? extraData.getSize().toString() : "",
+            extraData != null ? extraData.getObservations() : ""
         );
     }
 }

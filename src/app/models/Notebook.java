@@ -7,6 +7,7 @@ import app.models.documents.DocumentPage;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,25 +22,42 @@ import lombok.NoArgsConstructor;
 public class Notebook implements Serializable {
 
     private String name;
-    private final List<Document> filesList = new ArrayList<>();
+    private List<Document> documentList = new ArrayList<>();
+
+    public Notebook(String name) {
+        this.name = name;
+    }
 
     /**
-     * Add a document metadata to a document metadata list.
+     * Add a document metadata to a document list.
      * @param name name of the document.
-     * @param docOrder
-     * @param dates
-     * @param documentPage
-     * @param documentExtraData
+     * @param docOrder the insertion order of the document on the current notebook.
+     * @param dates the dates of the document.
+     * @param documentPage the page information of the document.
+     * @param documentExtraData additional information of the document.
      */
-    public void addFile(
+    public void addDocument(
         String name,
         int docOrder,
         DocumentDate dates,
         DocumentPage documentPage,
         DocumentExtraData documentExtraData
     ) {
-        this.filesList.add(
+        this.documentList.add(
                 new Document(name, docOrder, dates, documentPage, documentExtraData)
             );
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Notebook notebook = (Notebook) o;
+        return name.equals(notebook.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

@@ -30,16 +30,11 @@ public class UserRepository implements Repository<String, User> {
      * @throws SQLException When an username was already registered.
      */
     @Override
-    public void create(User user) throws SQLException {
-        String userType = "SU";
-        if (user instanceof Coordinator) {
-            userType = "CO";
-        }
-
+    public void insert(User user) throws SQLException {
         val query = "INSERT INTO users (name, type, password, salt) VALUES (?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, user.getName());
-        statement.setString(2, userType);
+        statement.setString(2, (user instanceof SuperUser) ? "SU" : "CO");
         statement.setString(3, user.getPassword());
         statement.setString(4, user.getSalt());
         statement.execute();
@@ -52,7 +47,7 @@ public class UserRepository implements Repository<String, User> {
      * @throws SQLException When no users found.
      */
     @Override
-    public List<User> readAll() throws SQLException {
+    public List<User> getAll() throws SQLException {
         val query = "SELECT * FROM users";
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(query);

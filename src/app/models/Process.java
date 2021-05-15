@@ -19,7 +19,11 @@ public class Process implements Serializable {
 
     private ProcessMetadata metadata;
     private int noteBooksLen;
-    private final List<Notebook> notebooksList = new ArrayList<>(noteBooksLen);
+    private List<Notebook> notebooksList = new ArrayList<>(noteBooksLen);
+
+    public Process(ProcessMetadata metadata) {
+        this.metadata = metadata;
+    }
 
     /**
      * Add a notebook to the notebook list from a name.
@@ -31,11 +35,11 @@ public class Process implements Serializable {
 
     /**
      * It allows to instantiate a file from the parameters received.
-     * @param location place where the process is being instantiated.
-     * @param judicialOffice judicial office where the process is being executed.
-     * @param series series of the record.
-     * @param id
-     * @param physicalInformation
+     * @param id A {@code Long} unique identifier for getting and reading the process.
+     * @param location A {@code Location} that identifies the place where the process is being instantiated.
+     * @param judicialOffice A {@code JudicialOffice} where the process is being executed.
+     * @param series A {@code Series} of the record.
+     * @param physicalInformation A {@code PhysicalInformation} that makes references of the process' physical information.
      */
     public void setMetadata(
         Long id,
@@ -54,11 +58,18 @@ public class Process implements Serializable {
             );
     }
 
+    /**
+     * Get a notebook of the current process given his name.
+     * @param name The name of the name of the notebook to be got.
+     *
+     * @return A {@code Notebook} that matches the given name.
+     */
     public Notebook getNotebookByName(String name) {
-        return notebooksList
-            .stream()
-            .filter(notebook -> notebook.getName().equals(name))
-            .findFirst()
-            .orElse(null);
+        int index = notebooksList.indexOf(new Notebook(name));
+        if (index >= 0) {
+            return notebooksList.get(index);
+        }
+
+        return null;
     }
 }

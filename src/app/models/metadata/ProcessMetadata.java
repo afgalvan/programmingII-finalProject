@@ -1,5 +1,6 @@
 package app.models.metadata;
 
+import app.models.Rowable;
 import app.models.metadata.parts.Person;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProcessMetadata implements Serializable {
+public class ProcessMetadata implements Serializable, Rowable {
 
     private Long id;
     private Location location;
@@ -41,12 +42,13 @@ public class ProcessMetadata implements Serializable {
         judgedList.add(person);
     }
 
+    @Override
     public List<String> getAsRow() {
         return Arrays.asList(
-            location.getCity(),
-            judicialOffice.getName(),
-            series.getName(),
-            id.toString(),
+            (location != null) ? location.getCity() : "",
+            (judicialOffice != null) ? judicialOffice.getName() : "",
+            (series != null) ? series.getName() : "",
+            (id != null) ? id.toString() : "",
             judgedList.toString(),
             prosecutorList.toString()
         );

@@ -11,11 +11,6 @@ public class ProcessMetadataTable extends MetadataTable {
     }
 
     @Override
-    public void fillTable() {
-        super.getBuilder().addRow(getProcess().getMetadata().getAsRow());
-    }
-
-    @Override
     public void initTable() {
         // prettier-ignore-start
         List<String> headers = Arrays.asList(
@@ -25,5 +20,10 @@ public class ProcessMetadataTable extends MetadataTable {
         // prettier-ignore-end
 
         super.setBuilder(new TableBuilder<>(headers));
+    }
+
+    @Override
+    public void fillTable() {
+        super.getBuilder().addRow(super.getProcess().getMetadata().getAsRow());
     }
 }

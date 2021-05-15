@@ -41,8 +41,19 @@ public class ProcessMetadataRegister {
 
     public Long fillId() {
         View.printLine(25);
-        Integer id = View.input("Numero de radicación: ", View.scanner::nextInt);
-        return id.longValue();
+
+        Long id;
+        boolean repeated;
+        do {
+            id = View.input("Numero de radicación: ", View.scanner::nextLong);
+            repeated = controller.contains(id);
+            if (repeated) {
+                System.out.println(
+                    Color.RED + id.toString() + " ya ha sido registrado." + Color.NORMAL
+                );
+            }
+        } while (repeated);
+        return id;
     }
 
     public Location fillLocation() {
@@ -160,7 +171,7 @@ public class ProcessMetadataRegister {
     public NaturalPerson askNaturalPerson() {
         System.out.print("Nombre: ");
         String name = View.scanner.nextLine();
-        System.out.print("Segundo nombre: ");
+        System.out.print("Apellido: ");
         String lastName = View.scanner.nextLine();
         int id = View.input("Id: ", View.scanner::nextInt);
         System.out.print("Tipo de documento: ");

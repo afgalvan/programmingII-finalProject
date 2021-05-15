@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 @Data
 public class Session {
 
-    User user;
+    private User user;
 }

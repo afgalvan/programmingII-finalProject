@@ -1,5 +1,6 @@
 package test.controllers;
 
+import app.controllers.Auth;
 import app.controllers.AuthController;
 import app.controllers.DialogResponse;
 import app.controllers.UserController;
@@ -16,13 +17,13 @@ import test.OrderedRunner;
 @RunWith(OrderedRunner.class)
 public class AuthControllerTest {
 
-    public AuthController authController;
+    public Auth authController;
     public UserController controller;
     public User sample;
 
     @Before
     public void setUp() {
-        authController = new AuthController();
+        authController = AuthController.getInstance();
         controller = new UserController();
         sample = new SuperUser("+uvaBxdt3ssCJXCr4Huvw==", "xmen-10-------");
     }

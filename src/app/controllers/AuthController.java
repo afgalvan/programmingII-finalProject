@@ -12,13 +12,18 @@ import app.services.UserService;
  */
 public class AuthController implements Auth {
 
+    private static final AuthController instance = new AuthController();
     private final UserController userController;
     private final UserService userService;
     private User currentUser;
 
-    public AuthController() {
+    private AuthController() {
         this.userService = new UserService();
         this.userController = new UserController();
+    }
+
+    public static AuthController getInstance() {
+        return instance;
     }
 
     /**
@@ -85,7 +90,7 @@ public class AuthController implements Auth {
             ? new Coordinator(username, encryptPassword, salt)
             : new SuperUser(username, encryptPassword, salt);
 
-        if (userService.create(newUser).isError()) {
+        if (userService.insert(newUser).isError()) {
             return new DialogResponse<>(
                 "Registro",
                 "El usuario " + username + " ya se encuentra registrado",

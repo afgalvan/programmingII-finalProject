@@ -1,27 +1,33 @@
 package app.controllers;
 
 import app.models.Process;
+import app.services.IProcessService;
 import app.services.ProcessService;
 import app.services.ServiceResponse;
+import java.util.List;
 
 /**
  *
  */
 public class ProcessController {
 
-    private final ProcessService service;
+    private final IProcessService service;
 
     public ProcessController() {
         this.service = new ProcessService();
     }
 
+    public boolean contains(Long id) {
+        return service.contains(id);
+    }
+
     /**
      *
-     * @param process
-     * @return
+     * @param process process to be stored in database.
+     * @return A response of the save operation.
      */
     public DialogResponse<Process> add(Process process) {
-        ServiceResponse<Process> response = service.create(process);
+        ServiceResponse<Process> response = service.insert(process);
         if (response.isError()) {
             return new DialogResponse<>(
                 "Registro de proceso",
@@ -30,6 +36,7 @@ public class ProcessController {
                 response.getData()
             );
         }
+
         return new DialogResponse<>(
             "Registro de proceso",
             "Proceso registrado con éxito",
@@ -48,6 +55,7 @@ public class ProcessController {
                 response.getData()
             );
         }
+
         return new DialogResponse<>(
             "Busqueda de proceso",
             "Proceso encontrado con éxito",
@@ -56,8 +64,8 @@ public class ProcessController {
         );
     }
 
-    public DialogResponse<Process> getProcessByJudged(String name) {
-        ServiceResponse<Process> response = service.getProcessByJudged(name);
+    public DialogResponse<List<Process>> getProcessesByJudged(String name) {
+        ServiceResponse<List<Process>> response = service.getProcessesByJudged(name);
         if (response.isError()) {
             return new DialogResponse<>(
                 "Registro de proceso",
@@ -66,6 +74,7 @@ public class ProcessController {
                 response.getData()
             );
         }
+
         return new DialogResponse<>(
             "Busqueda de proceso",
             "Proceso encontrado con éxito",
@@ -74,8 +83,8 @@ public class ProcessController {
         );
     }
 
-    public DialogResponse<Process> getProcessByProsecutor(String name) {
-        ServiceResponse<Process> response = service.getProcessByProsecutor(name);
+    public DialogResponse<List<Process>> getProcessesByProsecutor(String name) {
+        ServiceResponse<List<Process>> response = service.getProcessesByProsecutor(name);
         if (response.isError()) {
             return new DialogResponse<>(
                 "Registro de proceso",
@@ -84,6 +93,7 @@ public class ProcessController {
                 response.getData()
             );
         }
+
         return new DialogResponse<>(
             "Busqueda de proceso",
             "Proceso encontrado con éxito",

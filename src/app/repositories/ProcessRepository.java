@@ -1,42 +1,58 @@
 package app.repositories;
 
-import app.database.ProcessDatabase;
+import app.database.FileManagement;
+import app.database.FileManager;
 import app.exceptions.DataAccessException;
 import app.models.Process;
-import app.models.metadata.parts.Person;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.BiConsumer;
 
 public class ProcessRepository implements IProcessRepository {
 
     private Map<Long, Process> processMap;
-    private final ProcessDatabase database;
+    private final FileManagement database;
 
     public ProcessRepository() {
         this.processMap = new LinkedHashMap<>();
-        this.database = new ProcessDatabase();
-    }
-
-    public boolean isUnique(Process process) {
-        try {
-            return getById(process.getMetadata().getId()) == null;
-        } catch (DataAccessException notFound) {
-            return true;
-        }
+        this.database = new FileManager("src/app/database/Process.obj");
     }
 
     @Override
-    public void create(Process process) throws DataAccessException {
+    public boolean contains(Long id) {
+        try {
+            return getById(id) != null;
+        } catch (DataAccessException notFound) {
+            return false;
+        }
+    }
+
+    private Map<Long, Process> mappedRead() {
+        @SuppressWarnings("unchecked")
+        Map<Long, Process> mappedProcesses = (Map<Long, Process>) database.read();
+        return mappedProcesses;
+    }
+
+    @Override
+    public void insert(Process process) throws DataAccessException {
         if (process == null) {
             throw new DataAccessException("El proceso es null");
         }
         if (process.getMetadata() == null) {
             throw new DataAccessException("El proceso no tiene metadata registrado");
         }
-
-        if (!isUnique(process)) {
-            throw new DataAccessException("Id del proceso está repetido");
+        if (process.getMetadata().getId() == null) {
+            throw new DataAccessException(
+                "El proceso tiene un numero de radicado inválido"
+            );
         }
-        processMap = database.read();
+
+        if (contains(process.getMetadata().getId())) {
+            throw new DataAccessException("Id del proceso está repetido.");
+        }
+        processMap = this.mappedRead();
         if (processMap == null) {
             processMap = new LinkedHashMap<>();
         }
@@ -45,19 +61,19 @@ public class ProcessRepository implements IProcessRepository {
     }
 
     @Override
-    public List<Process> readAll() throws DataAccessException {
-        processMap = database.read();
+    public List<Process> getAll() throws DataAccessException {
+        processMap = this.mappedRead();
         if (processMap == null) {
-            throw new DataAccessException("Unable to get enough information.");
+            throw new DataAccessException("No existen procesos registrados.");
         }
         return new ArrayList<>(processMap.values());
     }
 
     @Override
     public Process getById(Long id) throws DataAccessException {
-        processMap = database.read();
+        processMap = this.mappedRead();
         if (processMap == null) {
-            return null;
+            throw new DataAccessException("No existen procesos registrados");
         }
         Process process = processMap.get(id);
         if (process == null) {
@@ -68,7 +84,7 @@ public class ProcessRepository implements IProcessRepository {
 
     @Override
     public void updateById(Long id, Process newData) throws DataAccessException {
-        processMap = database.read();
+        processMap = this.mappedRead();
         getById(id);
         processMap.put(id, newData);
         database.save(processMap);
@@ -76,45 +92,60 @@ public class ProcessRepository implements IProcessRepository {
 
     @Override
     public void deleteById(Long id) throws DataAccessException {
-        processMap = database.read();
+        processMap = this.mappedRead();
         getById(id);
         processMap.remove(id);
         database.save(processMap);
     }
 
-    @Override
-    public Process getProcessByJudged(String name) throws DataAccessException {
+    private boolean containsIgnoreCase(String s1, String s2) {
+        return s1.toLowerCase().contains(s2.toLowerCase());
+    }
+
+    private List<Process> getProcessesByTrial(
+        String name,
+        BiConsumer<Process, List<Process>> biConsumer
+    ) throws DataAccessException {
         if (name == null) {
             throw new DataAccessException("El nombre del demandado es null");
         }
 
-        List<Process> allProcess = this.readAll();
-        for (Process process : allProcess) {
-            for (Person person : process.getMetadata().getJudgedList()) {
-                if (person.getFullName().equalsIgnoreCase(name)) {
-                    return process;
-                }
-            }
+        List<Process> processList = new ArrayList<>();
+        List<Process> allProcess = this.getAll();
+        allProcess.forEach(process -> biConsumer.accept(process, processList));
+
+        if (processList.size() == 0) {
+            throw new DataAccessException("Ningún proceso encontrado");
         }
 
-        throw new DataAccessException("Proceso no encontrado");
+        return processList;
     }
 
     @Override
-    public Process getProcessByProsecutor(String name) throws DataAccessException {
-        if (name == null) {
-            throw new DataAccessException("El nombre del demandado es null");
-        }
-
-        List<Process> allProcess = this.readAll();
-        for (Process process : allProcess) {
-            for (Person person : process.getMetadata().getProsecutorList()) {
-                if (person.getFullName().equalsIgnoreCase(name)) {
-                    return process;
+    public List<Process> getProcessesByJudged(String name) throws DataAccessException {
+        // prettier-ignore-start
+        BiConsumer<Process, List<Process>> biConsumer = (process, list) ->
+            process.getMetadata().getJudgedList().forEach(person -> {
+                if (containsIgnoreCase(person.getFullName(), name)) {
+                    list.add(process);
                 }
-            }
-        }
+            });
+        // prettier-ignore-end
 
-        throw new DataAccessException("Proceso no encontrado");
+        return getProcessesByTrial(name, biConsumer);
+    }
+
+    @Override
+    public List<Process> getProcessByProsecutor(String name) throws DataAccessException {
+        // prettier-ignore-start
+        BiConsumer<Process, List<Process>> biConsumer = (process, list) ->
+            process.getMetadata().getProsecutorList().forEach(person -> {
+                if (containsIgnoreCase(person.getFullName(), name)) {
+                    list.add(process);
+                }
+            });
+        // prettier-ignore-end
+
+        return getProcessesByTrial(name, biConsumer);
     }
 }
