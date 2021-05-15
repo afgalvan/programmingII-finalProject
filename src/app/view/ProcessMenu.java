@@ -1,17 +1,19 @@
 package app.view;
 
-import app.models.Process;
+import app.controllers.ProcessController;
 import java.util.LinkedHashMap;
 import lombok.val;
 
 public class ProcessMenu implements Menu {
 
     private final AddProcessMenu addProcessMenu;
+    private final ProcessController processController;
     private final Displayable last;
     private MenuBuilder processMenu;
 
     public ProcessMenu(Displayable last) {
-        this.addProcessMenu = new AddProcessMenu(last, new Process());
+        this.processController = new ProcessController();
+        this.addProcessMenu = new AddProcessMenu(this);
         this.last = last;
         initMenu();
     }
@@ -20,7 +22,10 @@ public class ProcessMenu implements Menu {
     public void initMenu() {
         val processOptions = new LinkedHashMap<String, Runnable>();
 
-        processOptions.put("Agregar proceso", addProcessMenu::display);
+        processOptions.put(
+            "Agregar proceso",
+            () -> processController.add(addProcessMenu.getProcessToAdd())
+        );
         processOptions.put("Editar proceso", View::pass);
         processOptions.put("Eliminar proceso", View::pass);
         processOptions.put("", View::pass);

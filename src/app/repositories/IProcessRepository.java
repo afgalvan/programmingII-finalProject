@@ -8,8 +8,9 @@ import java.util.List;
 public interface IProcessRepository extends Repository<Long, Process> {
     boolean contains(Long id);
 
-    List<Process> getProcessByJudged(String name)
+    List<Process> getProcessesByJudged(String name)
         throws SQLException, DataAccessException;
 
-    Process getProcessByProsecutor(String name) throws SQLException, DataAccessException;
+    List<Process> getProcessByProsecutor(String name)
+        throws SQLException, DataAccessException;
 }

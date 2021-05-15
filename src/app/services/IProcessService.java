@@ -6,7 +6,7 @@ import java.util.List;
 public interface IProcessService extends Service<Long, Process> {
     boolean contains(Long id);
 
-    ServiceResponse<List<Process>> getProcessByJudged(String name);
+    ServiceResponse<List<Process>> getProcessesByJudged(String name);
 
-    ServiceResponse<Process> getProcessByProsecutor(String name);
+    ServiceResponse<List<Process>> getProcessesByProsecutor(String name);
 }

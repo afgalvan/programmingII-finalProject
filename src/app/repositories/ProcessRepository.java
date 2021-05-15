@@ -1,30 +1,38 @@
 package app.repositories;
 
-import app.database.ProcessFileManager;
+import app.database.FileManagement;
+import app.database.FileManager;
 import app.exceptions.DataAccessException;
 import app.models.Process;
-import app.models.metadata.parts.Person;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
 
 public class ProcessRepository implements IProcessRepository {
 
     private Map<Long, Process> processMap;
-    private final ProcessFileManager database;
+    private final FileManagement database;
 
     public ProcessRepository() {
         this.processMap = new LinkedHashMap<>();
-        this.database = new ProcessFileManager();
+        this.database = new FileManager("src/app/database/Process.obj");
     }
 
+    @Override
     public boolean contains(Long id) {
         try {
             return getById(id) != null;
         } catch (DataAccessException notFound) {
             return false;
         }
+    }
+
+    private Map<Long, Process> mappedRead() {
+        @SuppressWarnings("unchecked")
+        Map<Long, Process> mappedProcesses = (Map<Long, Process>) database.read();
+        return mappedProcesses;
     }
 
     @Override
@@ -42,9 +50,9 @@ public class ProcessRepository implements IProcessRepository {
         }
 
         if (contains(process.getMetadata().getId())) {
-            throw new DataAccessException("Id del proceso está repetido");
+            throw new DataAccessException("Id del proceso está repetido.");
         }
-        processMap = database.read();
+        processMap = this.mappedRead();
         if (processMap == null) {
             processMap = new LinkedHashMap<>();
         }
@@ -54,16 +62,16 @@ public class ProcessRepository implements IProcessRepository {
 
     @Override
     public List<Process> getAll() throws DataAccessException {
-        processMap = database.read();
+        processMap = this.mappedRead();
         if (processMap == null) {
-            throw new DataAccessException("Unable to get enough information.");
+            throw new DataAccessException("No existen procesos registrados.");
         }
         return new ArrayList<>(processMap.values());
     }
 
     @Override
     public Process getById(Long id) throws DataAccessException {
-        processMap = database.read();
+        processMap = this.mappedRead();
         if (processMap == null) {
             throw new DataAccessException("No existen procesos registrados");
         }
@@ -76,7 +84,7 @@ public class ProcessRepository implements IProcessRepository {
 
     @Override
     public void updateById(Long id, Process newData) throws DataAccessException {
-        processMap = database.read();
+        processMap = this.mappedRead();
         getById(id);
         processMap.put(id, newData);
         database.save(processMap);
@@ -84,7 +92,7 @@ public class ProcessRepository implements IProcessRepository {
 
     @Override
     public void deleteById(Long id) throws DataAccessException {
-        processMap = database.read();
+        processMap = this.mappedRead();
         getById(id);
         processMap.remove(id);
         database.save(processMap);
@@ -94,21 +102,17 @@ public class ProcessRepository implements IProcessRepository {
         return s1.toLowerCase().contains(s2.toLowerCase());
     }
 
-    @Override
-    public List<Process> getProcessByJudged(String name) throws DataAccessException {
+    private List<Process> getProcessesByTrial(
+        String name,
+        BiConsumer<Process, List<Process>> biConsumer
+    ) throws DataAccessException {
         if (name == null) {
             throw new DataAccessException("El nombre del demandado es null");
         }
 
-        List<Process> allProcess = this.getAll();
         List<Process> processList = new ArrayList<>();
-        for (Process process : allProcess) {
-            for (Person person : process.getMetadata().getJudgedList()) {
-                if (containsIgnoreCase(person.getName(), name)) {
-                    processList.add(process);
-                }
-            }
-        }
+        List<Process> allProcess = this.getAll();
+        allProcess.forEach(process -> biConsumer.accept(process, processList));
 
         if (processList.size() == 0) {
             throw new DataAccessException("Ningún proceso encontrado");
@@ -118,20 +122,30 @@ public class ProcessRepository implements IProcessRepository {
     }
 
     @Override
-    public Process getProcessByProsecutor(String name) throws DataAccessException {
-        if (name == null) {
-            throw new DataAccessException("El nombre del demandado es null");
-        }
-
-        List<Process> allProcess = this.getAll();
-        for (Process process : allProcess) {
-            for (Person person : process.getMetadata().getProsecutorList()) {
-                if (person.getFullName().equalsIgnoreCase(name)) {
-                    return process;
+    public List<Process> getProcessesByJudged(String name) throws DataAccessException {
+        // prettier-ignore-start
+        BiConsumer<Process, List<Process>> biConsumer = (process, list) ->
+            process.getMetadata().getJudgedList().forEach(person -> {
+                if (containsIgnoreCase(person.getFullName(), name)) {
+                    list.add(process);
                 }
-            }
-        }
+            });
+        // prettier-ignore-end
 
-        throw new DataAccessException("Proceso no encontrado");
+        return getProcessesByTrial(name, biConsumer);
+    }
+
+    @Override
+    public List<Process> getProcessByProsecutor(String name) throws DataAccessException {
+        // prettier-ignore-start
+        BiConsumer<Process, List<Process>> biConsumer = (process, list) ->
+            process.getMetadata().getProsecutorList().forEach(person -> {
+                if (containsIgnoreCase(person.getFullName(), name)) {
+                    list.add(process);
+                }
+            });
+        // prettier-ignore-end
+
+        return getProcessesByTrial(name, biConsumer);
     }
 }

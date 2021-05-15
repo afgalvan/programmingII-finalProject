@@ -2,7 +2,7 @@ package app.database;
 
 import java.io.*;
 
-public class FileConnectionManager<T> implements FileHandler<T> {
+public class FileConnectionManager implements FileConnection {
 
     private final File file;
     private ObjectOutputStream objectOutputStream;
@@ -23,7 +23,7 @@ public class FileConnectionManager<T> implements FileHandler<T> {
     }
 
     @Override
-    public void save(T data) throws IOException {
+    public void save(Object data) throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         this.objectOutputStream = new ObjectOutputStream(fileOutputStream);
         this.objectOutputStream.writeObject(data);

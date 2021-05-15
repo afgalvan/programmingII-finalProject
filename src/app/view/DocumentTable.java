@@ -14,8 +14,8 @@ public class DocumentTable extends MetadataTable {
     public void initTable() {
         // prettier-ignore-start
         List<String> headers = Arrays.asList(
-            "Nombre", "Fecha de creacion", "Fecha incorporación",
-            "Orden", "Paginas", "Inicio", "Fin", "Formato", "Origen",
+            "Nombre", "Fecha de creación", "Fecha incorporación",
+            "Orden", "Páginas", "Inicio", "Fin", "Formato", "Origen",
             "Tamaño", "Observaciones"
         );
         // prettier-ignore-end
@@ -24,8 +24,6 @@ public class DocumentTable extends MetadataTable {
 
     @Override
     public void fillTable() {
-        super.getProcess().getNotebooksList().forEach(System.out::println);
-        View.waitForEnter();
         super
             .getProcess()
             .getNotebooksList()

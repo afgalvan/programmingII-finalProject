@@ -1,5 +1,6 @@
 package app.view;
 
+import app.controllers.Auth;
 import app.controllers.AuthController;
 import app.controllers.DialogResponse;
 import app.models.Session;
@@ -12,10 +13,10 @@ public class LoginMenu implements Menu {
 
     private MenuBuilder loginMenu;
 
-    private final AuthController authController;
+    private final Auth authController;
 
     public LoginMenu() {
-        this.authController = new AuthController();
+        this.authController = AuthController.getInstance();
         initMenu();
     }
 

@@ -68,16 +68,16 @@ public class ProcessService implements IProcessService {
     }
 
     @Override
-    public ServiceResponse<List<Process>> getProcessByJudged(String name) {
+    public ServiceResponse<List<Process>> getProcessesByJudged(String name) {
         try {
-            return new ServiceResponse<>(processRepository.getProcessByJudged(name));
+            return new ServiceResponse<>(processRepository.getProcessesByJudged(name));
         } catch (SQLException | DataAccessException error) {
             return new ServiceResponse<>(error.getMessage());
         }
     }
 
     @Override
-    public ServiceResponse<Process> getProcessByProsecutor(String name) {
+    public ServiceResponse<List<Process>> getProcessesByProsecutor(String name) {
         try {
             return new ServiceResponse<>(processRepository.getProcessByProsecutor(name));
         } catch (SQLException | DataAccessException error) {
