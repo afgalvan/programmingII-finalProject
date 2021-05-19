@@ -19,7 +19,7 @@ public class AuthController implements Auth {
 
     private AuthController() {
         this.userService = new UserService();
-        this.userController = new UserController();
+        this.userController = UserController.getInstance();
     }
 
     public static AuthController getInstance() {

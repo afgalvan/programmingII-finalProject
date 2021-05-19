@@ -1,10 +1,14 @@
 package test.controllers;
 
+import app.controllers.AuthController;
+import app.controllers.DialogResponse;
 import app.controllers.UserController;
 import app.models.users.Coordinator;
 import app.models.users.SuperUser;
 import app.models.users.User;
+import app.models.users.UserType;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import test.Order;
@@ -13,16 +17,25 @@ import test.OrderedRunner;
 @RunWith(OrderedRunner.class)
 public class UserControllerTest {
 
-    public UserController userController = new UserController();
-    public User sample = new Coordinator("Laika", "DeathAt2002");
-    public SuperUser updateSample = new SuperUser("Xavier", "xmen-10");
+    private UserController userController;
+    private AuthController authController;
+    private User sample;
+    private User updateSample;
+
+    @Before
+    public void setUp() {
+        this.userController = UserController.getInstance();
+        this.authController = AuthController.getInstance();
+        this.sample = new Coordinator("Laika", "DeathAt2002");
+        this.updateSample = new SuperUser("Xavier", "xmen-10");
+    }
 
     @Test
     @Order(order = 1)
     public void postTest() {
         Assert.assertEquals(
-            userController.getPostResponse().apply(sample.getName()),
-            userController.postUser(sample)
+            DialogResponse.INFORMATION_MESSAGE,
+            authController.registerUser(sample.getName(), sample.getPassword(), UserType.CO).getType()
         );
     }
 
@@ -30,8 +43,8 @@ public class UserControllerTest {
     @Order(order = 2)
     public void postDuplicateUser() {
         Assert.assertEquals(
-            userController.getOutpostResponse().apply(sample.getName()),
-            userController.postUser(sample)
+            DialogResponse.ERROR_MESSAGE,
+            authController.registerUser(sample.getName(), sample.getPassword(), UserType.CO).getType()
         );
     }
 
@@ -44,7 +57,7 @@ public class UserControllerTest {
     @Test
     @Order(order = 4)
     public void getTest() {
-        Assert.assertEquals(sample, userController.getUserById(sample.getName()));
+        Assert.assertNotNull(userController.getUserById(sample.getName()));
     }
 
     @Test

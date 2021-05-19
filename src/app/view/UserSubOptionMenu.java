@@ -52,7 +52,7 @@ public class UserSubOptionMenu implements Menu {
     }
 
     public void removeUser() {
-        UserController userController = new UserController();
+        UserController userController = UserController.getInstance();
 
         View.clear();
         System.out.println("REMOVER USUARIO");

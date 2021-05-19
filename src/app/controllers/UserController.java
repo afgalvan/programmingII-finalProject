@@ -14,6 +14,7 @@ import lombok.Getter;
 public class UserController {
 
     private final UserService userService;
+    private static final UserController instance =  new UserController();
 
     private final Function<String, String> postResponse = u ->
         u + " registrado con éxito.";
@@ -21,8 +22,12 @@ public class UserController {
     private final Function<String, String> outpostResponse = u ->
         "No se pudo registrar el usuario " + u + ".";
 
-    public UserController() {
+    private UserController() {
         this.userService = new UserService();
+    }
+
+    public static UserController getInstance() {
+        return instance;
     }
 
     /**
@@ -32,6 +37,7 @@ public class UserController {
      * @param user Any object that inheritance from the User class.
      * @return A string to show to the user
      */
+    @Deprecated
     public String postUser(User user) {
         ServiceResponse<User> res = userService.insert(user);
         if (res.isError()) {

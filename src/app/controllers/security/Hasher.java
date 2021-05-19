@@ -16,7 +16,7 @@ class Hasher {
 
     /**
      *
-     * @return
+     * @return A {@code String} of random bytes that's used for hashing user's passwords.
      */
     @SneakyThrows
     public String generateSalt() {
