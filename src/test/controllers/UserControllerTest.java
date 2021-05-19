@@ -35,7 +35,9 @@ public class UserControllerTest {
     public void postTest() {
         Assert.assertEquals(
             DialogResponse.INFORMATION_MESSAGE,
-            authController.registerUser(sample.getName(), sample.getPassword(), UserType.CO).getType()
+            authController
+                .registerUser(sample.getName(), sample.getPassword(), UserType.CO)
+                .getType()
         );
     }
 
@@ -44,7 +46,9 @@ public class UserControllerTest {
     public void postDuplicateUser() {
         Assert.assertEquals(
             DialogResponse.ERROR_MESSAGE,
-            authController.registerUser(sample.getName(), sample.getPassword(), UserType.CO).getType()
+            authController
+                .registerUser(sample.getName(), sample.getPassword(), UserType.CO)
+                .getType()
         );
     }
 

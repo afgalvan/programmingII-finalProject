@@ -14,7 +14,7 @@ import lombok.Getter;
 public class UserController {
 
     private final UserService userService;
-    private static final UserController instance =  new UserController();
+    private static final UserController instance = new UserController();
 
     private final Function<String, String> postResponse = u ->
         u + " registrado con éxito.";
