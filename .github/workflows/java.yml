@@ -13,13 +13,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.0
+
+      - name: ⬇️ Checkout repository
         uses: actions/checkout@v1
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
           submodules: true
 
-      - name: Build with docker-compose
+      - name: 🐋 Build with docker-compose
         run: docker-compose build --force-rm
-      - name: Run JUnit with docker-compose
+
+      - name: ✅ Run JUnit with docker-compose
         run: docker-compose run --rm tests

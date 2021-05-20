@@ -15,7 +15,7 @@ public class EnquiryMenu implements Menu {
 
     public EnquiryMenu(Displayable last) {
         this.last = last;
-        this.controller = new ProcessController();
+        this.controller = ProcessController.getInstance();
         initMenu();
     }
 

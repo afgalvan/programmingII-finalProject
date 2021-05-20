@@ -1,16 +1,19 @@
 package app.controllers;
 
+import app.models.Response;
+import app.models.annotations.Testable;
 import app.models.users.User;
-import app.services.ServiceResponse;
 import app.services.UserService;
 import java.util.List;
 import java.util.function.Function;
 import lombok.Getter;
+import test.controllers.UserControllerTest;
 
 /**
  * A class to control al user's CRUD processes.
  */
 @Getter
+@Testable(testClass = UserControllerTest.class)
 public class UserController {
 
     private final UserService userService;
@@ -21,8 +24,14 @@ public class UserController {
     private final Function<String, String> outpostResponse = u ->
         "No se pudo registrar el usuario " + u + ".";
 
-    public UserController() {
+    private static final UserController instance = new UserController();
+
+    private UserController() {
         this.userService = new UserService();
+    }
+
+    public static UserController getInstance() {
+        return instance;
     }
 
     /**
@@ -32,12 +41,13 @@ public class UserController {
      * @param user Any object that inheritance from the User class.
      * @return A string to show to the user
      */
-    public String postUser(User user) {
-        ServiceResponse<User> res = userService.insert(user);
+    protected Response<User> postUser(User user) {
+        Response<User> res = userService.insert(user);
         if (res.isError()) {
-            return outpostResponse.apply(user.getName());
+            return new Response<>(outpostResponse.apply(user.getName()));
         }
-        return postResponse.apply(user.getName());
+
+        return new Response<>(res.getData(), postResponse.apply(user.getName()));
     }
 
     /**
@@ -47,7 +57,7 @@ public class UserController {
      * @return A List of users all users from the database.
      */
     public List<User> getUsers() {
-        ServiceResponse<List<User>> res = userService.getAll();
+        Response<List<User>> res = userService.getAll();
         if (res.isError()) {
             return null;
         }
@@ -62,7 +72,7 @@ public class UserController {
      * @return Any kind of user depending of how was saved.
      */
     public User getUserById(String username) {
-        ServiceResponse<User> res = userService.getById(username);
+        Response<User> res = userService.getById(username);
         if (res.isError()) {
             return null;
         }
@@ -77,7 +87,7 @@ public class UserController {
      * @return A message to be showed from the deleted status.
      */
     public String deleteUserById(String username) {
-        ServiceResponse<User> res = userService.deleteById(username);
+        Response<User> res = userService.deleteById(username);
         if (res.isError()) {
             return "No se pudo eliminar el usuario.";
         }
@@ -94,7 +104,7 @@ public class UserController {
      * @return A message to be showed from the updateById status.
      */
     public String updateUserById(String username, User newData) {
-        ServiceResponse<User> res = userService.updateById(username, newData);
+        Response<User> res = userService.updateById(username, newData);
         if (res.isError()) {
             return "No se pudo modificar el usuario.";
         }

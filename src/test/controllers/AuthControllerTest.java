@@ -24,7 +24,7 @@ public class AuthControllerTest {
     @Before
     public void setUp() {
         authController = AuthController.getInstance();
-        controller = new UserController();
+        controller = UserController.getInstance();
         sample = new SuperUser("+uvaBxdt3ssCJXCr4Huvw==", "xmen-10-------");
     }
 

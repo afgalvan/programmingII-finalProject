@@ -1,6 +1,7 @@
 package app.repositories;
 
-import app.database.ConnectionManager;
+import app.database.DBConnection;
+import app.models.annotations.Testable;
 import app.models.users.Coordinator;
 import app.models.users.SuperUser;
 import app.models.users.User;
@@ -11,15 +12,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.val;
+import test.database.UserRepositoryTest;
 
 /**
  * Class to execute all CRUD queries for the Users to the database.
  */
+@Testable(testClass = UserRepositoryTest.class)
 public class UserRepository implements Repository<String, User> {
 
-    private final ConnectionManager connection;
+    private final DBConnection connection;
 
-    public UserRepository(ConnectionManager connection) {
+    public UserRepository(DBConnection connection) {
         this.connection = connection;
     }
 

@@ -1,5 +1,6 @@
 package app.database;
 
+import app.exceptions.InputFileException;
 import java.io.IOException;
 
 public class FileManager implements FileManagement {
@@ -15,7 +16,7 @@ public class FileManager implements FileManagement {
         try {
             connection.save(dataset);
         } catch (IOException error) {
-            throw new NullPointerException("Fail writing on the file.");
+            throw new InputFileException("Fail writing on the file.");
         } finally {
             try {
                 connection.close();

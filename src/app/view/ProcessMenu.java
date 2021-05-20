@@ -12,7 +12,7 @@ public class ProcessMenu implements Menu {
     private MenuBuilder processMenu;
 
     public ProcessMenu(Displayable last) {
-        this.processController = new ProcessController();
+        this.processController = ProcessController.getInstance();
         this.addProcessMenu = new AddProcessMenu(this);
         this.last = last;
         initMenu();

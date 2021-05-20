@@ -1,6 +1,8 @@
 package app.models.users;
 
-public enum UserType {
+import java.io.Serializable;
+
+public enum UserType implements Serializable {
     CO,
     SU,
 }
