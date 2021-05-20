@@ -277,10 +277,10 @@ is-fullwidth-code-point@^3.0.0:
   resolved "https://registry.yarnpkg.com/is-fullwidth-code-point/-/is-fullwidth-code-point-3.0.0.tgz#f116f8064fe90b3f7844a38997c0b75051269f1d"
   integrity sha512-zymm5+u+sCsSWyD9qNaejV3DFvhCKclKdizYaJUuHA83RLjb7nSuGnddCHGv0hk+KY7BMAlsWeK4Ueg6EV6XQg==
 
-java-parser@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/java-parser/-/java-parser-1.0.2.tgz#c466dcdb022f49474a5f124a5c8a282c8a1b9663"
-  integrity sha512-lBXc+F62ds2W83eH5MwGnzuWdb6kgGBV0x0R7w0B4JKGDrJzolMUEhRMzzzlIX68HvRU7XtfPon22YaB+dVg+A==
+java-parser@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/java-parser/-/java-parser-1.1.0.tgz#e01b965b49c607775ca727d42781ae69d626fad0"
+  integrity sha512-3WBpOuDu4WzhCboPfEYhp/KzAjd7y/D9T3V4PDpppBsALAZE3oli3h9Xh5jk2oTneyZBK/Y079wO5JrXw34vGw==
   dependencies:
     chevrotain "6.5.0"
     lodash "4.17.21"
@@ -429,12 +429,12 @@ pify@^5.0.0:
   resolved "https://registry.yarnpkg.com/pify/-/pify-5.0.0.tgz#1f5eca3f5e87ebec28cc6d54a0e4aaf00acc127f"
   integrity sha512-eW/gHNMlxdSP6dmG6uJip6FXN0EQBwm2clYYd8Wul42Cwu/DK8HEftzsapcNdYe2MfLiIwZqsDk2RDEsTE79hA==
 
-prettier-plugin-java@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/prettier-plugin-java/-/prettier-plugin-java-1.0.2.tgz#2833529708a47d4a69ce236546df20a84cde4344"
-  integrity sha512-YgcN1WGZlrH0E+bHdqtIYtfDp6k2PHBnIaGjzdff/7t/NyDWAA6ypAmnD7YQVG2OuoIaXYkC37HN7cz68lLWLg==
+prettier-plugin-java@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-java/-/prettier-plugin-java-1.1.0.tgz#ed314fc3c2c15879ae2a6095a5b428d54a1e556f"
+  integrity sha512-B83gOCBYO9O0Dkv3/sgTxICPk3y1iw2sohuo/T7DwUboQynfZmAISExDeOSRGV4SdWYlz472YxFL/nG054OD/A==
   dependencies:
-    java-parser "1.0.2"
+    java-parser "1.1.0"
     lodash "4.17.21"
     prettier "2.2.1"
 
