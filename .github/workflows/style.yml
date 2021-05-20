@@ -23,12 +23,12 @@ jobs:
           submodules: true
           ref: ${{ github.head_ref }}
 
-      - name: ⎔ Setup node
+      - name: ⬢ Setup node
         uses: actions/setup-node@v2
         with:
           node-version: 14
 
-      - name: 📥 Download dev dependencies
+      - name: 📥 Download dependencies
         run: yarn
 
       - name: 📝 Format code with prettier
