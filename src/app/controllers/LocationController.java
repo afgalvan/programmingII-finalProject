@@ -3,12 +3,22 @@ package app.controllers;
 import app.controllers.api.LocationApi;
 import app.exceptions.InvalidLocationException;
 import java.util.List;
+
+import app.models.annotations.Testable;
 import lombok.SneakyThrows;
 
 /**
  *
  */
 public class LocationController {
+
+    private static final LocationController instance = new LocationController();
+
+    private LocationController() {}
+
+    public static LocationController getInstance() {
+        return instance;
+    }
 
     /**
      *

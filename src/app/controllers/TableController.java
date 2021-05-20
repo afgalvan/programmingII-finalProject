@@ -10,6 +10,14 @@ import java.util.stream.Collectors;
  */
 public class TableController {
 
+    private static final TableController instance = new TableController();
+
+    private TableController() {}
+
+    public static TableController getInstance() {
+        return instance;
+    }
+
     /**
      *
      * @param columnWidths

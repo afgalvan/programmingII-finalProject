@@ -1,5 +1,7 @@
 package app.services;
 
+import app.models.Response;
+
 import java.util.List;
 
 /**
@@ -8,13 +10,13 @@ import java.util.List;
  * @param <T> Data Type.
  */
 public interface Service<K, T> {
-    ServiceResponse<T> insert(T data);
+    Response<T> insert(T data);
 
-    ServiceResponse<List<T>> getAll();
+    Response<List<T>> getAll();
 
-    ServiceResponse<T> getById(K id);
+    Response<T> getById(K id);
 
-    ServiceResponse<T> updateById(K id, T newData);
+    Response<T> updateById(K id, T newData);
 
-    ServiceResponse<T> deleteById(K id);
+    Response<T> deleteById(K id);
 }

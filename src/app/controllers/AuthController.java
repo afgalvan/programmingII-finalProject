@@ -1,24 +1,25 @@
 package app.controllers;
 
 import app.controllers.security.PasswordHandler;
+import app.models.Response;
+import app.models.annotations.Testable;
 import app.models.users.Coordinator;
 import app.models.users.SuperUser;
 import app.models.users.User;
 import app.models.users.UserType;
-import app.services.UserService;
+import test.controllers.AuthControllerTest;
 
 /**
  * Class that controls all login validations and methods.
  */
+@Testable(testClass = AuthControllerTest.class)
 public class AuthController implements Auth {
 
-    private static final AuthController instance = new AuthController();
     private final UserController userController;
-    private final UserService userService;
+    private static final AuthController instance = new AuthController();
     private User currentUser;
 
     private AuthController() {
-        this.userService = new UserService();
         this.userController = UserController.getInstance();
     }
 
@@ -89,18 +90,19 @@ public class AuthController implements Auth {
         User newUser = (permission == UserType.CO)
             ? new Coordinator(username, encryptPassword, salt)
             : new SuperUser(username, encryptPassword, salt);
+        Response<User> response = userController.postUser(newUser);
 
-        if (userService.insert(newUser).isError()) {
+        if (response.isError()) {
             return new DialogResponse<>(
                 "Registro",
-                "El usuario " + username + " ya se encuentra registrado",
+                response.getMessage(),
                 DialogResponse.ERROR_MESSAGE
             );
         }
 
         return new DialogResponse<>(
             "Registro",
-            "El usuario " + username + " se registró con exito",
+            response.getMessage(),
             DialogResponse.INFORMATION_MESSAGE
         );
     }

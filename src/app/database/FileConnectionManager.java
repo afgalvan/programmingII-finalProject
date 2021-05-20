@@ -2,7 +2,7 @@ package app.database;
 
 import java.io.*;
 
-public class FileConnectionManager implements FileConnection {
+class FileConnectionManager implements FileConnection {
 
     private final File file;
     private ObjectOutputStream objectOutputStream;
@@ -11,6 +11,9 @@ public class FileConnectionManager implements FileConnection {
     public FileConnectionManager(String filePath) {
         this.file = new File(filePath);
     }
+
+    @Override
+    public void open() {}
 
     @Override
     public void close() throws IOException {

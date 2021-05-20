@@ -1,5 +1,6 @@
 package test.services;
 
+import app.models.Response;
 import app.models.users.Coordinator;
 import app.models.users.User;
 import app.services.UserService;
@@ -15,17 +16,29 @@ import test.database.UserRepositoryTest;
 public class UserServiceTest {
 
     public UserService userService = new UserService(
-        UserRepositoryTest.connectionManager
+        UserRepositoryTest.DBConnectionManager
     );
-    public User sample = new Coordinator("Maria", "Okiss123");
-    public User updateSample = new Coordinator("María", "Okiss123");
+    public User sample = new Coordinator("Maria", "Okiss123", "SomeSalt");
+    public User updateSample = new Coordinator("María", "Okiss123", "SomeSalt");
+
+
+    @Test
+    @Order(order = 0)
+    public void createUserWithoutSalt() {
+        Response<User> response = userService.insert(new Coordinator("NoSaltUser", "NoSaltUser"));
+        Assert.assertTrue("Users without salt should'nt be saved", response.isError());
+    }
 
     @Test
     @Order(order = 1)
     public void userCreationTest() {
         userService.insert(sample);
+        Response<User> response = userService.getById(sample.getName());
+
+        Assert.assertFalse(response.isError());
+        Assert.assertNotNull(response.getData());
         Assert.assertEquals(
-            userService.getById("Maria").getData().getName(),
+            response.getData().getName(),
             sample.getName()
         );
     }
@@ -43,7 +56,7 @@ public class UserServiceTest {
     @Test
     @Order(order = 3)
     public void readAllUsersTest() {
-        Assert.assertTrue(userService.getAll().getData() instanceof List);
+        Assert.assertNotNull(userService.getAll().getData());
         Assert.assertFalse(userService.getAll().isError());
     }
 

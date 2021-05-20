@@ -12,20 +12,28 @@ jobs:
     name: Format with prettier
     runs-on: ubuntu-20.04
     steps:
-      - name: Checkout repository
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.0
+
+      - name: ⬇️ Checkout repository
         uses: actions/checkout@v1
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
           submodules: true
           ref: ${{ github.head_ref }}
-      - name: Setup node 12.x
+
+      - name: ⎔ Setup node
         uses: actions/setup-node@v2
         with:
-          node-version: 12.x
+          node-version: 14
+
+      - name: 📥 Download dev dependencies
       - run: yarn
-      - name: Format code with prettier
+
+      - name: 📝 Format code with prettier
         run: yarn format
-      - name: Commit changes
+
+      - name: ⬆ Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "[auto] ci: apply format"

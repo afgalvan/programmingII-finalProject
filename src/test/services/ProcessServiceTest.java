@@ -3,7 +3,7 @@ package test.services;
 import app.models.Process;
 import app.models.metadata.ProcessMetadata;
 import app.services.ProcessService;
-import app.services.ServiceResponse;
+import app.models.Response;
 import java.util.List;
 import lombok.val;
 import org.junit.Assert;
@@ -57,7 +57,7 @@ public class ProcessServiceTest {
     @Test
     @Order(order = 4)
     public void getAll() {
-        ServiceResponse<List<Process>> response = service.getAll();
+        Response<List<Process>> response = service.getAll();
         Assert.assertFalse(response.isError());
     }
 
