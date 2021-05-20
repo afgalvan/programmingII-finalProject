@@ -14,11 +14,11 @@
         <img src="https://app.codacy.com/project/badge/Grade/a51fbdb27bde460b989f4c85d4ee8008"/>
     </a>
     <a href="https://github.com/afgalvan/programmingII-finalProject/pulls/" title="Pull request">
-        <img src="https://img.shields.io/github/issues-pr/afgalvan/programmingII-finalProject" 
+        <img src="https://img.shields.io/github/issues-pr/afgalvan/programmingII-finalProject?labelColor=22272E&logo=github&style=flat" 
     alt="Pull requests">
     </a>
     <a href="https://github.com/afgalvan/programmingII-finalProject/issues/" title="Issues">
-        <img src="https://img.shields.io/github/issues/afgalvan/programmingII-finalProject" 
+        <img src="https://img.shields.io/github/issues/afgalvan/programmingII-finalProject?labelColor=22272E&logo=github&style=flat" 
     alt="Issues">
     </a>
     <!-- <a href="https://github.com/afgalvan/JavaMySQL/actions">
