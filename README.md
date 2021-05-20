@@ -5,14 +5,13 @@
 
 <p align="center">
     <a href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">
-        <img src="https://img.shields.io/badge/OpenJDK-v1.8-orange" alt="JDK Version" title="JDK Version" />
+        <img src="https://img.shields.io/static/v1?label=OpenJDK&message=v1.8&style=flat&logo=java&labelColor=22272E&color=orange" alt="JDK Version" title="JDK Version" />
+    </a>
+    <a href="https://github.com/afgalvan/programmingII-finalProject/actions/workflows/java.yml" title="CI status">
+        <img src="https://github.com/afgalvan/programmingII-finalProject/actions/workflows/java.yml/badge.svg" alt="CI status"/>
     </a>
     <a href="https://www.codacy.com/gh/afgalvan/programmingII-finalProject/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=afgalvan/programmingII-finalProject&amp;utm_campaign=Badge_Grade">
         <img src="https://app.codacy.com/project/badge/Grade/a51fbdb27bde460b989f4c85d4ee8008"/>
-    </a>
-    <a href="https://github.com/afgalvan/programmingII-finalProject/actions/workflows/java.yml" title="CI status">
-        <img src="https://github.com/afgalvan/programmingII-finalProject/actions/workflows/java.yml/badge.svg"
-    alt="Lint status"/>
     </a>
     <a href="https://github.com/afgalvan/programmingII-finalProject/pulls/" title="Pull request">
         <img src="https://img.shields.io/github/issues-pr/afgalvan/programmingII-finalProject" 
