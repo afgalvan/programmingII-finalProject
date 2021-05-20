@@ -11,6 +11,7 @@ jobs:
   format:
     name: Format with prettier
     runs-on: ubuntu-20.04
+
     steps:
       - name: 🛑 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.9.0
@@ -28,7 +29,7 @@ jobs:
           node-version: 14
 
       - name: 📥 Download dev dependencies
-      - run: yarn
+        run: yarn
 
       - name: 📝 Format code with prettier
         run: yarn format
@@ -54,7 +55,6 @@ jobs:
 #        uses: docker://ghcr.io/github/super-linter:latest
 #        env:
 #          ACTIONS_RUNNER_DEBUG: true
-#          ERROR_ON_MISSING_EXEC_BIT: true
 #          VALIDATE_ALL_CODEBASE: false
 #          DEFAULT_BRANCH: main
 #          VALIDATE_MARKDOWN: false
