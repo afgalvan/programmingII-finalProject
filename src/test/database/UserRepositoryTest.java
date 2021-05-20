@@ -14,7 +14,9 @@ import org.junit.Test;
 public class UserRepositoryTest {
 
     public static final String URL_TEST = "jdbc:sqlite:./src/test/database/test.sqlite";
-    public static DBConnectionManager DBConnectionManager = new DBConnectionManager(URL_TEST);
+    public static DBConnectionManager DBConnectionManager = new DBConnectionManager(
+        URL_TEST
+    );
     public UserRepository userRepository = new UserRepository(DBConnectionManager);
 
     @SneakyThrows
@@ -24,7 +26,9 @@ public class UserRepositoryTest {
             DBConnectionManager.open();
             Assert.assertNotNull(DBConnectionManager.get_connection());
 
-            Connection expected = DriverManager.getConnection(DBConnectionManager.getUrl());
+            Connection expected = DriverManager.getConnection(
+                DBConnectionManager.getUrl()
+            );
             Assert.assertEquals(
                 expected.getSchema(),
                 DBConnectionManager.get_connection().getSchema()

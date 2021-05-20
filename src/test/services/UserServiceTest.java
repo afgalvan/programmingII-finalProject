@@ -21,11 +21,12 @@ public class UserServiceTest {
     public User sample = new Coordinator("Maria", "Okiss123", "SomeSalt");
     public User updateSample = new Coordinator("María", "Okiss123", "SomeSalt");
 
-
     @Test
     @Order(order = 0)
     public void createUserWithoutSalt() {
-        Response<User> response = userService.insert(new Coordinator("NoSaltUser", "NoSaltUser"));
+        Response<User> response = userService.insert(
+            new Coordinator("NoSaltUser", "NoSaltUser")
+        );
         Assert.assertTrue("Users without salt should'nt be saved", response.isError());
     }
 
@@ -37,10 +38,7 @@ public class UserServiceTest {
 
         Assert.assertFalse(response.isError());
         Assert.assertNotNull(response.getData());
-        Assert.assertEquals(
-            response.getData().getName(),
-            sample.getName()
-        );
+        Assert.assertEquals(response.getData().getName(), sample.getName());
     }
 
     @Test

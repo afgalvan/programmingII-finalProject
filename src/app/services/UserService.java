@@ -7,10 +7,9 @@ import app.models.annotations.Testable;
 import app.models.users.User;
 import app.repositories.Repository;
 import app.repositories.UserRepository;
-import test.services.UserServiceTest;
-
 import java.sql.SQLException;
 import java.util.List;
+import test.services.UserServiceTest;
 
 /**
  * Class that manages all business logic and database implementation.

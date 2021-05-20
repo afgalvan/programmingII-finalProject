@@ -1,9 +1,9 @@
 package test.services;
 
 import app.models.Process;
+import app.models.Response;
 import app.models.metadata.ProcessMetadata;
 import app.services.ProcessService;
-import app.models.Response;
 import java.util.List;
 import lombok.val;
 import org.junit.Assert;

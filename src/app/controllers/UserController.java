@@ -1,8 +1,8 @@
 package app.controllers;
 
+import app.models.Response;
 import app.models.annotations.Testable;
 import app.models.users.User;
-import app.models.Response;
 import app.services.UserService;
 import java.util.List;
 import java.util.function.Function;
@@ -44,13 +44,10 @@ public class UserController {
     protected Response<User> postUser(User user) {
         Response<User> res = userService.insert(user);
         if (res.isError()) {
-            return new Response<>( outpostResponse.apply(user.getName()) );
+            return new Response<>(outpostResponse.apply(user.getName()));
         }
 
-        return new Response<>(
-            res.getData(),
-            postResponse.apply(user.getName())
-        );
+        return new Response<>(res.getData(), postResponse.apply(user.getName()));
     }
 
     /**

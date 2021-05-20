@@ -1,7 +1,6 @@
 package app.database;
 
 import app.exceptions.InputFileException;
-
 import java.io.IOException;
 
 public class FileManager implements FileManagement {
