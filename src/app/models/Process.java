@@ -1,11 +1,10 @@
 package app.models;
 
 import app.models.metadata.*;
+import app.models.metadata.parts.Person;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import app.models.metadata.parts.Person;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
