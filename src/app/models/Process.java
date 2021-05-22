@@ -4,6 +4,8 @@ import app.models.metadata.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import app.models.metadata.parts.Person;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -71,5 +73,13 @@ public class Process implements Serializable {
         }
 
         return null;
+    }
+
+    public List<Person> getProsecutorList() {
+        return this.metadata.getProsecutorList();
+    }
+
+    public List<Person> getJudgedList() {
+        return this.metadata.getJudgedList();
     }
 }
