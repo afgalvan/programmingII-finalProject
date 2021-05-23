@@ -1,6 +1,7 @@
 package app.models;
 
 import app.models.metadata.*;
+import app.models.metadata.parts.Person;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,5 +72,13 @@ public class Process implements Serializable {
         }
 
         return null;
+    }
+
+    public List<Person> getProsecutorList() {
+        return this.metadata.getProsecutorList();
+    }
+
+    public List<Person> getJudgedList() {
+        return this.metadata.getJudgedList();
     }
 }

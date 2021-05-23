@@ -1,17 +1,17 @@
 package test.database;
 
-import app.database.ConnectionManager;
+import app.database.DBConnectionManager;
 import lombok.SneakyThrows;
 import org.junit.Test;
 
 public class ConnectionTest {
 
-    public ConnectionManager connectionManager = new ConnectionManager();
+    public DBConnectionManager DBConnectionManager = new DBConnectionManager();
 
     @SneakyThrows
     @Test(expected = Test.None.class/* no exception expected */)
     public void databaseLinkTest() {
-        connectionManager.open();
-        connectionManager.close();
+        DBConnectionManager.open();
+        DBConnectionManager.close();
     }
 }

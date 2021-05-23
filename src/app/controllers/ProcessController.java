@@ -1,9 +1,10 @@
 package app.controllers;
 
 import app.models.Process;
+import app.models.Response;
+import app.models.annotations.Testable;
 import app.services.IProcessService;
 import app.services.ProcessService;
-import app.services.ServiceResponse;
 import java.util.List;
 
 /**
@@ -12,9 +13,14 @@ import java.util.List;
 public class ProcessController {
 
     private final IProcessService service;
+    private static final ProcessController instance = new ProcessController();
 
-    public ProcessController() {
+    private ProcessController() {
         this.service = new ProcessService();
+    }
+
+    public static ProcessController getInstance() {
+        return instance;
     }
 
     public boolean contains(Long id) {
@@ -27,7 +33,7 @@ public class ProcessController {
      * @return A response of the save operation.
      */
     public DialogResponse<Process> add(Process process) {
-        ServiceResponse<Process> response = service.insert(process);
+        Response<Process> response = service.insert(process);
         if (response.isError()) {
             return new DialogResponse<>(
                 "Registro de proceso",
@@ -46,7 +52,7 @@ public class ProcessController {
     }
 
     public DialogResponse<Process> getProcessById(Long id) {
-        ServiceResponse<Process> response = service.getById(id);
+        Response<Process> response = service.getById(id);
         if (response.isError()) {
             return new DialogResponse<>(
                 "Registro de proceso",
@@ -65,7 +71,7 @@ public class ProcessController {
     }
 
     public DialogResponse<List<Process>> getProcessesByJudged(String name) {
-        ServiceResponse<List<Process>> response = service.getProcessesByJudged(name);
+        Response<List<Process>> response = service.getProcessesByJudged(name);
         if (response.isError()) {
             return new DialogResponse<>(
                 "Registro de proceso",
@@ -84,7 +90,7 @@ public class ProcessController {
     }
 
     public DialogResponse<List<Process>> getProcessesByProsecutor(String name) {
-        ServiceResponse<List<Process>> response = service.getProcessesByProsecutor(name);
+        Response<List<Process>> response = service.getProcessesByProsecutor(name);
         if (response.isError()) {
             return new DialogResponse<>(
                 "Registro de proceso",

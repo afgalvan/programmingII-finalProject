@@ -26,20 +26,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v1
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v2.3.3
         with:
-          token: ${{ secrets.ACCESS_TOKEN }}
-          submodules: true
+          submodules: 'recursive'
 
       # Initializes the CodeQL tools for scanning.
-      - name: Initialize CodeQL
+      - name: 🔘 Initialize CodeQL
         uses: github/codeql-action/init@v1
         with:
           languages: java
-      - name: Build code
+
+      - name: ☕ Build Java
         run: |
           mkdir -p out/production/FinalProject
           javac $(find ./src/* | grep .java) -d out/production/FinalProject -cp lib/junit-4.12.jar:lib/lombok.jar:lib/jackson-anotations-2.12.2.jar:lib/jackson-core-2.12.2.jar:lib/jackson-databind-2.12.2.jar:lib/sqlite-jdbc-3.32.3.2.jar:lib/RojeruSan.jar:lib/flatlaf-1.1.1.jar
-      - name: Perform CodeQL Analysis
+
+      - name: 🔍 Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v1

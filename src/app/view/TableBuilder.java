@@ -24,7 +24,7 @@ public class TableBuilder<T> {
         this.columns = headers.size();
         this.body = new ArrayList<>();
         this.body.add(headers);
-        this.tableController = new TableController();
+        this.tableController = TableController.getInstance();
         this.box = new Box();
         if (body.size() != 0) {
             computeDimensions();

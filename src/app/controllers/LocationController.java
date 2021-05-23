@@ -2,6 +2,7 @@ package app.controllers;
 
 import app.controllers.api.LocationApi;
 import app.exceptions.InvalidLocationException;
+import app.models.annotations.Testable;
 import java.util.List;
 import lombok.SneakyThrows;
 
@@ -9,6 +10,14 @@ import lombok.SneakyThrows;
  *
  */
 public class LocationController {
+
+    private static final LocationController instance = new LocationController();
+
+    private LocationController() {}
+
+    public static LocationController getInstance() {
+        return instance;
+    }
 
     /**
      *

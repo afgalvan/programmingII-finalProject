@@ -16,7 +16,7 @@ public class ProcessMetadataRegister {
     private final ProcessController controller;
 
     public ProcessMetadataRegister(Process process) {
-        this.controller = new ProcessController();
+        this.controller = ProcessController.getInstance();
         this.process = process;
     }
 
@@ -57,7 +57,7 @@ public class ProcessMetadataRegister {
     }
 
     public Location fillLocation() {
-        LocationController locationController = new LocationController();
+        LocationController locationController = LocationController.getInstance();
 
         String department = View.input(
             "Departamento: ",

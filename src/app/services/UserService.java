@@ -1,28 +1,32 @@
 package app.services;
 
-import app.database.ConnectionManager;
+import app.database.DBConnectionManager;
 import app.exceptions.DataAccessException;
+import app.models.Response;
+import app.models.annotations.Testable;
 import app.models.users.User;
 import app.repositories.Repository;
 import app.repositories.UserRepository;
 import java.sql.SQLException;
 import java.util.List;
+import test.services.UserServiceTest;
 
 /**
  * Class that manages all business logic and database implementation.
  */
+@Testable(testClass = UserServiceTest.class)
 public class UserService implements Service<String, User> {
 
     private final Repository<String, User> userRepository;
-    private final ConnectionManager connectionManager;
+    private final DBConnectionManager DBConnectionManager;
 
     public UserService() {
-        this(new ConnectionManager());
+        this(new DBConnectionManager());
     }
 
-    public UserService(ConnectionManager connectionManager) {
-        this.connectionManager = connectionManager;
-        this.userRepository = new UserRepository(this.connectionManager);
+    public UserService(DBConnectionManager DBConnectionManager) {
+        this.DBConnectionManager = DBConnectionManager;
+        this.userRepository = new UserRepository(this.DBConnectionManager);
     }
 
     /**
@@ -32,15 +36,15 @@ public class UserService implements Service<String, User> {
      * @return A response depending on the success of the action.
      */
     @Override
-    public ServiceResponse<User> insert(User user) {
+    public Response<User> insert(User user) {
         try {
-            connectionManager.open();
+            DBConnectionManager.open();
             userRepository.insert(user);
-            return new ServiceResponse<>(user);
+            return new Response<>(user);
         } catch (SQLException | DataAccessException ignore) {
-            return new ServiceResponse<>();
+            return new Response<>();
         } finally {
-            connectionManager.close();
+            DBConnectionManager.close();
         }
     }
 
@@ -50,15 +54,15 @@ public class UserService implements Service<String, User> {
      * @return A response depending on the success of the action.
      */
     @Override
-    public ServiceResponse<List<User>> getAll() {
+    public Response<List<User>> getAll() {
         try {
-            connectionManager.open();
+            DBConnectionManager.open();
             List<User> userList = userRepository.getAll();
-            return new ServiceResponse<>(userList);
+            return new Response<>(userList);
         } catch (Exception ignore) {
-            return new ServiceResponse<>();
+            return new Response<>();
         } finally {
-            connectionManager.close();
+            DBConnectionManager.close();
         }
     }
 
@@ -69,15 +73,15 @@ public class UserService implements Service<String, User> {
      * @return A response depending on the success of the action.
      */
     @Override
-    public ServiceResponse<User> getById(String username) {
+    public Response<User> getById(String username) {
         try {
-            connectionManager.open();
+            DBConnectionManager.open();
             User user = userRepository.getById(username);
-            return new ServiceResponse<>(user);
+            return new Response<>(user);
         } catch (Exception ignore) {
-            return new ServiceResponse<>();
+            return new Response<>();
         } finally {
-            connectionManager.close();
+            DBConnectionManager.close();
         }
     }
 
@@ -89,16 +93,16 @@ public class UserService implements Service<String, User> {
      * @return A response depending on the success of the action.
      */
     @Override
-    public ServiceResponse<User> updateById(String username, User newData) {
+    public Response<User> updateById(String username, User newData) {
         try {
-            connectionManager.open();
+            DBConnectionManager.open();
             User user = userRepository.getById(username);
             userRepository.updateById(username, newData);
-            return new ServiceResponse<>(user);
+            return new Response<>(user);
         } catch (Exception ignore) {
-            return new ServiceResponse<>();
+            return new Response<>();
         } finally {
-            connectionManager.close();
+            DBConnectionManager.close();
         }
     }
 
@@ -109,15 +113,15 @@ public class UserService implements Service<String, User> {
      * @return A response depending on the success of the action.
      */
     @Override
-    public ServiceResponse<User> deleteById(String username) {
+    public Response<User> deleteById(String username) {
         try {
-            connectionManager.open();
+            DBConnectionManager.open();
             userRepository.deleteById(username);
-            return new ServiceResponse<>(username, false);
+            return new Response<>(username, false);
         } catch (Exception ignore) {
-            return new ServiceResponse<>();
+            return new Response<>();
         } finally {
-            connectionManager.close();
+            DBConnectionManager.close();
         }
     }
 }

@@ -11,21 +11,28 @@ jobs:
   format:
     name: Format with prettier
     runs-on: ubuntu-20.04
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v1
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.0
+
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v2.3.3
         with:
-          token: ${{ secrets.ACCESS_TOKEN }}
-          submodules: true
-          ref: ${{ github.head_ref }}
-      - name: Setup node 12.x
+          submodules: 'recursive'
+
+      - name: ⬢ Setup node
         uses: actions/setup-node@v2
         with:
-          node-version: 12.x
-      - run: yarn
-      - name: Format code with prettier
+          node-version: 14
+
+      - name: 📥 Download dependencies
+        run: yarn
+
+      - name: 📝 Format code with prettier
         run: yarn format
-      - name: Commit changes
+
+      - name: ⬆ Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "[auto] ci: apply format"
@@ -46,7 +53,6 @@ jobs:
 #        uses: docker://ghcr.io/github/super-linter:latest
 #        env:
 #          ACTIONS_RUNNER_DEBUG: true
-#          ERROR_ON_MISSING_EXEC_BIT: true
 #          VALIDATE_ALL_CODEBASE: false
 #          DEFAULT_BRANCH: main
 #          VALIDATE_MARKDOWN: false
