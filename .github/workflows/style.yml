@@ -19,9 +19,7 @@ jobs:
       - name: ⬇️ Checkout repository
         uses: actions/checkout@v2.3.3
         with:
-          token: ${{ secrets.ACCESS_TOKEN }}
           submodules: 'recursive'
-          ref: ${{ github.head_ref }}
 
       - name: ⬢ Setup node
         uses: actions/setup-node@v2
