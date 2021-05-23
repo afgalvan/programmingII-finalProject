@@ -29,8 +29,7 @@ jobs:
       - name: ⬇️ Checkout repository
         uses: actions/checkout@v2.3.3
         with:
-          token: ${{ secrets.ACCESS_TOKEN }}
-          submodules: true
+          submodules: 'recursive'
 
       # Initializes the CodeQL tools for scanning.
       - name: 🔘 Initialize CodeQL
