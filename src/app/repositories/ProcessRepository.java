@@ -4,11 +4,13 @@ import app.database.FileManagement;
 import app.database.FileManager;
 import app.exceptions.DataAccessException;
 import app.models.Process;
+import app.models.metadata.parts.Person;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 public class ProcessRepository implements IProcessRepository {
 
@@ -104,48 +106,41 @@ public class ProcessRepository implements IProcessRepository {
 
     private List<Process> getProcessesByTrial(
         String name,
-        BiConsumer<Process, List<Process>> biConsumer
+        Function<Process, List<Person>> getTrialMethod
     ) throws DataAccessException {
         if (name == null) {
             throw new DataAccessException("El nombre del demandado es null");
         }
 
-        List<Process> processList = new ArrayList<>();
-        List<Process> allProcess = this.getAll();
-        allProcess.forEach(process -> biConsumer.accept(process, processList));
+        // prettier-ignore-start
+        BiConsumer<Process, List<Process>> search = (process, list) ->
+            getTrialMethod.apply(process).forEach(person -> {
+                if (containsIgnoreCase(person.getFullName(), name)) {
+                    list.add(process);
+                }
+            });
+        // prettier-ignore-end
 
-        if (processList.size() == 0) {
+        List<Process> matchList = new ArrayList<>();
+        List<Process> allProcess = this.getAll();
+        allProcess.forEach(process -> search.accept(process, matchList));
+
+        if (matchList.size() == 0) {
             throw new DataAccessException("Ningún proceso encontrado");
         }
 
-        return processList;
+        return matchList;
     }
 
     @Override
     public List<Process> getProcessesByJudged(String name) throws DataAccessException {
-        // prettier-ignore-start
-        BiConsumer<Process, List<Process>> biConsumer = (process, list) ->
-            process.getMetadata().getJudgedList().forEach(person -> {
-                if (containsIgnoreCase(person.getFullName(), name)) {
-                    list.add(process);
-                }
-            });
-        // prettier-ignore-end
-
-        return getProcessesByTrial(name, biConsumer);
+        Function<Process, List<Person>> getJudgedList = Process::getJudgedList;
+        return getProcessesByTrial(name, getJudgedList);
     }
 
     @Override
     public List<Process> getProcessByProsecutor(String name) throws DataAccessException {
-        // prettier-ignore-start
-        BiConsumer<Process, List<Process>> biConsumer = (process, list) ->
-            process.getMetadata().getProsecutorList().forEach(person -> {
-                if (containsIgnoreCase(person.getFullName(), name)) {
-                    list.add(process);
-                }
-            });
-        // prettier-ignore-end
-
-        return getProcessesByTrial(name, biConsumer);
+        Function<Process, List<Person>> getProsecutorList = Process::getProsecutorList;
+        return getProcessesByTrial(name, getProsecutorList);
     }
 }
