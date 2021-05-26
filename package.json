@@ -26,6 +26,6 @@
     "editorconfig-checker": "^4.0.2",
     "ghooks": "^2.0.4",
     "prettier": "^2.3.0",
-    "prettier-plugin-java": "^1.1.0"
+    "prettier-plugin-java": "^1.1.1"
   }
 }
