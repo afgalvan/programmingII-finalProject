@@ -2,7 +2,7 @@ package app.controllers;
 
 import app.controllers.security.PasswordHandler;
 import app.models.Response;
-import app.models.annotations.Testable;
+import app.models.annotations.TestedOn;
 import app.models.users.Coordinator;
 import app.models.users.SuperUser;
 import app.models.users.User;
@@ -12,7 +12,7 @@ import test.controllers.AuthControllerTest;
 /**
  * Class that controls all login validations and methods.
  */
-@Testable(testClass = AuthControllerTest.class)
+@TestedOn(AuthControllerTest.class)
 public class AuthController implements Auth {
 
     private final UserController userController;

@@ -7,11 +7,14 @@ import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+
+import app.models.annotations.SideTest;
 import lombok.SneakyThrows;
 
 /**
  * Class that encrypts and decrypts passwords as String using Cipher.
  */
+@SideTest(PasswordHandler.class)
 class Hasher {
 
     /**

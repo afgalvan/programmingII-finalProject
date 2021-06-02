@@ -3,14 +3,14 @@ package app.services;
 import app.exceptions.DataAccessException;
 import app.models.Process;
 import app.models.Response;
-import app.models.annotations.Testable;
+import app.models.annotations.TestedOn;
 import app.repositories.IProcessRepository;
 import app.repositories.ProcessRepository;
 import java.sql.SQLException;
 import java.util.List;
 import test.services.ProcessServiceTest;
 
-@Testable(testClass = ProcessServiceTest.class)
+@TestedOn(ProcessServiceTest.class)
 public class ProcessService implements IProcessService {
 
     private final IProcessRepository processRepository;

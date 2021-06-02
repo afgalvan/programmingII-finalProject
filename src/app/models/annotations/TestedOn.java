@@ -7,6 +7,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.SOURCE)
 @Target({ ElementType.TYPE, ElementType.METHOD })
-public @interface Testable {
-    Class<?> testClass();
+public @interface TestedOn {
+    Class<?> value();
 }

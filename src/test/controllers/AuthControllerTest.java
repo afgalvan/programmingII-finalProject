@@ -29,7 +29,7 @@ public class AuthControllerTest {
     }
 
     @Test
-    @Order(order = 1)
+    @Order(1)
     public void logInvalidUser() {
         Assert.assertEquals(
             DialogResponse.ERROR_MESSAGE,
@@ -38,7 +38,7 @@ public class AuthControllerTest {
     }
 
     @Test
-    @Order(order = 2)
+    @Order(2)
     public void registerUser() {
         Assert.assertEquals(
             DialogResponse.INFORMATION_MESSAGE,
@@ -49,7 +49,7 @@ public class AuthControllerTest {
     }
 
     @Test
-    @Order(order = 3)
+    @Order(3)
     public void registerInvalidUser() {
         Assert.assertEquals(
             DialogResponse.ERROR_MESSAGE,
@@ -60,7 +60,7 @@ public class AuthControllerTest {
     }
 
     @Test
-    @Order(order = 4)
+    @Order(4)
     public void logInUser() {
         Assert.assertEquals(
             DialogResponse.INFORMATION_MESSAGE,
@@ -69,7 +69,7 @@ public class AuthControllerTest {
     }
 
     @Test
-    @Order(order = 5)
+    @Order(5)
     public void cleanUp() {
         controller.deleteUserById(sample.getName());
     }

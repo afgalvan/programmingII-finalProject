@@ -1,8 +1,12 @@
 package app.controllers.security;
 
+import app.models.annotations.TestedOn;
+import test.controllers.security.PasswordHandlerTest;
+
 /**
  * A final class that consists exclusively of static methods for password handling.
  */
+@TestedOn(PasswordHandlerTest.class)
 public final class PasswordHandler {
 
     private static final Hasher hasher;

@@ -1,7 +1,9 @@
 package app.controllers.api;
 
+import app.models.annotations.TestedOn;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.val;
+import test.controllers.api.LocationApiTest;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -10,6 +12,7 @@ import java.util.stream.Collectors;
  * A class to get the departments and cities list from Colombia. Got from a json file
  * from https://github.com/marcovega/colombia-json repository.
  */
+@TestedOn(LocationApiTest.class)
 public final class LocationApi {
 
     private static final Map<String, List<String>> locations;
@@ -19,6 +22,7 @@ public final class LocationApi {
     }
 
     /**
+     * FIXME: Issue #100 - Improve json parsing by using built-in jackson methods
      * Map the json with the locations reference to a Map to relational the
      * department with a list of its cities.
      *

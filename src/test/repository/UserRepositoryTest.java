@@ -1,4 +1,4 @@
-package test.database;
+package test.repository;
 
 import app.database.DBConnectionManager;
 import app.models.users.SuperUser;

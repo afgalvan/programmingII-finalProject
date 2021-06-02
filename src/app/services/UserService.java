@@ -3,7 +3,7 @@ package app.services;
 import app.database.DBConnectionManager;
 import app.exceptions.DataAccessException;
 import app.models.Response;
-import app.models.annotations.Testable;
+import app.models.annotations.TestedOn;
 import app.models.users.User;
 import app.repositories.Repository;
 import app.repositories.UserRepository;
@@ -14,7 +14,7 @@ import test.services.UserServiceTest;
 /**
  * Class that manages all business logic and database implementation.
  */
-@Testable(testClass = UserServiceTest.class)
+@TestedOn(UserServiceTest.class)
 public class UserService implements Service<String, User> {
 
     private final Repository<String, User> userRepository;

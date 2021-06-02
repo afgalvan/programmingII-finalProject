@@ -2,7 +2,6 @@ package app.controllers;
 
 import app.controllers.api.LocationApi;
 import app.exceptions.InvalidLocationException;
-import app.models.annotations.Testable;
 import java.util.List;
 import lombok.SneakyThrows;
 

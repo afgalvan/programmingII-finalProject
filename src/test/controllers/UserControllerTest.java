@@ -1,5 +1,6 @@
 package test.controllers;
 
+import app.controllers.Auth;
 import app.controllers.AuthController;
 import app.controllers.DialogResponse;
 import app.controllers.UserController;
@@ -18,7 +19,7 @@ import test.OrderedRunner;
 public class UserControllerTest {
 
     private UserController userController;
-    private AuthController authController;
+    private Auth authController;
     private User sample;
     private User updateSample;
 
@@ -31,7 +32,7 @@ public class UserControllerTest {
     }
 
     @Test
-    @Order(order = 1)
+    @Order(1)
     public void postTest() {
         Assert.assertEquals(
             DialogResponse.INFORMATION_MESSAGE,
@@ -42,7 +43,7 @@ public class UserControllerTest {
     }
 
     @Test
-    @Order(order = 2)
+    @Order(2)
     public void postDuplicateUser() {
         Assert.assertEquals(
             DialogResponse.ERROR_MESSAGE,
@@ -53,19 +54,19 @@ public class UserControllerTest {
     }
 
     @Test
-    @Order(order = 3)
+    @Order(3)
     public void getsTest() {
         Assert.assertNotNull(userController.getUsers());
     }
 
     @Test
-    @Order(order = 4)
+    @Order(4)
     public void getTest() {
         Assert.assertNotNull(userController.getUserById(sample.getName()));
     }
 
     @Test
-    @Order(order = 5)
+    @Order(5)
     public void putTest() {
         Assert.assertNotNull(userController.getUserById(sample.getName()));
         Assert.assertEquals(
@@ -77,7 +78,7 @@ public class UserControllerTest {
     }
 
     @Test
-    @Order(order = 6)
+    @Order(6)
     public void deleteTest() {
         Assert.assertEquals(
             "Usuario eliminado con éxito.",

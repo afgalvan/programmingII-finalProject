@@ -1,15 +1,18 @@
 package app.controllers.api;
 
+import app.models.annotations.TestedOn;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import test.controllers.api.JsonUtilsTest;
 
 /**
  * Class to perform certain functions to manipulate json files using the jackson library.
  */
+@TestedOn(JsonUtilsTest.class)
 public final class JsonUtils {
 
     private static final ObjectMapper objectMapper;
