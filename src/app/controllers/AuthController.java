@@ -10,14 +10,14 @@ import app.models.users.UserType;
 import test.controllers.AuthControllerTest;
 
 /**
- * Class that controls all login validations and methods.
+ * Singleton class that controls all login validations and methods.
  */
 @TestedOn(AuthControllerTest.class)
 public class AuthController implements Auth {
 
     private final UserController userController;
-    private static final AuthController instance = new AuthController();
     private User currentUser;
+    private static final AuthController instance = new AuthController();
 
     private AuthController() {
         this.userController = UserController.getInstance();

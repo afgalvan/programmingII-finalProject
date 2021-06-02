@@ -1,7 +1,6 @@
 package test;
 
 import java.util.Comparator;
-
 import org.junit.After;
 import org.junit.runners.model.FrameworkMethod;
 

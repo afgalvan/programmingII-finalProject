@@ -2,12 +2,12 @@ package test;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+import test.controllers.ControllerSuite;
+import test.database.DatabaseSuite;
 import test.main.MainTest;
 import test.models.ModelSuite;
-import test.controllers.ControllerSuite;
-import test.services.ServiceSuite;
 import test.repository.RepositorySuite;
-import test.database.DatabaseSuite;
+import test.services.ServiceSuite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses(
