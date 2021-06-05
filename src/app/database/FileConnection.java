@@ -2,13 +2,13 @@ package app.database;
 
 import java.io.*;
 
-class FileConnectionManager implements IFileConnection {
+class FileConnection implements IFileConnection {
 
     private final File file;
     private ObjectOutputStream objectOutputStream;
     private ObjectInputStream inputStream;
 
-    public FileConnectionManager(String filePath) {
+    public FileConnection(String filePath) {
         this.file = new File(filePath);
     }
 

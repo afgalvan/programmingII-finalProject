@@ -3,12 +3,12 @@ package app.database;
 import app.exceptions.InputFileException;
 import java.io.IOException;
 
-public class FileManager implements FileManagement {
+public class FileComposer implements IFileComposer {
 
-    private final FileConnection connection;
+    private final IFileConnection connection;
 
-    public FileManager(String filePath) {
-        this.connection = new FileConnectionManager(filePath);
+    public FileComposer(String filePath) {
+        this.connection = new FileConnection(filePath);
     }
 
     @Override

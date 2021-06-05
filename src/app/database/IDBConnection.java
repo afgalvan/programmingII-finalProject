@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public interface DBConnection extends DataConnection {
+public interface IDBConnection extends DataConnection {
     PreparedStatement prepareStatement(String statement) throws SQLException;
 
     Statement createStatement() throws SQLException;

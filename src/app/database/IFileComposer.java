@@ -1,6 +1,6 @@
 package app.database;
 
-public interface FileManagement {
+public interface IFileComposer {
     void save(Object data);
 
     Object read();

@@ -7,16 +7,16 @@ import lombok.Data;
  * Class to manage the connection between the software and the database
  */
 @Data
-public class DBConnectionManager implements DBConnection {
+public class DBConnection implements IDBConnection {
 
     private String url;
     private Connection _connection;
 
-    public DBConnectionManager() {
+    public DBConnection() {
         this("jdbc:sqlite:./src/app/database/database.sqlite");
     }
 
-    public DBConnectionManager(String driverUrl) {
+    public DBConnection(String driverUrl) {
         this._connection = null;
         this.url = driverUrl;
     }
