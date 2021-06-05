@@ -1,7 +1,7 @@
 package app.repositories;
 
-import app.database.FileManagement;
-import app.database.FileManager;
+import app.database.FileComposer;
+import app.database.IFileComposer;
 import app.exceptions.DataAccessException;
 import app.models.Process;
 import app.models.metadata.parts.Person;
@@ -15,11 +15,11 @@ import java.util.function.Function;
 public class ProcessRepository implements IProcessRepository {
 
     private Map<Long, Process> processMap;
-    private final FileManagement database;
+    private final IFileComposer database;
 
     public ProcessRepository() {
         this.processMap = new LinkedHashMap<>();
-        this.database = new FileManager("src/app/database/Process.obj");
+        this.database = new FileComposer("src/app/database/Process.obj");
     }
 
     @Override

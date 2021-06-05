@@ -1,6 +1,6 @@
-package test.repository;
+package test.repositories;
 
-import app.database.DBConnectionManager;
+import app.database.DBConnection;
 import app.models.users.SuperUser;
 import app.models.users.User;
 import app.repositories.UserRepository;
@@ -14,29 +14,25 @@ import org.junit.Test;
 public class UserRepositoryTest {
 
     public static final String URL_TEST = "jdbc:sqlite:./src/test/database/test.sqlite";
-    public static DBConnectionManager DBConnectionManager = new DBConnectionManager(
-        URL_TEST
-    );
-    public UserRepository userRepository = new UserRepository(DBConnectionManager);
+    public static DBConnection DBConnection = new DBConnection(URL_TEST);
+    public UserRepository userRepository = new UserRepository(DBConnection);
 
     @SneakyThrows
     @Test
     public void connectionTest() {
         try {
-            DBConnectionManager.open();
-            Assert.assertNotNull(DBConnectionManager.get_connection());
+            DBConnection.open();
+            Assert.assertNotNull(DBConnection.get_connection());
 
-            Connection expected = DriverManager.getConnection(
-                DBConnectionManager.getUrl()
-            );
+            Connection expected = DriverManager.getConnection(DBConnection.getUrl());
             Assert.assertEquals(
                 expected.getSchema(),
-                DBConnectionManager.get_connection().getSchema()
+                DBConnection.get_connection().getSchema()
             );
         } catch (SQLException | NullPointerException ignore) {
-            Assert.assertNull(DBConnectionManager.get_connection());
+            Assert.assertNull(DBConnection.get_connection());
         } finally {
-            DBConnectionManager.close();
+            DBConnection.close();
         }
     }
 
@@ -45,7 +41,7 @@ public class UserRepositoryTest {
         User sample = new SuperUser("Joe", "Password123", "Some salt");
 
         try {
-            DBConnectionManager.open();
+            DBConnection.open();
             userRepository.insert(sample);
         } catch (SQLException ignored) {}
 
@@ -58,7 +54,7 @@ public class UserRepositoryTest {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
-            DBConnectionManager.close();
+            DBConnection.close();
         }
     }
 }

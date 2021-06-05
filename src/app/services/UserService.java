@@ -1,6 +1,6 @@
 package app.services;
 
-import app.database.DBConnectionManager;
+import app.database.DBConnection;
 import app.exceptions.DataAccessException;
 import app.models.Response;
 import app.models.annotations.TestedOn;
@@ -18,15 +18,15 @@ import test.services.UserServiceTest;
 public class UserService implements Service<String, User> {
 
     private final Repository<String, User> userRepository;
-    private final DBConnectionManager DBConnectionManager;
+    private final DBConnection DBConnection;
 
     public UserService() {
-        this(new DBConnectionManager());
+        this(new DBConnection());
     }
 
-    public UserService(DBConnectionManager DBConnectionManager) {
-        this.DBConnectionManager = DBConnectionManager;
-        this.userRepository = new UserRepository(this.DBConnectionManager);
+    public UserService(DBConnection DBConnection) {
+        this.DBConnection = DBConnection;
+        this.userRepository = new UserRepository(this.DBConnection);
     }
 
     /**
@@ -38,13 +38,13 @@ public class UserService implements Service<String, User> {
     @Override
     public Response<User> insert(User user) {
         try {
-            DBConnectionManager.open();
+            DBConnection.open();
             userRepository.insert(user);
             return new Response<>(user);
         } catch (SQLException | DataAccessException ignore) {
             return new Response<>();
         } finally {
-            DBConnectionManager.close();
+            DBConnection.close();
         }
     }
 
@@ -56,13 +56,13 @@ public class UserService implements Service<String, User> {
     @Override
     public Response<List<User>> getAll() {
         try {
-            DBConnectionManager.open();
+            DBConnection.open();
             List<User> userList = userRepository.getAll();
             return new Response<>(userList);
         } catch (Exception ignore) {
             return new Response<>();
         } finally {
-            DBConnectionManager.close();
+            DBConnection.close();
         }
     }
 
@@ -75,13 +75,13 @@ public class UserService implements Service<String, User> {
     @Override
     public Response<User> getById(String username) {
         try {
-            DBConnectionManager.open();
+            DBConnection.open();
             User user = userRepository.getById(username);
             return new Response<>(user);
         } catch (Exception ignore) {
             return new Response<>();
         } finally {
-            DBConnectionManager.close();
+            DBConnection.close();
         }
     }
 
@@ -95,14 +95,14 @@ public class UserService implements Service<String, User> {
     @Override
     public Response<User> updateById(String username, User newData) {
         try {
-            DBConnectionManager.open();
+            DBConnection.open();
             User user = userRepository.getById(username);
             userRepository.updateById(username, newData);
             return new Response<>(user);
         } catch (Exception ignore) {
             return new Response<>();
         } finally {
-            DBConnectionManager.close();
+            DBConnection.close();
         }
     }
 
@@ -115,13 +115,13 @@ public class UserService implements Service<String, User> {
     @Override
     public Response<User> deleteById(String username) {
         try {
-            DBConnectionManager.open();
+            DBConnection.open();
             userRepository.deleteById(username);
             return new Response<>(username, false);
         } catch (Exception ignore) {
             return new Response<>();
         } finally {
-            DBConnectionManager.close();
+            DBConnection.close();
         }
     }
 }

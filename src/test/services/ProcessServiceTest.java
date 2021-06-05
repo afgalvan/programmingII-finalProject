@@ -5,7 +5,6 @@ import app.models.Response;
 import app.models.metadata.ProcessMetadata;
 import app.services.ProcessService;
 import java.util.List;
-import lombok.val;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;

@@ -9,14 +9,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import test.Order;
 import test.OrderedRunner;
-import test.repository.UserRepositoryTest;
+import test.repositories.UserRepositoryTest;
 
 @RunWith(OrderedRunner.class)
 public class UserServiceTest {
 
-    public UserService userService = new UserService(
-        UserRepositoryTest.DBConnectionManager
-    );
+    public UserService userService = new UserService(UserRepositoryTest.DBConnection);
     public User sample = new Coordinator("Maria", "Okiss123", "SomeSalt");
     public User updateSample = new Coordinator("María", "Okiss123", "SomeSalt");
 

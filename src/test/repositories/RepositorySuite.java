@@ -1,4 +1,4 @@
-package test.repository;
+package test.repositories;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
