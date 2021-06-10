@@ -3,7 +3,7 @@ package app.controllers.api;
 import app.models.annotations.TestedOn;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.val;
-import test.controllers.api.LocationApiTest;
+import test.controllers.api.LocationsTest;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -12,13 +12,48 @@ import java.util.stream.Collectors;
  * A class to get the departments and cities list from Colombia. Got from a json file
  * from https://github.com/marcovega/colombia-json repository.
  */
-@TestedOn(LocationApiTest.class)
-public final class LocationApi {
+@TestedOn(LocationsTest.class)
+public final class Locations {
 
     private static final Map<String, List<String>> locations;
 
     static {
         locations = getLocations();
+    }
+
+    private static JsonNode getJsonNode() {
+        val jsonPath = "./src/app/controllers/api/locations.json";
+        String  jsonString = JsonUtils.readFile(jsonPath);
+        return JsonUtils.parse(jsonString);
+    }
+
+    private static List<String> nodeToList(JsonNode node) {
+        return Arrays.asList(
+            node.toString()
+                .toLowerCase()
+                .replaceAll("[\\[\\]\"]", "")
+                .split(",")
+        );
+    }
+
+    private static List<List<String>> parseCities(JsonNode jsonNode) {
+        return jsonNode.findValues("ciudades")
+            .stream()
+            .map(Locations::nodeToList)
+            .collect(Collectors.toList());
+    }
+
+    private static List<String> parseDepartments(JsonNode jsonNode) {
+        return new ArrayList<>(jsonNode.findValuesAsText("departamento"));
+    }
+
+    private static Map<String, List<String>> linkLocations(List<String> departments, List<List<String>> cities) {
+        val locationsMap = new LinkedHashMap<String, List<String>>();
+        for (int i = 0; i < departments.size(); i++) {
+            locationsMap.put(departments.get(i).toLowerCase(), cities.get(i));
+        }
+
+        return locationsMap;
     }
 
     /**
@@ -29,28 +64,13 @@ public final class LocationApi {
      * @return A map with a String as key, and a List of Strings as value.
      */
     private static Map<String, List<String>> getLocations() {
-        val locations = new LinkedHashMap<String, List<String>>();
-        String  jsonString = JsonUtils.readFile(
-            "./src/app/controllers/api/locations.json"
-        );
-        JsonNode jsonNode = JsonUtils.parse(jsonString);
-
-        assert jsonNode != null;
-        List<List<String>> cities = jsonNode.findValues("ciudades")
-            .stream()
-            .map(c -> Arrays.asList(
-                c.toString().toLowerCase().replaceAll("[\\[\\]\"]", "").split(",")
-            )).collect(Collectors.toList());
-
-        val departments = new ArrayList<>(
-            jsonNode.findValuesAsText("departamento")
-        );
-
-        for (int i = 0; i < departments.size(); i++) {
-            locations.put(departments.get(i).toLowerCase(), cities.get(i));
+        JsonNode jsonNode = getJsonNode();
+        if (jsonNode == null) {
+            return new HashMap<>();
         }
-
-        return locations;
+        List<List<String>> cities = parseCities(jsonNode);
+        List<String> departments = parseDepartments(jsonNode);
+        return linkLocations(departments, cities);
     }
 
     /**
@@ -79,7 +99,8 @@ public final class LocationApi {
      * @return A List of the cities in a department.
      */
     public static List<String> getCities(String department) {
-        return locations.get(department);
+        val lowerCaseDepartment = department.toLowerCase();
+        return locations.get(lowerCaseDepartment);
     }
 
     /**
@@ -89,7 +110,8 @@ public final class LocationApi {
      * @return A integer that is the number of cities that a department has.
      */
     public static int citiesLen(String department) {
-        return locations.get(department).size();
+        val lowerCaseDepartment = department.toLowerCase();
+        return locations.get(lowerCaseDepartment).size();
     }
 
     /**
@@ -99,6 +121,7 @@ public final class LocationApi {
      * @return The name of the last city of a department.
      */
     public static String getLastCity(String department) {
-        return locations.get(department).get(citiesLen(department) - 1);
+        int lastCityIndex = citiesLen(department) - 1;
+        return getCities(department).get(lastCityIndex);
     }
 }

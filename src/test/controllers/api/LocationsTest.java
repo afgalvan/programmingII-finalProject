@@ -3,10 +3,10 @@ package test.controllers.api;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
-import app.controllers.api.LocationApi;
+import app.controllers.api.Locations;
 import org.junit.Test;
 
-public class LocationApiTest {
+public class LocationsTest {
 
     @Test
     public void getAllDepartmentsTest() {
@@ -19,7 +19,7 @@ public class LocationApiTest {
                 "Providencia, Santander, Sucre, Tolima, Valle del Cauca, Vaupés," +
                 " Vichada]"
             ).toLowerCase(),
-            LocationApi.getDepartments().toString()
+            Locations.getDepartments().toString()
         );
     }
 
@@ -27,17 +27,22 @@ public class LocationApiTest {
     public void getCitiesFromDepartment() {
         assertEquals(
             "[Leticia, Puerto Nariño]".toLowerCase(),
-            LocationApi.getCities("Amazonas".toLowerCase()).toString()
+            Locations.getCities("Amazonas".toLowerCase()).toString()
         );
 
         assertEquals(
             "[Cumaribo, La Primavera, Puerto Carreño, Santa Rosalía]".toLowerCase(),
-            LocationApi.getCities("Vichada".toLowerCase()).toString()
+            Locations.getCities("Vichada".toLowerCase()).toString()
         );
     }
 
     @Test
     public void invalidDepartment() {
-        assertNull(LocationApi.getCities("New York"));
+        assertNull(Locations.getCities("New York"));
+    }
+
+    @Test
+    public void getLastCity() {
+        assertEquals("valledupar", Locations.getLastCity("cesar"));
     }
 }
