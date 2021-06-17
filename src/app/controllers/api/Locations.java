@@ -2,11 +2,10 @@ package app.controllers.api;
 
 import app.models.annotations.TestedOn;
 import com.fasterxml.jackson.databind.JsonNode;
-import lombok.val;
-import test.controllers.api.LocationsTest;
-
 import java.util.*;
 import java.util.stream.Collectors;
+import lombok.val;
+import test.controllers.api.LocationsTest;
 
 /**
  * A class to get the departments and cities list from Colombia. Got from a json file
@@ -23,21 +22,19 @@ public final class Locations {
 
     private static JsonNode getJsonNode() {
         val jsonPath = "./src/app/controllers/api/locations.json";
-        String  jsonString = JsonUtils.readFile(jsonPath);
+        String jsonString = JsonUtils.readFile(jsonPath);
         return JsonUtils.parse(jsonString);
     }
 
     private static List<String> nodeToList(JsonNode node) {
         return Arrays.asList(
-            node.toString()
-                .toLowerCase()
-                .replaceAll("[\\[\\]\"]", "")
-                .split(",")
+            node.toString().toLowerCase().replaceAll("[\\[\\]\"]", "").split(",")
         );
     }
 
     private static List<List<String>> parseCities(JsonNode jsonNode) {
-        return jsonNode.findValues("ciudades")
+        return jsonNode
+            .findValues("ciudades")
             .stream()
             .map(Locations::nodeToList)
             .collect(Collectors.toList());
@@ -47,7 +44,10 @@ public final class Locations {
         return new ArrayList<>(jsonNode.findValuesAsText("departamento"));
     }
 
-    private static Map<String, List<String>> linkLocations(List<String> departments, List<List<String>> cities) {
+    private static Map<String, List<String>> linkLocations(
+        List<String> departments,
+        List<List<String>> cities
+    ) {
         val locationsMap = new LinkedHashMap<String, List<String>>();
         for (int i = 0; i < departments.size(); i++) {
             locationsMap.put(departments.get(i).toLowerCase(), cities.get(i));

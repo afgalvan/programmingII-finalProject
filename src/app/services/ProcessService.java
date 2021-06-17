@@ -4,19 +4,21 @@ import app.exceptions.DataAccessException;
 import app.models.Process;
 import app.models.Response;
 import app.models.annotations.TestedOn;
-import app.repositories.IProcessRepository;
 import app.repositories.ProcessRepository;
+import app.repositories.SerializationProcessRepository;
 import java.sql.SQLException;
 import java.util.List;
+import lombok.AllArgsConstructor;
 import test.services.ProcessServiceTest;
 
 @TestedOn(ProcessServiceTest.class)
+@AllArgsConstructor
 public class ProcessService implements IProcessService {
 
-    private final IProcessRepository processRepository;
+    private final ProcessRepository processRepository;
 
     public ProcessService() {
-        this.processRepository = new ProcessRepository();
+        this.processRepository = new SerializationProcessRepository();
     }
 
     @Override

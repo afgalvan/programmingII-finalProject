@@ -59,6 +59,14 @@ public class Process implements Serializable {
             );
     }
 
+    public void setId(long id) {
+        this.metadata.setId(id);
+    }
+
+    public Long getId() {
+        return this.metadata.getId();
+    }
+
     /**
      * Get a notebook of the current process given his name.
      * @param name The name of the name of the notebook to be got.

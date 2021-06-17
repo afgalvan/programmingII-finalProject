@@ -32,6 +32,7 @@ public class AuthControllerTest {
     @Order(1)
     public void logInvalidUser() {
         Assert.assertEquals(
+            "A unregistered user shouldn't be allowed to log in.",
             DialogResponse.ERROR_MESSAGE,
             authController.loginUser(sample.getName(), sample.getPassword()).getType()
         );

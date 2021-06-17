@@ -17,7 +17,7 @@ public class ProcessServiceTest {
 
     private static ProcessService service;
     private static Process process;
-    private final Long ID = 88888222222888L;
+    private static final Long ID = 88888222222888L;
 
     @BeforeClass
     public static void setUp() {
@@ -27,7 +27,14 @@ public class ProcessServiceTest {
 
     @Test
     @Order(1)
-    public void insertInvalidProcess() {
+    public void receiveAnError_when_tryingToGetAnyProcessFromEmptyFile() {
+        Response<List<Process>> response = service.getAll();
+        Assert.assertFalse(response.isError());
+    }
+
+    @Test
+    @Order(2)
+    public void receiveAnError_when_insertInvalidProcess() {
         Assert.assertTrue(
             "The process shouldn't be saved, it has no metadata",
             service.insert(process).isError()
@@ -40,15 +47,18 @@ public class ProcessServiceTest {
     }
 
     @Test
-    @Order(2)
-    public void insertCorrectProcess() {
-        process.getMetadata().setId(ID);
-        Assert.assertFalse(service.insert(process).isError());
+    @Order(3)
+    public void saveTheProcess_when_itHasAllNecessaryData() {
+        process.setId(ID);
+        Assert.assertFalse(
+            "The process should be saved correctly",
+            service.insert(process).isError()
+        );
     }
 
     @Test
-    @Order(3)
-    public void insertRepeatedProcess() {
+    @Order(4)
+    public void receiveAnError_when_repeatedProcessIsTryingToBeSaved() {
         Assert.assertTrue(
             "The process was already saved and shouldn't save repeated id",
             service.insert(process).isError()
@@ -56,14 +66,14 @@ public class ProcessServiceTest {
     }
 
     @Test
-    @Order(4)
+    @Order(5)
     public void getAll() {
         Response<List<Process>> response = service.getAll();
         Assert.assertFalse(response.isError());
     }
 
     @Test
-    @Order(5)
+    @Order(6)
     public void getById() {
         Assert.assertNotNull(service.getById(ID));
     }

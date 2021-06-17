@@ -1,12 +1,14 @@
 package app.services;
 
 import app.database.DBConnection;
+import app.database.DBConnector;
 import app.exceptions.DataAccessException;
 import app.models.Response;
 import app.models.annotations.TestedOn;
 import app.models.users.User;
-import app.repositories.Repository;
+import app.repositories.SQLiteUserRepository;
 import app.repositories.UserRepository;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import test.services.UserServiceTest;
@@ -15,18 +17,18 @@ import test.services.UserServiceTest;
  * Class that manages all business logic and database implementation.
  */
 @TestedOn(UserServiceTest.class)
-public class UserService implements Service<String, User> {
+public class UserService implements IUserService {
 
-    private final Repository<String, User> userRepository;
+    private final UserRepository userRepository;
     private final DBConnection DBConnection;
 
     public UserService() {
-        this(new DBConnection());
+        this(new DBConnector());
     }
 
-    public UserService(DBConnection DBConnection) {
-        this.DBConnection = DBConnection;
-        this.userRepository = new UserRepository(this.DBConnection);
+    public UserService(DBConnection DBConnector) {
+        this.DBConnection = DBConnector;
+        this.userRepository = new SQLiteUserRepository(this.DBConnection);
     }
 
     /**
@@ -41,10 +43,12 @@ public class UserService implements Service<String, User> {
             DBConnection.open();
             userRepository.insert(user);
             return new Response<>(user);
-        } catch (SQLException | DataAccessException ignore) {
+        } catch (SQLException | DataAccessException | IOException ignore) {
             return new Response<>();
         } finally {
-            DBConnection.close();
+            try {
+                DBConnection.close();
+            } catch (IOException ignored) {}
         }
     }
 
@@ -62,7 +66,9 @@ public class UserService implements Service<String, User> {
         } catch (Exception ignore) {
             return new Response<>();
         } finally {
-            DBConnection.close();
+            try {
+                DBConnection.close();
+            } catch (IOException ignored) {}
         }
     }
 
@@ -81,7 +87,9 @@ public class UserService implements Service<String, User> {
         } catch (Exception ignore) {
             return new Response<>();
         } finally {
-            DBConnection.close();
+            try {
+                DBConnection.close();
+            } catch (IOException ignored) {}
         }
     }
 
@@ -102,7 +110,9 @@ public class UserService implements Service<String, User> {
         } catch (Exception ignore) {
             return new Response<>();
         } finally {
-            DBConnection.close();
+            try {
+                DBConnection.close();
+            } catch (IOException ignored) {}
         }
     }
 
@@ -121,7 +131,9 @@ public class UserService implements Service<String, User> {
         } catch (Exception ignore) {
             return new Response<>();
         } finally {
-            DBConnection.close();
+            try {
+                DBConnection.close();
+            } catch (IOException ignored) {}
         }
     }
 }

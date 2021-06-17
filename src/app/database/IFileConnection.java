@@ -1,9 +1,0 @@
-package app.database;
-
-import java.io.IOException;
-
-interface IFileConnection extends DataConnection {
-    void save(Object data) throws IOException;
-
-    Object read() throws IOException, ClassNotFoundException;
-}
