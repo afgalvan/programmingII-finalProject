@@ -5,6 +5,8 @@ import app.database.FileManager;
 import app.exceptions.DataAccessException;
 import app.models.Process;
 import app.models.metadata.parts.Person;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -141,7 +143,7 @@ public class SerializationProcessRepository implements ProcessRepository {
         void mutate(ProcessRecord process, T updatedData);
     }
 
-    private static class ProcessRecord {
+    private static class ProcessRecord implements Serializable {
 
         private Map<Long, Process> value;
 

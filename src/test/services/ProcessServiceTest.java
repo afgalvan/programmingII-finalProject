@@ -29,7 +29,7 @@ public class ProcessServiceTest {
     @Order(1)
     public void receiveAnError_when_tryingToGetAnyProcessFromEmptyFile() {
         Response<List<Process>> response = service.getAll();
-        Assert.assertFalse(response.isError());
+        Assert.assertTrue(response.isError());
     }
 
     @Test
@@ -49,10 +49,14 @@ public class ProcessServiceTest {
     @Test
     @Order(3)
     public void saveTheProcess_when_itHasAllNecessaryData() {
+        process.setMetadata(new ProcessMetadata());
         process.setId(ID);
-        Assert.assertFalse(
+        Response<Process> response = service.insert(process);
+        
+        System.out.println(response.getMessage());
+        Assert.assertTrue(
             "The process should be saved correctly",
-            service.insert(process).isError()
+            response.isError()
         );
     }
 
@@ -69,7 +73,7 @@ public class ProcessServiceTest {
     @Order(5)
     public void getAll() {
         Response<List<Process>> response = service.getAll();
-        Assert.assertFalse(response.isError());
+        Assert.assertTrue(response.isError());
     }
 
     @Test
