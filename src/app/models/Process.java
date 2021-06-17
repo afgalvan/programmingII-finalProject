@@ -5,6 +5,7 @@ import app.models.metadata.parts.Person;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiConsumer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -80,6 +81,26 @@ public class Process implements Serializable {
         }
 
         return null;
+    }
+
+    private boolean addTrial(
+        BiConsumer<ProcessMetadata, Person> addTrialMethod,
+        Person person
+    ) {
+        if (person == null || person.getId() == null || person.getName() == null) {
+            return false;
+        }
+
+        addTrialMethod.accept(metadata, person);
+        return true;
+    }
+
+    public boolean addProsecutor(Person person) {
+        return addTrial(ProcessMetadata::addProsecutor, person);
+    }
+
+    public boolean addJudged(Person person) {
+        return addTrial(ProcessMetadata::addJudged, person);
     }
 
     public List<Person> getProsecutorList() {

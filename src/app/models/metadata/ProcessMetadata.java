@@ -26,6 +26,10 @@ public class ProcessMetadata implements Serializable, Rowable {
     private final List<Person> prosecutorList = new ArrayList<>();
     private PhysicalInformation physicalInformation;
 
+    public ProcessMetadata(Long id) {
+        this.id = id;
+    }
+
     /**
      * Add a prosecutor to the prosecutorList of the metadata.
      * @param person the prosecutor of the process.
