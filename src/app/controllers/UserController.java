@@ -4,7 +4,6 @@ import app.models.Response;
 import app.models.annotations.TestedOn;
 import app.models.users.User;
 import app.services.IUserService;
-import app.services.Service;
 import app.services.UserService;
 import java.util.List;
 import java.util.function.Function;
@@ -24,7 +23,7 @@ public class UserController {
         u + " registrado con éxito.";
 
     private final Function<String, String> outpostResponse = u ->
-        "No se pudo registrar el usuario " + u + ".";
+        "No se pudo registrar el usuario \"" + u + "\".";
 
     private static final UserController instance = new UserController();
 

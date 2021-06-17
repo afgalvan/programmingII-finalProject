@@ -1,22 +1,26 @@
-package app.views.auth;
+package app.views.components.auth;
 
 import app.views.ColorPalette;
 import app.views.GraphicalInteraction;
 import app.views.Window;
-import app.views.components.ButtonFactory;
-import app.views.components.FieldFactory;
-import app.views.components.ImageFactory;
+import app.views.components.factory.ButtonFactory;
+import app.views.components.factory.FieldFactory;
+import app.views.components.factory.ImageFactory;
+
 import java.awt.*;
 import javax.swing.*;
+
 import rojerusan.RSMaterialButtonRectangle;
 import rojerusan.RSPasswordTextPlaceHolder;
 
-public class AuthForm extends JPanel {
+public abstract class AuthForm extends JPanel {
 
     protected Window window;
     protected JLabel title;
     protected JTextField usernameField;
     protected RSPasswordTextPlaceHolder passwordField;
+    protected final String usernamePlaceholder = "Nombre de usuario";
+    protected final String passwordPlaceholder = "Contraseña";
     protected JLabel userIcon;
     protected JLabel passwordIcon;
     protected JLabel usernamePadding;
@@ -49,8 +53,8 @@ public class AuthForm extends JPanel {
         title.setFont(new Font("Segoe UI", Font.BOLD, 28));
         title.setHorizontalAlignment(SwingConstants.CENTER);
 
-        usernameField = FieldFactory.fieldForm("Nombre de usuario");
-        passwordField = FieldFactory.passwordForm("Contraseña");
+        usernameField = FieldFactory.fieldForm(this.usernamePlaceholder);
+        passwordField = FieldFactory.passwordForm(this.passwordPlaceholder);
 
         userIcon = ImageFactory.fieldIcon("src/app/views/assets/pass.png");
         passwordIcon = ImageFactory.fieldIcon("src/app/views/assets/user.png");
@@ -80,18 +84,18 @@ public class AuthForm extends JPanel {
             usernameField,
             () -> {
                 if (
-                    usernameField.getText().equals("Nombre de usuario")
+                    usernameField.getText().equals(this.usernamePlaceholder)
                 ) usernameField.setText("");
                 if (
-                    String.valueOf(passwordField.getPassword()).equals("Contraseña")
+                    String.valueOf(passwordField.getPassword()).equals(this.passwordPlaceholder)
                 ) passwordField.setEchoChar((char) 0);
             },
             () -> {
                 if (usernameField.getText().equals("")) usernameField.setText(
-                    "Nombre de usuario"
+                    this.usernamePlaceholder
                 );
                 if (
-                    String.valueOf(passwordField.getPassword()).equals("Contraseña")
+                    String.valueOf(passwordField.getPassword()).equals(this.passwordPlaceholder)
                 ) passwordField.setEchoChar((char) 0);
             }
         );
@@ -101,15 +105,20 @@ public class AuthForm extends JPanel {
         GraphicalInteraction.addFocusListener(
             passwordField,
             () -> {
-                if (String.valueOf(passwordField.getPassword()).equals("Contraseña")) {
+                String password = String.valueOf(passwordField.getPassword());
+                if (password.equals(this.passwordPlaceholder)) {
                     passwordField.setText("");
                     passwordField.setEchoChar('•');
                 }
             },
             () -> {
-                if (String.valueOf(passwordField.getPassword()).equals("")) {
-                    passwordField.setText("Contraseña");
+                String password = String.valueOf(passwordField.getPassword());
+                if (password.equals("")) {
+                    passwordField.setText(this.passwordPlaceholder);
                     passwordField.setEchoChar('•');
+                }
+                if (password.equals(this.passwordPlaceholder)) {
+                    passwordField.setEchoChar((char) 0);
                 }
             }
         );

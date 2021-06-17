@@ -1,4 +1,4 @@
-package app.views.auth;
+package app.views.components.auth;
 
 import app.views.Window;
 import java.awt.*;

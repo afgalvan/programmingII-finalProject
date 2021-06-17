@@ -1,7 +1,7 @@
-package app.views.auth;
+package app.views.components.auth;
 
 import app.views.ColorPalette;
-import app.views.components.ImageFactory;
+import app.views.components.factory.ImageFactory;
 import java.awt.*;
 import javax.swing.*;
 import lombok.val;

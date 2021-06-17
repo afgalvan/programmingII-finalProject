@@ -37,8 +37,4 @@ public class Response<T> {
         this.error = error;
         this.message = message;
     }
-
-    public Response() {
-        this.error = true;
-    }
 }

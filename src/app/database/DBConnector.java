@@ -20,9 +20,9 @@ public class DBConnector implements DBConnection {
         this("jdbc:sqlite:./src/app/database/database.sqlite");
     }
 
-    public DBConnector(String driverUrl) {
+    public DBConnector(String driverURI) {
         this._connection = null;
-        this.url = driverUrl;
+        this.url = driverURI;
     }
 
     /**

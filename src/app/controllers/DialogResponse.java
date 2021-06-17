@@ -31,4 +31,8 @@ public class DialogResponse<T> {
         this.message = message;
         this.type = type;
     }
+
+    public DialogResponse(String title, String message) {
+        this(title, message, ERROR_MESSAGE);
+    }
 }

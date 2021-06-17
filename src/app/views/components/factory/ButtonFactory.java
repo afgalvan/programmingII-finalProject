@@ -1,4 +1,4 @@
-package app.views.components;
+package app.views.components.factory;
 
 import app.views.ColorPalette;
 import rojerusan.RSMaterialButtonRectangle;

@@ -26,7 +26,7 @@ public class UserServiceTest {
         Response<User> response = userService.insert(
             new Coordinator("NoSaltUser", "NoSaltUser")
         );
-        Assert.assertTrue("Users without salt should'nt be saved", response.isError());
+        Assert.assertTrue("Users without salt shouldn't be saved", response.isError());
     }
 
     @Test

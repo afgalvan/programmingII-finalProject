@@ -34,6 +34,9 @@ public class SQLiteUserRepository implements UserRepository {
      */
     @Override
     public void insert(User user) throws SQLException {
+        if (this.getById(user.getName()) != null) {
+            throw new SQLException("El nombre de usuario ya existe.");
+        }
         val query = "INSERT INTO users (name, type, password, salt) VALUES (?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, user.getName());
