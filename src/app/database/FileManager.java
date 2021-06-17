@@ -1,22 +1,23 @@
 package app.database;
 
-import app.exceptions.InputFileException;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class FileManager implements FileManagement {
 
     private final FileConnection connection;
 
     public FileManager(String filePath) {
-        this.connection = new FileConnectionManager(filePath);
+        this.connection = new FileConnector(filePath);
     }
 
     @Override
     public void save(Object dataset) {
         try {
+            connection.open();
             connection.save(dataset);
-        } catch (IOException error) {
-            throw new InputFileException("Fail writing on the file.");
+        } catch (IOException | SQLException error) {
+            error.printStackTrace();
         } finally {
             try {
                 connection.close();
@@ -35,5 +36,10 @@ public class FileManager implements FileManagement {
                 connection.close();
             } catch (IOException ignored) {}
         }
+    }
+
+    @Override
+    public boolean deleteSelf() {
+        return connection.delete();
     }
 }

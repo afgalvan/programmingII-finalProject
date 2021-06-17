@@ -4,4 +4,6 @@ public interface FileManagement {
     void save(Object data);
 
     Object read();
+
+    boolean deleteSelf();
 }

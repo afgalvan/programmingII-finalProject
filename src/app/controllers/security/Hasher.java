@@ -1,5 +1,6 @@
 package app.controllers.security;
 
+import app.models.annotations.SideTest;
 import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.util.Arrays;
@@ -12,6 +13,7 @@ import lombok.SneakyThrows;
 /**
  * Class that encrypts and decrypts passwords as String using Cipher.
  */
+@SideTest(PasswordHandler.class)
 class Hasher {
 
     /**

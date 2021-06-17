@@ -1,8 +1,10 @@
 package app.controllers;
 
 import app.models.Response;
-import app.models.annotations.Testable;
+import app.models.annotations.TestedOn;
 import app.models.users.User;
+import app.services.IUserService;
+import app.services.Service;
 import app.services.UserService;
 import java.util.List;
 import java.util.function.Function;
@@ -13,10 +15,10 @@ import test.controllers.UserControllerTest;
  * A class to control al user's CRUD processes.
  */
 @Getter
-@Testable(testClass = UserControllerTest.class)
+@TestedOn(UserControllerTest.class)
 public class UserController {
 
-    private final UserService userService;
+    private final IUserService userService;
 
     private final Function<String, String> postResponse = u ->
         u + " registrado con éxito.";
@@ -28,6 +30,10 @@ public class UserController {
 
     private UserController() {
         this.userService = new UserService();
+    }
+
+    public UserController(IUserService userService) {
+        this.userService = userService;
     }
 
     public static UserController getInstance() {

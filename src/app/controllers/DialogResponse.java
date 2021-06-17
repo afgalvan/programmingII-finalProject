@@ -1,10 +1,12 @@
 package app.controllers;
 
+import app.models.annotations.SideTest;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
+@SideTest(UserController.class)
 public class DialogResponse<T> {
 
     public static final int ERROR_MESSAGE = 0;

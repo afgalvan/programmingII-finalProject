@@ -6,6 +6,7 @@ import test.controllers.ControllerSuite;
 import test.database.DatabaseSuite;
 import test.main.MainTest;
 import test.models.ModelSuite;
+import test.repositories.RepositorySuite;
 import test.services.ServiceSuite;
 
 @RunWith(Suite.class)
@@ -14,8 +15,9 @@ import test.services.ServiceSuite;
         MainTest.class,
         ModelSuite.class,
         ControllerSuite.class,
-        DatabaseSuite.class,
         ServiceSuite.class,
+        RepositorySuite.class,
+        DatabaseSuite.class,
     }
 )
 public class TestSuite {}

@@ -1,10 +1,10 @@
 ---
-version: "3"
+version: "3.3"
 
 services:
   app:
-    image: openjdk:8-jre-alpine
-    container_name: app
+    image: finalproject:tests
+    container_name: digitalization-app
     depends_on:
       - tests
     links:
@@ -14,11 +14,14 @@ services:
     volumes:
       - ./out:/app/out
       - ./lib:/app/lib
-    entrypoint: ["java", "-cp", "out/production/FinalProject/:lib/jackson-annotations-2.12.2.jar:lib/jackson-core-2.12.2.jar:lib/jackson-databind-2.12.2.jar:lib/sqlite-jdbc-3.32.3.2.jar", "app.main.Main"]
+    command: [ "app.main.Main" ]
 
   tests:
     #image: andresgalvan/finalproject:tests
-    container_name: tests
+    container_name: digitalization-tests
     build:
       context: ./
       dockerfile: Dockerfile
+    image: finalproject:tests
+    command: [ "org.junit.runner.JUnitCore", "test.TestSuite" ]
+

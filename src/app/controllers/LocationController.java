@@ -1,8 +1,7 @@
 package app.controllers;
 
-import app.controllers.api.LocationApi;
+import app.controllers.api.Locations;
 import app.exceptions.InvalidLocationException;
-import app.models.annotations.Testable;
 import java.util.List;
 import lombok.SneakyThrows;
 
@@ -25,7 +24,7 @@ public class LocationController {
      * @return
      */
     public boolean isValidDepartment(String department) {
-        return LocationApi.getAll().containsKey(department.toLowerCase());
+        return Locations.getAll().containsKey(department.toLowerCase());
     }
 
     /**
@@ -35,7 +34,7 @@ public class LocationController {
      * @return
      */
     public boolean isValidCityOf(String department, String city) {
-        List<String> cities = LocationApi.getCities(department);
+        List<String> cities = Locations.getCities(department);
         return cities != null && cities.contains(city.toLowerCase());
     }
 

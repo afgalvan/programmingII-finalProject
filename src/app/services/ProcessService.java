@@ -3,20 +3,22 @@ package app.services;
 import app.exceptions.DataAccessException;
 import app.models.Process;
 import app.models.Response;
-import app.models.annotations.Testable;
-import app.repositories.IProcessRepository;
+import app.models.annotations.TestedOn;
 import app.repositories.ProcessRepository;
+import app.repositories.SerializationProcessRepository;
 import java.sql.SQLException;
 import java.util.List;
+import lombok.AllArgsConstructor;
 import test.services.ProcessServiceTest;
 
-@Testable(testClass = ProcessServiceTest.class)
+@TestedOn(ProcessServiceTest.class)
+@AllArgsConstructor
 public class ProcessService implements IProcessService {
 
-    private final IProcessRepository processRepository;
+    private final ProcessRepository processRepository;
 
     public ProcessService() {
-        this.processRepository = new ProcessRepository();
+        this.processRepository = new SerializationProcessRepository();
     }
 
     @Override
@@ -54,7 +56,12 @@ public class ProcessService implements IProcessService {
 
     @Override
     public Response<Process> updateById(Long id, Process newData) {
-        return null;
+        try {
+            processRepository.updateById(id, newData);
+            return new Response<>(newData);
+        } catch (SQLException | DataAccessException error) {
+            return new Response<>(error.getMessage());
+        }
     }
 
     @Override

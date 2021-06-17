@@ -2,12 +2,14 @@ package app.models;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  *
  * @param <T> Generic of data type to return;
  */
 @Getter
+@ToString
 public class Response<T> {
 
     private final boolean error;

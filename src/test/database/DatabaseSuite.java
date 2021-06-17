@@ -4,5 +4,5 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ UserRepositoryTest.class, ConnectionTest.class })
+@Suite.SuiteClasses({ DataConnectionTest.class })
 public class DatabaseSuite {}

@@ -18,12 +18,12 @@ public class RowableTest {
         this.document = new Document();
     }
 
-    @Test(expected = Test.None.class)
+    @Test
     public void getMetadataRowOfNull() {
         Assert.assertNotNull(metadata.getAsRow());
     }
 
-    @Test(expected = Test.None.class)
+    @Test
     public void getDocumentRowOfNull() {
         Assert.assertNotNull(document.getAsRow());
     }

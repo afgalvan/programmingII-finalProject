@@ -36,8 +36,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "[auto] ci: apply format"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          push_options: '--force'
 
 #  lint:
 #    needs: format
