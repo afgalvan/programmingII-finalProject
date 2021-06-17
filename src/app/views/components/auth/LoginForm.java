@@ -6,9 +6,8 @@ import app.controllers.DialogResponse;
 import app.models.users.User;
 import app.models.users.UserType;
 import app.views.Window;
-import lombok.Setter;
-
 import java.awt.event.ActionListener;
+import lombok.Setter;
 
 @Setter
 public class LoginForm extends AuthForm {
@@ -23,7 +22,10 @@ public class LoginForm extends AuthForm {
 
     private boolean isInvalidUsername(String username) {
         if (username.equals(this.usernamePlaceholder)) {
-            new LoginDialog(window, new DialogResponse<>("Iniciar sesión", "Nombre de usuario inválido"));
+            new LoginDialog(
+                window,
+                new DialogResponse<>("Iniciar sesión", "Nombre de usuario inválido")
+            );
             return true;
         }
 

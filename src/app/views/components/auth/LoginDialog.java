@@ -2,7 +2,6 @@ package app.views.components.auth;
 
 import app.controllers.DialogResponse;
 import app.models.users.User;
-
 import java.awt.*;
 import javax.swing.*;
 

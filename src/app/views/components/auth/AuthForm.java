@@ -6,10 +6,8 @@ import app.views.Window;
 import app.views.components.factory.ButtonFactory;
 import app.views.components.factory.FieldFactory;
 import app.views.components.factory.ImageFactory;
-
 import java.awt.*;
 import javax.swing.*;
-
 import rojerusan.RSMaterialButtonRectangle;
 import rojerusan.RSPasswordTextPlaceHolder;
 
@@ -87,7 +85,9 @@ public abstract class AuthForm extends JPanel {
                     usernameField.getText().equals(this.usernamePlaceholder)
                 ) usernameField.setText("");
                 if (
-                    String.valueOf(passwordField.getPassword()).equals(this.passwordPlaceholder)
+                    String
+                        .valueOf(passwordField.getPassword())
+                        .equals(this.passwordPlaceholder)
                 ) passwordField.setEchoChar((char) 0);
             },
             () -> {
@@ -95,7 +95,9 @@ public abstract class AuthForm extends JPanel {
                     this.usernamePlaceholder
                 );
                 if (
-                    String.valueOf(passwordField.getPassword()).equals(this.passwordPlaceholder)
+                    String
+                        .valueOf(passwordField.getPassword())
+                        .equals(this.passwordPlaceholder)
                 ) passwordField.setEchoChar((char) 0);
             }
         );

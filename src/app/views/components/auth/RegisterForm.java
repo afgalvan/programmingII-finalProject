@@ -14,6 +14,4 @@ public class RegisterForm extends AuthForm {
         super("Crear cuenta", window);
         this.authController = AuthController.getInstance();
     }
-
-
 }

@@ -1,7 +1,8 @@
 package app.main;
 
-import app.views.View;
 import static java.awt.EventQueue.invokeLater;
+
+import app.views.View;
 import java.security.Security;
 
 public class Main {
