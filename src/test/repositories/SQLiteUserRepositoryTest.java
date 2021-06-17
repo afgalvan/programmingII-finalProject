@@ -60,7 +60,7 @@ public class SQLiteUserRepositoryTest {
         } finally {
             try {
                 DBConnector.close();
-            } catch (IOException ioException) {}
+            } catch (IOException ignored) {}
         }
     }
 }

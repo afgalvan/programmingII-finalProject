@@ -57,13 +57,14 @@ public final class Locations {
     }
 
     /**
-     * FIXME: Issue #100 - Improve json parsing by using built-in jackson methods
-     * Map the json with the locations reference to a Map to relational the
-     * department with a list of its cities.
-     *
      * @return A map with a String as key, and a List of Strings as value.
      */
     private static Map<String, List<String>> getLocations() {
+        /*
+         * FIXME: Issue #100 - Improve json parsing by using built-in jackson methods
+         * Map the json with the locations reference to a Map to relational the
+         * department with a list of its cities.
+         */
         JsonNode jsonNode = getJsonNode();
         if (jsonNode == null) {
             return new HashMap<>();
