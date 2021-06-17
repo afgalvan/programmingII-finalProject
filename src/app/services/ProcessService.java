@@ -56,7 +56,12 @@ public class ProcessService implements IProcessService {
 
     @Override
     public Response<Process> updateById(Long id, Process newData) {
-        return null;
+        try {
+            processRepository.updateById(id, newData);
+            return new Response<>(newData);
+        } catch (SQLException | DataAccessException error) {
+            return new Response<>(error.getMessage());
+        }
     }
 
     @Override
