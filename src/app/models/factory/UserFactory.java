@@ -1,4 +1,3 @@
 package app.models.factory;
 
-public class UserFactory {
-}
+public class UserFactory {}

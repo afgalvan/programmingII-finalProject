@@ -75,7 +75,8 @@ public class SerializationProcessRepository implements ProcessRepository {
         return process;
     }
 
-    private <T> void mutateRecords(RecordMutator<T> mutator, T newData) throws DataAccessException {
+    private <T> void mutateRecords(RecordMutator<T> mutator, T newData)
+        throws DataAccessException {
         ProcessRecord processRecord = this.readRecords();
         mutator.mutate(processRecord, newData);
         database.save(processRecord);
@@ -141,6 +142,7 @@ public class SerializationProcessRepository implements ProcessRepository {
     }
 
     private static class ProcessRecord {
+
         private Map<Long, Process> value;
 
         boolean isInvalid() {
