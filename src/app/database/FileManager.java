@@ -37,4 +37,9 @@ public class FileManager implements FileManagement {
             } catch (IOException ignored) {}
         }
     }
+
+    @Override
+    public boolean deleteSelf() {
+        return connection.delete();
+    }
 }

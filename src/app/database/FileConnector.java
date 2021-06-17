@@ -54,4 +54,9 @@ class FileConnector implements FileConnection {
         this.objectInputStream = new ObjectInputStream(fileInputStream);
         return this.objectInputStream.readObject();
     }
+
+    @Override
+    public boolean delete() {
+        return this.file.delete();
+    }
 }

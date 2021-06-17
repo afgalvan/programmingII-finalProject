@@ -4,14 +4,12 @@ import app.database.FileManagement;
 import app.database.FileManager;
 import app.exceptions.DataAccessException;
 import app.models.Process;
+import app.models.ProcessRecord;
+import app.models.Record;
 import app.models.metadata.parts.Person;
-
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.function.BiConsumer;
-import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class SerializationProcessRepository implements ProcessRepository {
 
@@ -22,7 +20,7 @@ public class SerializationProcessRepository implements ProcessRepository {
     }
 
     public SerializationProcessRepository() {
-        this(new FileManager("src/app/database/Process.obj"));
+        this(new FileManager("Process.obj"));
     }
 
     @Override
@@ -34,9 +32,14 @@ public class SerializationProcessRepository implements ProcessRepository {
         }
     }
 
-    private ProcessRecord readRecords() throws DataAccessException {
+    private ProcessRecord defaultReadRecord() {
         ProcessRecord record = (ProcessRecord) database.read();
-        if (record == null || record.isInvalid()) {
+        return record == null ? new ProcessRecord() : record;
+    }
+
+    private ProcessRecord safeReadRecords() throws DataAccessException {
+        ProcessRecord record = (ProcessRecord) database.read();
+        if (record == null || record.isEmpty()) {
             throw new DataAccessException("No existen procesos registrados");
         }
         return record;
@@ -59,67 +62,73 @@ public class SerializationProcessRepository implements ProcessRepository {
             throw new DataAccessException("Id del proceso está repetido.");
         }
 
-        ProcessRecord processRecord = this.readRecords().add(process);
+        Record processRecord = this.defaultReadRecord().add(process);
         database.save(processRecord);
     }
 
     @Override
     public List<Process> getAll() throws DataAccessException {
-        return readRecords().asList();
+        return safeReadRecords().asList();
     }
 
     @Override
     public Process getById(Long id) throws DataAccessException {
-        Process process = readRecords().getById(id);
+        Process process = safeReadRecords().getById(id);
         if (process == null) {
-            throw new DataAccessException("Proceso no encontrado");
+            throw new DataAccessException("Ningún proceso con id " + id + " encontrado");
         }
         return process;
     }
 
-    private <T> void mutateRecords(RecordMutator<T> mutator, T newData)
+    private <T> void mutateRecords(ProcessRecordMutator<T> mutator, T newData)
         throws DataAccessException {
-        ProcessRecord processRecord = this.readRecords();
+        ProcessRecord processRecord = this.safeReadRecords();
         mutator.mutate(processRecord, newData);
         database.save(processRecord);
     }
 
     @Override
-    public void updateById(Long id, Process newData) throws DataAccessException {
+    public boolean updateById(Long id, Process newData) throws DataAccessException {
+        getById(id);
         mutateRecords((record, updatedProcess) -> record.update(id, newData), newData);
+        return true;
     }
 
     @Override
-    public void deleteById(Long id) throws DataAccessException {
+    public boolean deleteById(Long id) throws DataAccessException {
+        getById(id);
         mutateRecords(ProcessRecord::remove, id);
+        return true;
     }
 
     private boolean containsIgnoreCase(String s1, String s2) {
         return s1.toLowerCase().contains(s2.toLowerCase());
     }
 
-    private List<Process> getProcessesByTrial(
-        String name,
-        Function<Process, List<Person>> getTrialMethod
-    ) throws DataAccessException {
-        if (name == null) {
+    @FunctionalInterface
+    private interface TrialGetter {
+        List<Person> getTrials(Process process);
+    }
+
+    private List<Process> getProcessesByTrial(String searchedName, TrialGetter method)
+        throws DataAccessException {
+        if (searchedName == null) {
             throw new DataAccessException("El nombre del demandado es inválido");
         }
 
         // prettier-ignore-start
-        BiConsumer<Process, List<Process>> search = (process, list) ->
-            getTrialMethod.apply(process).forEach(person -> {
-                if (containsIgnoreCase(person.getFullName(), name)) {
-                    list.add(process);
-                }
-            });
+        Predicate<Process> search = process ->
+            method.getTrials(process).stream()
+                .map(Person::getFullName)
+                .anyMatch(trialName -> containsIgnoreCase(trialName, searchedName)
+                );
         // prettier-ignore-end
 
-        List<Process> matchList = new ArrayList<>();
-        List<Process> allProcess = this.getAll();
-        allProcess.forEach(process -> search.accept(process, matchList));
+        List<Process> matchList = getAll().stream()
+            .filter(search)
+            .collect(Collectors.toList());
 
-        if (matchList.size() == 0) {
+        if (matchList.isEmpty()) {
             throw new DataAccessException("Ningún proceso encontrado");
         }
 
@@ -128,52 +137,13 @@ public class SerializationProcessRepository implements ProcessRepository {
 
     @Override
     public List<Process> getProcessesByJudged(String name) throws DataAccessException {
-        Function<Process, List<Person>> getJudgedList = Process::getJudgedList;
+        TrialGetter getJudgedList = Process::getJudgedList;
         return getProcessesByTrial(name, getJudgedList);
     }
 
     @Override
     public List<Process> getProcessByProsecutor(String name) throws DataAccessException {
-        Function<Process, List<Person>> getProsecutorList = Process::getProsecutorList;
+        TrialGetter getProsecutorList = Process::getProsecutorList;
         return getProcessesByTrial(name, getProsecutorList);
-    }
-
-    @FunctionalInterface
-    public interface RecordMutator<T> {
-        void mutate(ProcessRecord process, T updatedData);
-    }
-
-    private static class ProcessRecord implements Serializable {
-
-        private Map<Long, Process> value;
-
-        boolean isInvalid() {
-            return this.value == null;
-        }
-
-        ProcessRecord add(Process process) {
-            this.value.put(process.getId(), process);
-            return this;
-        }
-
-        void update(Long id, Process process) {
-            if (this.value.containsKey(id)) {
-                this.value.put(process.getId(), process);
-            }
-        }
-
-        Process getById(Long id) {
-            return this.value.get(id);
-        }
-
-        void remove(Long id) {
-            if (getById(id) != null) {
-                this.value.remove(id);
-            }
-        }
-
-        List<Process> asList() {
-            return new ArrayList<>(this.value.values());
-        }
     }
 }

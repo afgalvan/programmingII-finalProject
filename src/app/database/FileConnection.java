@@ -6,4 +6,6 @@ interface FileConnection extends DataConnection {
     void save(Object data) throws IOException;
 
     Object read() throws IOException, ClassNotFoundException;
+
+    boolean delete();
 }

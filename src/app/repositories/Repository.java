@@ -16,7 +16,7 @@ public interface Repository<K, T> {
 
     T getById(K id) throws DataAccessException, SQLException;
 
-    void updateById(K id, T newData) throws DataAccessException, SQLException;
+    boolean updateById(K id, T newData) throws DataAccessException, SQLException;
 
-    void deleteById(K id) throws DataAccessException, SQLException;
+    boolean deleteById(K id) throws DataAccessException, SQLException;
 }

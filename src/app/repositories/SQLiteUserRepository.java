@@ -86,13 +86,15 @@ public class SQLiteUserRepository implements UserRepository {
      * @throws SQLException For a syntax error on SQL.
      */
     @Override
-    public void updateById(String username, User newData) throws SQLException {
+    public boolean updateById(String username, User newData) throws SQLException {
         val query = "UPDATE users SET name = ?, password = ? WHERE name = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, newData.getName());
         statement.setString(2, newData.getPassword());
         statement.setString(3, username);
         statement.executeUpdate();
+
+        return true;
     }
 
     /**
@@ -102,11 +104,13 @@ public class SQLiteUserRepository implements UserRepository {
      * @throws SQLException For a syntax error on SQL.
      */
     @Override
-    public void deleteById(String username) throws SQLException {
+    public boolean deleteById(String username) throws SQLException {
         val query = "DELETE FROM users WHERE name = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, username);
         statement.execute();
+
+        return true;
     }
 
     /**
