@@ -34,7 +34,7 @@ public class AuthControllerTest {
         Assert.assertEquals(
             "A unregistered user shouldn't be allowed to log in.",
             DialogResponse.ERROR_MESSAGE,
-            authController.loginUser(sample.getName(), sample.getPassword()).getType()
+            authController.loginUser(sample.getName(), sample.getPassword()).getStatusCode()
         );
     }
 
@@ -45,7 +45,7 @@ public class AuthControllerTest {
             DialogResponse.INFORMATION_MESSAGE,
             authController
                 .registerUser(sample.getName(), sample.getPassword(), UserType.CO)
-                .getType()
+                .getStatusCode()
         );
     }
 
@@ -56,7 +56,7 @@ public class AuthControllerTest {
             DialogResponse.ERROR_MESSAGE,
             authController
                 .registerUser(sample.getName(), sample.getPassword(), UserType.SU)
-                .getType()
+                .getStatusCode()
         );
     }
 
@@ -65,7 +65,7 @@ public class AuthControllerTest {
     public void logInUser() {
         Assert.assertEquals(
             DialogResponse.INFORMATION_MESSAGE,
-            authController.loginUser(sample.getName(), sample.getPassword()).getType()
+            authController.loginUser(sample.getName(), sample.getPassword()).getStatusCode()
         );
     }
 

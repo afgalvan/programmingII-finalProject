@@ -24,7 +24,6 @@ public abstract class AuthForm extends JPanel {
     protected JLabel usernamePadding;
     protected JLabel passwordPadding;
     protected RSMaterialButtonRectangle signInButton;
-    protected RSMaterialButtonRectangle signUpButton;
 
     public AuthForm(String title, Window window) {
         this.window = window;
@@ -36,7 +35,6 @@ public abstract class AuthForm extends JPanel {
         this.usernamePadding = new JLabel();
         this.passwordPadding = new JLabel();
         this.signInButton = new RSMaterialButtonRectangle();
-        this.signUpButton = new RSMaterialButtonRectangle();
         initComponents();
     }
 
@@ -65,7 +63,6 @@ public abstract class AuthForm extends JPanel {
         );
 
         signInButton = ButtonFactory.mainButton("Iniciar");
-        signUpButton = ButtonFactory.mainButton("Registrar");
     }
 
     private void configureLayout() {

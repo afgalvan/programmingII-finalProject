@@ -43,12 +43,6 @@ public class FormLayout {
                                             Short.MAX_VALUE
                                         )
                                         .addComponent(
-                                            form.signUpButton,
-                                            GroupLayout.PREFERRED_SIZE,
-                                            0,
-                                            Short.MAX_VALUE
-                                        )
-                                        .addComponent(
                                             form.title,
                                             GroupLayout.DEFAULT_SIZE,
                                             214,
@@ -217,12 +211,6 @@ public class FormLayout {
                         .addGap(51, 51, 51)
                         .addComponent(
                             form.signInButton,
-                            GroupLayout.PREFERRED_SIZE,
-                            46,
-                            GroupLayout.PREFERRED_SIZE
-                        )
-                        .addComponent(
-                            form.signUpButton,
                             GroupLayout.PREFERRED_SIZE,
                             46,
                             GroupLayout.PREFERRED_SIZE

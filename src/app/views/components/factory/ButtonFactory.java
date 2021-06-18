@@ -3,7 +3,7 @@ package app.views.components.factory;
 import app.views.ColorPalette;
 import rojerusan.RSMaterialButtonRectangle;
 
-public class ButtonFactory {
+public final class ButtonFactory {
 
     private ButtonFactory() {}
 

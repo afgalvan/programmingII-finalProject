@@ -7,6 +7,8 @@ import app.models.users.User;
 import app.models.users.UserType;
 import app.views.Window;
 import java.awt.event.ActionListener;
+
+import app.views.components.dashboard.MainWindow;
 import lombok.Setter;
 
 @Setter
@@ -44,27 +46,16 @@ public class LoginForm extends AuthForm {
                 String.valueOf(passwordField.getPassword())
             );
             new LoginDialog(window, response);
-        };
-    }
 
-    private ActionListener singUp() {
-        return evt -> {
-            String username = this.usernameField.getText();
-            if (isInvalidUsername(username)) {
-                return;
+            if (!response.isError()) {
+                this.window.setVisible(false);
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.setVisible(true);
             }
-
-            DialogResponse<User> response = authController.registerUser(
-                username,
-                String.valueOf(passwordField.getPassword()),
-                UserType.CO
-            );
-            new LoginDialog(window, response);
         };
     }
 
     private void setButtonActions() {
         signInButton.addActionListener(signIn());
-        signUpButton.addActionListener(singUp());
     }
 }

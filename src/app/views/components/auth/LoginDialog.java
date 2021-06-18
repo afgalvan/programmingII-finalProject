@@ -15,7 +15,7 @@ public class LoginDialog extends JOptionPane {
             frame,
             dialogResponse.getMessage(),
             dialogResponse.getTitle(),
-            dialogResponse.getType()
+            dialogResponse.getStatusCode()
         );
     }
 }

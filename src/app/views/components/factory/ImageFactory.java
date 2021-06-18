@@ -4,7 +4,7 @@ import app.views.ColorPalette;
 import java.awt.*;
 import javax.swing.*;
 
-public class ImageFactory {
+public final class ImageFactory {
 
     private ImageFactory() {}
 

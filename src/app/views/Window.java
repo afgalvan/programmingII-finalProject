@@ -1,8 +1,10 @@
 package app.views;
 
 import com.formdev.flatlaf.FlatLightLaf;
+
 import java.awt.*;
 import javax.swing.*;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -41,12 +43,12 @@ public abstract class Window extends JFrame {
         windowButtonActions();
     }
 
+    private void configureLayout() {
+        GroupLayout layout = new GroupLayout(this);
+    }
+
     private void windowButtonActions() {
-        // prettier-ignore-start
-        GraphicalInteraction.addMouseListener(
-            minimize, () -> setState(JFrame.ICONIFIED)
-        );
-        // prettier-ignore-end
+        GraphicalInteraction.addMouseListener(minimize, () -> setState(JFrame.ICONIFIED));
         GraphicalInteraction.addMouseListener(close, () -> System.exit(0));
     }
 }
