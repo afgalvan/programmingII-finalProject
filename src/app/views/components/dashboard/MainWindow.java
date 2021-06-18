@@ -1,14 +1,15 @@
 package app.views.components.dashboard;
 
 import app.views.Window;
+import java.awt.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.awt.*;
-
 public class MainWindow extends Window {
+
     private TopBar topBar;
     private MenuBar menuBar;
+
     @Setter
     @Getter
     private DashboardSection dashboardSection;

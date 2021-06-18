@@ -1,10 +1,8 @@
 package app.views;
 
 import com.formdev.flatlaf.FlatLightLaf;
-
 import java.awt.*;
 import javax.swing.*;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

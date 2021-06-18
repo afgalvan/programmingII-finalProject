@@ -6,9 +6,8 @@ import app.controllers.DialogResponse;
 import app.models.users.User;
 import app.models.users.UserType;
 import app.views.Window;
-import java.awt.event.ActionListener;
-
 import app.views.components.dashboard.MainWindow;
+import java.awt.event.ActionListener;
 import lombok.Setter;
 
 @Setter

@@ -8,6 +8,7 @@ import lombok.val;
 import rojerusan.RSPasswordTextPlaceHolder;
 
 public final class FieldFactory {
+
     private FieldFactory() {}
 
     public static JTextField fieldForm(String placeHolder) {

@@ -14,6 +14,7 @@ public class Response<T> {
 
     private final boolean error;
     private T data;
+
     @Setter
     private String message;
 
