@@ -5,6 +5,8 @@ import app.models.annotations.TestedOn;
 import app.models.users.Coordinator;
 import app.models.users.SuperUser;
 import app.models.users.User;
+
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,9 +36,6 @@ public class SQLiteUserRepository implements UserRepository {
      */
     @Override
     public void insert(User user) throws SQLException {
-        if (this.getById(user.getName()) != null) {
-            throw new SQLException("El nombre de usuario ya existe.");
-        }
         val query = "INSERT INTO users (name, type, password, salt) VALUES (?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, user.getName());
