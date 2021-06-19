@@ -11,14 +11,14 @@ public final class FieldFactory {
 
     private FieldFactory() {}
 
-    public static JTextField fieldForm(String placeHolder) {
+    public static JTextField createFieldForm(String placeHolder) {
         val field = new JTextField();
         setupField(field, placeHolder);
 
         return field;
     }
 
-    public static RSPasswordTextPlaceHolder passwordForm(String placeHolder) {
+    public static RSPasswordTextPlaceHolder createPasswordField(String placeHolder) {
         val passwordField = new RSPasswordTextPlaceHolder();
         setupField(passwordField, placeHolder);
         return passwordField;

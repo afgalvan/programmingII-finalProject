@@ -45,7 +45,7 @@ public class FormLayout {
                                         .addComponent(
                                             form.title,
                                             GroupLayout.DEFAULT_SIZE,
-                                            214,
+                                            215,
                                             Short.MAX_VALUE
                                         )
                                 )
@@ -57,24 +57,25 @@ public class FormLayout {
                                 .createSequentialGroup()
                                 .addGroup(
                                     layout
-                                        .createParallelGroup(GroupLayout.Alignment.CENTER)
+                                        .createParallelGroup(
+                                            GroupLayout.Alignment.LEADING
+                                        )
                                         .addGroup(
                                             layout
                                                 .createSequentialGroup()
+                                                .addGap(90)
                                                 .addComponent(
                                                     form.usernamePadding,
                                                     GroupLayout.PREFERRED_SIZE,
                                                     10,
                                                     GroupLayout.PREFERRED_SIZE
                                                 )
-                                                .addGap(0, 0, 0)
                                                 .addComponent(
                                                     form.usernameField,
                                                     GroupLayout.PREFERRED_SIZE,
                                                     200,
                                                     GroupLayout.PREFERRED_SIZE
                                                 )
-                                                .addGap(0, 0, 0)
                                                 .addComponent(
                                                     form.passwordIcon,
                                                     GroupLayout.PREFERRED_SIZE,
@@ -85,20 +86,19 @@ public class FormLayout {
                                         .addGroup(
                                             layout
                                                 .createSequentialGroup()
+                                                .addGap(90)
                                                 .addComponent(
                                                     form.passwordPadding,
                                                     GroupLayout.PREFERRED_SIZE,
                                                     10,
                                                     GroupLayout.PREFERRED_SIZE
                                                 )
-                                                .addGap(0, 0, 0)
                                                 .addComponent(
                                                     form.passwordField,
                                                     GroupLayout.PREFERRED_SIZE,
                                                     GroupLayout.DEFAULT_SIZE,
                                                     GroupLayout.PREFERRED_SIZE
                                                 )
-                                                .addGap(0, 0, 0)
                                                 .addComponent(
                                                     form.userIcon,
                                                     GroupLayout.PREFERRED_SIZE,
@@ -114,12 +114,17 @@ public class FormLayout {
                             layout
                                 .createSequentialGroup()
                                 .addComponent(
+                                    form.enterAsGuestLabel,
+                                    GroupLayout.PREFERRED_SIZE,
+                                    225,
+                                    GroupLayout.PREFERRED_SIZE
+                                )
+                                .addComponent(
                                     form.window.getMinimize(),
                                     GroupLayout.PREFERRED_SIZE,
                                     30,
                                     GroupLayout.PREFERRED_SIZE
                                 )
-                                .addGap(0, 0, 0)
                                 .addComponent(
                                     form.window.getClose(),
                                     GroupLayout.PREFERRED_SIZE,
@@ -208,7 +213,14 @@ public class FormLayout {
                                     GroupLayout.PREFERRED_SIZE
                                 )
                         )
-                        .addGap(51, 51, 51)
+                        .addGap(15, 15, 15)
+                        .addComponent(
+                            form.enterAsGuestLabel,
+                            GroupLayout.PREFERRED_SIZE,
+                            20,
+                            GroupLayout.PREFERRED_SIZE
+                        )
+                        .addGap(45, 45, 45)
                         .addComponent(
                             form.signInButton,
                             GroupLayout.PREFERRED_SIZE,

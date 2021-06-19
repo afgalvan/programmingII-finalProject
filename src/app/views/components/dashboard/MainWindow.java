@@ -1,5 +1,6 @@
 package app.views.components.dashboard;
 
+import app.models.Session;
 import app.views.Window;
 import java.awt.*;
 import lombok.Getter;
@@ -7,19 +8,21 @@ import lombok.Setter;
 
 public class MainWindow extends Window {
 
-    private TopBar topBar;
-    private MenuBar menuBar;
+    private final TopBar topBar;
+    private final MenuBar menuBar;
+    private final Session session;
 
     @Setter
     @Getter
     private DashboardSection dashboardSection;
 
-    public MainWindow() {
+    public MainWindow(Session session) {
         this.setExtendedState(Frame.MAXIMIZED_BOTH);
         this.setLayout(new BorderLayout());
-        this.topBar = new TopBar();
+        this.topBar = new TopBar(this);
         this.menuBar = new MenuBar();
         this.dashboardSection = new DashboardHome();
+        this.session = session;
         initComponents();
     }
 

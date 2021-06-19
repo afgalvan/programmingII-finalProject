@@ -6,7 +6,7 @@ import app.views.components.dashboard.MainWindow;
 public class View {
 
     public View() {
-        Window window = new MainWindow();
+        Window window = new AuthWindow();
         window.setVisible(true);
     }
 }

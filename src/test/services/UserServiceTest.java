@@ -34,7 +34,6 @@ public class UserServiceTest {
     public void userCreationTest() {
         userService.insert(sample);
         Response<User> response = userService.getById(sample.getName());
-        System.out.println(response);
 
         Assert.assertFalse(response.isError());
         Assert.assertNotNull(response.getData());

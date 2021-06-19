@@ -5,8 +5,6 @@ import app.models.annotations.TestedOn;
 import app.models.users.Coordinator;
 import app.models.users.SuperUser;
 import app.models.users.User;
-
-import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,7 +29,7 @@ public class SQLiteUserRepository implements UserRepository {
     /**
      * Execute the query for saving an User instance.
      *
-     * @param user     An instance of the User class to be saved.
+     * @param user An instance of the User class to be saved.
      * @throws SQLException When an username was already registered.
      */
     @Override

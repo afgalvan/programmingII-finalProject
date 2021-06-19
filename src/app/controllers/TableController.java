@@ -19,7 +19,6 @@ public class TableController {
     }
 
     /**
-     *
      * @param columnWidths
      * @return
      */
@@ -34,7 +33,6 @@ public class TableController {
     }
 
     /**
-     *
      * @param list
      * @return
      */
@@ -50,7 +48,6 @@ public class TableController {
     }
 
     /**
-     *
      * @param table
      * @return
      */
@@ -77,7 +74,6 @@ public class TableController {
     }
 
     /**
-     *
      * @param spaceWidth
      * @return
      */

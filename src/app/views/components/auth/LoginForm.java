@@ -3,11 +3,13 @@ package app.views.components.auth;
 import app.controllers.Auth;
 import app.controllers.AuthController;
 import app.controllers.DialogResponse;
+import app.models.Session;
 import app.models.users.User;
-import app.models.users.UserType;
+import app.views.GraphicalInteraction;
 import app.views.Window;
 import app.views.components.dashboard.MainWindow;
 import java.awt.event.ActionListener;
+import javax.swing.*;
 import lombok.Setter;
 
 @Setter
@@ -25,12 +27,25 @@ public class LoginForm extends AuthForm {
         if (username.equals(this.usernamePlaceholder)) {
             new LoginDialog(
                 window,
-                new DialogResponse<>("Iniciar sesión", "Nombre de usuario inválido")
+                "Iniciar sesión",
+                "Nombre de usuario inválido",
+                JOptionPane.ERROR_MESSAGE
             );
             return true;
         }
 
         return false;
+    }
+
+    private void enterSession(Session session) {
+        this.window.setVisible(false);
+        MainWindow mainWindow = new MainWindow(session);
+        mainWindow.setVisible(true);
+    }
+
+    private void enterAsGuest() {
+        enterSession(new Session());
+        new LoginDialog(this.window, "Inicio de sesión", "Sesión iniciada como invitado");
     }
 
     private ActionListener signIn() {
@@ -46,15 +61,19 @@ public class LoginForm extends AuthForm {
             );
             new LoginDialog(window, response);
 
-            if (!response.isError()) {
-                this.window.setVisible(false);
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.setVisible(true);
+            if (!response.isError() && response.getData() != null) {
+                enterSession(new Session(response.getData()));
             }
         };
     }
 
     private void setButtonActions() {
         signInButton.addActionListener(signIn());
+        GraphicalInteraction.addMouseListener(enterAsGuestLabel, this::enterAsGuest);
+    }
+
+    @Override
+    public void configureLayout() {
+        new FormLayout(this);
     }
 }

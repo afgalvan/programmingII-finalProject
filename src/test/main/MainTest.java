@@ -2,12 +2,10 @@ package test.main;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import test.Order;
 import test.OrderedRunner;
 
 @RunWith(OrderedRunner.class)

@@ -8,7 +8,7 @@ public final class ImageFactory {
 
     private ImageFactory() {}
 
-    public static ImageIcon iconSized(String src, int width, int height) {
+    public static ImageIcon createIconSized(String src, int width, int height) {
         Image originalImage = new ImageIcon(src).getImage();
         Image resizedImage = originalImage.getScaledInstance(
             width,
@@ -19,7 +19,7 @@ public final class ImageFactory {
         return new ImageIcon(resizedImage);
     }
 
-    public static JLabel fieldIcon(String iconPath) {
+    public static JLabel createFieldIcon(String iconPath) {
         JLabel fieldIcon = new JLabel();
 
         fieldIcon.setBackground(Color.WHITE);

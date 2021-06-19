@@ -5,7 +5,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- *
  * @param <T> Generic of data type to return;
  */
 @Getter

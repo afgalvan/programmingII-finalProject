@@ -19,7 +19,6 @@ public class LocationController {
     }
 
     /**
-     *
      * @param department
      * @return
      */
@@ -28,7 +27,6 @@ public class LocationController {
     }
 
     /**
-     *
      * @param department
      * @param city
      * @return
@@ -39,7 +37,6 @@ public class LocationController {
     }
 
     /**
-     *
      * @param department
      * @return
      */
@@ -52,7 +49,6 @@ public class LocationController {
     }
 
     /**
-     *
      * @param department
      * @param city
      * @return

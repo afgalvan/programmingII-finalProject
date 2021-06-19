@@ -2,9 +2,8 @@ package app.views.components.auth;
 
 import app.views.ColorPalette;
 import app.views.components.factory.ImageFactory;
-import java.awt.*;
+import app.views.components.factory.LabelFactory;
 import javax.swing.*;
-import lombok.val;
 
 public class LandingPanel extends JPanel {
 
@@ -21,7 +20,7 @@ public class LandingPanel extends JPanel {
     public void initComponents() {
         this.setBackground(ColorPalette.BLUE);
 
-        ImageIcon councilIcon = ImageFactory.iconSized(
+        ImageIcon councilIcon = ImageFactory.createIconSized(
             "src/app/views/assets/councilIcon.png",
             149,
             157
@@ -46,10 +45,7 @@ public class LandingPanel extends JPanel {
     }
 
     private JLabel buildLandingLabel(String content) {
-        val label = new JLabel();
-        label.setForeground(Color.WHITE);
-        label.setText(content);
-        label.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+        JLabel label = LabelFactory.createDefaultLabel(content);
         this.add(label);
         return label;
     }

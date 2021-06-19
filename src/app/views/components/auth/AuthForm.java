@@ -3,6 +3,7 @@ package app.views.components.auth;
 import app.views.ColorPalette;
 import app.views.GraphicalInteraction;
 import app.views.Window;
+import app.views.components.atomic.Clickable;
 import app.views.components.factory.ButtonFactory;
 import app.views.components.factory.FieldFactory;
 import app.views.components.factory.ImageFactory;
@@ -23,6 +24,7 @@ public abstract class AuthForm extends JPanel {
     protected JLabel passwordIcon;
     protected JLabel usernamePadding;
     protected JLabel passwordPadding;
+    protected Clickable enterAsGuestLabel;
     protected RSMaterialButtonRectangle signInButton;
 
     public AuthForm(String title, Window window) {
@@ -39,9 +41,9 @@ public abstract class AuthForm extends JPanel {
     }
 
     public void initComponents() {
-        setFormPanel();
-        setFieldActions();
-        configureLayout();
+        this.setFormPanel();
+        this.setFieldActions();
+        this.configureLayout();
     }
 
     private void setFormPanel() {
@@ -49,11 +51,11 @@ public abstract class AuthForm extends JPanel {
         title.setFont(new Font("Segoe UI", Font.BOLD, 28));
         title.setHorizontalAlignment(SwingConstants.CENTER);
 
-        usernameField = FieldFactory.fieldForm(this.usernamePlaceholder);
-        passwordField = FieldFactory.passwordForm(this.passwordPlaceholder);
+        usernameField = FieldFactory.createFieldForm(this.usernamePlaceholder);
+        passwordField = FieldFactory.createPasswordField(this.passwordPlaceholder);
 
-        userIcon = ImageFactory.fieldIcon("src/app/views/assets/pass.png");
-        passwordIcon = ImageFactory.fieldIcon("src/app/views/assets/user.png");
+        userIcon = ImageFactory.createFieldIcon("src/app/views/assets/pass.png");
+        passwordIcon = ImageFactory.createFieldIcon("src/app/views/assets/user.png");
 
         usernamePadding.setBorder(
             BorderFactory.createMatteBorder(1, 1, 1, 0, ColorPalette.CREAM)
@@ -62,12 +64,14 @@ public abstract class AuthForm extends JPanel {
             BorderFactory.createMatteBorder(1, 1, 1, 0, ColorPalette.CREAM)
         );
 
-        signInButton = ButtonFactory.mainButton("Iniciar");
+        enterAsGuestLabel =
+            new Clickable("<html><u>Iniciar sesión como invitado</u></html>");
+        enterAsGuestLabel.setForeground(ColorPalette.GRAY);
+
+        signInButton = ButtonFactory.createMainButton("Iniciar");
     }
 
-    private void configureLayout() {
-        new FormLayout(this);
-    }
+    public abstract void configureLayout();
 
     private void setFieldActions() {
         setUsernameFieldFocus();

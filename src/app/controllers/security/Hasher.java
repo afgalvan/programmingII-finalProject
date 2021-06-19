@@ -17,7 +17,6 @@ import lombok.SneakyThrows;
 class Hasher {
 
     /**
-     *
      * @return A {@code String} of random bytes that's used for hashing user's passwords.
      */
     @SneakyThrows
@@ -29,7 +28,6 @@ class Hasher {
     }
 
     /**
-     *
      * @param salt
      * @return
      */

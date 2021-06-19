@@ -32,6 +32,7 @@ public class ProcessMetadata implements Serializable, Rowable {
 
     /**
      * Add a prosecutor to the prosecutorList of the metadata.
+     *
      * @param person the prosecutor of the process.
      */
     public void addProsecutor(Person person) {
@@ -40,6 +41,7 @@ public class ProcessMetadata implements Serializable, Rowable {
 
     /**
      * Add a judge party to the judgePartyList of the metadata.
+     *
      * @param person the judge party in the process.
      */
     public void addJudged(Person person) {

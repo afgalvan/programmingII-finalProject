@@ -1,6 +1,6 @@
 package app.main;
 
-import static java.awt.EventQueue.invokeLater;
+import static javax.swing.SwingUtilities.invokeLater;
 
 import app.views.View;
 import java.security.Security;

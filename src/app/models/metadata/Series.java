@@ -21,8 +21,9 @@ public class Series implements Serializable {
 
     /**
      * Add a sub series to a series.
-     * @param name name of the sub series.
-     * @param code code of the sub series.
+     *
+     * @param name    name of the sub series.
+     * @param code    code of the sub series.
      * @param docType Document type of the sub series.
      */
     public void addSubSeries(String name, int code, List<DocumentType> docType) {

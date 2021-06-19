@@ -27,7 +27,6 @@ public class ProcessController {
     }
 
     /**
-     *
      * @param process process to be stored in database.
      * @return A response of the save operation.
      */

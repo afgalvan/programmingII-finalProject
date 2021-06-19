@@ -26,7 +26,6 @@ public class DialogResponse<T> extends Response<T> {
     }
 
     /**
-     *
      * @param title
      * @param message
      * @param statusCode
