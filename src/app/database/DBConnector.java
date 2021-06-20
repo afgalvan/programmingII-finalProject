@@ -10,14 +10,14 @@ import lombok.Data;
 public class DBConnector implements DBConnection {
 
     private String url;
-    private Connection _connection;
+    private Connection connection;
 
     public DBConnector() {
         this("jdbc:sqlite:./src/app/database/database.sqlite");
     }
 
     public DBConnector(String driverURI) {
-        this._connection = null;
+        this.connection = null;
         this.url = driverURI;
     }
 
@@ -28,7 +28,7 @@ public class DBConnector implements DBConnection {
      */
     @Override
     public void open() throws SQLException {
-        this._connection = DriverManager.getConnection(url);
+        this.connection = DriverManager.getConnection(url);
     }
 
     /**
@@ -37,8 +37,8 @@ public class DBConnector implements DBConnection {
     @Override
     public void close() {
         try {
-            if (_connection != null) {
-                this._connection.close();
+            if (connection != null) {
+                this.connection.close();
             }
         } catch (SQLException error) {
             System.out.println(error.getMessage());
@@ -54,7 +54,7 @@ public class DBConnector implements DBConnection {
      * @throws SQLException For a statements with syntax errors or non match queries.
      */
     public PreparedStatement prepareStatement(String statement) throws SQLException {
-        return this._connection.prepareStatement(statement);
+        return this.connection.prepareStatement(statement);
     }
 
     /**
@@ -64,6 +64,6 @@ public class DBConnector implements DBConnection {
      * @throws SQLException For a statements with syntax errors or non match queries.
      */
     public Statement createStatement() throws SQLException {
-        return this._connection.createStatement();
+        return this.connection.createStatement();
     }
 }

@@ -1,7 +1,7 @@
 package app.views.components.atomic;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class Close extends Clickable {
 

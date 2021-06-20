@@ -68,8 +68,7 @@ public class TopBar extends JPanel {
         // this.signOutButton.onClick(this::signOut);
     }
 
-    /**
-     * Exit from current session.
-     */
-    private void signOut() {}
+    private void signOut() {
+        // Exit from current session.
+    }
 }

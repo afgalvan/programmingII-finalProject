@@ -4,7 +4,6 @@ import app.models.Rowable;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
