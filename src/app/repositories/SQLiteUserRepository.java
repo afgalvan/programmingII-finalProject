@@ -44,7 +44,7 @@ public class SQLiteUserRepository implements UserRepository {
         statement.setString(2, (user instanceof SuperUser) ? "SU" : "CO");
         statement.setString(3, user.getPassword());
         statement.setString(4, user.getSalt());
-        logger.log(Level.INFO, query + " " + user);
+        logger.log(Level.INFO, query);
         statement.execute();
     }
 

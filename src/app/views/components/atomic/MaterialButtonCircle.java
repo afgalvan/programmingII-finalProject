@@ -14,7 +14,7 @@ import javax.swing.plaf.basic.BasicButtonUI;
 public class MaterialButtonCircle extends JButton {
 
     private Icon icon = new ImageIcon("src/app/views/assets/icons/24x24/diskette.png");
-    ImageIcon imageIcon;
+    private ImageIcon imageIcon;
     private Image image;
     private final Image defaultImage;
     private final RippleEffect ripple;
@@ -261,8 +261,6 @@ public class MaterialButtonCircle extends JButton {
         g2.drawImage(this.image, paddingLeft, paddingTop, width, height, this);
         g2.dispose();
     }
-
-    protected void paintBorder(Graphics g) {}
 
     public enum Type {
         DEFAULT,

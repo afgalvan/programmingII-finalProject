@@ -31,7 +31,7 @@ public class Session implements Serializable {
         return new Session();
     }
 
-    public boolean endSession() {
+    public boolean end() {
         this.user = null;
         return this.active = false;
     }

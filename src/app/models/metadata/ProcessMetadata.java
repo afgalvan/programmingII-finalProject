@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -51,12 +53,12 @@ public class ProcessMetadata implements Serializable, Rowable {
     @Override
     public List<String> getAsRow() {
         return Arrays.asList(
-            (location != null) ? location.getCity() : "",
-            (judicialOffice != null) ? judicialOffice.getName() : "",
-            (series != null) ? series.getName() : "",
-            (id != null) ? id.toString() : "",
-            judgedList.toString(),
-            prosecutorList.toString()
+            safeToString(location, Location::getCity),
+            safeToString(judicialOffice, JudicialOffice::getName),
+            safeToString(series, Series::getName),
+            safeToString(id, Objects::toString),
+            safeToString(judgedList, Objects::toString),
+            safeToString(prosecutorList, Objects::toString)
         );
     }
 }

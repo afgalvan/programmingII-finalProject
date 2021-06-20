@@ -13,6 +13,10 @@ public class DashboardHome extends DashboardSection {
 
     public DashboardHome() {
         this.table = new RSTableMetro();
+        this.initComponents();
+    }
+
+    public void initComponents() {
         val panel = new JScrollPane();
         val model = new DefaultTableModel(
             null,

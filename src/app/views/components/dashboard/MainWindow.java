@@ -43,6 +43,7 @@ public class MainWindow extends Window {
             "¿Deseas cerrar sesión?",
             JOptionPane.WARNING_MESSAGE
         );
+        this.session.end();
         this.setVisible(false);
         AuthWindow login = new AuthWindow();
         login.setVisible(true);

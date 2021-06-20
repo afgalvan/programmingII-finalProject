@@ -2,7 +2,7 @@ package app.views.components.dashboard;
 
 import app.views.ColorPalette;
 import app.views.Window;
-import app.views.components.atomic.RoundButton;
+import app.views.components.atomic.RoundButtonIcon;
 import app.views.components.atomic.WindowOptionButtons;
 import app.views.components.factory.ButtonFactory;
 import java.awt.*;
@@ -14,7 +14,7 @@ public class TopBar extends JPanel {
     private JPanel signOutSide;
 
     @Getter
-    private RoundButton signOutButton;
+    private RoundButtonIcon signOutButton;
 
     private final Window window;
     private JLabel councilPanel;
@@ -68,5 +68,8 @@ public class TopBar extends JPanel {
         // this.signOutButton.onClick(this::signOut);
     }
 
+    /**
+     * Exit from current session.
+     */
     private void signOut() {}
 }

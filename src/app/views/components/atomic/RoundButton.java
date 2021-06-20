@@ -1,13 +1,11 @@
 package app.views.components.atomic;
 
-import javax.swing.*;
-import lombok.NoArgsConstructor;
+import rojerusan.RSMaterialButtonCircle;
 
-@NoArgsConstructor
-public class RoundButton extends MaterialButtonCircle implements OnClick {
+public class RoundButton extends RSMaterialButtonCircle implements OnClick {
 
-    public RoundButton(Icon icon) {
-        this.setIcon(icon);
+    public RoundButton(String text) {
+        this.setText(text);
     }
 
     @Override
