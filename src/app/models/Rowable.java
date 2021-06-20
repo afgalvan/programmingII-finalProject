@@ -3,7 +3,6 @@ package app.models;
 import app.models.annotations.TestedOn;
 import java.util.List;
 import java.util.function.Function;
-
 import test.models.RowableTest;
 
 @TestedOn(RowableTest.class)
