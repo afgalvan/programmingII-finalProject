@@ -2,28 +2,22 @@ package app.views.components.auth;
 
 import app.controllers.DialogResponse;
 import app.models.users.User;
-import java.awt.*;
+import app.views.components.atomic.Dialog;
 import javax.swing.*;
 
-public class LoginDialog extends JOptionPane {
+public class LoginDialog extends Dialog {
 
-    public LoginDialog(Frame frame, DialogResponse<User> dialogResponse) {
-        this(
-            frame,
-            dialogResponse.getTitle(),
-            dialogResponse.getMessage(),
-            dialogResponse.getStatusCode()
-        );
+    private static final String TITLE = "Inicio de sesión";
+
+    public LoginDialog(JFrame frame, DialogResponse<User> dialogResponse) {
+        this(frame, dialogResponse.getMessage(), dialogResponse.getStatusCode());
     }
 
-    public LoginDialog(Frame frame, String title, String message) {
-        this(frame, title, message, INFORMATION_MESSAGE);
+    public LoginDialog(JFrame frame, String message) {
+        this(frame, message, INFORMATION_MESSAGE);
     }
 
-    public LoginDialog(Frame frame, String title, String message, int dialogType) {
-        UIManager.put("OptionPane.background", Color.WHITE);
-        UIManager.put("OptionPane.setButtonMargin", false);
-
-        showMessageDialog(frame, message, title, dialogType);
+    public LoginDialog(JFrame frame, String message, int dialogType) {
+        super(frame, LoginDialog.TITLE, message, dialogType);
     }
 }

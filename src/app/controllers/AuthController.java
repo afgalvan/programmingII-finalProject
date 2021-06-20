@@ -64,7 +64,7 @@ public class AuthController implements Auth {
         }
 
         return new DialogResponse<>(
-            "Inicio de sesion",
+            "Inicio de sesión",
             "Bienvenido " + username + "!",
             DialogResponse.INFORMATION_MESSAGE,
             this.currentUser

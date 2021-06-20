@@ -1,6 +1,5 @@
 package app.views.components.atomic;
 
-import app.views.GraphicalInteraction;
 import app.views.Window;
 import java.awt.*;
 import javax.swing.*;
@@ -12,9 +11,6 @@ public class Minimize extends Clickable {
         this.setFont(new Font("Tahoma", Font.BOLD, 30));
         this.setHorizontalAlignment(SwingConstants.CENTER);
 
-        GraphicalInteraction.addMouseListener(
-            this,
-            () -> window.setState(JFrame.ICONIFIED)
-        );
+        this.onClick(() -> window.setState(JFrame.ICONIFIED));
     }
 }

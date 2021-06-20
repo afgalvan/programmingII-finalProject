@@ -116,7 +116,7 @@ public class FormLayout {
                                 .addComponent(
                                     form.enterAsGuestLabel,
                                     GroupLayout.PREFERRED_SIZE,
-                                    225,
+                                    230,
                                     GroupLayout.PREFERRED_SIZE
                                 )
                                 .addComponent(

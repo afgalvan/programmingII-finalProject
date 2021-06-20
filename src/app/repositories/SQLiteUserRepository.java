@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import lombok.val;
 import test.repositories.SQLiteUserRepositoryTest;
 
@@ -21,9 +23,11 @@ import test.repositories.SQLiteUserRepositoryTest;
 public class SQLiteUserRepository implements UserRepository {
 
     private final DBConnection connection;
+    private final Logger logger;
 
     public SQLiteUserRepository(DBConnection connection) {
         this.connection = connection;
+        this.logger = Logger.getLogger("SQLite User Repository");
     }
 
     /**
@@ -40,6 +44,7 @@ public class SQLiteUserRepository implements UserRepository {
         statement.setString(2, (user instanceof SuperUser) ? "SU" : "CO");
         statement.setString(3, user.getPassword());
         statement.setString(4, user.getSalt());
+        logger.log(Level.INFO, query + " " + user);
         statement.execute();
     }
 
@@ -60,6 +65,7 @@ public class SQLiteUserRepository implements UserRepository {
             userList.add(resultSetMapToUser(resultSet));
         }
 
+        logger.log(Level.INFO, query);
         return userList;
     }
 
@@ -75,6 +81,10 @@ public class SQLiteUserRepository implements UserRepository {
         val query = "SELECT * FROM users WHERE name = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, username);
+        logger.log(
+            Level.INFO,
+            query.substring(0, query.length() - 1) + "\"" + username + "\""
+        );
         return resultSetMapToUser(statement.executeQuery());
     }
 
@@ -93,6 +103,7 @@ public class SQLiteUserRepository implements UserRepository {
         statement.setString(2, newData.getPassword());
         statement.setString(3, username);
         statement.executeUpdate();
+        logger.log(Level.INFO, query);
 
         return true;
     }
@@ -109,6 +120,10 @@ public class SQLiteUserRepository implements UserRepository {
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, username);
         statement.execute();
+        logger.log(
+            Level.INFO,
+            query.substring(0, query.length() - 1) + "\"" + username + "\""
+        );
 
         return true;
     }

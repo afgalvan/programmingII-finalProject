@@ -4,12 +4,12 @@ import app.views.ColorPalette;
 import app.views.GraphicalInteraction;
 import app.views.Window;
 import app.views.components.atomic.Clickable;
+import app.views.components.atomic.RectangleButton;
 import app.views.components.factory.ButtonFactory;
 import app.views.components.factory.FieldFactory;
 import app.views.components.factory.ImageFactory;
 import java.awt.*;
 import javax.swing.*;
-import rojerusan.RSMaterialButtonRectangle;
 import rojerusan.RSPasswordTextPlaceHolder;
 
 public abstract class AuthForm extends JPanel {
@@ -25,7 +25,7 @@ public abstract class AuthForm extends JPanel {
     protected JLabel usernamePadding;
     protected JLabel passwordPadding;
     protected Clickable enterAsGuestLabel;
-    protected RSMaterialButtonRectangle signInButton;
+    protected RectangleButton signInButton;
 
     public AuthForm(String title, Window window) {
         this.window = window;
@@ -36,7 +36,7 @@ public abstract class AuthForm extends JPanel {
         this.passwordIcon = new JLabel();
         this.usernamePadding = new JLabel();
         this.passwordPadding = new JLabel();
-        this.signInButton = new RSMaterialButtonRectangle();
+        this.signInButton = new RectangleButton();
         initComponents();
     }
 
