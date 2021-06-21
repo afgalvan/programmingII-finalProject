@@ -1,5 +1,6 @@
 package app.views.components.atomic;
 
+import app.views.ColorPalette;
 import lombok.NoArgsConstructor;
 import rojerusan.RSMaterialButtonRectangle;
 
@@ -8,6 +9,7 @@ public class RectangleButton extends RSMaterialButtonRectangle implements OnClic
 
     public RectangleButton(String title) {
         this.setText(title);
+        this.setRippleColor(ColorPalette.BLUE);
     }
 
     @Override

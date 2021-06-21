@@ -1,9 +1,8 @@
 package app.views.components.atomic;
 
 import app.views.Window;
-import java.awt.Font;
-import javax.swing.JFrame;
-import javax.swing.SwingConstants;
+import java.awt.*;
+import javax.swing.*;
 
 public class Minimize extends Clickable {
 

@@ -1,6 +1,10 @@
 package app.views;
 
+// import app.models.Session;
+
 import app.views.components.auth.AuthWindow;
+
+// import app.views.components.dashboard.MainWindow;
 
 public class View {
 

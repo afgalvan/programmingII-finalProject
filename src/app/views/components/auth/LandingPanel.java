@@ -1,6 +1,7 @@
 package app.views.components.auth;
 
 import app.views.ColorPalette;
+import app.views.assets.IconUtils;
 import app.views.components.factory.ImageFactory;
 import app.views.components.factory.LabelFactory;
 import javax.swing.*;
@@ -21,7 +22,7 @@ public class LandingPanel extends JPanel {
         this.setBackground(ColorPalette.BLUE);
 
         ImageIcon councilIcon = ImageFactory.createIconSized(
-            "src/app/views/assets/councilIcon.png",
+            IconUtils.icon.apply("councilIcon.png"),
             149,
             157
         );

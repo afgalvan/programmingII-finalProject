@@ -7,11 +7,16 @@ import javax.swing.table.DefaultTableModel;
 import lombok.val;
 import rojerusan.RSTableMetro;
 
-public class DashboardHome extends DashboardSection {
+public class HomePanel extends DashboardSection {
 
     private final RSTableMetro table;
+    private static final HomePanel instance = new HomePanel();
 
-    public DashboardHome() {
+    public static HomePanel getInstance() {
+        return instance;
+    }
+
+    private HomePanel() {
         this.table = new RSTableMetro();
         this.initComponents();
     }

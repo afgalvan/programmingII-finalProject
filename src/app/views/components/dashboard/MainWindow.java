@@ -14,6 +14,7 @@ public class MainWindow extends Window {
     private final TopBar topBar;
     private final MenuBar menuBar;
     private final Session session;
+    public static MainWindow state;
 
     @Setter
     @Getter
@@ -21,19 +22,37 @@ public class MainWindow extends Window {
 
     public MainWindow(Session session) {
         this.session = session;
-        this.topBar = new TopBar(this);
+        this.topBar = new TopBar();
+        this.dashboardSection = HomePanel.getInstance();
+        this.dashboardSection.setVisible(true);
         this.menuBar = new MenuBar();
-        this.dashboardSection = new DashboardHome();
         this.initComponents();
         this.addInteraction();
+        MainWindow.state = this;
     }
 
     public void initComponents() {
         this.setExtendedState(Frame.MAXIMIZED_BOTH);
         this.setLayout(new BorderLayout());
-        this.add(topBar, BorderLayout.PAGE_START);
-        this.add(menuBar, BorderLayout.LINE_START);
-        this.add(dashboardSection, BorderLayout.CENTER);
+        this.addAll();
+    }
+
+    public void addAll() {
+        this.add(this.topBar, BorderLayout.PAGE_START);
+        this.add(this.dashboardSection, BorderLayout.CENTER);
+        this.add(this.menuBar, BorderLayout.LINE_START);
+    }
+
+    public void renderDashboard(DashboardSection dashboardSection) {
+        this.dashboardSection.setVisible(false);
+        this.remove(this.dashboardSection);
+
+        dashboardSection.setVisible(true);
+        this.dashboardSection = dashboardSection;
+        this.add(this.dashboardSection, BorderLayout.CENTER);
+
+        this.validate();
+        this.repaint();
     }
 
     public void exitSession() {
@@ -44,7 +63,8 @@ public class MainWindow extends Window {
             JOptionPane.WARNING_MESSAGE
         );
         this.session.end();
-        this.setVisible(false);
+        this.dispose();
+        this.dashboardSection.setVisible(false);
         AuthWindow login = new AuthWindow();
         login.setVisible(true);
     }

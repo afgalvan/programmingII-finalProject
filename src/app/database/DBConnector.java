@@ -49,10 +49,11 @@ public class DBConnector implements DBConnection {
      * Convert a String to a SQL prepared statement to use placeholders for
      * being replaced with variables.
      *
-     * @param statement String SQL statement with at least one placeholder.
+     * @param statement {@code String} SQL statement with at least one placeholder.
      * @return A Prepared Statement interface instance to be executed.
      * @throws SQLException For a statements with syntax errors or non match queries.
      */
+    @Override
     public PreparedStatement prepareStatement(String statement) throws SQLException {
         return this.connection.prepareStatement(statement);
     }
@@ -63,6 +64,7 @@ public class DBConnector implements DBConnection {
      * @return A statement interface instance to be executed.
      * @throws SQLException For a statements with syntax errors or non match queries.
      */
+    @Override
     public Statement createStatement() throws SQLException {
         return this.connection.createStatement();
     }
