@@ -1,5 +1,6 @@
 package app.views.assets;
 
+import javax.swing.*;
 import java.util.function.Function;
 
 public class IconUtils {
@@ -14,4 +15,8 @@ public class IconUtils {
 
     public static final Function<String, String> icon24x24 = iconName ->
         IconUtils.icon.apply("") + "24x24/" + iconName;
+
+    public static Icon getIcon(String icon) {
+        return new ImageIcon(IconUtils.icon.apply(icon));
+    }
 }

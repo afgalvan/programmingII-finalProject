@@ -5,9 +5,10 @@ import app.views.Window;
 import app.views.components.atomic.Dialog;
 import app.views.components.auth.AuthWindow;
 import java.awt.*;
-import javax.swing.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.swing.*;
 
 public class MainWindow extends Window {
 
@@ -56,17 +57,20 @@ public class MainWindow extends Window {
     }
 
     public void exitSession() {
-        new Dialog(
+        int choice = Dialog.showConfirm(
             this,
             "Cerrar sesión",
             "¿Deseas cerrar sesión?",
-            JOptionPane.WARNING_MESSAGE
+            Dialog.WARNING_MESSAGE
         );
-        this.session.end();
-        this.dispose();
-        this.dashboardSection.setVisible(false);
-        AuthWindow login = new AuthWindow();
-        login.setVisible(true);
+
+        if (choice == Dialog.YES_OPTION) {
+            this.session.end();
+            this.dispose();
+            this.dashboardSection.setVisible(false);
+            AuthWindow login = new AuthWindow();
+            login.setVisible(true);
+        }
     }
 
     public void addInteraction() {

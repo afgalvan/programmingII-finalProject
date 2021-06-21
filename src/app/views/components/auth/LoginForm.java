@@ -35,7 +35,6 @@ public class LoginForm extends AuthForm {
     }
 
     private void enterSession(Session session) {
-        // this.window.setVisible(false);
         this.window.dispose();
         MainWindow mainWindow = new MainWindow(session);
         mainWindow.setVisible(true);
