@@ -4,11 +4,12 @@ import app.models.Session;
 import app.views.Window;
 import app.views.components.atomic.Dialog;
 import app.views.components.auth.AuthWindow;
-import java.awt.*;
+import app.views.components.dashboard.panels.CenterPanel;
+import app.views.components.dashboard.panels.HomePanel;
+import java.awt.BorderLayout;
+import java.awt.Frame;
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.swing.*;
 
 public class MainWindow extends Window {
 
@@ -19,7 +20,7 @@ public class MainWindow extends Window {
 
     @Setter
     @Getter
-    private DashboardSection dashboardSection;
+    private CenterPanel dashboardSection;
 
     public MainWindow(Session session) {
         this.session = session;
@@ -33,18 +34,19 @@ public class MainWindow extends Window {
     }
 
     public void initComponents() {
+        this.setLocationRelativeTo(null);
         this.setExtendedState(Frame.MAXIMIZED_BOTH);
         this.setLayout(new BorderLayout());
-        this.addAll();
+        this.addComponents();
     }
 
-    public void addAll() {
+    public void addComponents() {
         this.add(this.topBar, BorderLayout.PAGE_START);
         this.add(this.dashboardSection, BorderLayout.CENTER);
         this.add(this.menuBar, BorderLayout.LINE_START);
     }
 
-    public void renderDashboard(DashboardSection dashboardSection) {
+    public void renderDashboard(CenterPanel dashboardSection) {
         this.dashboardSection.setVisible(false);
         this.remove(this.dashboardSection);
 

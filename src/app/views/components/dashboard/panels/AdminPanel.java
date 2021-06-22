@@ -1,8 +1,8 @@
-package app.views.components.dashboard;
+package app.views.components.dashboard.panels;
 
 import java.awt.*;
 
-public class AdminPanel extends DashboardSection {
+public class AdminPanel extends CenterPanel {
 
     private static final AdminPanel instance = new AdminPanel();
 

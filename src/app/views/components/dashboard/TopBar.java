@@ -14,13 +14,13 @@ public class TopBar extends JPanel {
     @Getter
     private final RoundButtonIcon signOutButton;
 
-    private final JPanel signOutSide;
-    private final JLabel councilPanel;
     private final WindowOptionButtons topGap;
+    private final JPanel signOutSide;
+    private final JPanel councilSide;
     private final JLabel bottomGap;
 
     public TopBar() {
-        this.councilPanel = new JLabel();
+        this.councilSide = new JPanel();
         this.signOutSide = new JPanel();
         Icon signOutImage = new ImageIcon(IconUtils.icon24x24.apply("power.png"));
         this.signOutButton = ButtonFactory.createRoundButtonOfImage(signOutImage);
@@ -36,11 +36,17 @@ public class TopBar extends JPanel {
         this.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, ColorPalette.CREAM));
         this.setPreferredSize(new Dimension(0, 90));
 
-        Icon councilImage = new ImageIcon(IconUtils.image.apply("council.jpg"));
-        this.councilPanel.setIcon(councilImage);
+        Icon councilImage = new ImageIcon(IconUtils.image.apply("council.png"));
+        this.councilSide.add(new JLabel(councilImage));
+        this.councilSide.setBackground(this.getBackground());
+        this.councilSide.setPreferredSize(new Dimension(150, 90));
+        this.councilSide.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
 
-        this.signOutSide.setBackground(Color.WHITE);
         this.signOutSide.add(signOutButton);
+        this.signOutSide.setBackground(this.getBackground());
+        this.signOutSide.setPreferredSize(new Dimension(100, 0));
+        this.signOutSide.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 50));
+
         this.initGaps();
     }
 
@@ -51,11 +57,8 @@ public class TopBar extends JPanel {
 
     public void configureLayout() {
         this.setLayout(new BorderLayout());
-        this.councilPanel.setPreferredSize(new Dimension(90, 60));
-        this.signOutSide.setPreferredSize(new Dimension(100, 0));
-        this.signOutSide.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 50));
         this.add(this.topGap, BorderLayout.PAGE_START);
-        this.add(this.councilPanel, BorderLayout.LINE_START);
+        this.add(this.councilSide, BorderLayout.LINE_START);
         this.add(this.signOutSide, BorderLayout.LINE_END);
         this.add(this.bottomGap, BorderLayout.PAGE_END);
     }

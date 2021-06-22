@@ -38,11 +38,13 @@ public class LoginForm extends AuthForm {
         this.window.dispose();
         MainWindow mainWindow = new MainWindow(session);
         mainWindow.setVisible(true);
+        if (session.isGuest()) {
+            new LoginDialog(mainWindow, "Sesión iniciada como invitado");
+        }
     }
 
     private void enterAsGuest() {
         enterSession(Session.asGuest());
-        new LoginDialog(this.window, "Sesión iniciada como invitado");
     }
 
     private void signIn() {

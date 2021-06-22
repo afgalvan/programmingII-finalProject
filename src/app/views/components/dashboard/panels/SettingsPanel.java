@@ -1,8 +1,8 @@
-package app.views.components.dashboard;
+package app.views.components.dashboard.panels;
 
 import java.awt.*;
 
-public class SettingsPanel extends DashboardSection {
+public class SettingsPanel extends CenterPanel {
 
     private static final SettingsPanel instance = new SettingsPanel();
 

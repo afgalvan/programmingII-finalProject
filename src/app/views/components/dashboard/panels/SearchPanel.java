@@ -1,8 +1,8 @@
-package app.views.components.dashboard;
+package app.views.components.dashboard.panels;
 
 import java.awt.*;
 
-public class SearchPanel extends DashboardSection {
+public class SearchPanel extends CenterPanel {
 
     private static final SearchPanel instance = new SearchPanel();
 

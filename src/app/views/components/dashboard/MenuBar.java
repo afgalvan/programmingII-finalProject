@@ -2,6 +2,7 @@ package app.views.components.dashboard;
 
 import app.views.ColorPalette;
 import app.views.assets.IconUtils;
+import app.views.components.dashboard.panels.*;
 import app.views.components.factory.LabelFactory;
 import java.awt.*;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import lombok.val;
 @Setter
 public class MenuBar extends JPanel {
 
-    private List<MenuOption> optionList;
+    private List<MenuItem> optionList;
 
     public MenuBar() {
         this.optionList = new ArrayList<>();
@@ -38,10 +39,10 @@ public class MenuBar extends JPanel {
     public void createOptionOf(
         String iconName,
         String title,
-        DashboardSection dashboardSection
+        CenterPanel dashboardSection
     ) {
         Icon icon = new ImageIcon(IconUtils.icon24x24.apply(iconName));
-        val option = new MenuOption(icon, title, dashboardSection);
+        val option = new MenuItem(icon, title, dashboardSection);
         this.addInteraction(option);
         this.optionList.add(option);
     }
@@ -65,14 +66,14 @@ public class MenuBar extends JPanel {
         return label;
     }
 
-    private void addInteraction(MenuOption menuOption) {
-        menuOption.onClick(() -> render(menuOption.getSection()));
-        menuOption.getPressItem().onClick(menuOption.getRunnable());
+    private void addInteraction(MenuItem menuItem) {
+        menuItem.onClick(() -> render(menuItem.getSection()));
+        menuItem.getPressItem().onClick(menuItem.getRunnable());
     }
 
-    private void render(DashboardSection dashboardSection) {
+    private void render(CenterPanel dashboardSection) {
         MainWindow mainWindow = MainWindow.state;
         mainWindow.renderDashboard(dashboardSection);
-        this.optionList.forEach(MenuOption::configureColor);
+        this.optionList.forEach(MenuItem::configureColor);
     }
 }

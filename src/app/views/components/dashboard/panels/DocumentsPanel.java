@@ -1,8 +1,8 @@
-package app.views.components.dashboard;
+package app.views.components.dashboard.panels;
 
 import java.awt.*;
 
-public class DocumentsPanel extends DashboardSection {
+public class DocumentsPanel extends CenterPanel {
 
     private static final DocumentsPanel instance = new DocumentsPanel();
 

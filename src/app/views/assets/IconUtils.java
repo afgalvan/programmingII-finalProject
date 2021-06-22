@@ -1,7 +1,7 @@
 package app.views.assets;
 
-import javax.swing.*;
 import java.util.function.Function;
+import javax.swing.*;
 
 public class IconUtils {
 
