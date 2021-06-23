@@ -13,4 +13,9 @@ public class DocumentsPanel extends CenterPanel {
     public static DocumentsPanel getInstance() {
         return instance;
     }
+
+    @Override
+    public void initComponents() {
+        // To init
+    }
 }

@@ -1,6 +1,7 @@
 package app.views.components.dashboard.panels;
 
 import app.views.ColorPalette;
+import app.views.components.atomic.Table;
 import app.views.components.factory.LabelFactory;
 import java.awt.*;
 import javax.swing.*;
@@ -8,11 +9,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import lombok.val;
 import rojerusan.RSMaterialButtonRectangle;
-import rojerusan.RSTableMetro;
 
 public class HomePanel extends CenterPanel {
 
-    private final RSTableMetro table;
+    private final Table table;
     private final String[] tableTitle = {
         "Nombre del documento",
         "Fecha incorporación",
@@ -23,8 +23,6 @@ public class HomePanel extends CenterPanel {
     };
     private final JScrollPane tableContainer;
     private final JPanel statisticsContainer;
-    private final RSMaterialButtonRectangle totalDocumentsContainer;
-    private final RSMaterialButtonRectangle currentUserContainer;
 
     private static final HomePanel instance = new HomePanel();
 
@@ -33,14 +31,13 @@ public class HomePanel extends CenterPanel {
     }
 
     private HomePanel() {
-        this.table = new RSTableMetro();
+        this.table = new Table();
         this.tableContainer = new JScrollPane();
         this.statisticsContainer = new JPanel();
-        this.totalDocumentsContainer = new RSMaterialButtonRectangle();
-        this.currentUserContainer = new RSMaterialButtonRectangle();
         this.initComponents();
     }
 
+    @Override
     public void initComponents() {
         this.setLayout(new GridLayout(2, 0, 10, 0));
         this.setBorder(BorderFactory.createEmptyBorder(25, 50, 25, 50));
@@ -49,10 +46,11 @@ public class HomePanel extends CenterPanel {
     }
 
     public void initStatisticsView() {
-        this.totalDocumentsContainer.setBackground(Color.WHITE);
-        this.currentUserContainer.setBackground(
-                this.totalDocumentsContainer.getBackground()
-            );
+        val totalDocumentsContainer = new RSMaterialButtonRectangle();
+        val currentUserContainer = new RSMaterialButtonRectangle();
+
+        totalDocumentsContainer.setBackground(Color.WHITE);
+        currentUserContainer.setBackground(totalDocumentsContainer.getBackground());
 
         val sidesPadding = 190;
         val cardContainer = new JPanel(new GridLayout(0, 2, sidesPadding, 10));
@@ -75,12 +73,6 @@ public class HomePanel extends CenterPanel {
     public void initTableView() {
         val model = new DefaultTableModel(null, tableTitle);
         this.table.setModel(model);
-        this.table.setColorBackgoundHead(ColorPalette.PINK_20);
-        this.table.setFuenteHead(new Font("Segoe UI", Font.PLAIN, 14));
-        this.table.setColorForegroundHead(ColorPalette.GRAY);
-        this.table.setColorBordeHead(ColorPalette.GRAY);
-        this.table.setAltoHead(35);
-        this.table.setMultipleSeleccion(true);
         TableColumnModel columnModel = table.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(200);
         columnModel.getColumn(1).setPreferredWidth(150);

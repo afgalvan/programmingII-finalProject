@@ -13,4 +13,9 @@ public class AdminPanel extends CenterPanel {
     public static AdminPanel getInstance() {
         return instance;
     }
+
+    @Override
+    public void initComponents() {
+        // To init
+    }
 }

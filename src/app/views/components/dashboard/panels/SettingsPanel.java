@@ -13,4 +13,9 @@ public class SettingsPanel extends CenterPanel {
     public static SettingsPanel getInstance() {
         return instance;
     }
+
+    @Override
+    public void initComponents() {
+        // To init
+    }
 }
