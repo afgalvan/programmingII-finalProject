@@ -3,7 +3,7 @@ package app.views.assets;
 import java.util.function.Function;
 import javax.swing.*;
 
-public class IconUtils {
+public class ImageUtils {
 
     public static final String assets = "src/app/views/assets/";
 
@@ -14,9 +14,13 @@ public class IconUtils {
         assets + "icons/" + iconName;
 
     public static final Function<String, String> icon24x24 = iconName ->
-        IconUtils.icon.apply("") + "24x24/" + iconName;
+        ImageUtils.icon.apply("") + "24x24/" + iconName;
 
     public static Icon getIcon(String icon) {
-        return new ImageIcon(IconUtils.icon.apply(icon));
+        return new ImageIcon(ImageUtils.icon.apply(icon));
+    }
+
+    public static Icon getIcon24x24(String icon) {
+        return new ImageIcon(ImageUtils.icon24x24.apply(icon));
     }
 }

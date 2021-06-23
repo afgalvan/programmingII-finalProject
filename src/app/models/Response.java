@@ -12,6 +12,8 @@ import lombok.ToString;
 public class Response<T> {
 
     private final boolean error;
+
+    @Setter
     private T data;
 
     @Setter

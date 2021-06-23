@@ -20,9 +20,8 @@ public class DialogResponse<T> extends Response<T> {
     private int statusCode;
 
     public DialogResponse(String title, String message, int statusCode, T data) {
-        super(data, message);
-        this.title = title;
-        this.statusCode = statusCode;
+        this(title, message, statusCode);
+        super.setData(data);
     }
 
     /**

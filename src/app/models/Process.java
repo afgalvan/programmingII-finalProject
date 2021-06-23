@@ -3,8 +3,7 @@ package app.models;
 import app.models.metadata.*;
 import app.models.metadata.parts.Person;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.function.BiConsumer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Process implements Serializable {
+public class Process implements Serializable, Rowable {
 
     private ProcessMetadata metadata;
     private int noteBooksLen;
@@ -111,5 +110,15 @@ public class Process implements Serializable {
 
     public List<Person> getJudgedList() {
         return this.metadata.getJudgedList();
+    }
+
+    @Override
+    public List<String> getAsRow() {
+        return Arrays.asList(
+            safeToString(this.getId(), Object::toString),
+            safeToString(this.metadata.getSeries(), Object::toString),
+            safeToString(this.metadata.getSeries(), Object::toString),
+            safeToString(this.metadata.getJudicialOffice(), Object::toString)
+        );
     }
 }

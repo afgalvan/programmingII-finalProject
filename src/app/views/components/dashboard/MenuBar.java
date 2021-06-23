@@ -1,7 +1,7 @@
 package app.views.components.dashboard;
 
 import app.views.ColorPalette;
-import app.views.assets.IconUtils;
+import app.views.assets.ImageUtils;
 import app.views.components.dashboard.panels.*;
 import app.views.components.factory.LabelFactory;
 import java.awt.*;
@@ -17,9 +17,11 @@ import lombok.val;
 public class MenuBar extends JPanel {
 
     private List<MenuItem> optionList;
+    private List<MenuItem> others;
 
     public MenuBar() {
         this.optionList = new ArrayList<>();
+        this.others = new ArrayList<>();
         this.configureLayout();
         this.initComponents();
     }
@@ -34,25 +36,50 @@ public class MenuBar extends JPanel {
         this.add(menuTitle);
         this.optionList.forEach(this::add);
         this.add(othersTitle);
+        this.others.forEach(this::add);
     }
 
     public void createOptionOf(
         String iconName,
         String title,
-        CenterPanel dashboardSection
+        CenterPanel dashboardSection,
+        List<MenuItem> optionList
     ) {
-        Icon icon = new ImageIcon(IconUtils.icon24x24.apply(iconName));
+        Icon icon = new ImageIcon(ImageUtils.icon24x24.apply(iconName));
         val option = new MenuItem(icon, title, dashboardSection);
         this.addInteraction(option);
-        this.optionList.add(option);
+        optionList.add(option);
     }
 
     public void fillOptions() {
-        createOptionOf("home.png", "Dashboard", HomePanel.getInstance());
-        createOptionOf("visibility.png", "Panel de consultas", SearchPanel.getInstance());
-        createOptionOf("book.png", "Panel de expediente", DocumentsPanel.getInstance());
-        createOptionOf("admin.png", "Panel de administracion", AdminPanel.getInstance());
-        createOptionOf("settings.png", "Configuración", SettingsPanel.getInstance());
+        createOptionOf("home.png", "Dashboard", HomePanel.getInstance(), this.optionList);
+        createOptionOf(
+            "visibility.png",
+            "Panel de consultas",
+            SearchPanel.getInstance(),
+            this.optionList
+        );
+        createOptionOf(
+            "book.png",
+            "Panel de expedientes",
+            DocumentsPanel.getInstance(),
+            this.optionList
+        );
+        createOptionOf(
+            "admin.png",
+            "Panel de administracion",
+            AdminPanel.getInstance(),
+            this.optionList
+        );
+        createOptionOf(
+            "settings.png",
+            "Configuración",
+            SettingsPanel.getInstance(),
+            this.optionList
+        );
+
+        createOptionOf("users.png", "Créditos", CreditsPanel.getInstance(), this.others);
+        createOptionOf("info.png", "Acerca de", AboutPanel.getInstance(), this.others);
     }
 
     public void configureLayout() {
@@ -75,5 +102,6 @@ public class MenuBar extends JPanel {
         MainWindow mainWindow = MainWindow.state;
         mainWindow.renderDashboard(dashboardSection);
         this.optionList.forEach(MenuItem::configureColor);
+        this.others.forEach(MenuItem::configureColor);
     }
 }

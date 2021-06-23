@@ -53,10 +53,9 @@ public class ProcessController {
         Response<Process> response = service.getById(id);
         if (response.isError()) {
             return new DialogResponse<>(
-                "Registro de proceso",
+                "Busqueda de proceso",
                 response.getMessage(),
-                DialogResponse.ERROR_MESSAGE,
-                response.getData()
+                DialogResponse.ERROR_MESSAGE
             );
         }
 

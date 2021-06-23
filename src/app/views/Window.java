@@ -1,6 +1,6 @@
 package app.views;
 
-import app.views.assets.IconUtils;
+import app.views.assets.ImageUtils;
 import app.views.components.atomic.Close;
 import app.views.components.atomic.Minimize;
 import com.formdev.flatlaf.FlatLightLaf;
@@ -24,7 +24,7 @@ public abstract class Window extends JFrame {
     }
 
     private void configureIcon() {
-        Image icon = new ImageIcon(IconUtils.icon.apply("councilIcon.png")).getImage();
+        Image icon = new ImageIcon(ImageUtils.icon.apply("councilIcon.png")).getImage();
         setIconImage(icon);
     }
 

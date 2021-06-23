@@ -30,4 +30,9 @@ public class Series implements Serializable {
         SubSeries subSeries = new SubSeries(name, code, docType);
         subSeriesList.add(subSeries);
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

@@ -1,7 +1,7 @@
 package app.views.components.dashboard;
 
 import app.views.ColorPalette;
-import app.views.assets.IconUtils;
+import app.views.assets.ImageUtils;
 import app.views.components.atomic.RoundButtonIcon;
 import app.views.components.atomic.WindowOptionButtons;
 import app.views.components.factory.ButtonFactory;
@@ -22,7 +22,7 @@ public class TopBar extends JPanel {
     public TopBar() {
         this.councilSide = new JPanel();
         this.signOutSide = new JPanel();
-        Icon signOutImage = new ImageIcon(IconUtils.icon24x24.apply("power.png"));
+        Icon signOutImage = new ImageIcon(ImageUtils.icon24x24.apply("power.png"));
         this.signOutButton = ButtonFactory.createRoundButtonOfImage(signOutImage);
 
         this.topGap = new WindowOptionButtons(MainWindow.state);
@@ -36,7 +36,7 @@ public class TopBar extends JPanel {
         this.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, ColorPalette.CREAM));
         this.setPreferredSize(new Dimension(0, 90));
 
-        Icon councilImage = new ImageIcon(IconUtils.image.apply("council.png"));
+        Icon councilImage = new ImageIcon(ImageUtils.image.apply("council.png"));
         this.councilSide.add(new JLabel(councilImage));
         this.councilSide.setBackground(this.getBackground());
         this.councilSide.setPreferredSize(new Dimension(150, 90));

@@ -3,7 +3,7 @@ package app.views.components.auth;
 import app.views.ColorPalette;
 import app.views.GraphicalInteraction;
 import app.views.Window;
-import app.views.assets.IconUtils;
+import app.views.assets.ImageUtils;
 import app.views.components.atomic.Clickable;
 import app.views.components.atomic.RectangleButton;
 import app.views.components.factory.ButtonFactory;
@@ -56,9 +56,9 @@ public abstract class AuthForm extends JPanel {
         passwordField = FieldFactory.createPasswordField(this.passwordPlaceholder);
 
         userIcon =
-            ImageFactory.createFieldIcon(IconUtils.icon24x24.apply("password.png"));
+            ImageFactory.createFieldIcon(ImageUtils.icon24x24.apply("password.png"));
         passwordIcon =
-            ImageFactory.createFieldIcon(IconUtils.icon24x24.apply("userAuth.png"));
+            ImageFactory.createFieldIcon(ImageUtils.icon24x24.apply("userAuth.png"));
 
         usernamePadding.setBorder(
             BorderFactory.createMatteBorder(1, 1, 1, 0, ColorPalette.CREAM)
