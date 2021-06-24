@@ -5,6 +5,6 @@ import javax.swing.*;
 public class ProcessForm extends RegistrationForm {
 
     public ProcessForm(JFrame frame, boolean isModal) {
-        super(frame, isModal);
+        super(frame, isModal, "");
     }
 }
