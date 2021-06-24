@@ -18,6 +18,7 @@ public class Clickable extends JLabel implements OnClick {
     public Clickable(String content) {
         this();
         this.setText(content);
+        this.setToolTipText(content);
     }
 
     @Override

@@ -6,6 +6,7 @@ public class RoundButton extends RSMaterialButtonCircle implements OnClick {
 
     public RoundButton(String text) {
         this.setText(text);
+        this.setToolTipText(text);
     }
 
     @Override

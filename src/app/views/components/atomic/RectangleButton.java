@@ -9,6 +9,7 @@ public class RectangleButton extends RSMaterialButtonRectangle implements OnClic
 
     public RectangleButton(String title) {
         this.setText(title);
+        this.setToolTipText(title);
         this.setRippleColor(ColorPalette.BLUE);
     }
 

@@ -40,7 +40,12 @@ public class SearchPanel extends CenterPanel {
     private Table resultsTable;
     private JScrollPane tableContainer;
     private DefaultTableModel tableModel;
-    private final String[] tableTitle = { "Radicado", "Serie", "Subserie", "Juzgado" };
+    private final String[] tableTitle = {
+        "Radicado",
+        "Demandante",
+        "Demandado",
+        "Juzgado",
+    };
 
     private static final SearchPanel instance = new SearchPanel();
 
@@ -59,6 +64,7 @@ public class SearchPanel extends CenterPanel {
         this.searchField = new RSMetroTextPlaceHolder();
         this.searchButton =
             ButtonFactory.createRoundButtonOfImage(ImageUtils.getIcon24x24("search.png"));
+        this.searchButton.setToolTipText("Buscar");
         this.searchResult =
             LabelFactory.createLabel("", ColorPalette.GRAY, Font.BOLD, 18);
         this.countResult =
@@ -136,6 +142,7 @@ public class SearchPanel extends CenterPanel {
 
     public <T> T getInput(Function<String, T> parser) {
         String input = this.searchField.getText();
+        this.searchResult.setText(input);
 
         T parsedInput;
 
@@ -151,7 +158,6 @@ public class SearchPanel extends CenterPanel {
             return null;
         }
 
-        this.searchResult.setText(parsedInput.toString());
         return parsedInput;
     }
 

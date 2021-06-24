@@ -1,13 +1,20 @@
 package app.views.components.dashboard.panels;
 
-import java.awt.*;
+import app.views.components.atomic.RectangleButton;
+import app.views.components.dashboard.MainWindow;
+import app.views.components.dashboard.forms.ProcessForm;
+import app.views.components.factory.ButtonFactory;
+import javax.swing.*;
+import lombok.val;
 
 public class DocumentsPanel extends CenterPanel {
+
+    private RectangleButton addProcessButton;
 
     private static final DocumentsPanel instance = new DocumentsPanel();
 
     private DocumentsPanel() {
-        this.setBackground(Color.RED);
+        this.initComponents();
     }
 
     public static DocumentsPanel getInstance() {
@@ -16,6 +23,29 @@ public class DocumentsPanel extends CenterPanel {
 
     @Override
     public void initComponents() {
-        // To init
+        renderContent(null);
+    }
+
+    private void renderContent(Process process) {
+        this.removeAll();
+        if (process == null) {
+            renderVoidPane();
+        }
+    }
+
+    private void renderVoidPane() {
+        this.addProcessButton = ButtonFactory.createMainButton("Registrar proceso");
+        this.addProcessButton.onClick(this::displayProcessForm);
+
+        val buttonContainer = new JPanel();
+        buttonContainer.setBackground(this.getBackground());
+        buttonContainer.setBorder(BorderFactory.createEmptyBorder(90, 0, 0, 0));
+        buttonContainer.add(addProcessButton);
+
+        this.add(buttonContainer);
+    }
+
+    private void displayProcessForm() {
+        new ProcessForm(MainWindow.state, true);
     }
 }

@@ -3,7 +3,9 @@ package app.models;
 import app.models.metadata.*;
 import app.models.metadata.parts.Person;
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.BiConsumer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -116,8 +118,8 @@ public class Process implements Serializable, Rowable {
     public List<String> getAsRow() {
         return Arrays.asList(
             safeToString(this.getId(), Object::toString),
-            safeToString(this.metadata.getSeries(), Object::toString),
-            safeToString(this.metadata.getSeries(), Object::toString),
+            safeToString(this.metadata.getProsecutorList(), Object::toString),
+            safeToString(this.metadata.getJudgedList(), Object::toString),
             safeToString(this.metadata.getJudicialOffice(), Object::toString)
         );
     }
