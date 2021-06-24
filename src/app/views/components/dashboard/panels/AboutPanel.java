@@ -15,7 +15,5 @@ public class AboutPanel extends CenterPanel {
     }
 
     @Override
-    public void initComponents() {
-        // To init
-    }
+    public void initComponents() {}
 }
