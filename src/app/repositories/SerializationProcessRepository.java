@@ -1,12 +1,14 @@
 package app.repositories;
 
+import static app.utils.Utils.containsIgnoreCase;
+
 import app.database.FileManagement;
 import app.database.FileManager;
 import app.exceptions.DataAccessException;
 import app.models.Process;
 import app.models.ProcessRecord;
-import app.models.Record;
-import app.models.metadata.parts.Person;
+import app.models.metadata.parties.TrialParty;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -62,7 +64,7 @@ public class SerializationProcessRepository implements ProcessRepository {
             throw new DataAccessException("Id del proceso está repetido.");
         }
 
-        Record processRecord = this.defaultReadRecord().add(process);
+        ProcessRecord processRecord = this.defaultReadRecord().add(process);
         database.save(processRecord);
     }
 
@@ -80,7 +82,7 @@ public class SerializationProcessRepository implements ProcessRepository {
         return process;
     }
 
-    private <T> void mutateRecords(ProcessRecordMutator<T> mutator, T newData)
+    private <T> void mutateRecords(RecordMutator<ProcessRecord, T> mutator, T newData)
         throws DataAccessException {
         ProcessRecord processRecord = this.safeReadRecords();
         mutator.mutate(processRecord, newData);
@@ -101,13 +103,18 @@ public class SerializationProcessRepository implements ProcessRepository {
         return true;
     }
 
-    private boolean containsIgnoreCase(String s1, String s2) {
-        return s1.toLowerCase().contains(s2.toLowerCase());
-    }
-
     @FunctionalInterface
     private interface TrialGetter {
-        List<Person> getTrials(Process process);
+        List<TrialParty> getTrials(Process process);
+    }
+
+    private Predicate<Process> createSearchOf(String searchedName, TrialGetter method) {
+        // prettier-ignore-start
+        return process ->
+            method.getTrials(process).stream()
+                .anyMatch(trial -> containsIgnoreCase(trial.getFullName(), searchedName)
+                );
+        // prettier-ignore-end
     }
 
     private List<Process> getProcessesByTrial(String searchedName, TrialGetter method)
@@ -116,15 +123,10 @@ public class SerializationProcessRepository implements ProcessRepository {
             throw new DataAccessException("El nombre del demandado es inválido");
         }
 
-        // prettier-ignore-start
-        Predicate<Process> search = process ->
-            method.getTrials(process).stream()
-                .map(Person::getFullName)
-                .anyMatch(trialName -> containsIgnoreCase(trialName, searchedName)
-                );
-        // prettier-ignore-end
+        Predicate<Process> search = createSearchOf(searchedName, method);
 
-        List<Process> matchList = getAll().stream()
+        List<Process> matchList = getAll()
+            .stream()
             .filter(search)
             .collect(Collectors.toList());
 

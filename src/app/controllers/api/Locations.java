@@ -1,9 +1,11 @@
 package app.controllers.api;
 
+import app.exceptions.InvalidLocationException;
 import app.models.annotations.TestedOn;
 import com.fasterxml.jackson.databind.JsonNode;
 import java.util.*;
 import java.util.stream.Collectors;
+import lombok.SneakyThrows;
 import lombok.val;
 import test.controllers.api.LocationsTest;
 
@@ -57,13 +59,14 @@ public final class Locations {
     }
 
     /**
-     * FIXME: Issue #100 - Improve json parsing by using built-in jackson methods
-     * Map the json with the locations reference to a Map to relational the
-     * department with a list of its cities.
-     *
      * @return A map with a String as key, and a List of Strings as value.
      */
     private static Map<String, List<String>> getLocations() {
+        /*
+         * FIXME: Issue #100 - Improve json parsing by using built-in jackson methods
+         * Map the json with the locations reference to a Map to relational the
+         * department with a list of its cities.
+         */
         JsonNode jsonNode = getJsonNode();
         if (jsonNode == null) {
             return new HashMap<>();
@@ -120,8 +123,59 @@ public final class Locations {
      * @param department The name of the department to find last city.
      * @return The name of the last city of a department.
      */
-    public static String getLastCity(String department) {
+    public static String getLastCityOf(String department) {
         int lastCityIndex = citiesLen(department) - 1;
         return getCities(department).get(lastCityIndex);
+    }
+
+    /**
+     * @param department A {@code String} representing the name of a department in Colombia.
+     *
+     * @return if is an existing department.
+     */
+    public static boolean isValidDepartment(String department) {
+        return Locations.getAll().containsKey(department.toLowerCase());
+    }
+
+    /**
+     * @param department A {@code String} representing the name of a department in Colombia.
+     * @param city A {@code String} representing the name of a city of the given department.
+     *
+     * @return if a city belongs to the given department.
+     */
+    public static boolean isValidCityOf(String department, String city) {
+        List<String> cities = Locations.getCities(department);
+        return cities != null && cities.contains(city.toLowerCase());
+    }
+
+    /**
+     *
+     * @param department A {@code String} representing the name of a department in Colombia.
+     * @return the same name in case of a validation.
+     *
+     * @throws InvalidLocationException if a invalid department is given.
+     */
+    public static String throwForDepartment(String department)
+        throws InvalidLocationException {
+        if (!isValidDepartment(department)) {
+            throw new InvalidLocationException("El departamento no existe");
+        }
+        return department;
+    }
+
+    /**
+     * @param department
+     * @param city
+     * @return
+     */
+    public static String throwForCity(String department, String city)
+        throws InvalidLocationException {
+        if (!isValidCityOf(department.toLowerCase(), city.toLowerCase())) {
+            throw new InvalidLocationException(
+                "La ciudad no pertenece a este departamento"
+            );
+        }
+
+        return city;
     }
 }

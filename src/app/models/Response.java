@@ -5,7 +5,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- *
  * @param <T> Generic of data type to return;
  */
 @Getter
@@ -13,6 +12,8 @@ import lombok.ToString;
 public class Response<T> {
 
     private final boolean error;
+
+    @Setter
     private T data;
 
     @Setter
@@ -36,9 +37,5 @@ public class Response<T> {
     public Response(String message, boolean error) {
         this.error = error;
         this.message = message;
-    }
-
-    public Response() {
-        this.error = true;
     }
 }

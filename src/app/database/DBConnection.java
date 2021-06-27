@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public interface DBConnection extends DataConnection {
-    Connection get_connection();
+    Connection getConnection();
 
     String getUrl();
 

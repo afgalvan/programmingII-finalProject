@@ -4,7 +4,6 @@ import app.models.Response;
 import java.util.List;
 
 /**
- *
  * @param <K> Data Key.
  * @param <T> Data Type.
  */

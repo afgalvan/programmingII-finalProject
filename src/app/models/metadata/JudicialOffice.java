@@ -17,4 +17,9 @@ public class JudicialOffice implements Serializable {
     private int code;
     private Location location;
     private String category;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

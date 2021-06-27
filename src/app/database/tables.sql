@@ -4,6 +4,6 @@ CREATE TABLE users
     name              TEXT    NOT NULL UNIQUE,
     type              TEXT,
     password          TEXT,
-    salt              TEXT NOT NULL,
+    salt              TEXT    NOT NULL,
     registration_date DATE DEFAULT (date ('now', 'localtime'))
 )

@@ -20,10 +20,9 @@ public final class PasswordHandler {
     /**
      * Check if a decrypted password is equal to an encrypted one.
      *
-     * @param password A String for a the decrypted password to check.
+     * @param password          A String for a the decrypted password to check.
      * @param encryptedPassword A String of the encrypted password to be compare with.
-     * @param salt A String
-     *
+     * @param salt              A String
      * @return If both passwords are equals.
      */
     public static boolean areEquals(
@@ -42,7 +41,7 @@ public final class PasswordHandler {
      * Intermediary method for encrypting a given String for a password.
      *
      * @param password A String for the password to be encrypted.
-     * @param salt A String
+     * @param salt     A String
      * @return A String for encrypted password.
      */
     public static String encrypt(String password, String salt) {

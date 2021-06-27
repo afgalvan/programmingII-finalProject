@@ -6,7 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ProcessRecord implements Serializable, Record {
+public class ProcessRecord implements Serializable, Record<Process, Long> {
 
     private final Map<Long, Process> value;
 
@@ -15,11 +15,12 @@ public class ProcessRecord implements Serializable, Record {
     }
 
     @Override
-    public Record add(Process process) {
+    public ProcessRecord add(Process process) {
         this.value.put(process.getId(), process);
         return this;
     }
 
+    @Override
     public boolean update(Long id, Process process) {
         if (this.value.containsKey(id)) {
             this.value.put(process.getId(), process);
@@ -29,10 +30,12 @@ public class ProcessRecord implements Serializable, Record {
         return false;
     }
 
+    @Override
     public Process getById(Long id) {
         return this.value.get(id);
     }
 
+    @Override
     public boolean remove(Long id) {
         if (getById(id) != null) {
             this.value.remove(id);

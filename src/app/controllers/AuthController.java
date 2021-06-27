@@ -58,13 +58,13 @@ public class AuthController implements Auth {
         if (!areValidCredentials(username, password)) {
             return new DialogResponse<>(
                 "Inicio de sesion",
-                "No se pudo validar los datos del usuario " + username + "!",
+                "No se pudo validar los datos del usuario \"" + username + '\"',
                 DialogResponse.ERROR_MESSAGE
             );
         }
 
         return new DialogResponse<>(
-            "Inicio de sesion",
+            "Inicio de sesión",
             "Bienvenido " + username + "!",
             DialogResponse.INFORMATION_MESSAGE,
             this.currentUser

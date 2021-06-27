@@ -10,4 +10,6 @@ public interface IProcessService extends Service<Long, Process> {
     Response<List<Process>> getProcessesByJudged(String name);
 
     Response<List<Process>> getProcessesByProsecutor(String name);
+
+    Response<List<Process>> filterProcessByAnyMatch(String name);
 }

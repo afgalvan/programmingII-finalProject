@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- *
  * @param <K> Data Key.
  * @param <T> Data Type.
  */

@@ -30,10 +30,11 @@ public class Notebook implements Serializable {
 
     /**
      * Add a document metadata to a document list.
-     * @param name name of the document.
-     * @param docOrder the insertion order of the document on the current notebook.
-     * @param dates the dates of the document.
-     * @param documentPage the page information of the document.
+     *
+     * @param name              name of the document.
+     * @param docOrder          the insertion order of the document on the current notebook.
+     * @param dates             the dates of the document.
+     * @param documentPage      the page information of the document.
      * @param documentExtraData additional information of the document.
      */
     public void addDocument(

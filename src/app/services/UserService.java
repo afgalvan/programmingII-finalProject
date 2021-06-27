@@ -14,7 +14,7 @@ import java.util.List;
 import test.services.UserServiceTest;
 
 /**
- * Class that manages all business logic and database implementation.
+ * Class that manages all business logic and database retrieval.
  */
 @TestedOn(UserServiceTest.class)
 public class UserService implements IUserService {
@@ -43,8 +43,8 @@ public class UserService implements IUserService {
             DBConnection.open();
             userRepository.insert(user);
             return new Response<>(user);
-        } catch (SQLException | DataAccessException | IOException ignore) {
-            return new Response<>();
+        } catch (SQLException | DataAccessException | IOException error) {
+            return new Response<>(error.getMessage());
         } finally {
             try {
                 DBConnection.close();
@@ -63,8 +63,8 @@ public class UserService implements IUserService {
             DBConnection.open();
             List<User> userList = userRepository.getAll();
             return new Response<>(userList);
-        } catch (Exception ignore) {
-            return new Response<>();
+        } catch (Exception error) {
+            return new Response<>(error.getMessage());
         } finally {
             try {
                 DBConnection.close();
@@ -84,8 +84,8 @@ public class UserService implements IUserService {
             DBConnection.open();
             User user = userRepository.getById(username);
             return new Response<>(user);
-        } catch (Exception ignore) {
-            return new Response<>();
+        } catch (Exception error) {
+            return new Response<>(error.getMessage());
         } finally {
             try {
                 DBConnection.close();
@@ -107,8 +107,8 @@ public class UserService implements IUserService {
             User user = userRepository.getById(username);
             userRepository.updateById(username, newData);
             return new Response<>(user);
-        } catch (Exception ignore) {
-            return new Response<>();
+        } catch (Exception error) {
+            return new Response<>(error.getMessage());
         } finally {
             try {
                 DBConnection.close();
@@ -128,8 +128,8 @@ public class UserService implements IUserService {
             DBConnection.open();
             userRepository.deleteById(username);
             return new Response<>(username, false);
-        } catch (Exception ignore) {
-            return new Response<>();
+        } catch (Exception error) {
+            return new Response<>(error.getMessage());
         } finally {
             try {
                 DBConnection.close();

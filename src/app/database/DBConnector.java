@@ -1,10 +1,6 @@
 package app.database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import lombok.Data;
 
 /**
@@ -14,15 +10,15 @@ import lombok.Data;
 public class DBConnector implements DBConnection {
 
     private String url;
-    private Connection _connection;
+    private Connection connection;
 
     public DBConnector() {
         this("jdbc:sqlite:./src/app/database/database.sqlite");
     }
 
-    public DBConnector(String driverUrl) {
-        this._connection = null;
-        this.url = driverUrl;
+    public DBConnector(String driverURI) {
+        this.connection = null;
+        this.url = driverURI;
     }
 
     /**
@@ -32,7 +28,7 @@ public class DBConnector implements DBConnection {
      */
     @Override
     public void open() throws SQLException {
-        this._connection = DriverManager.getConnection(url);
+        this.connection = DriverManager.getConnection(url);
     }
 
     /**
@@ -41,8 +37,8 @@ public class DBConnector implements DBConnection {
     @Override
     public void close() {
         try {
-            if (_connection != null) {
-                this._connection.close();
+            if (connection != null) {
+                this.connection.close();
             }
         } catch (SQLException error) {
             System.out.println(error.getMessage());
@@ -53,12 +49,13 @@ public class DBConnector implements DBConnection {
      * Convert a String to a SQL prepared statement to use placeholders for
      * being replaced with variables.
      *
-     * @param statement String SQL statement with at least one placeholder.
+     * @param statement {@code String} SQL statement with at least one placeholder.
      * @return A Prepared Statement interface instance to be executed.
      * @throws SQLException For a statements with syntax errors or non match queries.
      */
+    @Override
     public PreparedStatement prepareStatement(String statement) throws SQLException {
-        return this._connection.prepareStatement(statement);
+        return this.connection.prepareStatement(statement);
     }
 
     /**
@@ -67,7 +64,8 @@ public class DBConnector implements DBConnection {
      * @return A statement interface instance to be executed.
      * @throws SQLException For a statements with syntax errors or non match queries.
      */
+    @Override
     public Statement createStatement() throws SQLException {
-        return this._connection.createStatement();
+        return this.connection.createStatement();
     }
 }

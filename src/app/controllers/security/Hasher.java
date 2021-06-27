@@ -17,7 +17,6 @@ import lombok.SneakyThrows;
 class Hasher {
 
     /**
-     *
      * @return A {@code String} of random bytes that's used for hashing user's passwords.
      */
     @SneakyThrows
@@ -29,9 +28,9 @@ class Hasher {
     }
 
     /**
+     * @param salt A {@code String} of random characters that's used as second key for hashing user's passwords.
      *
-     * @param salt
-     * @return
+     * @return A {@code Cipher} that encrypts user's password using AES.
      */
     @SneakyThrows
     public Cipher generateCipher(String salt) {

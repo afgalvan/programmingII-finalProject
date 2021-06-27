@@ -21,10 +21,12 @@ public class RowableTest {
     @Test
     public void getMetadataRowOfNull() {
         Assert.assertNotNull(metadata.getAsRow());
+        Assert.assertFalse(metadata.getAsRow().contains(null));
     }
 
     @Test
     public void getDocumentRowOfNull() {
         Assert.assertNotNull(document.getAsRow());
+        Assert.assertFalse(document.getAsRow().contains(null));
     }
 }

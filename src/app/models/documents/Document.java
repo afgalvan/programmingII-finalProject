@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 /**
  * Describes the information that takes part in the file.
  */
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,17 +25,17 @@ public class Document implements Serializable, Rowable {
     @Override
     public List<String> getAsRow() {
         return Arrays.asList(
-            name,
-            dates != null ? dates.getCreationDate().toString() : "",
-            dates != null ? dates.getIncorporationDate().toString() : "",
-            docOrder != null ? docOrder.toString() : "",
-            pages != null ? pages.getPagesAmount().toString() : "",
-            pages != null ? pages.getInitPage().toString() : "",
-            pages != null ? pages.getLastPage().toString() : "",
-            extraData != null ? extraData.getFileType() : "",
-            extraData != null ? extraData.getOrigin() : "",
-            extraData != null ? extraData.getSize().toString() : "",
-            extraData != null ? extraData.getObservations() : ""
+            safeToString(name, Object::toString),
+            safeToString(dates, d -> d.getCreationDate().toString()),
+            safeToString(dates, d -> d.getIncorporationDate().toString()),
+            safeToString(docOrder, Object::toString),
+            safeToString(pages, p -> p.getPagesAmount().toString()),
+            safeToString(pages, p -> p.getInitPage().toString()),
+            safeToString(pages, p -> p.getLastPage().toString()),
+            safeToString(extraData, DocumentExtraData::getFileType),
+            safeToString(extraData, DocumentExtraData::getOrigin),
+            safeToString(extraData, e -> e.getSize().toString()),
+            safeToString(extraData, DocumentExtraData::getObservations)
         );
     }
 }

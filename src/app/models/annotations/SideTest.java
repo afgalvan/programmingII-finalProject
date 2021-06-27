@@ -5,6 +5,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * Annotation that indicates that the a class is used as utility class tha was tested with JUnit.
+ */
 @Retention(RetentionPolicy.SOURCE)
 @Target({ ElementType.TYPE, ElementType.METHOD })
 public @interface SideTest {

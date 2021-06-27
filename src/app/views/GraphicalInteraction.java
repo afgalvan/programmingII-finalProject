@@ -19,6 +19,17 @@ public class GraphicalInteraction {
         );
     }
 
+    public static void addHover(JComponent component, Runnable action) {
+        component.addMouseListener(
+            new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent mouseEvent) {
+                    action.run();
+                }
+            }
+        );
+    }
+
     public static void addFocusListener(
         JComponent component,
         Runnable focusOn,

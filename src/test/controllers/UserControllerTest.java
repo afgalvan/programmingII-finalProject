@@ -38,7 +38,7 @@ public class UserControllerTest {
             DialogResponse.INFORMATION_MESSAGE,
             authController
                 .registerUser(sample.getName(), sample.getPassword(), UserType.CO)
-                .getType()
+                .getStatusCode()
         );
     }
 
@@ -49,7 +49,7 @@ public class UserControllerTest {
             DialogResponse.ERROR_MESSAGE,
             authController
                 .registerUser(sample.getName(), sample.getPassword(), UserType.CO)
-                .getType()
+                .getStatusCode()
         );
     }
 

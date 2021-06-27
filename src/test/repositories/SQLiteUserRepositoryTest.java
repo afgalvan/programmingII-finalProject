@@ -26,15 +26,15 @@ public class SQLiteUserRepositoryTest {
     public void connectionTest() {
         try {
             DBConnector.open();
-            Assert.assertNotNull(DBConnector.get_connection());
+            Assert.assertNotNull(DBConnector.getConnection());
 
             Connection expected = DriverManager.getConnection(DBConnector.getUrl());
             Assert.assertEquals(
                 expected.getSchema(),
-                DBConnector.get_connection().getSchema()
+                DBConnector.getConnection().getSchema()
             );
         } catch (SQLException | NullPointerException ignore) {
-            Assert.assertNull(DBConnector.get_connection());
+            Assert.assertNull(DBConnector.getConnection());
         } finally {
             DBConnector.close();
         }
@@ -60,7 +60,7 @@ public class SQLiteUserRepositoryTest {
         } finally {
             try {
                 DBConnector.close();
-            } catch (IOException ioException) {}
+            } catch (IOException ignored) {}
         }
     }
 }

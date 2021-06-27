@@ -1,9 +1,10 @@
 package app.models;
 
 import app.models.metadata.*;
-import app.models.metadata.parts.Person;
+import app.models.metadata.parties.TrialParty;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiConsumer;
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Process implements Serializable {
+public class Process implements Serializable, Rowable {
 
     private ProcessMetadata metadata;
     private int noteBooksLen;
@@ -29,6 +30,7 @@ public class Process implements Serializable {
 
     /**
      * Add a notebook to the notebook list from a name.
+     *
      * @param name name of the notebook.
      */
     public void addNoteBook(String name) {
@@ -37,10 +39,11 @@ public class Process implements Serializable {
 
     /**
      * It allows to instantiate a file from the parameters received.
-     * @param id A {@code Long} unique identifier for getting and reading the process.
-     * @param location A {@code Location} that identifies the place where the process is being instantiated.
-     * @param judicialOffice A {@code JudicialOffice} where the process is being executed.
-     * @param series A {@code Series} of the record.
+     *
+     * @param id                  A {@code Long} unique identifier for getting and reading the process.
+     * @param location            A {@code Location} that identifies the place where the process is being instantiated.
+     * @param judicialOffice      A {@code JudicialOffice} where the process is being executed.
+     * @param series              A {@code Series} of the record.
      * @param physicalInformation A {@code PhysicalInformation} that makes references of the process' physical information.
      */
     public void setMetadata(
@@ -70,8 +73,8 @@ public class Process implements Serializable {
 
     /**
      * Get a notebook of the current process given his name.
-     * @param name The name of the name of the notebook to be got.
      *
+     * @param name The name of the name of the notebook to be got.
      * @return A {@code Notebook} that matches the given name.
      */
     public Notebook getNotebookByName(String name) {
@@ -84,30 +87,40 @@ public class Process implements Serializable {
     }
 
     private boolean addTrial(
-        BiConsumer<ProcessMetadata, Person> addTrialMethod,
-        Person person
+        BiConsumer<ProcessMetadata, TrialParty> addTrialMethod,
+        TrialParty trialParty
     ) {
-        if (person == null || person.getId() == null || person.getName() == null) {
+        if (trialParty == null || trialParty.hasInvalidData()) {
             return false;
         }
 
-        addTrialMethod.accept(metadata, person);
+        addTrialMethod.accept(metadata, trialParty);
         return true;
     }
 
-    public boolean addProsecutor(Person person) {
-        return addTrial(ProcessMetadata::addProsecutor, person);
+    public boolean addProsecutor(TrialParty trialParty) {
+        return addTrial(ProcessMetadata::addProsecutor, trialParty);
     }
 
-    public boolean addJudged(Person person) {
-        return addTrial(ProcessMetadata::addJudged, person);
+    public boolean addJudged(TrialParty trialParty) {
+        return addTrial(ProcessMetadata::addJudged, trialParty);
     }
 
-    public List<Person> getProsecutorList() {
+    public List<TrialParty> getProsecutorList() {
         return this.metadata.getProsecutorList();
     }
 
-    public List<Person> getJudgedList() {
+    public List<TrialParty> getJudgedList() {
         return this.metadata.getJudgedList();
+    }
+
+    @Override
+    public List<String> getAsRow() {
+        return Arrays.asList(
+            safeToString(this.getId(), Object::toString),
+            safeToString(this.metadata.getProsecutorList(), Object::toString),
+            safeToString(this.metadata.getJudgedList(), Object::toString),
+            safeToString(this.metadata.getJudicialOffice(), Object::toString)
+        );
     }
 }
