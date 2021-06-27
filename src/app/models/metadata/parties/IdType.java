@@ -1,4 +1,4 @@
-package app.models.metadata.parts;
+package app.models.metadata.parties;
 
 import java.io.Serializable;
 import java.util.Arrays;

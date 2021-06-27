@@ -1,4 +1,4 @@
-package app.models.metadata.parts;
+package app.models.metadata.parties;
 
 import java.io.Serializable;
 import lombok.EqualsAndHashCode;
@@ -24,5 +24,17 @@ public class NaturalPerson extends Person implements Serializable {
     @Override
     public String getFullName() {
         return String.format("%s %s", this.getName(), lastName);
+    }
+
+    @Override
+    public boolean hasInvalidData() {
+        return (
+            this.getName() == null ||
+            this.getName().isEmpty() ||
+            this.getId() == null ||
+            this.getIdType() == null ||
+            this.lastName == null ||
+            this.lastName.isEmpty()
+        );
     }
 }

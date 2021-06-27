@@ -1,4 +1,4 @@
-package app.models.metadata.parts;
+package app.models.metadata.parties;
 
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
@@ -10,17 +10,16 @@ import lombok.NoArgsConstructor;
  */
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public abstract class Person implements Serializable {
+public abstract class TrialParty implements Serializable {
 
     private String name;
-    private Integer id;
-    private IdType idType;
 
     public abstract String getFullName();
 
     public String toString() {
         return getFullName();
     }
+
+    public abstract boolean hasInvalidData();
 }

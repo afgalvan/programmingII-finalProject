@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
  * Indicates the number of pages in a file, and its
  * init and last page.
  */
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

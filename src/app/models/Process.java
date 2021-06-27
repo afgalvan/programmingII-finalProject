@@ -1,7 +1,7 @@
 package app.models;
 
 import app.models.metadata.*;
-import app.models.metadata.parts.Person;
+import app.models.metadata.parties.TrialParty;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -87,30 +87,30 @@ public class Process implements Serializable, Rowable {
     }
 
     private boolean addTrial(
-        BiConsumer<ProcessMetadata, Person> addTrialMethod,
-        Person person
+        BiConsumer<ProcessMetadata, TrialParty> addTrialMethod,
+        TrialParty trialParty
     ) {
-        if (person == null || person.getId() == null || person.getName() == null) {
+        if (trialParty == null || trialParty.hasInvalidData()) {
             return false;
         }
 
-        addTrialMethod.accept(metadata, person);
+        addTrialMethod.accept(metadata, trialParty);
         return true;
     }
 
-    public boolean addProsecutor(Person person) {
-        return addTrial(ProcessMetadata::addProsecutor, person);
+    public boolean addProsecutor(TrialParty trialParty) {
+        return addTrial(ProcessMetadata::addProsecutor, trialParty);
     }
 
-    public boolean addJudged(Person person) {
-        return addTrial(ProcessMetadata::addJudged, person);
+    public boolean addJudged(TrialParty trialParty) {
+        return addTrial(ProcessMetadata::addJudged, trialParty);
     }
 
-    public List<Person> getProsecutorList() {
+    public List<TrialParty> getProsecutorList() {
         return this.metadata.getProsecutorList();
     }
 
-    public List<Person> getJudgedList() {
+    public List<TrialParty> getJudgedList() {
         return this.metadata.getJudgedList();
     }
 

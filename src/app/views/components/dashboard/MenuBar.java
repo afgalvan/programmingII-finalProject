@@ -100,7 +100,7 @@ public class MenuBar extends JPanel {
 
     private void render(CenterPanel dashboardSection) {
         MainWindow mainWindow = MainWindow.state;
-        mainWindow.renderDashboard(dashboardSection);
+        mainWindow.renderPanel(dashboardSection);
         this.optionList.forEach(MenuItem::configureColor);
         this.others.forEach(MenuItem::configureColor);
     }

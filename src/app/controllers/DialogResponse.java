@@ -5,6 +5,10 @@ import app.models.annotations.SideTest;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * A class to return data as response between controllers and views.
+ * @param <T> data type that the response should contain.
+ */
 @Getter
 @Setter
 @SideTest(UserController.class)
@@ -24,11 +28,6 @@ public class DialogResponse<T> extends Response<T> {
         super.setData(data);
     }
 
-    /**
-     * @param title
-     * @param message
-     * @param statusCode
-     */
     public DialogResponse(String title, String message, int statusCode) {
         super(message, statusCode == ERROR_MESSAGE);
         this.title = title;

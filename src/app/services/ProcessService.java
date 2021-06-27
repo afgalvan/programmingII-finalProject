@@ -1,13 +1,17 @@
 package app.services;
 
+import static app.utils.Utils.containsIgnoreCase;
+
 import app.exceptions.DataAccessException;
 import app.models.Process;
 import app.models.Response;
 import app.models.annotations.TestedOn;
+import app.models.metadata.parties.TrialParty;
 import app.repositories.ProcessRepository;
 import app.repositories.SerializationProcessRepository;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import test.services.ProcessServiceTest;
 
@@ -88,6 +92,37 @@ public class ProcessService implements IProcessService {
     public Response<List<Process>> getProcessesByProsecutor(String name) {
         try {
             return new Response<>(processRepository.getProcessByProsecutor(name));
+        } catch (SQLException | DataAccessException error) {
+            return new Response<>(error.getMessage());
+        }
+    }
+
+    private boolean matchTrialWithText(List<TrialParty> trialParties, String text) {
+        return trialParties
+            .stream()
+            .anyMatch(trialParty -> containsIgnoreCase(trialParty.getFullName(), text));
+    }
+
+    private boolean matchProcessWithText(Process process, String text) {
+        return (
+            containsIgnoreCase(process.getId().toString(), text) ||
+            matchTrialWithText(process.getJudgedList(), text) ||
+            matchTrialWithText(process.getProsecutorList(), text)
+        );
+    }
+
+    private List<Process> getFilteredList(String text)
+        throws SQLException, DataAccessException {
+        return this.processRepository.getAll()
+            .stream()
+            .filter(process -> matchProcessWithText(process, text))
+            .collect(Collectors.toList());
+    }
+
+    @Override
+    public Response<List<Process>> filterProcessByAnyMatch(String text) {
+        try {
+            return new Response<>(this.getFilteredList(text));
         } catch (SQLException | DataAccessException error) {
             return new Response<>(error.getMessage());
         }

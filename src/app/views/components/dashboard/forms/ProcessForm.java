@@ -1,6 +1,6 @@
 package app.views.components.dashboard.forms;
 
-import app.views.components.factory.LabelFactory;
+import app.views.components.factory.FieldFactory;
 import java.awt.*;
 import javax.swing.*;
 
@@ -17,11 +17,18 @@ public class ProcessForm extends RegistrationForm {
     }
 
     public void initComponents() {
-        this.fieldsContainer.setLayout(new GridLayout(4, 3));
-        this.fieldsContainer.add(LabelFactory.option("Bro"));
-        this.fieldsContainer.add(LabelFactory.option("Bro"));
-        this.fieldsContainer.add(LabelFactory.option("Bro"));
-        this.fieldsContainer.add(LabelFactory.option("Bro"));
+        this.fieldsContainer.setBackground(this.getBackground());
+        this.fieldsContainer.setLayout(new GridLayout(4, 3, 10, 10));
+        this.fieldsContainer.add(FieldFactory.createLabeledField("Bro", "Bro"));
+        this.fieldsContainer.add(FieldFactory.createLabeledField("Bro", "Bro"));
+        this.fieldsContainer.add(FieldFactory.createLabeledField("Bro", "Bro"));
+        this.fieldsContainer.add(FieldFactory.createLabeledField("Bro", "Bro"));
+        this.fieldsContainer.add(FieldFactory.createLabeledField("Bro", "Bro"));
+        this.fieldsContainer.add(FieldFactory.createLabeledField("Bro", "Bro"));
+        this.fieldsContainer.add(FieldFactory.createLabeledField("Bro", "Bro"));
+        this.fieldsContainer.add(FieldFactory.createLabeledField("Bro", "Bro"));
+        this.fieldsContainer.add(FieldFactory.createLabeledField("Bro", "Bro"));
+        this.fieldsContainer.add(FieldFactory.createLabeledField("Bro", "Bro"));
 
         this.addToForm(fieldsContainer, BorderLayout.CENTER);
     }

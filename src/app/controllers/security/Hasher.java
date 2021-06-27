@@ -28,8 +28,9 @@ class Hasher {
     }
 
     /**
-     * @param salt
-     * @return
+     * @param salt A {@code String} of random characters that's used as second key for hashing user's passwords.
+     *
+     * @return A {@code Cipher} that encrypts user's password using AES.
      */
     @SneakyThrows
     public Cipher generateCipher(String salt) {

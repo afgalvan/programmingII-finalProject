@@ -2459,7 +2459,7 @@
 											"top": 786,
 											"width": 309.22607421875,
 											"height": 13,
-											"text": "+addProsecutor(person: Person): void",
+											"text": "+addProsecutor(trialParty: Person): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2476,7 +2476,7 @@
 											"top": 801,
 											"width": 309.22607421875,
 											"height": 13,
-											"text": "+addJudged(person: Person): void",
+											"text": "+addJudged(trialParty: Person): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -13137,7 +13137,7 @@
 									}
 								}
 							],
-							"documentation": "Make reference to juridic person.",
+							"documentation": "Make reference to juridic trialParty.",
 							"operations": [
 								{
 									"_type": "UMLOperation",
@@ -13195,7 +13195,7 @@
 									}
 								}
 							],
-							"documentation": "Make reference to natural person.",
+							"documentation": "Make reference to natural trialParty.",
 							"attributes": [
 								{
 									"_type": "UMLAttribute",
@@ -13280,7 +13280,7 @@
 									}
 								}
 							],
-							"documentation": "Abstract entity of a person.",
+							"documentation": "Abstract entity of a trialParty.",
 							"attributes": [
 								{
 									"_type": "UMLAttribute",
@@ -13697,7 +13697,7 @@
 										"$ref": "AAAAAAF5bg/0hnoRZSA="
 									},
 									"name": "addProsecutor",
-									"documentation": "Add a prosecutor to the prosecutorList of the metadata.\n@param person the prosecutor of the process.",
+									"documentation": "Add a prosecutor to the prosecutorList of the metadata.\n@param trialParty the prosecutor of the process.",
 									"parameters": [
 										{
 											"_type": "UMLParameter",
@@ -13705,7 +13705,7 @@
 											"_parent": {
 												"$ref": "AAAAAAF5bg/0hnolTYU="
 											},
-											"name": "person",
+											"name": "trialParty",
 											"type": {
 												"$ref": "AAAAAAF5bg3oTTiM0pM="
 											}
@@ -13728,7 +13728,7 @@
 										"$ref": "AAAAAAF5bg/0hnoRZSA="
 									},
 									"name": "addJudged",
-									"documentation": "Add a judge party to the judgePartyList of the metadata.\n@param person the judge party in the process.",
+									"documentation": "Add a judge party to the judgePartyList of the metadata.\n@param trialParty the judge party in the process.",
 									"parameters": [
 										{
 											"_type": "UMLParameter",
@@ -13736,7 +13736,7 @@
 											"_parent": {
 												"$ref": "AAAAAAF5bg/0hnooOk0="
 											},
-											"name": "person",
+											"name": "trialParty",
 											"type": {
 												"$ref": "AAAAAAF5bg3oTTiM0pM="
 											}
@@ -27038,7 +27038,7 @@
 														"$ref": "AAAAAAF5bg3lRzak0k0="
 													},
 													"name": "addProsecutor",
-													"documentation": "Add a prosecutor to the prosecutorList of the metadata.\n@param person the prosecutor of the process.",
+													"documentation": "Add a prosecutor to the prosecutorList of the metadata.\n@param trialParty the prosecutor of the process.",
 													"parameters": [
 														{
 															"_type": "UMLParameter",
@@ -27046,7 +27046,7 @@
 															"_parent": {
 																"$ref": "AAAAAAF5bg3lRzalWbk="
 															},
-															"name": "person",
+															"name": "trialParty",
 															"type": {
 																"$ref": "AAAAAAF5bg3oTTiM0pM="
 															}
@@ -27069,7 +27069,7 @@
 														"$ref": "AAAAAAF5bg3lRzak0k0="
 													},
 													"name": "addJudged",
-													"documentation": "Add a judge party to the judgePartyList of the metadata.\n@param person the judge party in the process.",
+													"documentation": "Add a judge party to the judgePartyList of the metadata.\n@param trialParty the judge party in the process.",
 													"parameters": [
 														{
 															"_type": "UMLParameter",
@@ -27077,7 +27077,7 @@
 															"_parent": {
 																"$ref": "AAAAAAF5bg3lRzao2v0="
 															},
-															"name": "person",
+															"name": "trialParty",
 															"type": {
 																"$ref": "AAAAAAF5bg3oTTiM0pM="
 															}
@@ -27415,7 +27415,7 @@
 															}
 														}
 													],
-													"documentation": "Make reference to juridic person.",
+													"documentation": "Make reference to juridic trialParty.",
 													"operations": [
 														{
 															"_type": "UMLOperation",
@@ -27513,7 +27513,7 @@
 															}
 														}
 													],
-													"documentation": "Make reference to natural person.",
+													"documentation": "Make reference to natural trialParty.",
 													"attributes": [
 														{
 															"_type": "UMLAttribute",
@@ -27619,7 +27619,7 @@
 															}
 														}
 													],
-													"documentation": "Abstract entity of a person.",
+													"documentation": "Abstract entity of a trialParty.",
 													"attributes": [
 														{
 															"_type": "UMLAttribute",
@@ -29958,7 +29958,7 @@
 																	"top": 5,
 																	"width": 220.03515625,
 																	"height": 13,
-																	"text": "+addProsecutor(person: Person): void",
+																	"text": "+addProsecutor(trialParty: Person): void",
 																	"horizontalAlignment": 0
 																},
 																{
@@ -29975,7 +29975,7 @@
 																	"top": 20,
 																	"width": 220.03515625,
 																	"height": 13,
-																	"text": "+addJudged(person: Person): void",
+																	"text": "+addJudged(trialParty: Person): void",
 																	"horizontalAlignment": 0
 																},
 																{
@@ -54143,7 +54143,7 @@
 											"top": 5,
 											"width": 220.03515625,
 											"height": 13,
-											"text": "+addProsecutor(person: Person): void",
+											"text": "+addProsecutor(trialParty: Person): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -54160,7 +54160,7 @@
 											"top": 20,
 											"width": 220.03515625,
 											"height": 13,
-											"text": "+addJudged(person: Person): void",
+											"text": "+addJudged(trialParty: Person): void",
 											"horizontalAlignment": 0
 										},
 										{

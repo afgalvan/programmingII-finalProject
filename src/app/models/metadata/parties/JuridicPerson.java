@@ -1,4 +1,4 @@
-package app.models.metadata.parts;
+package app.models.metadata.parties;
 
 import java.io.Serializable;
 
@@ -15,5 +15,15 @@ public class JuridicPerson extends Person implements Serializable {
     @Override
     public String getFullName() {
         return this.getName();
+    }
+
+    @Override
+    public boolean hasInvalidData() {
+        return (
+            this.getName() == null ||
+            this.getName().isEmpty() ||
+            this.getId() == null ||
+            this.getIdType() == null
+        );
     }
 }

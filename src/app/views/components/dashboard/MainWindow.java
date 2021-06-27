@@ -45,7 +45,7 @@ public class MainWindow extends Window {
         this.add(this.menuBar, BorderLayout.LINE_START);
     }
 
-    public void renderDashboard(CenterPanel dashboardSection) {
+    public void renderPanel(CenterPanel dashboardSection) {
         this.dashboardSection.setVisible(false);
         this.remove(this.dashboardSection);
 

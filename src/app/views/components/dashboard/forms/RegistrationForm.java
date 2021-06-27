@@ -24,12 +24,13 @@ public class RegistrationForm extends JDialog {
     public RegistrationForm(JFrame frame, boolean isModal, String titleLabel) {
         super(frame, "Registrar " + titleLabel, isModal);
         this.topBar = new TopBar(false);
-        this.titleLabel = LabelFactory.createLabel(titleLabel, ColorPalette.GRAY);
+        this.titleLabel = LabelFactory.createLabel(titleLabel, ColorPalette.BLUE);
         this.cancelButton = ButtonFactory.createMainButton("Cancelar");
         this.submitButton = ButtonFactory.createMainButton("Aceptar");
         this.formContainer = new JPanel();
     }
 
+    @Override
     public void pack() {
         super.pack();
         this.setLocationRelativeTo(null);
@@ -50,11 +51,12 @@ public class RegistrationForm extends JDialog {
         titleContainer.setBackground(this.getBackground());
         titleContainer.add(titleLabel);
 
-        val buttonsDimensions = new Dimension(120, 60);
+        val buttonsDimensions = new Dimension(120, 50);
         this.cancelButton.setPreferredSize(buttonsDimensions);
         this.submitButton.setPreferredSize(buttonsDimensions);
 
         val buttonsContainer = new JPanel();
+        buttonsContainer.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
         buttonsContainer.setBackground(this.getBackground());
         buttonsContainer.add(cancelButton);
         buttonsContainer.add(submitButton);

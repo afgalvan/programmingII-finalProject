@@ -16,7 +16,7 @@ public class LoginForm extends AuthForm {
     private Auth authController;
 
     public LoginForm(Window window) {
-        super("Inciar sesión", window);
+        super("Iniciar sesión", window);
         this.authController = AuthController.getInstance();
         setButtonActions();
     }

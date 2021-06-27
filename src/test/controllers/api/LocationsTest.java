@@ -43,6 +43,6 @@ public class LocationsTest {
 
     @Test
     public void getLastCity() {
-        assertEquals("valledupar", Locations.getLastCity("cesar"));
+        assertEquals("valledupar", Locations.getLastCityOf("cesar"));
     }
 }

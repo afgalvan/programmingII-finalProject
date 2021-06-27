@@ -1,7 +1,7 @@
 package app.models.metadata;
 
 import app.models.Rowable;
-import app.models.metadata.parts.Person;
+import app.models.metadata.parties.TrialParty;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,8 +22,8 @@ public class ProcessMetadata implements Serializable, Rowable {
     private Location location;
     private JudicialOffice judicialOffice;
     private Series series;
-    private final List<Person> judgedList = new ArrayList<>();
-    private final List<Person> prosecutorList = new ArrayList<>();
+    private final List<TrialParty> judgedList = new ArrayList<>();
+    private final List<TrialParty> prosecutorList = new ArrayList<>();
     private PhysicalInformation physicalInformation;
 
     public ProcessMetadata(Long id) {
@@ -33,19 +33,19 @@ public class ProcessMetadata implements Serializable, Rowable {
     /**
      * Add a prosecutor to the prosecutorList of the metadata.
      *
-     * @param person the prosecutor of the process.
+     * @param trialParty the prosecutor of the process.
      */
-    public void addProsecutor(Person person) {
-        prosecutorList.add(person);
+    public void addProsecutor(TrialParty trialParty) {
+        prosecutorList.add(trialParty);
     }
 
     /**
      * Add a judge party to the judgePartyList of the metadata.
      *
-     * @param person the judge party in the process.
+     * @param trialParty the judge party in the process.
      */
-    public void addJudged(Person person) {
-        judgedList.add(person);
+    public void addJudged(TrialParty trialParty) {
+        judgedList.add(trialParty);
     }
 
     @Override

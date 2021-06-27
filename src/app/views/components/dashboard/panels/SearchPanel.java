@@ -11,8 +11,11 @@ import app.views.components.atomic.RoundButtonIcon;
 import app.views.components.atomic.Table;
 import app.views.components.dashboard.MainWindow;
 import app.views.components.factory.ButtonFactory;
+import app.views.components.factory.FieldFactory;
 import app.views.components.factory.LabelFactory;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.*;
 import java.util.List;
 import java.util.function.Function;
@@ -25,16 +28,18 @@ import rojerusan.RSMetroTextPlaceHolder;
 public class SearchPanel extends CenterPanel {
 
     private enum Criteria {
+        FILTER,
         ID,
         PROSECUTOR,
         JUDGED,
     }
 
+    private FilterProcesses filterProcesses;
     private JPanel criteriaPanel;
     private JPanel searchPanel;
     private RSMetroTextPlaceHolder searchField;
     private RoundButtonIcon searchButton;
-    private Criteria criteria = Criteria.ID;
+    private Criteria criteria = Criteria.FILTER;
     private JLabel searchResult;
     private JLabel countResult;
     private Table resultsTable;
@@ -61,14 +66,14 @@ public class SearchPanel extends CenterPanel {
     public void initComponents() {
         this.criteriaPanel = new JPanel();
         this.searchPanel = new JPanel();
-        this.searchField = new RSMetroTextPlaceHolder();
+        this.searchField = FieldFactory.createDefaultField("Buscar...");
         this.searchButton =
             ButtonFactory.createRoundButtonOfImage(ImageUtils.getIcon24x24("search.png"));
         this.searchButton.setToolTipText("Buscar");
         this.searchResult =
-            LabelFactory.createLabel("", ColorPalette.GRAY, Font.BOLD, 18);
+            LabelFactory.createLabel(" ", ColorPalette.GRAY, Font.BOLD, 18);
         this.countResult =
-            LabelFactory.createLabel("", ColorPalette.GRAY, Font.PLAIN, 12);
+            LabelFactory.createLabel(" ", ColorPalette.GRAY, Font.PLAIN, 12);
         this.resultsTable = new Table();
         this.tableContainer = new JScrollPane();
         this.tableModel = new DefaultTableModel(null, this.tableTitle);
@@ -79,6 +84,8 @@ public class SearchPanel extends CenterPanel {
         this.initCriteriaPanel();
         this.add(criteriaPanel, BorderLayout.WEST);
         this.add(searchPanel, BorderLayout.CENTER);
+        this.filterProcesses = new FilterProcesses();
+        this.showAllProcesses();
         this.addInteraction();
     }
 
@@ -92,7 +99,8 @@ public class SearchPanel extends CenterPanel {
         this.criteriaPanel.add(searchResult);
         this.criteriaPanel.add(countResult);
 
-        addCriteriaPanelOption("No. de radicado", Criteria.ID, Color.BLACK);
+        addCriteriaPanelOption("Filtrar", Criteria.FILTER, Color.BLACK);
+        addCriteriaPanelOption("No. de radicado", Criteria.ID);
         addCriteriaPanelOption("Demandante", Criteria.PROSECUTOR);
         addCriteriaPanelOption("Demandado", Criteria.JUDGED);
     }
@@ -106,6 +114,7 @@ public class SearchPanel extends CenterPanel {
         option.onClick(
             () -> {
                 criteria = searchBy;
+                toggleFilter();
                 Arrays
                     .asList(this.criteriaPanel.getComponents())
                     .forEach(o -> o.setForeground(ColorPalette.GRAY));
@@ -126,12 +135,6 @@ public class SearchPanel extends CenterPanel {
         this.tableContainer.setViewportView(resultsTable);
         this.searchPanel.add(tableContainer, BorderLayout.CENTER);
 
-        this.searchField.setxDarkIcon(true);
-        this.searchField.setBorderColor(ColorPalette.CREAM);
-        this.searchField.setForeground(Color.GRAY);
-        this.searchField.setPreferredSize(new Dimension(30, 10));
-        this.searchField.setPlaceholder("Buscar...");
-
         val searchingSide = new JPanel(new BorderLayout());
         searchingSide.setBackground(this.getBackground());
         searchingSide.add(searchButton, BorderLayout.EAST);
@@ -140,9 +143,13 @@ public class SearchPanel extends CenterPanel {
         this.searchPanel.add(searchingSide, BorderLayout.PAGE_START);
     }
 
-    public <T> T getInput(Function<String, T> parser) {
+    private void showAllProcesses() {
+        this.showMatchesOnTable(ProcessController.getInstance().getAllProcesses());
+    }
+
+    private <T> T getInput(Function<String, T> parser) {
         String input = this.searchField.getText();
-        this.searchResult.setText(input);
+        updateResultLabel(input);
 
         T parsedInput;
 
@@ -161,7 +168,7 @@ public class SearchPanel extends CenterPanel {
         return parsedInput;
     }
 
-    public <T, R> R searchByCriteria(
+    private <T, R> R searchByCriteria(
         Function<String, T> parser,
         Function<T, DialogResponse<R>> searchMethod
     ) {
@@ -193,17 +200,37 @@ public class SearchPanel extends CenterPanel {
     }
 
     public void showMatchesOnTable(java.util.List<Process> processList) {
-        if (processList != null && !processList.contains(null)) {
+        this.tableModel.setRowCount(0);
+        if (
+            processList != null && !processList.contains(null) && !processList.isEmpty()
+        ) {
             processList.forEach(
                 process -> this.tableModel.addRow(process.getAsRow().toArray())
             );
         }
+        updateCountLabel(this.tableModel.getRowCount());
     }
 
-    public void searchProcess() {
+    private void cleanResults() {
+        updateResultLabel(null);
+        this.tableModel.setRowCount(0);
+        updateCountLabel(0);
+    }
+
+    private void updateResultLabel(String text) {
+        this.searchResult.setText((text == null || text.isEmpty()) ? " " : text);
+    }
+
+    private void updateCountLabel(int results) {
+        char s = (results > 1 || results == 0) ? 's' : '\0';
+        this.countResult.setText(results + " Resultado" + s);
+    }
+
+    private void searchProcess() {
         Map<Criteria, Supplier<List<Process>>> searchMap = new HashMap<>();
         ProcessController controller = ProcessController.getInstance();
 
+        searchMap.put(Criteria.FILTER, ArrayList::new);
         searchMap.put(Criteria.ID, this::finById);
         searchMap.put(
             Criteria.PROSECUTOR,
@@ -214,16 +241,8 @@ public class SearchPanel extends CenterPanel {
             () -> findByTrial(controller::getProcessesByJudged)
         );
 
-        if (this.tableModel.getRowCount() > 0) {
-            this.tableModel.setRowCount(0);
-        }
-
         List<Process> processesFound = searchMap.get(criteria).get();
         showMatchesOnTable(processesFound);
-
-        int results = this.tableModel.getRowCount();
-        String s = (results > 1 || results == 0) ? "s" : "";
-        this.countResult.setText(results + " Resultado" + s);
     }
 
     public void showError(String message) {
@@ -232,5 +251,35 @@ public class SearchPanel extends CenterPanel {
 
     public void addInteraction() {
         this.searchButton.onClick(this::searchProcess);
+        this.searchField.addKeyListener(this.filterProcesses);
+    }
+
+    private void toggleFilter() {
+        cleanResults();
+        if (this.criteria != Criteria.FILTER) {
+            this.searchField.removeKeyListener(this.filterProcesses);
+        } else {
+            this.showAllProcesses();
+            if (this.searchField.getKeyListeners().length == 0) {
+                this.searchField.addKeyListener(this.filterProcesses);
+            }
+        }
+    }
+
+    public void filterProcesses() {
+        ProcessController controller = ProcessController.getInstance();
+        String input = this.searchField.getText();
+        updateResultLabel(input);
+
+        List<Process> filteredList = controller.filterProcessByAnyMatch(input);
+        showMatchesOnTable(filteredList);
+    }
+
+    private class FilterProcesses extends KeyAdapter {
+
+        @Override
+        public void keyReleased(KeyEvent keyEvent) {
+            filterProcesses();
+        }
     }
 }

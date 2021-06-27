@@ -104,4 +104,14 @@ public class ProcessController {
             response.getData()
         );
     }
+
+    public List<Process> filterProcessByAnyMatch(String text) {
+        Response<List<Process>> response = service.filterProcessByAnyMatch(text);
+        return response.getData();
+    }
+
+    public List<Process> getAllProcesses() {
+        Response<List<Process>> response = service.getAll();
+        return response.getData();
+    }
 }

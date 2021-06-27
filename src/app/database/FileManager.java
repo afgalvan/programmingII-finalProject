@@ -3,6 +3,9 @@ package app.database;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * A class to manage operations to a objects file to store data.
+ */
 public class FileManager implements FileManagement {
 
     private final FileConnection connection;
@@ -11,6 +14,11 @@ public class FileManager implements FileManagement {
         this.connection = new FileConnector(filePath);
     }
 
+    /**
+     * Saves the given object to the file specified.
+     *
+     * @param dataset the {@code Object} to be saved.
+     */
     @Override
     public void save(Object dataset) {
         try {
@@ -25,6 +33,11 @@ public class FileManager implements FileManagement {
         }
     }
 
+    /**
+     * Read the contents of the file specified in constructor.
+     *
+     * @return the {@code Object} read from the file.
+     */
     @Override
     public Object read() {
         try {

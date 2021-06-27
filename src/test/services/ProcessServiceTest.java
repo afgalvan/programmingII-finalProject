@@ -5,10 +5,10 @@ import app.database.FileManager;
 import app.models.Process;
 import app.models.Response;
 import app.models.metadata.ProcessMetadata;
-import app.models.metadata.parts.IdType;
-import app.models.metadata.parts.JuridicPerson;
-import app.models.metadata.parts.NaturalPerson;
-import app.models.metadata.parts.Person;
+import app.models.metadata.parties.IdType;
+import app.models.metadata.parties.JuridicPerson;
+import app.models.metadata.parties.NaturalPerson;
+import app.models.metadata.parties.TrialParty;
 import app.repositories.FunctionalMutator;
 import app.repositories.ProcessRepository;
 import app.repositories.SerializationProcessRepository;
@@ -112,10 +112,10 @@ public class ProcessServiceTest {
     }
 
     public Process setUpdateTestWith(
-        FunctionalMutator<Process, Person> mutator,
-        Person person
+        FunctionalMutator<Process, TrialParty> mutator,
+        TrialParty trialParty
     ) {
-        mutator.mutate(process, person);
+        mutator.mutate(process, trialParty);
         service.updateById(process.getId(), process);
 
         val processWithoutJudged = new Process(new ProcessMetadata(123L));

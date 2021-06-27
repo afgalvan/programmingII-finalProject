@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 /**
  * Indicates the type, size and origin of the file and its observations.
  */
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
