@@ -1,9 +1,9 @@
 package app.views.components.auth;
 
+import app.utils.ImageUtils;
 import app.views.ColorPalette;
 import app.views.GraphicalInteraction;
 import app.views.Window;
-import app.views.assets.ImageUtils;
 import app.views.components.atomic.Clickable;
 import app.views.components.atomic.RectangleButton;
 import app.views.components.factory.ButtonFactory;

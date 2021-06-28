@@ -1,7 +1,7 @@
 package app.views.components.dashboard;
 
+import app.utils.ImageUtils;
 import app.views.ColorPalette;
-import app.views.assets.ImageUtils;
 import app.views.components.dashboard.panels.*;
 import app.views.components.factory.LabelFactory;
 import java.awt.*;

@@ -1,7 +1,7 @@
 package app.services;
 
 import app.database.DBConnection;
-import app.database.DBConnector;
+import app.database.SQLiteConnection;
 import app.exceptions.DataAccessException;
 import app.models.Response;
 import app.models.annotations.TestedOn;
@@ -23,7 +23,7 @@ public class UserService implements IUserService {
     private final DBConnection DBConnection;
 
     public UserService() {
-        this(new DBConnector());
+        this(new SQLiteConnection());
     }
 
     public UserService(DBConnection DBConnector) {

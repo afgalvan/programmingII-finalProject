@@ -1,7 +1,7 @@
 package app.views.components.auth;
 
+import app.utils.ImageUtils;
 import app.views.ColorPalette;
-import app.views.assets.ImageUtils;
 import app.views.components.factory.ImageFactory;
 import app.views.components.factory.LabelFactory;
 import javax.swing.*;
