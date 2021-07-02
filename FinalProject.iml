@@ -12,7 +12,8 @@
     <orderEntry type="library" name="jackson-annotations-2.12.2" level="project" />
     <orderEntry type="library" name="lombok" level="project" />
     <orderEntry type="library" name="RojeruSan" level="project" />
-    <orderEntry type="library" name="sqlite-jdbc-3.32.3.2" level="project" />
     <orderEntry type="library" name="RSTableMetro" level="project" />
+    <orderEntry type="library" name="jackson-core-2.12.2" level="project" />
+    <orderEntry type="library" name="sqlite-jdbc-3.32.3.2" level="project" />
   </component>
 </module>
