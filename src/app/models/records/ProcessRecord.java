@@ -1,5 +1,6 @@
-package app.models;
+package app.models.records;
 
+import app.models.Process;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -15,15 +16,15 @@ public class ProcessRecord implements Serializable, Record<Process, Long> {
     }
 
     @Override
-    public ProcessRecord add(Process process) {
-        this.value.put(process.getId(), process);
+    public ProcessRecord add(Process data) {
+        this.value.put(data.getId(), data);
         return this;
     }
 
     @Override
-    public boolean update(Long id, Process process) {
+    public boolean update(Long id, Process data) {
         if (this.value.containsKey(id)) {
-            this.value.put(process.getId(), process);
+            this.value.put(data.getId(), data);
             return true;
         }
 

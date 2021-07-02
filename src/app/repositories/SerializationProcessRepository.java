@@ -6,19 +6,18 @@ import app.database.FileManagement;
 import app.database.FileManager;
 import app.exceptions.DataAccessException;
 import app.models.Process;
-import app.models.ProcessRecord;
 import app.models.metadata.parties.TrialParty;
-import java.sql.SQLException;
+import app.models.records.ProcessRecord;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class SerializationProcessRepository implements ProcessRepository {
 
-    private final FileManagement database;
+    private final FileManagement fileManagement;
 
-    public SerializationProcessRepository(FileManagement database) {
-        this.database = database;
+    public SerializationProcessRepository(FileManagement fileManagement) {
+        this.fileManagement = fileManagement;
     }
 
     public SerializationProcessRepository() {
@@ -35,12 +34,12 @@ public class SerializationProcessRepository implements ProcessRepository {
     }
 
     private ProcessRecord defaultReadRecord() {
-        ProcessRecord record = (ProcessRecord) database.read();
+        ProcessRecord record = (ProcessRecord) fileManagement.read();
         return record == null ? new ProcessRecord() : record;
     }
 
     private ProcessRecord safeReadRecords() throws DataAccessException {
-        ProcessRecord record = (ProcessRecord) database.read();
+        ProcessRecord record = (ProcessRecord) fileManagement.read();
         if (record == null || record.isEmpty()) {
             throw new DataAccessException("No existen procesos registrados");
         }
@@ -65,7 +64,7 @@ public class SerializationProcessRepository implements ProcessRepository {
         }
 
         ProcessRecord processRecord = this.defaultReadRecord().add(process);
-        database.save(processRecord);
+        fileManagement.save(processRecord);
     }
 
     @Override
@@ -86,7 +85,7 @@ public class SerializationProcessRepository implements ProcessRepository {
         throws DataAccessException {
         ProcessRecord processRecord = this.safeReadRecords();
         mutator.mutate(processRecord, newData);
-        database.save(processRecord);
+        fileManagement.save(processRecord);
     }
 
     @Override

@@ -1,7 +1,7 @@
 package test.repositories;
 
 import app.database.DBConnection;
-import app.database.DBConnector;
+import app.database.SQLiteConnection;
 import app.exceptions.DataAccessException;
 import app.models.users.SuperUser;
 import app.models.users.User;
@@ -18,7 +18,7 @@ import org.junit.Test;
 public class SQLiteUserRepositoryTest {
 
     public static final String TEST_URI = "jdbc:sqlite:./src/test/database/test.sqlite";
-    public static DBConnection DBConnector = new DBConnector(TEST_URI);
+    public static DBConnection DBConnector = new SQLiteConnection(TEST_URI);
     public UserRepository userRepository = new SQLiteUserRepository(DBConnector);
 
     @SneakyThrows

@@ -1,17 +1,17 @@
 package test.database;
 
-import app.database.DBConnector;
+import app.database.SQLiteConnection;
 import lombok.SneakyThrows;
 import org.junit.Test;
 
 public class DataConnectionTest {
 
-    public DBConnector DBConnector = new DBConnector();
+    public SQLiteConnection SQLiteConnection = new SQLiteConnection();
 
     @SneakyThrows
     @Test(expected = Test.None.class/* no exception expected */)
     public void databaseLinkTest() {
-        DBConnector.open();
-        DBConnector.close();
+        SQLiteConnection.open();
+        SQLiteConnection.close();
     }
 }

@@ -1,6 +1,6 @@
 package app.views;
 
-import app.views.assets.ImageUtils;
+import app.utils.ImageUtils;
 import app.views.components.atomic.Close;
 import app.views.components.atomic.Minimize;
 import com.formdev.flatlaf.FlatLightLaf;

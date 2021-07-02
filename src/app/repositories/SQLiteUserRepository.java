@@ -62,7 +62,7 @@ public class SQLiteUserRepository implements UserRepository {
 
         val userList = new ArrayList<User>();
         while (resultSet.next()) {
-            userList.add(resultSetMapToUser(resultSet));
+            userList.add(mapResultSetToUser(resultSet));
         }
 
         logger.log(Level.INFO, query);
@@ -85,7 +85,7 @@ public class SQLiteUserRepository implements UserRepository {
             Level.INFO,
             query.substring(0, query.length() - 1) + "\"" + username + "\""
         );
-        return resultSetMapToUser(statement.executeQuery());
+        return mapResultSetToUser(statement.executeQuery());
     }
 
     /**
@@ -119,13 +119,12 @@ public class SQLiteUserRepository implements UserRepository {
         val query = "DELETE FROM users WHERE name = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, username);
-        statement.execute();
         logger.log(
             Level.INFO,
             query.substring(0, query.length() - 1) + "\"" + username + "\""
         );
 
-        return true;
+        return statement.execute();
     }
 
     /**
@@ -136,7 +135,7 @@ public class SQLiteUserRepository implements UserRepository {
      * @return A user object generated from the database result set.
      * @throws SQLException For invalid fields.
      */
-    private User resultSetMapToUser(ResultSet resultSet) throws SQLException {
+    private User mapResultSetToUser(ResultSet resultSet) throws SQLException {
         String name = resultSet.getString("name");
         String password = resultSet.getString("password");
         String salt = resultSet.getString("salt");

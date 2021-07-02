@@ -7,7 +7,7 @@ import java.util.List;
  * @param <K> Data Key.
  * @param <T> Data Type.
  */
-public interface Service<K, T> {
+public interface Service<T, K> {
     Response<T> insert(T data);
 
     Response<List<T>> getAll();

@@ -1,9 +1,11 @@
-package app.views.assets;
+package app.utils;
 
 import java.util.function.Function;
 import javax.swing.*;
 
-public class ImageUtils {
+public final class ImageUtils {
+
+    private ImageUtils() {}
 
     public static final String assets = "src/app/views/assets/";
 

@@ -4,7 +4,7 @@ import app.models.Process;
 import app.models.Response;
 import java.util.List;
 
-public interface IProcessService extends Service<Long, Process> {
+public interface IProcessService extends Service<Process, Long> {
     boolean contains(Long id);
 
     Response<List<Process>> getProcessesByJudged(String name);

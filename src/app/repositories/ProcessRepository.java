@@ -5,7 +5,7 @@ import app.models.Process;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface ProcessRepository extends Repository<Long, Process> {
+public interface ProcessRepository extends Repository<Process, Long> {
     boolean contains(Long id);
 
     List<Process> getProcessesByJudged(String name)
