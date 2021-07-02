@@ -1,5 +1,9 @@
 package app.views.components.dashboard;
 
+import app.models.Session;
+import app.models.users.Coordinator;
+import app.models.users.SuperUser;
+import app.models.users.UserType;
 import app.utils.ImageUtils;
 import app.views.ColorPalette;
 import app.views.components.dashboard.panels.*;
@@ -18,8 +22,10 @@ public class MenuBar extends JPanel {
 
     private List<MenuItem> optionList;
     private List<MenuItem> others;
+    private final Session session;
 
-    public MenuBar() {
+    public MenuBar(Session session) {
+        this.session = session;
         this.optionList = new ArrayList<>();
         this.others = new ArrayList<>();
         this.configureLayout();
@@ -43,43 +49,54 @@ public class MenuBar extends JPanel {
         String iconName,
         String title,
         CenterPanel dashboardSection,
-        List<MenuItem> optionList
+        List<MenuItem> optionList,
+        UserType permissions
     ) {
         Icon icon = new ImageIcon(ImageUtils.icon24x24.apply(iconName));
         val option = new MenuItem(icon, title, dashboardSection);
+        if (permissions == UserType.CO && session.isGuest()) {
+            option.setEnabled(false);
+        }
+        if (permissions == UserType.SU && !(session.getUser() instanceof SuperUser)) {
+            option.setEnabled(false);
+        }
         this.addInteraction(option);
         optionList.add(option);
     }
 
     public void fillOptions() {
-        createOptionOf("home.png", "Dashboard", HomePanel.getInstance(), this.optionList);
+        createOptionOf("home.png", "Dashboard", HomePanel.getInstance(), this.optionList, null);
         createOptionOf(
             "visibility.png",
             "Panel de consultas",
             SearchPanel.getInstance(),
-            this.optionList
+            this.optionList,
+            null
         );
         createOptionOf(
             "book.png",
             "Panel de expedientes",
             DocumentsPanel.getInstance(),
-            this.optionList
+            this.optionList,
+            UserType.CO
         );
         createOptionOf(
             "admin.png",
             "Panel de administracion",
             AdminPanel.getInstance(),
-            this.optionList
+            this.optionList,
+            UserType.SU
         );
         createOptionOf(
             "settings.png",
             "Configuración",
             SettingsPanel.getInstance(),
-            this.optionList
+            this.optionList,
+            UserType.CO
         );
 
-        createOptionOf("users.png", "Créditos", CreditsPanel.getInstance(), this.others);
-        createOptionOf("info.png", "Acerca de", AboutPanel.getInstance(), this.others);
+        createOptionOf("users.png", "Créditos", CreditsPanel.getInstance(), this.others, null);
+        createOptionOf("info.png", "Acerca de", AboutPanel.getInstance(), this.others, null);
     }
 
     public void configureLayout() {
@@ -94,7 +111,9 @@ public class MenuBar extends JPanel {
     }
 
     private void addInteraction(MenuItem menuItem) {
-        menuItem.onClick(() -> render(menuItem.getSection()));
+        menuItem.onClick(() -> {
+            if (menuItem.isEnabled()) render(menuItem.getSection());
+        });
         menuItem.getPressItem().onClick(menuItem.getRunnable());
     }
 

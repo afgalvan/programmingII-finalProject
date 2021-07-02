@@ -14,6 +14,7 @@ public class MainWindow extends Window {
 
     private final TopBar topBar;
     private final MenuBar menuBar;
+    @Getter
     private final Session session;
     public static MainWindow state;
 
@@ -26,7 +27,7 @@ public class MainWindow extends Window {
         this.topBar = new TopBar();
         this.dashboardSection = HomePanel.getInstance();
         this.dashboardSection.setVisible(true);
-        this.menuBar = new MenuBar();
+        this.menuBar = new MenuBar(session);
         this.initComponents();
         this.addInteraction();
         MainWindow.state = this;

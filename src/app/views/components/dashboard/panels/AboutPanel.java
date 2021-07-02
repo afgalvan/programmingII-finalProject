@@ -52,6 +52,6 @@ public class AboutPanel extends CenterPanel {
     }
 
     public String appVersion() {
-        return "1.0.0 - Stable";
+        return "1.0.0 - Beta";
     }
 }
