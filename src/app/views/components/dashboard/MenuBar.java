@@ -65,7 +65,13 @@ public class MenuBar extends JPanel {
     }
 
     public void fillOptions() {
-        createOptionOf("home.png", "Dashboard", HomePanel.getInstance(), this.optionList, null);
+        createOptionOf(
+            "home.png",
+            "Dashboard",
+            HomePanel.getInstance(),
+            this.optionList,
+            null
+        );
         createOptionOf(
             "visibility.png",
             "Panel de consultas",
@@ -95,8 +101,20 @@ public class MenuBar extends JPanel {
             UserType.CO
         );
 
-        createOptionOf("users.png", "Créditos", CreditsPanel.getInstance(), this.others, null);
-        createOptionOf("info.png", "Acerca de", AboutPanel.getInstance(), this.others, null);
+        createOptionOf(
+            "users.png",
+            "Créditos",
+            CreditsPanel.getInstance(),
+            this.others,
+            null
+        );
+        createOptionOf(
+            "info.png",
+            "Acerca de",
+            AboutPanel.getInstance(),
+            this.others,
+            null
+        );
     }
 
     public void configureLayout() {
@@ -111,9 +129,11 @@ public class MenuBar extends JPanel {
     }
 
     private void addInteraction(MenuItem menuItem) {
-        menuItem.onClick(() -> {
-            if (menuItem.isEnabled()) render(menuItem.getSection());
-        });
+        menuItem.onClick(
+            () -> {
+                if (menuItem.isEnabled()) render(menuItem.getSection());
+            }
+        );
         menuItem.getPressItem().onClick(menuItem.getRunnable());
     }
 

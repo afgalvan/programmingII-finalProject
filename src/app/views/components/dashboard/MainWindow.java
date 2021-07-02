@@ -14,8 +14,10 @@ public class MainWindow extends Window {
 
     private final TopBar topBar;
     private final MenuBar menuBar;
+
     @Getter
     private final Session session;
+
     public static MainWindow state;
 
     @Setter
