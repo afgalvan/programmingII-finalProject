@@ -34,22 +34,20 @@ public class UserControllerTest {
     @Test
     @Order(1)
     public void postTest() {
-        Assert.assertEquals(
-            DialogResponse.INFORMATION_MESSAGE,
+        Assert.assertFalse(
             authController
                 .registerUser(sample.getName(), sample.getPassword(), UserType.CO)
-                .getStatusCode()
+                .isError()
         );
     }
 
     @Test
     @Order(2)
     public void postDuplicateUser() {
-        Assert.assertEquals(
-            DialogResponse.ERROR_MESSAGE,
+        Assert.assertTrue(
             authController
                 .registerUser(sample.getName(), sample.getPassword(), UserType.CO)
-                .getStatusCode()
+                .isError()
         );
     }
 

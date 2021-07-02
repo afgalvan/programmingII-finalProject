@@ -13,7 +13,7 @@ public class SQLiteConnection implements DBConnection {
     private Connection connection;
 
     public SQLiteConnection() {
-        this("jdbc:sqlite:./database.sqlite");
+        this("jdbc:sqlite:./src/app/database/database.sqlite");
     }
 
     public SQLiteConnection(String driverURI) {

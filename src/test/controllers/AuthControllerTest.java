@@ -31,45 +31,41 @@ public class AuthControllerTest {
     @Test
     @Order(1)
     public void logInvalidUser() {
-        Assert.assertEquals(
+        Assert.assertTrue(
             "A unregistered user shouldn't be allowed to log in.",
-            DialogResponse.ERROR_MESSAGE,
             authController
                 .loginUser(sample.getName(), sample.getPassword())
-                .getStatusCode()
+                .isError()
         );
     }
 
     @Test
     @Order(2)
     public void registerUser() {
-        Assert.assertEquals(
-            DialogResponse.INFORMATION_MESSAGE,
+        Assert.assertFalse(
             authController
                 .registerUser(sample.getName(), sample.getPassword(), UserType.CO)
-                .getStatusCode()
+                .isError()
         );
     }
 
     @Test
     @Order(3)
     public void registerInvalidUser() {
-        Assert.assertEquals(
-            DialogResponse.ERROR_MESSAGE,
+        Assert.assertTrue(
             authController
                 .registerUser(sample.getName(), sample.getPassword(), UserType.SU)
-                .getStatusCode()
+                .isError()
         );
     }
 
     @Test
     @Order(4)
     public void logInUser() {
-        Assert.assertEquals(
-            DialogResponse.INFORMATION_MESSAGE,
+        Assert.assertFalse(
             authController
                 .loginUser(sample.getName(), sample.getPassword())
-                .getStatusCode()
+                .isError()
         );
     }
 
