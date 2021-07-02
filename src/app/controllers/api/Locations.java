@@ -5,7 +5,6 @@ import app.models.annotations.TestedOn;
 import com.fasterxml.jackson.databind.JsonNode;
 import java.util.*;
 import java.util.stream.Collectors;
-import lombok.SneakyThrows;
 import lombok.val;
 import test.controllers.api.LocationsTest;
 
@@ -130,7 +129,6 @@ public final class Locations {
 
     /**
      * @param department A {@code String} representing the name of a department in Colombia.
-     *
      * @return if is an existing department.
      */
     public static boolean isValidDepartment(String department) {
@@ -139,8 +137,7 @@ public final class Locations {
 
     /**
      * @param department A {@code String} representing the name of a department in Colombia.
-     * @param city A {@code String} representing the name of a city of the given department.
-     *
+     * @param city       A {@code String} representing the name of a city of the given department.
      * @return if a city belongs to the given department.
      */
     public static boolean isValidCityOf(String department, String city) {
@@ -149,10 +146,8 @@ public final class Locations {
     }
 
     /**
-     *
      * @param department A {@code String} representing the name of a department in Colombia.
      * @return the same name in case of a validation.
-     *
      * @throws InvalidLocationException if a invalid department is given.
      */
     public static String throwForDepartment(String department)

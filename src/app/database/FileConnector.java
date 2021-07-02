@@ -50,7 +50,6 @@ class FileConnector implements FileConnection {
     }
 
     /**
-     *
      * Saves the given object to the file specified.
      *
      * @param data the {@code Object} to be saved.
@@ -69,7 +68,7 @@ class FileConnector implements FileConnection {
      * Read the contents of the file specified in constructor.
      *
      * @return the {@code Object} read from the file.
-     * @throws IOException if any error occurs while reading the file.
+     * @throws IOException            if any error occurs while reading the file.
      * @throws ClassNotFoundException if couldn't load the class.
      */
     @Override

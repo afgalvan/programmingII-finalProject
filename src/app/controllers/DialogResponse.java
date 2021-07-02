@@ -7,6 +7,7 @@ import lombok.Setter;
 
 /**
  * A class to return data as response between controllers and views.
+ *
  * @param <T> data type that the response should contain.
  */
 @Getter
