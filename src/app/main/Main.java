@@ -1,10 +1,9 @@
 package app.main;
 
-import app.views.View;
-
-import java.security.Security;
-
 import static java.awt.EventQueue.invokeLater;
+
+import app.views.View;
+import java.security.Security;
 
 public class Main {
 
