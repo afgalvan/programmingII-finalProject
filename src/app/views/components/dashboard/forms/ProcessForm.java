@@ -19,16 +19,9 @@ public class ProcessForm extends RegistrationForm {
     public void initComponents() {
         this.fieldsContainer.setBackground(this.getBackground());
         this.fieldsContainer.setLayout(new GridLayout(4, 3, 10, 10));
-        this.fieldsContainer.add(FieldFactory.createLabeledField("Bro", "Bro"));
-        this.fieldsContainer.add(FieldFactory.createLabeledField("Bro", "Bro"));
-        this.fieldsContainer.add(FieldFactory.createLabeledField("Bro", "Bro"));
-        this.fieldsContainer.add(FieldFactory.createLabeledField("Bro", "Bro"));
-        this.fieldsContainer.add(FieldFactory.createLabeledField("Bro", "Bro"));
-        this.fieldsContainer.add(FieldFactory.createLabeledField("Bro", "Bro"));
-        this.fieldsContainer.add(FieldFactory.createLabeledField("Bro", "Bro"));
-        this.fieldsContainer.add(FieldFactory.createLabeledField("Bro", "Bro"));
-        this.fieldsContainer.add(FieldFactory.createLabeledField("Bro", "Bro"));
-        this.fieldsContainer.add(FieldFactory.createLabeledField("Bro", "Bro"));
+        for (int i = 0; i < 10; i++) {
+            this.fieldsContainer.add(FieldFactory.createLabeledField("Bro", "Bro"));
+        }
 
         this.addToForm(fieldsContainer, BorderLayout.CENTER);
     }

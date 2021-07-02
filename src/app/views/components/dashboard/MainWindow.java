@@ -5,7 +5,7 @@ import app.views.Window;
 import app.views.components.atomic.Dialog;
 import app.views.components.auth.AuthWindow;
 import app.views.components.dashboard.panels.CenterPanel;
-import app.views.components.dashboard.panels.DocumentsPanel;
+import app.views.components.dashboard.panels.HomePanel;
 import java.awt.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,7 +24,7 @@ public class MainWindow extends Window {
     public MainWindow(Session session) {
         this.session = session;
         this.topBar = new TopBar();
-        this.dashboardSection = DocumentsPanel.getInstance();
+        this.dashboardSection = HomePanel.getInstance();
         this.dashboardSection.setVisible(true);
         this.menuBar = new MenuBar();
         this.initComponents();
