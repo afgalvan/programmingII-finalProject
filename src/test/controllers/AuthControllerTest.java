@@ -33,9 +33,7 @@ public class AuthControllerTest {
     public void logInvalidUser() {
         Assert.assertTrue(
             "A unregistered user shouldn't be allowed to log in.",
-            authController
-                .loginUser(sample.getName(), sample.getPassword())
-                .isError()
+            authController.loginUser(sample.getName(), sample.getPassword()).isError()
         );
     }
 
@@ -63,9 +61,7 @@ public class AuthControllerTest {
     @Order(4)
     public void logInUser() {
         Assert.assertFalse(
-            authController
-                .loginUser(sample.getName(), sample.getPassword())
-                .isError()
+            authController.loginUser(sample.getName(), sample.getPassword()).isError()
         );
     }
 
