@@ -22,7 +22,7 @@
     }
   },
   "devDependencies": {
-    "all-contributors-cli": "^6.20.0",
+    "all-contributors-cli": "^6.24.0",
     "editorconfig-checker": "^4.0.2",
     "ghooks": "^2.0.4",
     "prettier": "^2.3.2",
